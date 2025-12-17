@@ -2,7 +2,7 @@
 
 ## &#x20;Quick Preview
 
-[🔗 Lihat versi live](https://drepradhit.vercel.app/)
+[🔗 Lihat versi live](drepradhit.me)
 
 ## About Me
 
