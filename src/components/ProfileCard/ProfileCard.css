@@ -13,12 +13,12 @@
   --icon: none;
   --behind-gradient: none;
   --inner-gradient: none;
-  --sunpillar-1: hsl(0, 0%, 5%);
-  --sunpillar-2: hsl(0, 0%, 15%);
-  --sunpillar-3: hsl(0, 0%, 25%);
-  --sunpillar-4: hsl(0, 0%, 35%);
-  --sunpillar-5: hsl(0, 0%, 15%);
-  --sunpillar-6: hsl(0, 0%, 5%);
+  --sunpillar-1: hsl(0, 0%, 20%);
+  --sunpillar-2: hsl(0, 0%, 40%);
+  --sunpillar-3: hsl(0, 0%, 60%);
+  --sunpillar-4: hsl(0, 0%, 80%);
+  --sunpillar-5: hsl(0, 0%, 40%);
+  --sunpillar-6: hsl(0, 0%, 20%);
   --sunpillar-clr-1: var(--sunpillar-1);
   --sunpillar-clr-2: var(--sunpillar-2);
   --sunpillar-clr-3: var(--sunpillar-3);
@@ -156,8 +156,8 @@
   background-size: 250% 250%, 100% 100%, 220px 220px;
   background-position: var(--pointer-x) var(--pointer-y), center, calc(var(--pointer-x) * 0.01) calc(var(--pointer-y) * 0.01);
   background-blend-mode: color-dodge;
-  filter: brightness(calc(1.2 - var(--pointer-from-center) * 0.2)) contrast(calc(var(--pointer-from-center) + 1.2)) saturate(calc(0.5 + var(--pointer-from-center)));
-  mix-blend-mode: soft-light;
+  filter: brightness(calc(2 - var(--pointer-from-center))) contrast(calc(var(--pointer-from-center) + 2)) saturate(calc(0.5 + var(--pointer-from-center)));
+  mix-blend-mode: luminosity;
 }
 
 .pc-shine::after {
@@ -176,6 +176,16 @@
   z-index: 4;
 }
 
+.pc-content {
+  max-height: 100%;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  transform: translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px) !important;
+  z-index: 5;
+  mix-blend-mode: luminosity;
+}
+
 .pc-avatar-content {
   overflow: hidden;
 }
@@ -187,7 +197,7 @@
   transform: translateX(-50%) scale(1);
   bottom: 45px;
   opacity: calc(1.75 - var(--pointer-from-center));
-  filter: grayscale(1) brightness(0.5);
+  filter: grayscale(1);
 }
 
 .pc-avatar-content::before {
@@ -214,7 +224,7 @@
   align-items: center;
   justify-content: space-between;
   background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
   /* Full pill */
   padding: 6px 8px;
@@ -308,15 +318,6 @@
   transform: scale(0.95);
 }
 
-.pc-content {
-  max-height: 100%;
-  overflow: hidden;
-  text-align: center;
-  position: relative;
-  transform: translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px) !important;
-  z-index: 5;
-  filter: grayscale(1);
-}
 
 .pc-details {
   width: 100%;

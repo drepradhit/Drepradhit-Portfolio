@@ -106,7 +106,6 @@ function Card({ i, project, progress, range, targetScale, onProjectClick, total 
                                 src={project.image}
                                 alt={project.title}
                                 className="w-full h-full object-contain bg-neutral-900 group-hover:scale-105 transition-transform duration-700"
-                                style={{ filter: 'brightness(1.5)' }}
                             />
                         </motion.div>
                     </div>
