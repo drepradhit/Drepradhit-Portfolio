@@ -177,19 +177,16 @@
 }
 
 .pc-avatar-content {
-  mix-blend-mode: screen;
   overflow: hidden;
 }
 
 .pc-avatar-content .avatar {
-  width: 100%;
-  height: 100%;
+  width: 95%;
   position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: cover;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  bottom: 45px;
   opacity: calc(1.75 - var(--pointer-from-center));
-  filter: brightness(0.5);
 }
 
 .pc-avatar-content::before {
@@ -220,6 +217,7 @@
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
+  /* Full pill */
   padding: 6px 8px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
@@ -272,7 +270,6 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
 
 .pc-status::before {
@@ -280,18 +277,20 @@
   width: 6px;
   height: 6px;
   background-color: #4ade80;
+  /* Online green */
   border-radius: 50%;
   box-shadow: 0 0 8px #4ade80;
 }
 
 .pc-contact-btn {
-  background-color: #ffffff;
-  border: none;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
   border-radius: 100px;
   padding: 8px 16px;
   font-size: 12px;
   font-weight: 600;
-  color: #000000;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.05em;
@@ -301,7 +300,9 @@
 
 .pc-contact-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .pc-contact-btn:active {
@@ -327,17 +328,15 @@
 }
 
 .pc-details h3 {
-  font-weight: 700;
+  font-weight: 600;
   margin: 0;
-  font-size: min(4svh, 2.2em);
+  font-size: min(5svh, 3em);
   margin: 0;
-  background-image: linear-gradient(to bottom, #ffffff, #e0e0e0);
+  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
   background-size: 1em 1.5em;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.5));
 }
 
 .pc-details p {
@@ -345,16 +344,14 @@
   position: relative;
   top: -12px;
   white-space: nowrap;
-  font-size: 13px;
+  font-size: 16px;
   margin: 0 auto;
   width: min-content;
-  background-image: linear-gradient(to bottom, #ffffff, #d0d0d0);
+  background-image: linear-gradient(to bottom, #fff, #4a4ac0);
   background-size: 1em 1.5em;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.4));
 }
 
 @keyframes glow-bg {

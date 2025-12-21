@@ -6,6 +6,7 @@ export default function RotatingRoles({ className = '' }) {
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
+    // cycle every 4.5s, with 600ms fade transition
     const interval = setInterval(() => {
       setVisible(false)
       setTimeout(() => {
@@ -27,3 +28,4 @@ export default function RotatingRoles({ className = '' }) {
     </div>
   )
 }
+

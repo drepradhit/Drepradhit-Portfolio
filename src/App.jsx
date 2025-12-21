@@ -1,10 +1,13 @@
 import { useRef, useState, useEffect } from "react";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
+
 import { listTools, listProyek } from "./data";
+
 import ProjectModal from "./components/ProjectModal/ProjectModal";
 import Aurora from "./components/Aurora/Aurora";
 import RotatingRoles from "./components/RotatingRoles/RotatingRoles";
 import AOS from 'aos';
+
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi";
 import { motion } from "framer-motion";
@@ -14,7 +17,8 @@ AOS.init();
 function App() {
   const aboutRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+
+  const [selectedProject, setSelectedProject] = useState(null); // null = modal tertutup
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -23,6 +27,9 @@ function App() {
   const handleCloseModal = () => {
     setSelectedProject(null);
   };
+  // -------------------------
+
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -138,8 +145,8 @@ function App() {
               <motion.a
                 href="./assets/proyek/Resume - Andre Pradhit.pdf"
                 download="Resume - Andre Pradhit.pdf"
-                className="font-medium bg-white px-6 py-3 rounded-full hover:bg-neutral-200 transition-shadow shadow-md text-black"
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(255,255,255,0.2)" }}
+                className="font-medium bg-neutral-900/50 backdrop-blur-md px-6 py-3 rounded-full border border-neutral-700 text-white hover:bg-neutral-800 hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Download Resume
@@ -178,21 +185,30 @@ function App() {
             </div>
           </motion.div>
         </div>
-
+        {/* tentang */}
         <div className="mt-32 w-full max-w-6xl mx-auto" id="about">
           <div className="relative md:rounded-[2.5rem] bg-transparent md:bg-neutral-950 md:border md:border-neutral-800 p-8 md:p-12 overflow-hidden md:shadow-2xl md:shadow-neutral-900/50">
+            {/* Background Gradient Blob */}
             <div className="hidden md:block absolute top-0 right-0 w-96 h-96 bg-stone-800/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 -z-10 pointer-events-none"></div>
             <div className="hidden md:block absolute bottom-0 left-0 w-64 h-64 bg-neutral-800/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 -z-10 pointer-events-none"></div>
 
             <div className="flex flex-col items-center text-center gap-10" data-aos="fade-up" data-aos-duration="1000">
+
+              {/* About Section - Redesigned */}
               <div className="w-full relative z-10">
+
+                {/* Main Content Grid */}
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+
+                  {/* Left Column - Identity & Bio */}
                   <div className="text-center md:text-left space-y-6">
+                    {/* Name Badge */}
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-900/50 border border-neutral-800 rounded-full backdrop-blur-sm">
                       <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                       <span className="text-sm text-neutral-300">Available for projects</span>
                     </div>
 
+                    {/* Name & Title */}
                     <div>
                       <h2 className="text-5xl md:text-6xl font-bold text-white mb-3 bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">
                         Andre
@@ -202,6 +218,7 @@ function App() {
                       </p>
                     </div>
 
+                    {/* Education Badge */}
                     <div className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 rounded-2xl">
                       <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -214,18 +231,17 @@ function App() {
                     </div>
                   </div>
 
+                  {/* Right Column - Description & Skills */}
                   <div className="space-y-6 text-center md:text-left">
+                    {/* Description */}
                     <div className="space-y-4">
                       <p className="text-base md:text-lg text-neutral-400 leading-relaxed">
                         I am a <span className="text-white font-medium">Computer Science student</span> with a strong passion for <span className="text-white font-medium">UI/UX Design</span>.
                         My academic background has shaped my problem-solving mindset and analytical thinking.
                       </p>
-                      <p className="text-base md:text-lg text-neutral-400 leading-relaxed">
-                        I combine <span className="text-white font-medium">design skills</span> with <span className="text-white font-medium">technical knowledge</span> to create
-                        intuitive, user-centered digital experiences through research, wireframing, and prototyping.
-                      </p>
                     </div>
 
+                    {/* Skills Tags */}
                     <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                       {['User Research', 'Wireframing', 'Prototyping', 'Visual Design', 'Problem Solving'].map((skill) => (
                         <span key={skill} className="px-3 py-1.5 text-xs font-medium text-neutral-300 bg-neutral-900/50 border border-neutral-800 rounded-lg hover:border-neutral-700 transition-colors">
@@ -236,6 +252,7 @@ function App() {
                   </div>
                 </div>
 
+                {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start mt-10">
                   <a href="#project" className="inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-medium hover:bg-neutral-100 transition-colors group">
                     <span>View Projects</span>
@@ -248,10 +265,12 @@ function App() {
                   </a>
                 </div>
               </div>
+
+              {/* Feature cards removed */}
+
             </div>
           </div>
         </div>
-
         <div className="tools mt-32">
           <motion.div
             className="text-center mb-12"
@@ -260,15 +279,10 @@ function App() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block px-4 py-1.5 mb-4 text-xs font-medium tracking-widest text-neutral-400 uppercase bg-neutral-900/50 border border-neutral-800 rounded-full">
-              My Stack
-            </span>
+
             <h1 className="text-4xl md:text-5xl font-bold text-white">
-              Tools & Technologies
+              Skills and Tools
             </h1>
-            <p className="mt-3 text-neutral-500 max-w-md mx-auto">
-              Technologies I use to bring ideas to life
-            </p>
           </motion.div>
 
           <div className="tools-box grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
@@ -290,7 +304,7 @@ function App() {
                   <img
                     src={tool.gambar}
                     alt={tool.nama}
-                    className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    className="w-full h-full object-contain transition-all duration-300"
                   />
                 </div>
                 <h3 className="text-sm font-semibold text-neutral-300 group-hover:text-white transition-colors mb-1">{tool.nama}</h3>
@@ -299,9 +313,13 @@ function App() {
             ))}
           </div>
         </div>
+        {/* tentang */}
 
+
+        {/* Proyek */}
         <div className="proyek mt-32 py-10" id="project"></div>
 
+        {/* Project Header */}
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -309,9 +327,7 @@ function App() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-block px-4 py-1.5 mb-4 text-xs font-medium tracking-widest text-neutral-400 uppercase bg-neutral-900/50 border border-neutral-800 rounded-full">
-            Portfolio
-          </span>
+
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Featured Projects
           </h1>
@@ -320,32 +336,36 @@ function App() {
           </p>
         </motion.div>
 
+        {/* Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:grid-rows-[180px_180px_180px]">
           {listProyek.map((project, index) => {
+            // Define bento grid positions matching reference layout exactly
             let gridClass = "";
             let isTall = false;
 
             if (index === 0) {
-              gridClass = "md:col-span-1 md:row-span-1";
+              gridClass = "md:col-span-1 md:row-span-1"; // top-left small
             }
             if (index === 1) {
-              gridClass = "md:col-span-1 md:row-span-1";
+              gridClass = "md:col-span-1 md:row-span-1"; // top second small
             }
             if (index === 2) {
-              gridClass = "sm:col-span-2 md:col-span-2 md:row-span-2";
+              gridClass = "sm:col-span-2 md:col-span-2 md:row-span-2"; // top-right tall (spans 2 cols, 2 rows)
               isTall = true;
             }
             if (index === 3) {
-              gridClass = "sm:col-span-2 md:col-span-2 md:row-span-2";
+              gridClass = "sm:col-span-2 md:col-span-2 md:row-span-2"; // left tall (spans 2 cols, 2 rows)
               isTall = true;
             }
             if (index === 4) {
-              gridClass = "md:col-span-1 md:row-span-1";
+              gridClass = "md:col-span-1 md:row-span-1"; // bottom small
             }
             if (index === 5) {
-              gridClass = "md:col-span-1 md:row-span-1";
+              gridClass = "md:col-span-1 md:row-span-1"; // bottom-right small
             }
 
+
+            // Mobile height classes
             const heightClass = isTall ? "min-h-[280px] sm:min-h-[200px] md:min-h-0" : "min-h-[200px] sm:min-h-[180px] md:min-h-0";
 
             return (
@@ -363,22 +383,29 @@ function App() {
                 className={`${gridClass} ${heightClass} group relative overflow-hidden rounded-2xl bg-neutral-950 border border-neutral-800/50 cursor-pointer hover:border-neutral-700 transition-all duration-300 project-card-hologram`}
                 onClick={() => handleProjectClick(project)}
               >
+                {/* Mobile Hologram Elements */}
                 <div className="md:hidden project-card-shine"></div>
 
+                {/* Background Image */}
                 <div className="absolute inset-0">
                   <img
+                    // ... rest of code
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-90"
                   />
+                  {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                 </div>
 
+                {/* Content */}
                 <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-5">
+                  {/* Top - Category */}
                   <span className="text-[10px] sm:text-xs font-medium text-neutral-400 uppercase tracking-wider">
                     {project.category}
                   </span>
 
+                  {/* Bottom - Title & Subtitle */}
                   <div>
                     <h3 className={`font-semibold text-white mb-1 ${isTall ? 'text-lg sm:text-xl' : 'text-base sm:text-lg'}`}>
                       {project.title}
@@ -389,6 +416,7 @@ function App() {
                   </div>
                 </div>
 
+                {/* Hover Arrow */}
                 <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                   <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
@@ -398,13 +426,18 @@ function App() {
             );
           })}
         </div>
+        {/* Proyek */}
 
+
+        {/* Kontak */}
         <div className="kontak mt-32 w-full max-w-6xl mx-auto p-4 sm:p-0" id="contact">
           <div
-            className="flex flex-col md:flex-row bg-black border border-neutral-800 rounded-3xl overflow-hidden backdrop-blur-sm shadow-2xl shadow-neutral-900/50"
+            className="flex flex-col md:flex-row"
             data-aos="fade-up"
             data-aos-duration="1000"
           >
+
+            {/* Left Side: Content */}
             <div className="flex-1 p-8 md:p-12 flex flex-col justify-center text-left">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Connect With Me</h1>
               <p className="text-neutral-400 mb-8 max-w-md leading-relaxed">
@@ -412,6 +445,7 @@ function App() {
               </p>
 
               <div className="flex flex-col gap-4">
+
                 <a
                   href="https://instagram.com/aaaaanddrre"
                   target="_blank"
@@ -428,7 +462,7 @@ function App() {
                   href="https://linkedin.com/in/andre-pradhit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-neutral-900 hover:bg-neutral-800 p-4 px-6 rounded-2xl border border-neutral-800 hover:border-white transition-all duration-300 w-full sm:w-80 group shadow-sm"
+                  className="flex items-center gap-4 bg-neutral-900 hover:bg-neutral-800 p-4 px-6 rounded-2xl transition-all duration-300 w-full sm:w-80 group shadow-sm"
                 >
                   <div className="p-2 bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors">
                     <FaLinkedin className="text-xl text-neutral-400 group-hover:text-white transition-all" />
@@ -440,24 +474,28 @@ function App() {
                   href="https://github.com/drepradhit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-neutral-900 hover:bg-neutral-800 p-4 px-6 rounded-2xl border border-neutral-800 hover:border-white transition-all duration-300 w-full sm:w-80 group shadow-sm"
+                  className="flex items-center gap-4 bg-neutral-900 hover:bg-neutral-800 p-4 px-6 rounded-2xl transition-all duration-300 w-full sm:w-80 group shadow-sm"
                 >
                   <div className="p-2 bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors">
                     <FaGithub className="text-xl text-neutral-400 group-hover:text-white transition-all" />
                   </div>
                   <span className="text-base font-medium text-neutral-300 group-hover:text-white transition-colors">GitHub</span>
                 </a>
+
               </div>
             </div>
 
-            <div className="flex-1 p-8 md:p-12 flex items-center justify-center bg-black">
+            {/* Right Side: Contact visual */}
+            <div className="flex-1 p-8 md:p-12 flex items-center justify-center">
               <div className="max-w-sm text-center">
                 <h2 className="text-2xl font-bold mb-2 text-white">Let's Connect</h2>
                 <p className="text-neutral-400">Follow me on Instagram to see my latest work and design inspiration. Let's create something amazing together!</p>
               </div>
             </div>
+
           </div>
         </div>
+        {/* Kontak */}
 
       </main>
 
