@@ -30,7 +30,7 @@ function Card({ i, project, progress, range, targetScale, onProjectClick, total 
                     scale,
                     top: `calc(-5vh + ${i * 25}px)`, // Reduced offset for mobile, kept stacking effect
                 }}
-                className="flex flex-col relative md:-top-[25%] h-[480px] md:h-[550px] w-full max-w-6xl rounded-[2rem] md:rounded-[3rem] p-1 border border-white/10 shadow-2xl overflow-hidden cursor-pointer bg-neutral-900"
+                className="flex flex-col relative md:-top-[25%] h-[480px] md:h-[550px] w-full max-w-6xl rounded-[2rem] md:rounded-[3rem] p-1 border border-white/20 shadow-2xl overflow-hidden cursor-pointer bg-neutral-800"
                 onClick={() => onProjectClick(project)}
                 onMouseMove={handleMouseMove}
             >
@@ -48,7 +48,7 @@ function Card({ i, project, progress, range, targetScale, onProjectClick, total 
                     }}
                 />
 
-                <div className="relative h-full w-full bg-neutral-950 rounded-[1.9rem] md:rounded-[2.9rem] overflow-hidden flex flex-col md:flex-row">
+                <div className="relative h-full w-full bg-neutral-900 rounded-[1.9rem] md:rounded-[2.9rem] overflow-hidden flex flex-col md:flex-row">
 
                     {/* Background Gradient Blob specific to card */}
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none mix-blend-overlay"></div>
@@ -59,7 +59,7 @@ function Card({ i, project, progress, range, targetScale, onProjectClick, total 
                         <div>
                             {/* Index Number */}
                             <div className="mb-4 md:mb-6 flex items-center gap-4">
-                                <span className="text-4xl md:text-6xl font-black text-neutral-800/50 select-none">
+                                <span className="text-4xl md:text-6xl font-black text-neutral-700 select-none">
                                     {(i + 1).toString().padStart(2, '0')}
                                 </span>
                                 <div className="h-px bg-neutral-800 flex-1"></div>
@@ -106,9 +106,8 @@ function Card({ i, project, progress, range, targetScale, onProjectClick, total 
                                 src={project.image}
                                 alt={project.title}
                                 className="w-full h-full object-contain bg-neutral-900 group-hover:scale-105 transition-transform duration-700"
+                                style={{ filter: 'brightness(1.5)' }}
                             />
-                            {/* Overlay Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-80 md:opacity-40"></div>
                         </motion.div>
                     </div>
                 </div>
