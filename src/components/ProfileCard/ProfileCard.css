@@ -405,7 +405,7 @@
   }
 
   .pc-avatar-content .avatar {
-    bottom: 8px;
+    bottom: 55px;
   }
 
   .pc-user-details {
@@ -437,7 +437,7 @@
   }
 
   .pc-details h3 {
-    font-size: min(3.5svh, 2em);
+    font-size: 28px;
   }
 
   .pc-details p {
@@ -459,7 +459,7 @@
   }
 
   .pc-avatar-content .avatar {
-    bottom: 6px;
+    bottom: 50px;
   }
 
   .pc-user-details {
@@ -488,7 +488,7 @@
   }
 
   .pc-details h3 {
-    font-size: min(3svh, 1.5em);
+    font-size: 20px;
   }
 
   .pc-details p {
