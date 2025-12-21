@@ -5,7 +5,7 @@ const DEFAULT_BEHIND_GRADIENT =
   "radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y), hsla(0, 0%, 100%, var(--card-opacity)) 10%, hsla(0, 0%, 60%, calc(var(--card-opacity) * 0.5)) 50%, hsla(0, 0%, 0%, 0) 100%)";
 
 const DEFAULT_INNER_GRADIENT =
-  "linear-gradient(145deg, #0a0a0a 0%, #171717 100%)";
+  "linear-gradient(145deg, rgba(10,10,10,0.8) 0%, rgba(23,23,23,0.8) 100%)";
 
 const ANIMATION_CONFIG = {
   SMOOTH_DURATION: 600,

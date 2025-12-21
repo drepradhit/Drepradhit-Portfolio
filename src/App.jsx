@@ -5,11 +5,14 @@ import { listTools, listProyek } from "./data";
 
 import ProjectModal from "./components/ProjectModal/ProjectModal";
 import Aurora from "./components/Aurora/Aurora";
+import TrueFocus from "./components/TrueFocus/TrueFocus";
 import RotatingRoles from "./components/RotatingRoles/RotatingRoles";
 import AOS from 'aos';
+import ScrollStack from "./components/ScrollStack/ScrollStack";
+import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee";
+
 
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { HiArrowDown } from "react-icons/hi";
 import { motion } from "framer-motion";
 import 'aos/dist/aos.css';
 AOS.init();
@@ -28,6 +31,7 @@ function App() {
     setSelectedProject(null);
   };
   // -------------------------
+
 
 
 
@@ -62,31 +66,33 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
 
         <style>{`
-@keyframes shine {
+@keyframes gradient-flow {
   0% {
-    background-position: -1000px 0;
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 1000px 0;
+    background-position: 0% 50%;
   }
 }
 
 .hero-name-anim {
   display: inline-block;
   background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    #ffffff 10%,
-    rgba(255, 255, 255, 0.4) 20%,
-    #ffffff 30%,
-    #ffffff 100%
+    -45deg,
+    #ffffff,
+    #a3a3a3,
+    #ffffff,
+    #737373
   );
-  background-size: 1000px 100%;
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shine 4s ease-in-out infinite;
-  will-change: background-position;
+  animation: gradient-flow 6s ease infinite;
+  font-weight: 800; 
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -101,7 +107,7 @@ function App() {
 `}</style>
 
         <div className="hero grid md:grid-cols-2 items-center pt-12 xl:gap-0 gap-8 grid-cols-1">
-          <div className="order-2 md:order-1 px-4 md:px-0">
+          <div className="order-2 md:order-1 px-4 md:px-0 flex flex-col items-center md:items-start text-center md:text-left">
 
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-white mb-4"
@@ -118,7 +124,7 @@ function App() {
                 Hi, I'm{" "}
               </motion.span>
               <motion.span
-                className="text-neutral-400 hero-name-anim"
+                className="text-white md:text-neutral-400 hero-name-anim"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
@@ -127,17 +133,37 @@ function App() {
               </motion.span>
             </motion.h1>
 
+            {/* Mobile: Simple RotatingRoles */}
             <motion.div
-              className="text-base md:text-lg text-neutral-400 max-w-3xl mb-4 md:mb-8 leading-relaxed"
+              className="block md:hidden text-lg text-neutral-400 mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
             >
-              <RotatingRoles className="text-lg md:text-xl lg:text-2xl font-semibold text-neutral-300" />
+              <RotatingRoles className="text-xl font-semibold text-neutral-300" />
+            </motion.div>
+
+            {/* Desktop: TrueFocus */}
+            <motion.div
+              className="hidden md:block text-lg text-neutral-400 text-left mb-8 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+            >
+              <TrueFocus
+                sentence="UI UX Designer|Frontend Developer|Web Developer"
+                separator="|"
+                manualMode={false}
+                blurAmount={4}
+                borderColor="#ffffff"
+                glowColor="rgba(255, 255, 255, 0.5)"
+                animationDuration={0.5}
+                pauseBetweenAnimations={2}
+              />
             </motion.div>
 
             <motion.div
-              className="flex items-center gap-4 justify-start md:justify-start"
+              className="flex flex-col md:flex-row items-center gap-6 md:gap-4 justify-center md:justify-start w-full md:w-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
@@ -145,21 +171,21 @@ function App() {
               <motion.a
                 href="./assets/proyek/Resume - Andre Pradhit.pdf"
                 download="Resume - Andre Pradhit.pdf"
-                className="font-medium bg-neutral-900/50 backdrop-blur-md px-6 py-3 rounded-full border border-neutral-700 text-white hover:bg-neutral-800 hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300"
+                className="relative font-medium bg-neutral-900 border border-neutral-700 text-white px-8 py-3 rounded-full overflow-hidden transition-all duration-300 group hover:border-white hover:bg-neutral-800"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Download Resume
+                <span className="relative z-10 flex items-center gap-2">
+                  My Resume
+                  <svg className="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                </span>
+                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 transform" />
               </motion.a>
-              <motion.a
-                href="#about"
-                className="md:hidden text-neutral-400 hover:text-white transition-colors"
-                aria-label="Scroll down"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <HiArrowDown className="text-2xl slow-bounce" />
-              </motion.a>
+
+
+              {/* ... previous code ... */}
+
+
             </motion.div>
           </div>
 
@@ -198,7 +224,7 @@ function App() {
               <div className="w-full relative z-10">
 
                 {/* Main Content Grid */}
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+                <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 
                   {/* Left Column - Identity & Bio */}
                   <div className="text-center md:text-left space-y-6">
@@ -232,7 +258,7 @@ function App() {
                   </div>
 
                   {/* Right Column - Description & Skills */}
-                  <div className="space-y-6 text-center md:text-left">
+                  <div className="space-y-6 text-center md:text-left md:translate-y-12">
                     {/* Description */}
                     <div className="space-y-4">
                       <p className="text-base md:text-lg text-neutral-400 leading-relaxed">
@@ -244,9 +270,10 @@ function App() {
                     {/* Skills Tags */}
                     <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                       {['User Research', 'Wireframing', 'Prototyping', 'Visual Design', 'Problem Solving'].map((skill) => (
-                        <span key={skill} className="px-3 py-1.5 text-xs font-medium text-neutral-300 bg-neutral-900/50 border border-neutral-800 rounded-lg hover:border-neutral-700 transition-colors">
-                          {skill}
-                        </span>
+                        <div key={skill} className="px-3 py-1.5 md:px-4 md:py-2 bg-white/5 border border-white/10 rounded-full flex items-center gap-1.5 md:gap-2 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group cursor-default backdrop-blur-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-neutral-500 group-hover:bg-white transition-colors"></div>
+                          <span className="text-xs md:text-sm text-neutral-400 group-hover:text-white font-medium transition-colors">{skill}</span>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -280,44 +307,24 @@ function App() {
             transition={{ duration: 0.6 }}
           >
 
-            <h1 className="text-4xl md:text-5xl font-bold text-white">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Skills and Tools
             </h1>
+            <p className="text-neutral-400 max-w-xl mx-auto text-lg leading-relaxed">
+              The essential toolkit I use for my work.
+            </p>
           </motion.div>
 
-          <div className="tools-box grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
-            {listTools.map((tool, index) => (
-              <motion.div
-                key={tool.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.08,
-                  ease: "easeOut"
-                }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="group flex flex-col items-center text-center"
-              >
-                <div className="w-20 h-20 mb-4 p-4 rounded-full bg-neutral-900/50 border border-neutral-800 group-hover:border-neutral-600 group-hover:bg-neutral-800/50 transition-all duration-300">
-                  <img
-                    src={tool.gambar}
-                    alt={tool.nama}
-                    className="w-full h-full object-contain transition-all duration-300"
-                  />
-                </div>
-                <h3 className="text-sm font-semibold text-neutral-300 group-hover:text-white transition-colors mb-1">{tool.nama}</h3>
-                <span className="text-xs text-neutral-600 group-hover:text-neutral-500 transition-colors">{tool.ket}</span>
-              </motion.div>
-            ))}
+          <div className="flex flex-col gap-10 relative w-screen left-1/2 -translate-x-1/2 md:static md:w-full md:left-auto md:translate-x-0">
+            <InfiniteMarquee items={listTools.slice(0, Math.ceil(listTools.length / 2))} speed={60} direction="left" />
+            <InfiniteMarquee items={listTools.slice(Math.ceil(listTools.length / 2))} speed={60} direction="right" />
           </div>
         </div>
         {/* tentang */}
 
 
         {/* Proyek */}
-        <div className="proyek mt-32 py-10" id="project"></div>
+        <div className="proyek mt-12 md:mt-20 py-10" id="project"></div>
 
         {/* Project Header */}
         <motion.div
@@ -336,163 +343,68 @@ function App() {
           </p>
         </motion.div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:grid-rows-[180px_180px_180px]">
-          {listProyek.map((project, index) => {
-            // Define bento grid positions matching reference layout exactly
-            let gridClass = "";
-            let isTall = false;
-
-            if (index === 0) {
-              gridClass = "md:col-span-1 md:row-span-1"; // top-left small
-            }
-            if (index === 1) {
-              gridClass = "md:col-span-1 md:row-span-1"; // top second small
-            }
-            if (index === 2) {
-              gridClass = "sm:col-span-2 md:col-span-2 md:row-span-2"; // top-right tall (spans 2 cols, 2 rows)
-              isTall = true;
-            }
-            if (index === 3) {
-              gridClass = "sm:col-span-2 md:col-span-2 md:row-span-2"; // left tall (spans 2 cols, 2 rows)
-              isTall = true;
-            }
-            if (index === 4) {
-              gridClass = "md:col-span-1 md:row-span-1"; // bottom small
-            }
-            if (index === 5) {
-              gridClass = "md:col-span-1 md:row-span-1"; // bottom-right small
-            }
-
-
-            // Mobile height classes
-            const heightClass = isTall ? "min-h-[280px] sm:min-h-[200px] md:min-h-0" : "min-h-[200px] sm:min-h-[180px] md:min-h-0";
-
-            return (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 50
-                }}
-                className={`${gridClass} ${heightClass} group relative overflow-hidden rounded-2xl bg-neutral-950 border border-neutral-800/50 cursor-pointer hover:border-neutral-700 transition-all duration-300 project-card-hologram`}
-                onClick={() => handleProjectClick(project)}
-              >
-                {/* Mobile Hologram Elements */}
-                <div className="md:hidden project-card-shine"></div>
-
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img
-                    // ... rest of code
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-90"
-                  />
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-5">
-                  {/* Top - Category */}
-                  <span className="text-[10px] sm:text-xs font-medium text-neutral-400 uppercase tracking-wider">
-                    {project.category}
-                  </span>
-
-                  {/* Bottom - Title & Subtitle */}
-                  <div>
-                    <h3 className={`font-semibold text-white mb-1 ${isTall ? 'text-lg sm:text-xl' : 'text-base sm:text-lg'}`}>
-                      {project.title}
-                    </h3>
-                    <p className={`text-xs sm:text-sm text-neutral-400 ${isTall ? 'line-clamp-2' : 'line-clamp-1'}`}>
-                      {project.subtitle}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Hover Arrow */}
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
-                  </svg>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+        {/* Scroll Stack Projects */}
+        <ScrollStack projects={listProyek} onProjectClick={handleProjectClick} />
         {/* Proyek */}
 
 
         {/* Kontak */}
-        <div className="kontak mt-32 w-full max-w-6xl mx-auto p-4 sm:p-0" id="contact">
+        {/* Kontak */}
+        <div className="kontak mt-12 md:mt-12 w-full max-w-4xl mx-auto p-4 sm:p-0 mb-20" id="contact">
           <div
-            className="flex flex-col md:flex-row"
+            className="flex flex-col items-center justify-center relative"
             data-aos="fade-up"
             data-aos-duration="1000"
           >
+            {/* Background Glow */}
+            <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent blur-3xl -z-10 rounded-full opacity-50" />
 
-            {/* Left Side: Content */}
-            <div className="flex-1 p-8 md:p-12 flex flex-col justify-center text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Connect With Me</h1>
-              <p className="text-neutral-400 mb-8 max-w-md leading-relaxed">
-                Feel free to reach out or follow my work on social media. I'm always open to new opportunities and collaborations.
+            {/* Content */}
+            <div className="w-full flex flex-col justify-center items-center text-center">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tighter">
+                Let's Connect
+              </h1>
+              <p className="text-neutral-400 mb-12 max-w-lg mx-auto text-lg leading-relaxed">
+                Follow me on social media to see my latest work and design inspiration. Let's create something amazing together!
               </p>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-wrap justify-center gap-6 w-full">
 
                 <a
                   href="https://instagram.com/aaaaanddrre"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-neutral-900 hover:bg-neutral-800 p-4 px-6 rounded-2xl border border-neutral-800 hover:border-white transition-all duration-300 w-full sm:w-80 group shadow-sm"
+                  className="group relative flex items-center gap-3 px-8 py-4 bg-neutral-900/30 backdrop-blur-md border border-neutral-800 rounded-full hover:border-purple-500/50 hover:bg-neutral-800/50 transition-all duration-300 md:w-auto w-full justify-center"
                 >
-                  <div className="p-2 bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors">
-                    <FaInstagram className="text-xl text-neutral-400 group-hover:text-white transition-all" />
-                  </div>
+                  <FaInstagram className="text-2xl text-neutral-400 group-hover:text-purple-400 transition-colors" />
                   <span className="text-base font-medium text-neutral-300 group-hover:text-white transition-colors">Instagram</span>
+                  <div className="absolute inset-0 rounded-full ring-2 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
                 <a
                   href="https://linkedin.com/in/andre-pradhit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-neutral-900 hover:bg-neutral-800 p-4 px-6 rounded-2xl transition-all duration-300 w-full sm:w-80 group shadow-sm"
+                  className="group relative flex items-center gap-3 px-8 py-4 bg-neutral-900/30 backdrop-blur-md border border-neutral-800 rounded-full hover:border-blue-500/50 hover:bg-neutral-800/50 transition-all duration-300 md:w-auto w-full justify-center"
                 >
-                  <div className="p-2 bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors">
-                    <FaLinkedin className="text-xl text-neutral-400 group-hover:text-white transition-all" />
-                  </div>
+                  <FaLinkedin className="text-2xl text-neutral-400 group-hover:text-blue-400 transition-colors" />
                   <span className="text-base font-medium text-neutral-300 group-hover:text-white transition-colors">LinkedIn</span>
+                  <div className="absolute inset-0 rounded-full ring-2 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
                 <a
                   href="https://github.com/drepradhit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-neutral-900 hover:bg-neutral-800 p-4 px-6 rounded-2xl transition-all duration-300 w-full sm:w-80 group shadow-sm"
+                  className="group relative flex items-center gap-3 px-8 py-4 bg-neutral-900/30 backdrop-blur-md border border-neutral-800 rounded-full hover:border-white/50 hover:bg-neutral-800/50 transition-all duration-300 md:w-auto w-full justify-center"
                 >
-                  <div className="p-2 bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors">
-                    <FaGithub className="text-xl text-neutral-400 group-hover:text-white transition-all" />
-                  </div>
+                  <FaGithub className="text-2xl text-neutral-400 group-hover:text-white transition-colors" />
                   <span className="text-base font-medium text-neutral-300 group-hover:text-white transition-colors">GitHub</span>
+                  <div className="absolute inset-0 rounded-full ring-2 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
               </div>
             </div>
-
-            {/* Right Side: Contact visual */}
-            <div className="flex-1 p-8 md:p-12 flex items-center justify-center">
-              <div className="max-w-sm text-center">
-                <h2 className="text-2xl font-bold mb-2 text-white">Let's Connect</h2>
-                <p className="text-neutral-400">Follow me on Instagram to see my latest work and design inspiration. Let's create something amazing together!</p>
-              </div>
-            </div>
-
           </div>
         </div>
         {/* Kontak */}

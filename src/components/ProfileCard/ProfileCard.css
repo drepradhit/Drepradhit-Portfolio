@@ -212,8 +212,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 100px;
   /* Full pill */
   padding: 6px 8px;

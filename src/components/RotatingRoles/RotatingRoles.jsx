@@ -21,7 +21,7 @@ export default function RotatingRoles({ className = '' }) {
   return (
     <div className={className + " inline-block"} aria-live="polite">
       <span
-        className={`inline-block transition-all duration-500 ease-in-out transform ${visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95'}`}
+        className={`inline-block transition-all duration-700 ease-in-out transform ${visible ? 'opacity-100 translate-x-0 blur-0' : 'opacity-0 translate-x-4 blur-sm'}`}
       >
         {roles[index]}
       </span>
