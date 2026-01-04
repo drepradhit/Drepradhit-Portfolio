@@ -350,7 +350,7 @@ function App() {
 
         {/* Kontak */}
         {/* Kontak */}
-        <div className="kontak mt-24 md:mt-40 w-full max-w-4xl mx-auto p-4 sm:p-0 mb-20" id="contact">
+        <div className="kontak mt-24 md:mt-20 w-full max-w-4xl mx-auto p-4 sm:p-0 mb-20" id="contact">
           <div
             className="flex flex-col items-center justify-center relative"
           >

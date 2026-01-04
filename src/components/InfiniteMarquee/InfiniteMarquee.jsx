@@ -44,8 +44,11 @@ const InfiniteMarquee = ({ items, speed = 1.5, direction = "left" }) => {
     });
 
     const handlePan = (_, info) => {
-        // Adjust sensitivity as needed
-        const sensitivity = 0.005; // Reduced to 0.005 for very heavy/controlled feel
+        // Adjust sensitivity based on device width
+        // Mobile needs higher sensitivity for responsiveness
+        const isMobile = window.innerWidth < 768;
+        const sensitivity = isMobile ? 0.1 : 0.005;
+
         baseX.set(baseX.get() + info.delta.x * sensitivity);
     };
 
