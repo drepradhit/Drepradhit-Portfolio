@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
     motion,
     useMotionValue,
@@ -12,6 +12,7 @@ const InfiniteMarquee = ({ items, speed = 1.5, direction = "left" }) => {
     const duplicatedItems = [...items, ...items, ...items, ...items];
 
     const containerRef = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
 
     // The current x position (percentage)
     const baseX = useMotionValue(0);
@@ -20,11 +21,11 @@ const InfiniteMarquee = ({ items, speed = 1.5, direction = "left" }) => {
     const baseVelocity = direction === "left" ? -speed : speed;
 
     useAnimationFrame((t, delta) => {
-        // Delta is time since last frame in ms. 
-        // We normalize to ~60fps (16.6ms).
-        let moveBy = baseVelocity * (delta / 16);
-
-        baseX.set(baseX.get() + moveBy);
+        // Stop auto-scroll when dragging
+        if (!isDragging) {
+            let moveBy = baseVelocity * (delta / 16);
+            baseX.set(baseX.get() + moveBy);
+        }
     });
 
     // The logic to wrap around:
@@ -47,7 +48,7 @@ const InfiniteMarquee = ({ items, speed = 1.5, direction = "left" }) => {
         // Adjust sensitivity based on device width
         // Mobile needs higher sensitivity for responsiveness
         const isMobile = window.innerWidth < 768;
-        const sensitivity = isMobile ? 0.07 : 0.005;
+        const sensitivity = isMobile ? 0.04 : 0.005; // Tuned for paused-drag feel
 
         baseX.set(baseX.get() + info.delta.x * sensitivity);
     };
@@ -63,6 +64,8 @@ const InfiniteMarquee = ({ items, speed = 1.5, direction = "left" }) => {
                 className="flex w-max"
                 style={{ x }}
                 onPan={handlePan}
+                onPanStart={() => setIsDragging(true)}
+                onPanEnd={() => setIsDragging(false)}
             >
                 {duplicatedItems.map((tool, index) => (
                     <div
