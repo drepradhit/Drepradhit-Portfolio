@@ -316,8 +316,8 @@ function App() {
           </motion.div>
 
           <div className="flex flex-col gap-10 relative w-screen left-1/2 -translate-x-1/2 md:static md:w-full md:left-auto md:translate-x-0">
-            <InfiniteMarquee items={listTools.slice(0, Math.ceil(listTools.length / 2))} speed={60} direction="left" />
-            <InfiniteMarquee items={listTools.slice(Math.ceil(listTools.length / 2))} speed={60} direction="right" />
+            <InfiniteMarquee items={listTools.slice(0, Math.ceil(listTools.length / 2))} speed={0.01} direction="left" />
+            <InfiniteMarquee items={listTools.slice(Math.ceil(listTools.length / 2))} speed={0.01} direction="right" />
           </div>
         </div>
         {/* tentang */}
@@ -350,11 +350,9 @@ function App() {
 
         {/* Kontak */}
         {/* Kontak */}
-        <div className="kontak mt-4 md:mt-8 w-full max-w-4xl mx-auto p-4 sm:p-0 mb-20" id="contact">
+        <div className="kontak mt-24 md:mt-40 w-full max-w-4xl mx-auto p-4 sm:p-0 mb-20" id="contact">
           <div
             className="flex flex-col items-center justify-center relative"
-            data-aos="fade-up"
-            data-aos-duration="1000"
           >
             {/* Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent blur-3xl -z-10 rounded-full opacity-50" />

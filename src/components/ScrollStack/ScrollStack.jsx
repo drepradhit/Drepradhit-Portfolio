@@ -20,19 +20,36 @@ function Card({ i, project, progress, range, targetScale, onProjectClick, total 
         mouseY.set(clientY - top);
     }
 
+    // Simple mobile detection
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     return (
         <div
             ref={container}
-            className="h-screen flex items-start justify-center sticky top-0 pt-12 md:pt-24"
+            // Mobile: min-h-0, mb-8, no sticky. Desktop: h-screen, sticky, top-0
+            className="flex items-start justify-center md:h-screen md:sticky md:top-0 md:pt-24 mb-8 md:mb-0"
         >
             <motion.div
                 style={{
-                    scale,
-                    top: `calc(-5vh + ${i * 25}px)`, // Reduced offset for mobile, kept stacking effect
+                    // Only apply scale and top offset on desktop
+                    scale: isMobile ? 1 : scale,
+                    top: isMobile ? 0 : `calc(-5vh + ${i * 25}px)`,
                 }}
                 className="flex flex-col relative md:-top-[25%] h-[480px] md:h-[550px] w-full max-w-6xl rounded-[2rem] md:rounded-[3rem] p-1 border border-white/20 shadow-2xl overflow-hidden cursor-pointer bg-neutral-800"
                 onClick={() => onProjectClick(project)}
                 onMouseMove={handleMouseMove}
+
+                // Entrance Animation
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }} // Trigger a bit before it's fully in view
+                transition={{ duration: 0.6, ease: "easeOut" }}
             >
                 {/* Spotlight Effect */}
                 <motion.div
