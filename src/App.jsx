@@ -1,14 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 
-import { listTools, listProyek } from "./data";
+import { listTools, listProyek, listProyekWeb, listProyekUIUX } from "./data";
 
 import ProjectModal from "./components/ProjectModal/ProjectModal";
 import Aurora from "./components/Aurora/Aurora";
 import TrueFocus from "./components/TrueFocus/TrueFocus";
 import RotatingRoles from "./components/RotatingRoles/RotatingRoles";
 import AOS from 'aos';
-import ScrollStack from "./components/ScrollStack/ScrollStack";
+import ProjectGrid from "./components/ProjectGrid/ProjectGrid";
 import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee";
 
 
@@ -20,6 +20,34 @@ AOS.init();
 function App() {
   const aboutRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  // Check if user has visited before in this session to prevent re-animation on back nav
+  const [isFirstVisit, setIsFirstVisit] = useState(true);
+
+  useEffect(() => {
+    const visited = sessionStorage.getItem("hasVisited");
+    if (visited) {
+      setIsFirstVisit(false);
+    } else {
+      sessionStorage.setItem("hasVisited", "true");
+    }
+  }, []);
+
+  // Manual Scroll Restoration Logic
+  useEffect(() => {
+    const shouldRestore = sessionStorage.getItem("should_restore_scroll");
+    const savedPos = sessionStorage.getItem("home_scroll_pos");
+
+    if (shouldRestore === "true" && savedPos) {
+      // Small timeout to allow DOM to settle if needed, though instant is better if content is ready
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedPos));
+      }, 0);
+
+      // Clear the flag so future refreshes start at top (standard behavior)
+      sessionStorage.removeItem("should_restore_scroll");
+    }
+  }, []);
 
   const [selectedProject, setSelectedProject] = useState(null); // null = modal tertutup
 
@@ -106,28 +134,28 @@ function App() {
 
 `}</style>
 
-        <div className="hero grid md:grid-cols-2 items-center pt-12 xl:gap-0 gap-8 grid-cols-1">
+        <div className="hero grid md:grid-cols-2 items-center pt-12 gap-12 md:gap-20 grid-cols-1 max-w-6xl mx-auto">
           <div className="order-2 md:order-1 px-4 md:px-0 flex flex-col items-center md:items-start text-center md:text-left">
 
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-white mb-4"
-              initial={{ opacity: 0, y: 30 }}
+              initial={isFirstVisit ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={isFirstVisit ? { duration: 0.6, ease: "easeOut" } : { duration: 0 }}
             >
               <motion.span
                 className="hidden md:inline"
-                initial={{ opacity: 0 }}
+                initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
+                transition={isFirstVisit ? { delay: 0.2, duration: 0.5 } : { duration: 0 }}
               >
                 Hi, I'm{" "}
               </motion.span>
               <motion.span
                 className="text-white md:text-neutral-400 hero-name-anim"
-                initial={{ opacity: 0, x: -20 }}
+                initial={isFirstVisit ? { opacity: 0, x: -20 } : { opacity: 1, x: 0 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+                transition={isFirstVisit ? { delay: 0.4, duration: 0.6, ease: "easeOut" } : { duration: 0 }}
               >
                 Andre Pradhit
               </motion.span>
@@ -136,9 +164,9 @@ function App() {
             {/* Mobile: Simple RotatingRoles */}
             <motion.div
               className="block md:hidden text-lg text-neutral-400 mb-8 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
+              initial={isFirstVisit ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+              transition={isFirstVisit ? { delay: 0.6, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
             >
               <RotatingRoles className="text-xl font-semibold text-neutral-300" />
             </motion.div>
@@ -146,9 +174,9 @@ function App() {
             {/* Desktop: TrueFocus */}
             <motion.div
               className="hidden md:block text-lg text-neutral-400 text-left mb-8 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
+              initial={isFirstVisit ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+              transition={isFirstVisit ? { delay: 0.6, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
             >
               <TrueFocus
                 sentence="UI UX Designer|Frontend Developer|Web Developer"
@@ -164,9 +192,9 @@ function App() {
 
             <motion.div
               className="flex flex-col md:flex-row items-center gap-6 md:gap-4 justify-center md:justify-start w-full md:w-auto"
-              initial={{ opacity: 0, y: 20 }}
+              initial={isFirstVisit ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
+              transition={isFirstVisit ? { delay: 0.8, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
             >
               <motion.a
                 href="./assets/proyek/Resume - Andre Pradhit.pdf"
@@ -191,9 +219,9 @@ function App() {
 
           <motion.div
             className="order-1 md:order-2 w-full flex justify-center px-4 md:px-0"
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={isFirstVisit ? { opacity: 0, scale: 0.9 } : { opacity: 1, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.7, ease: "easeOut" }}
+            transition={isFirstVisit ? { delay: 0.3, duration: 0.7, ease: "easeOut" } : { duration: 0 }}
           >
             <div className="w-full max-w-md">
               <ProfileCard
@@ -316,8 +344,10 @@ function App() {
           </motion.div>
 
           <div className="flex flex-col gap-10 relative w-screen left-1/2 -translate-x-1/2 md:static md:w-full md:left-auto md:translate-x-0">
-            <InfiniteMarquee items={listTools.slice(0, Math.ceil(listTools.length / 2))} speed={0.01} direction="left" />
-            <InfiniteMarquee items={listTools.slice(Math.ceil(listTools.length / 2))} speed={0.01} direction="right" />
+            {/* Top Row: Coding Tools (First 8 items) */}
+            <InfiniteMarquee items={listTools.slice(0, 8)} speed={0.01} direction="left" />
+            {/* Bottom Row: Design Tools (Remaining items) */}
+            <InfiniteMarquee items={listTools.slice(8)} speed={0.01} direction="right" />
           </div>
         </div>
         {/* tentang */}
@@ -344,7 +374,7 @@ function App() {
         </motion.div>
 
         {/* Scroll Stack Projects */}
-        <ScrollStack projects={listProyek} onProjectClick={handleProjectClick} />
+        <ProjectGrid projects={listProyek} />
         {/* Proyek */}
 
 
