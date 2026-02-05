@@ -410,7 +410,7 @@ function App() {
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/andre-pradhit"
+                  href="https://www.linkedin.com/in/andrepradhit/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative flex items-center gap-3 px-8 py-4 bg-neutral-900/30 backdrop-blur-md border border-neutral-800 rounded-full hover:border-blue-500/50 hover:bg-neutral-800/50 transition-all duration-300 md:w-auto w-full justify-center"

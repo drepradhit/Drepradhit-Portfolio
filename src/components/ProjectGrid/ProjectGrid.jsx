@@ -92,13 +92,17 @@ function ProjectCard({ project, index }) {
 export default function ProjectGrid({ projects }) {
     return (
         <div className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8 max-w-7xl mx-auto">
                 {projects.map((project, index) => (
-                    <ProjectCard
+                    <div
                         key={project.id}
-                        project={project}
-                        index={index}
-                    />
+                        className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]" // Calculated for gap-8 (2rem)
+                    >
+                        <ProjectCard
+                            project={project}
+                            index={index}
+                        />
+                    </div>
                 ))}
             </div>
         </div>

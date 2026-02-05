@@ -143,9 +143,9 @@ export default function ProjectDetail() {
 
                             {/* CTA Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 pb-10 lg:pb-0">
-                                {project.url === "COMING_SOON" ? (
+                                {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
                                     <button disabled className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-neutral-800 text-neutral-500 font-bold rounded-full cursor-not-allowed opacity-75">
-                                        Coming Soon
+                                        Under Maintenance
                                     </button>
                                 ) : project.url ? (
                                     <a

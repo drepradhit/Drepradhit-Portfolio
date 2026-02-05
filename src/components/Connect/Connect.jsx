@@ -119,7 +119,7 @@ const HolographicCard = () => {
                 {/* Bottom: Social Icons floating */}
                 <div className="flex gap-6 mt-4">
                     <SocialIcon Icon={FaInstagram} link="https://instagram.com/aaaaanddrre" />
-                    <SocialIcon Icon={FaLinkedin} link="https://linkedin.com/in/andre-pradhit" />
+                    <SocialIcon Icon={FaLinkedin} link="https://www.linkedin.com/in/andrepradhit/" />
                     <SocialIcon Icon={FaGithub} link="https://github.com/drepradhit" />
                 </div>
             </div>

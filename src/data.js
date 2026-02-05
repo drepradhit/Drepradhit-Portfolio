@@ -10,9 +10,11 @@ import ToolPR from "/assets/tools/pr.png";
 import ToolNode from "/assets/tools/node logo.png";
 import ToolTailwind from "/assets/tools/tailwind logo.png";
 import ToolPostgre from "/assets/tools/postgre.png";
+import ToolNext from "/assets/tools/nextjs.png";
 
 export const listTools = [
   { id: 1, gambar: ToolReactJS, nama: "React JS", ket: "Framework", dad: "100" },
+  { id: 13, gambar: ToolNext, nama: "Next JS", ket: "Framework", dad: "150" },
   { id: 2, gambar: ToolJS, nama: "Javascript", ket: "Language", dad: "200" },
   { id: 3, gambar: ToolTS, nama: "TypeScript", ket: "Language", dad: "300" },
   { id: 4, gambar: ToolHTML, nama: "HTML", ket: "Language", dad: "400" },
@@ -32,6 +34,7 @@ import Proyek2 from "/assets/proyek/project2.png";
 import Proyek3 from "/assets/proyek/project3.png";
 import Proyek4 from "/assets/proyek/project4.png";
 import Proyek5 from "/assets/proyek/project5.png";
+import DamianosImg from "/assets/proyek/damianos_production.png";
 
 export const listProyek = [
   {
@@ -77,7 +80,7 @@ export const listProyek = [
     fullDescription: "Rupiah Flow is a powerful web application designed for complete financial control. It allows users to easily track income and expenses, manage transaction categories, and visualize their financial health. Key features include real-time balance updates and the ability to generate and download detailed financial reports as PDF files for offline records.",
     borderColor: "#333",
     gradient: "linear-gradient(180deg, rgba(26,26,26,0.6), rgba(0,0,0,0.9))",
-    url: "COMING_SOON",
+    url: "UNDER_MAINTENANCE",
     year: "2025",
     techstack: ["Node JS", "React JS", "Tailwind", "PostgreSQL", "Javascript"],
     dad: "200",
@@ -97,6 +100,22 @@ export const listProyek = [
     year: "2024",
     techstack: ["Figma", "Illustrator"],
     dad: "600",
+  },
+  {
+    id: 4,
+    slug: "damianos-production",
+    image: DamianosImg,
+    images: [DamianosImg, Proyek1, Proyek2],
+    title: "Damianos Production",
+    category: "Web Development",
+    subtitle: "A modern company profile tailored for a creative agency.",
+    fullDescription: "Damianos Production is a modern company profile website that represents a creative agency. Built with Next.js and Tailwind CSS, it features a sleek design to showcase their portfolio and services with high performance and elegance.",
+    borderColor: "#333",
+    gradient: "linear-gradient(180deg, rgba(26,26,26,0.6), rgba(0,0,0,0.9))",
+    url: "UNDER_MAINTENANCE",
+    year: "2025",
+    techstack: ["Next JS", "Tailwind", "React JS"],
+    dad: "400",
   },
 ];
 
