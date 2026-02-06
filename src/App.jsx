@@ -123,6 +123,17 @@ function App() {
   font-weight: 800; 
 }
 
+@media (max-width: 767px) {
+  .hero-name-anim {
+    animation: none;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-name-anim {
     animation: none;
