@@ -191,7 +191,7 @@ function App() {
             </motion.div>
 
             <motion.div
-              className="flex flex-col md:flex-row items-center gap-6 md:gap-4 justify-center md:justify-start w-full md:w-auto"
+              className="flex flex-row items-center gap-4 justify-center md:justify-start w-full md:w-auto"
               initial={isFirstVisit ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={isFirstVisit ? { delay: 0.8, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
@@ -210,9 +210,19 @@ function App() {
                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 transform" />
               </motion.a>
 
-
-              {/* ... previous code ... */}
-
+              <motion.a
+                href="https://www.linkedin.com/in/andrepradhit/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative bg-neutral-900 border border-neutral-700 text-white p-3 rounded-full overflow-hidden transition-all duration-300 group hover:border-white hover:bg-neutral-800"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  <FaLinkedin className="w-5 h-5" />
+                </span>
+                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 transform" />
+              </motion.a>
 
             </motion.div>
           </div>
@@ -280,7 +290,7 @@ function App() {
                       </svg>
                       <div className="text-left">
                         <p className="text-xs text-neutral-500">Currently studying at</p>
-                        <p className="text-sm font-medium text-white">BINUS University - 5th Semester</p>
+                        <p className="text-sm font-medium text-white">BINUS University - 6th Semester</p>
                       </div>
                     </div>
                   </div>
@@ -344,10 +354,10 @@ function App() {
           </motion.div>
 
           <div className="flex flex-col gap-10 relative w-screen left-1/2 -translate-x-1/2 md:static md:w-full md:left-auto md:translate-x-0">
-            {/* Top Row: Coding Tools (First 8 items) */}
-            <InfiniteMarquee items={listTools.slice(0, 8)} speed={0.01} direction="left" />
+            {/* Top Row: Coding Tools (First 9 items) */}
+            <InfiniteMarquee items={listTools.slice(0, 9)} speed={0.01} direction="left" />
             {/* Bottom Row: Design Tools (Remaining items) */}
-            <InfiniteMarquee items={listTools.slice(8)} speed={0.01} direction="right" />
+            <InfiniteMarquee items={listTools.slice(9)} speed={0.01} direction="right" />
           </div>
         </div>
         {/* tentang */}

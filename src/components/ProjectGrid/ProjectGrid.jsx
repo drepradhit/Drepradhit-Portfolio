@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { listTools } from "../../data";
 
 function ProjectCard({ project, index }) {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     // Helper to find tool icon
     const getTechIcon = (techName) => {
@@ -24,11 +35,16 @@ function ProjectCard({ project, index }) {
         >
             <motion.div
                 className="group relative flex flex-col h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+                transition={{
+                    duration: 0.5,
+                    // On mobile, items are vertical, so we don't want accumulated delay from index.
+                    // On desktop, we stagger based on column position (approx modulo 3).
+                    delay: isMobile ? 0 : (index % 3) * 0.1
+                }}
+                whileHover={isMobile ? {} : { y: -5 }}
             >
                 {/* Image Container */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
@@ -108,3 +124,4 @@ export default function ProjectGrid({ projects }) {
         </div>
     );
 }
+
