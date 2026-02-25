@@ -35,6 +35,8 @@ import Proyek3 from "/assets/proyek/project3.png";
 import Proyek4 from "/assets/proyek/project4.png";
 import Proyek5 from "/assets/proyek/project5.png";
 import DamianosImg from "/assets/proyek/damianos_production.png";
+import TypePaperImg from "/assets/proyek/Type Paper.png";
+
 
 export const listProyek = [
   {
@@ -47,7 +49,7 @@ export const listProyek = [
     subtitle: "A personalized learning application tailored to individual learning styles.",
     fullDescription: "ThinkWays is an adaptive learning app that personalizes content based on your unique personality. By analyzing your learning style, it delivers customized lessons and paths to enhance engagement and retention. A smarter way to learn, built just for you.",
     borderColor: "#333",
-    gradient: "linear-gradient(180deg, rgba(26,26,26,0.6), rgba(0,0,0,0.9))",
+    gradient: "transparent",
     url: null,
     year: "2024",
     techstack: ["Figma", "Illustrator"],
@@ -61,9 +63,9 @@ export const listProyek = [
     title: "Drevelopment",
     category: "Web Development",
     subtitle: "A professional landing page for Web Development & UI/UX Design services.",
-    fullDescription: "Drevelopment is a modern landing page designed for a digital agency specializing in premium Web Development and UI/UX Design services. The website showcases the agency's portfolio, service packages, and client testimonials with a sleek, professional aesthetic that builds trust and highlights their creative expertise.",
+    fullDescription: "Drevelopment is a modern landing page designed for a digital agency specializing in Web Development and UI/UX Design services. The website showcases the agency's portfolio, service packages, and client testimonials with a sleek, professional aesthetic that builds trust and highlights their creative expertise.",
     borderColor: "#333",
-    gradient: "linear-gradient(180deg, rgba(26,26,26,0.6), rgba(0,0,0,0.9))",
+    gradient: "transparent",
     url: "https://drevelopments.vercel.app/",
     year: "2024",
     techstack: ["React JS", "Tailwind", "Javascript", "Figma"],
@@ -79,7 +81,7 @@ export const listProyek = [
     subtitle: "A fullstack app to manage your income, expenses, and categories.",
     fullDescription: "Rupiah Flow is a powerful web application designed for complete financial control. It allows users to easily track income and expenses, manage transaction categories, and visualize their financial health. Key features include real-time balance updates and the ability to generate and download detailed financial reports as PDF files for offline records.",
     borderColor: "#333",
-    gradient: "linear-gradient(180deg, rgba(26,26,26,0.6), rgba(0,0,0,0.9))",
+    gradient: "transparent",
     url: "UNDER_MAINTENANCE",
     year: "2025",
     techstack: ["Node JS", "React JS", "Tailwind", "PostgreSQL", "Javascript"],
@@ -95,7 +97,7 @@ export const listProyek = [
     subtitle: "A concert discovery and ticketing app for your city.",
     fullDescription: "Certix is your go-to app for discovering live concerts and music events in your city. Browse lineups, view artist profiles, and secure tickets instantly. Whether it's a massive festival or an intimate gig, Certix ensures you never miss the music you love.",
     borderColor: "#333",
-    gradient: "linear-gradient(180deg, rgba(26,26,26,0.6), rgba(0,0,0,0.9))",
+    gradient: "transparent",
     url: null,
     year: "2024",
     techstack: ["Figma", "Illustrator"],
@@ -111,12 +113,29 @@ export const listProyek = [
     subtitle: "A modern company profile tailored for a creative agency.",
     fullDescription: "Damianos Production is a modern company profile website that represents a creative agency. Built with Next.js and Tailwind CSS, it features a sleek design to showcase their portfolio and services with high performance and elegance.",
     borderColor: "#333",
-    gradient: "linear-gradient(180deg, rgba(26,26,26,0.6), rgba(0,0,0,0.9))",
+    gradient: "transparent",
     url: "UNDER_MAINTENANCE",
     year: "2025",
     techstack: ["Next JS", "Tailwind", "React JS"],
     dad: "400",
   },
+  {
+    id: 5,
+    slug: "type-paper",
+    image: TypePaperImg,
+    images: [TypePaperImg],
+    title: "Type Paper",
+    category: "Web Development",
+    subtitle: "A minimalist typing test inspired by Monkeytype.",
+    fullDescription: "Type Paper is a clean, minimalist typing experience crafted for speed and focus. Inspired by the tactical feel of vintage typewriters and modern productivity tools, Type Paper offers a distraction-free environment to hone your typing skills. Built with Next.js and Tailwind CSS, it features real-time WPM tracking, precision accuracy metrics, and smooth character-by-character animations.",
+    borderColor: "#e67e22",
+    gradient: "transparent",
+    url: null,
+    year: "2025",
+    techstack: ["Next JS", "Tailwind", "React JS", "Framer Motion"],
+    dad: "500",
+  },
+
 ];
 
 // Kategori terpisah

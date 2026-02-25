@@ -46,17 +46,17 @@ function ProjectCard({ project, index }) {
             </div>
 
             {/* Content */}
-            <div className="flex flex-col flex-grow p-5 lg:p-6">
-                <h3 className="text-xl font-bold text-white mb-2">
+            <div className="flex flex-col flex-grow p-5 lg:p-6 bg-white">
+                <h3 className="text-xl font-bold text-neutral-900 mb-2">
                     {project.title}
                 </h3>
 
-                <p className="text-neutral-400 text-sm leading-relaxed line-clamp-2 mb-4 flex-grow">
+                <p className="text-neutral-600 text-sm leading-relaxed line-clamp-2 mb-4 flex-grow">
                     {project.subtitle}
                 </p>
 
                 {/* Footer / Action */}
-                <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-auto">
+                <div className="flex items-center justify-between pt-4 border-t border-neutral-100 mt-auto">
 
                     {/* Tech Stack Icons - Stacked */}
                     <div className="flex items-center pl-2">
@@ -64,7 +64,7 @@ function ProjectCard({ project, index }) {
                             const icon = getTechIcon(tech);
                             return icon ? (
                                 <div key={idx}
-                                    className={`w-8 h-8 rounded-full bg-neutral-900 p-1.5 border border-white/10 flex items-center justify-center relative -ml-3 first:ml-0 shadow-lg`}
+                                    className={`w-8 h-8 rounded-full bg-white p-1.5 border border-neutral-200 flex items-center justify-center relative -ml-3 first:ml-0 shadow-sm`}
                                     title={tech}
                                 >
                                     <img src={icon} alt={tech} className="w-full h-full object-contain" />
@@ -73,7 +73,7 @@ function ProjectCard({ project, index }) {
                         })}
                     </div>
 
-                    <div className="flex items-center gap-2 text-xs font-medium text-white">
+                    <div className="flex items-center gap-2 text-xs font-medium text-neutral-900">
                         <span>Details</span>
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -101,12 +101,12 @@ function ProjectCard({ project, index }) {
             ) : (
                 /* On desktop: keep animations */
                 <motion.div
-                    className="group relative flex flex-col h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500"
+                    className="group relative flex flex-col h-full bg-white border border-neutral-200 rounded-3xl overflow-hidden hover:border-neutral-300 hover:shadow-xl hover:shadow-neutral-200/50 transition-all duration-200"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-                    whileHover={{ y: -5 }}
+                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
                     {cardContent}
                 </motion.div>

@@ -72,14 +72,14 @@ const InfiniteMarquee = ({ items, speed = 1.5, direction = "left" }) => {
                         key={`item-${tool.id}-${index}`}
                         className="group flex flex-col items-center text-center flex-shrink-0 justify-center pr-12 md:pr-24 select-none"
                     >
-                        <div className="w-14 h-14 md:w-20 md:h-20 p-3 md:p-4 rounded-full bg-neutral-900/50 border border-neutral-800 group-hover:border-neutral-600 group-hover:bg-neutral-800/50 transition-all duration-300 mb-2 md:mb-4 pointer-events-none">
+                        <div className="w-14 h-14 md:w-20 md:h-20 p-3 md:p-4 rounded-full bg-white border border-neutral-200 group-hover:border-neutral-400 transition-all duration-300 mb-2 md:mb-4 pointer-events-none shadow-sm">
                             <img
                                 src={tool.gambar}
                                 alt={tool.nama}
                                 className="w-full h-full object-contain transition-all duration-300 transform group-hover:scale-110"
                             />
                         </div>
-                        <h3 className="text-xs md:text-sm font-semibold text-neutral-300 group-hover:text-white transition-colors">
+                        <h3 className="text-xs md:text-sm font-semibold text-neutral-600 group-hover:text-neutral-900 transition-colors">
                             {tool.nama}
                         </h3>
                     </div>
