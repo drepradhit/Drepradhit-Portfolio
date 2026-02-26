@@ -49,15 +49,15 @@ export default function TerminalRoles({ roles = ["UI/UX Designer", "Mobile Devel
       </div>
 
       {/* Terminal Content */}
-      <div className="p-6 min-h-[80px] flex items-center bg-[#0D0D0D]">
-        <div className="flex items-center flex-wrap gap-2 text-sm md:text-lg">
-          <span className="text-[#32CD32] font-semibold">computer:~$</span>
-          <span className="text-white font-bold tracking-tight">
+      <div className="p-4 md:p-6 min-h-[70px] flex items-center bg-[#0D0D0D]">
+        <div className="flex items-center flex-wrap gap-2 text-xs md:text-base">
+          <span className="text-[#32CD32] font-semibold whitespace-nowrap">computer:~$</span>
+          <span className="text-white font-bold tracking-tight whitespace-nowrap">
             {displayedText}
             <motion.span
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.8, repeat: Infinity }}
-              className="inline-block w-2.5 h-5 ml-1 bg-[#32CD32] align-middle"
+              className="inline-block w-2 md:w-2.5 h-4 md:h-5 ml-1 bg-[#32CD32] align-middle"
             />
           </span>
         </div>

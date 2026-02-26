@@ -3,12 +3,8 @@
 @layer base {
   body {
     font-family: "Poppins", sans-serif;
-    background-color: #000000;
-    color: #ffffff;
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
+    background-color: #fdfbf7;
+    color: #1a1a1a;
   }
 }
 
