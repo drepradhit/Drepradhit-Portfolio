@@ -211,36 +211,36 @@ function CircularProficiency() {
           })}
         </g>
 
-        {/* Pure SVG Icons positioned perfectly without rotation */}
-        {segments.map((segment, idx) => {
-          // Angle 0 is at 12 o'clock, so subtract PI/2
-          const angle = segment.midAngle - (Math.PI / 2);
-          const x = 100 + radius * Math.cos(angle);
-          const y = 100 + radius * Math.sin(angle);
-
-          return (
-            <motion.g
-              key={`icon-${segment.name}`}
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + idx * 0.1, type: "spring", stiffness: 200 }}
-              style={{ transformOrigin: `${x}px ${y}px`, filter: "drop-shadow(0px 2px 4px rgba(0,0,0,0.15))" }}
-            >
-              {/* White Circle Background */}
-              <circle cx={x} cy={y} r="15" fill="#ffffff" stroke={segment.color} strokeWidth="2" />
-              {/* Placed React Icon inside */}
-              {React.cloneElement(segment.icon, { 
-                x: x - 8, 
-                y: y - 8, 
-                width: 16, 
-                height: 16, 
-                color: segment.color 
-              })}
-            </motion.g>
-          );
-        })}
       </svg>
+      {/* HTML Icons absolutely positioned over the SVG to guarantee iOS/Safari rendering */}
+      {segments.map((segment, idx) => {
+        // Angle 0 is at 12 o'clock, so subtract PI/2
+        const angle = segment.midAngle - (Math.PI / 2);
+        const radiusPercent = 37.5; // (75 radius / 200 viewBox) * 100
+        const left = 50 + radiusPercent * Math.cos(angle);
+        const top = 50 + radiusPercent * Math.sin(angle);
+
+        return (
+          <motion.div
+            key={`icon-html-${segment.name}`}
+            className="absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-9 md:h-9 rounded-full bg-white flex items-center justify-center border-2 shadow-sm z-10"
+            style={{
+              left: `${left}%`,
+              top: `${top}%`,
+              borderColor: segment.color,
+              color: segment.color
+            }}
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 + idx * 0.1, type: "spring", stiffness: 200 }}
+          >
+            <div className="w-1/2 h-1/2 flex items-center justify-center">
+              {React.cloneElement(segment.icon, { className: "w-full h-full" })}
+            </div>
+          </motion.div>
+        );
+      })}
     </motion.div>
   );
 }
