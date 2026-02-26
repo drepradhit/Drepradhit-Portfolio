@@ -173,7 +173,7 @@ function CircularProficiency() {
       className="w-full max-w-[260px] mx-auto my-8 aspect-square relative"
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "100px" }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6 }}
     >
       <svg className="w-full h-full overflow-visible absolute inset-0" viewBox="0 0 200 200">
@@ -223,7 +223,7 @@ function CircularProficiency() {
               key={`icon-${segment.name}`}
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
-              viewport={{ once: true, margin: "100px" }}
+              viewport={{ once: true }}
               transition={{ delay: 0.3 + idx * 0.1, type: "spring", stiffness: 200 }}
               style={{ transformOrigin: `${x}px ${y}px`, filter: "drop-shadow(0px 2px 4px rgba(0,0,0,0.15))" }}
             >
