@@ -371,25 +371,7 @@ function App() {
         {/* Kontak */}
         <section className="kontak mt-24 md:mt-32 w-full max-w-5xl mx-auto px-4 mb-8 md:mb-16" id="contact">
           <div className="relative">
-            {/* Background Decorative Elements */}
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.1, 1],
-                x: [0, 30, 0],
-                y: [0, -20, 0]
-              }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              className="absolute -top-10 -left-10 w-48 h-48 bg-purple-100/40 rounded-full blur-[80px] pointer-events-none"
-            />
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.2, 1],
-                x: [0, -40, 0],
-                y: [0, 20, 0]
-              }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute -bottom-10 -right-10 w-56 h-56 bg-blue-100/40 rounded-full blur-[80px] pointer-events-none"
-            />
+            {/* Background Decorative Elements removed to fix severe rendering jank */}
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
