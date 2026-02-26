@@ -337,17 +337,17 @@ export default function GithubContribution() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Contribution Calendar - Takes 3 columns */}
         <motion.div
-          className="lg:col-span-3 relative bg-transparent p-4 md:p-6 flex flex-col"
+          className="lg:col-span-3 relative bg-transparent p-4 md:p-6 flex flex-col items-center overflow-x-hidden"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <div className="flex items-center justify-center mb-8 gap-4 w-full">
-            <h3 className="text-xl font-bold text-neutral-900">
+          <div className="flex flex-col md:flex-row items-center justify-center mb-6 md:mb-8 gap-3 md:gap-4 w-full text-center md:text-left">
+            <h3 className="text-xl font-bold text-neutral-900 text-center">
               Contribution Graph
             </h3>
-            <div className="flex gap-1">
+            <div className="flex gap-1 justify-center">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="w-3 h-3 rounded-sm bg-green-500 opacity-20 animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
               ))}
