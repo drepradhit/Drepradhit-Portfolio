@@ -95,7 +95,7 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
       <div className="flex items-start gap-4 flex-1 min-w-0 w-full">
         {/* Project Icon */}
         <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0 shadow-sm border border-neutral-200 bg-white group-hover:scale-105 transition-transform"
+          className="w-12 h-12 flex items-center justify-center text-3xl flex-shrink-0 group-hover:scale-110 transition-transform"
           style={{ color: iconColor }}
         >
           {icon}

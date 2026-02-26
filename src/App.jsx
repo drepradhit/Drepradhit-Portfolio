@@ -220,7 +220,7 @@ function App() {
             <div className="w-full max-w-md">
               <ProfileCard
                 name="Andre Pradhit"
-                title="UI/UX Designer"
+                title="Web Developer"
                 handle="drepradhit"
                 status="Online"
                 contactText="Connect"
