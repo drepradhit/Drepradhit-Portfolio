@@ -355,7 +355,7 @@ export default function GithubContribution() {
           </div>
           
           <div className="w-full pb-2 flex items-center justify-center flex-1 overflow-hidden">
-            <div className="w-full flex justify-center overflow-hidden [&_text]:!fill-neutral-500 [&_text]:!opacity-100 text-neutral-900 transition-opacity duration-300">
+            <div className="w-full flex flex-col items-center justify-center overflow-hidden [&_text]:!fill-neutral-500 [&_text]:!opacity-100 text-neutral-900 transition-opacity duration-300">
               <ResponsiveGitHubCalendar />
             </div>
           </div>
@@ -371,8 +371,7 @@ export default function GithubContribution() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
-          <h3 className="text-xl font-bold text-neutral-900 mb-6 flex items-center gap-3 self-start w-full">
-            <FaCode className="text-neutral-500" />
+          <h3 className="text-xl font-bold text-neutral-900 mb-6 flex items-center justify-center gap-3 w-full text-center">
             Tech Proficiency
           </h3>
           
@@ -394,8 +393,8 @@ export default function GithubContribution() {
       <div
         className="mt-6 p-4 md:p-6 overflow-hidden bg-transparent"
       >
-        <div className="flex items-center gap-3 mb-5">
-          <h3 className="text-lg font-bold text-neutral-900">Currently Working On</h3>
+        <div className="flex items-center justify-center gap-3 mb-5 w-full text-center">
+          <h3 className="text-lg font-bold text-neutral-900 text-center">Currently Working On</h3>
         </div>
         <div className="space-y-3">
           {currentActivities.map((activity, idx) => (
