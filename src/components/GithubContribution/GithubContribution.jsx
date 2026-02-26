@@ -118,26 +118,26 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
       </div>
 
       {/* Bottom/Right Section: Real-time Elapsed */}
-      <div className="flex-shrink-0 mt-2 sm:mt-0 pl-[64px] sm:pl-0 w-full sm:w-auto">
-        <div className="flex items-center sm:justify-end gap-1.5">
+      <div className="flex-shrink-0 mt-2 sm:mt-0 pl-14 sm:pl-0 w-full sm:w-auto max-w-full overflow-hidden">
+        <div className="flex items-center sm:justify-end gap-0.5 sm:gap-1.5 flex-wrap">
           {days > 0 && (
-            <div className="text-center">
+            <div className="text-center shrink-0">
               <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{days}</p>
               <p className="text-[9px] text-neutral-400 uppercase tracking-wider">days</p>
             </div>
           )}
-          {days > 0 && <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>}
-          <div className="text-center">
+          {days > 0 && <span className="text-neutral-300 text-xs font-mono self-start mt-0.5 shrink-0">:</span>}
+          <div className="text-center shrink-0">
             <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{hours.toString().padStart(2, "0")}</p>
             <p className="text-[9px] text-neutral-400 uppercase tracking-wider">hrs</p>
           </div>
-          <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>
-          <div className="text-center">
+          <span className="text-neutral-300 text-xs font-mono self-start mt-0.5 shrink-0">:</span>
+          <div className="text-center shrink-0">
             <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{minutes.toString().padStart(2, "0")}</p>
             <p className="text-[9px] text-neutral-400 uppercase tracking-wider">min</p>
           </div>
-          <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>
-          <div className="text-center bg-green-50/50 sm:bg-green-50 border border-green-200 rounded-lg px-2 py-1">
+          <span className="text-neutral-300 text-xs font-mono self-start mt-0.5 shrink-0">:</span>
+          <div className="text-center bg-green-50/50 sm:bg-green-50 border border-green-200 rounded-lg px-1.5 sm:px-2 py-1 shrink-0">
             <p className="text-sm sm:text-base font-bold text-green-600 font-mono leading-none">{seconds.toString().padStart(2, "0")}</p>
             <p className="text-[9px] text-green-400 uppercase tracking-wider">sec</p>
           </div>
@@ -169,8 +169,14 @@ function CircularProficiency() {
   });
 
   return (
-    <div className="w-full max-w-[260px] mx-auto my-8">
-      <svg className="w-full h-auto overflow-visible" viewBox="0 0 200 200">
+    <motion.div 
+      className="w-full max-w-[260px] mx-auto my-8 aspect-square relative"
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "100px" }}
+      transition={{ duration: 0.6 }}
+    >
+      <svg className="w-full h-full overflow-visible absolute inset-0" viewBox="0 0 200 200">
         {/* Base track */}
         <circle
           cx="100"
@@ -183,13 +189,13 @@ function CircularProficiency() {
         
         {/* Colorful Arcs */}
         <g transform="rotate(-90 100 100)">
-          {segments.map((segment, idx) => {
+          {segments.map((segment) => {
             // Flat butt caps, exact segment math
             const dashLength = Math.max(0, segment.arcLength - gapVisual);
             const dashOffset = segment.accumulatedArc + (gapVisual / 2);
             
             return (
-              <motion.circle
+              <circle
                 key={`arc-${segment.name}`}
                 cx="100"
                 cy="100"
@@ -200,10 +206,6 @@ function CircularProficiency() {
                 strokeLinecap="butt"
                 strokeDasharray={`${dashLength} ${circumference}`}
                 strokeDashoffset={-dashOffset}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + idx * 0.1, duration: 0.8 }}
               />
             );
           })}
@@ -219,10 +221,10 @@ function CircularProficiency() {
           return (
             <motion.g
               key={`icon-${segment.name}`}
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 1 + idx * 0.1, type: "spring", stiffness: 200 }}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true, margin: "100px" }}
+              transition={{ delay: 0.3 + idx * 0.1, type: "spring", stiffness: 200 }}
               style={{ transformOrigin: `${x}px ${y}px`, filter: "drop-shadow(0px 2px 4px rgba(0,0,0,0.15))" }}
             >
               {/* White Circle Background */}
@@ -239,7 +241,7 @@ function CircularProficiency() {
           );
         })}
       </svg>
-    </div>
+    </motion.div>
   );
 }
 
