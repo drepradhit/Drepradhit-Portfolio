@@ -343,8 +343,8 @@ export default function GithubContribution() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <div className="flex flex-col md:flex-row items-center justify-center mb-6 md:mb-8 gap-3 md:gap-4 w-full text-center md:text-left">
-            <h3 className="text-xl font-bold text-neutral-900 text-center">
+          <div className="flex items-center justify-center mb-6 md:mb-8 gap-4 w-full mx-auto">
+            <h3 className="text-xl md:text-2xl font-bold text-neutral-900 text-center">
               Contribution Graph
             </h3>
             <div className="flex gap-1 justify-center">
@@ -371,9 +371,11 @@ export default function GithubContribution() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
-          <h3 className="text-xl font-bold text-neutral-900 mb-6 flex items-center justify-center gap-3 w-full text-center">
-            Tech Proficiency
-          </h3>
+          <div className="w-full flex justify-center mb-6">
+            <h3 className="text-xl font-bold text-neutral-900 text-center">
+              Tech Proficiency
+            </h3>
+          </div>
           
           <CircularProficiency />
 
@@ -393,7 +395,7 @@ export default function GithubContribution() {
       <div
         className="mt-6 p-4 md:p-6 overflow-hidden bg-transparent"
       >
-        <div className="flex items-center justify-center gap-3 mb-5 w-full text-center">
+        <div className="flex items-center justify-center gap-3 mb-5 w-full mx-auto">
           <h3 className="text-lg font-bold text-neutral-900 text-center">Currently Working On</h3>
         </div>
         <div className="space-y-3">
