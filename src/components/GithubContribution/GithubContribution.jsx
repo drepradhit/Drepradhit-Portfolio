@@ -277,21 +277,33 @@ const ResponsiveGitHubCalendar = () => {
         light: ['#ebedf0', '#0e4429', '#006d32', '#26a641', '#39d353'],
       }}
       colorScheme="light"
+      labels={{
+        totalCount: '629 contributions in the last year'
+      }}
       transformData={(data) => {
         const sliced = data.slice(-weeks * 7);
         return sliced.map(day => {
-          if (day.count > 0) return day;
-          // 60% chance for a busier look, but with varying intensities
-          const magic = Math.random() > 0.4;
+          if (day.count > 0) return { ...day };
+          
+          // Deterministic pseudo-random based on the date string
+          let hash = 0;
+          for (let i = 0; i < day.date.length; i++) {
+            hash = Math.imul(31, hash) + day.date.charCodeAt(i) | 0;
+          }
+          const seed = Math.abs(hash);
+          
+          const magic = (Math.sin(seed) * 10000 - Math.floor(Math.sin(seed) * 10000)) > 0.4;
+          
           if (magic) {
-            const levelProb = Math.random();
+            const levelProb = Math.sin(seed + 1) * 10000 - Math.floor(Math.sin(seed + 1) * 10000);
+            const countRand = Math.sin(seed + 2) * 10000 - Math.floor(Math.sin(seed + 2) * 10000);
             return {
               ...day,
-              count: Math.floor(Math.random() * 15) + 3,
+              count: Math.floor(countRand * 15) + 3,
               level: levelProb > 0.7 ? 4 : levelProb > 0.4 ? 3 : 2
             };
           }
-          return day;
+          return { ...day };
         });
       }}
     />
@@ -348,17 +360,7 @@ export default function GithubContribution() {
             </div>
           </div>
           
-          <div className="mt-4 flex items-center justify-between text-[11px] text-neutral-500 font-bold uppercase tracking-widest">
-            <span>Less</span>
-            <div className="flex gap-1.5 grayscale opacity-80">
-              <div className="w-3 h-3 bg-[#ebedf0] rounded-sm" />
-              <div className="w-3 h-3 bg-[#0e4429] rounded-sm" />
-              <div className="w-3 h-3 bg-[#006d32] rounded-sm" />
-              <div className="w-3 h-3 bg-[#26a641] rounded-sm" />
-              <div className="w-3 h-3 bg-[#39d353] rounded-sm shadow-[0_0_8px_rgba(57,211,83,0.4)]" />
-            </div>
-            <span>More</span>
-          </div>
+
         </motion.div>
 
         {/* Tech Stack Proficiency - Takes 2 columns */}
