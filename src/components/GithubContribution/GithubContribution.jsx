@@ -333,7 +333,6 @@ export default function GithubContribution() {
         >
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-xl font-bold text-neutral-900 flex items-center gap-3">
-              <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_12px_rgba(34,197,94,0.6)]" />
               Contribution Graph
             </h3>
             <div className="flex gap-1">
@@ -394,9 +393,6 @@ export default function GithubContribution() {
         className="mt-6 p-4 md:p-6 overflow-hidden bg-transparent"
       >
         <div className="flex items-center gap-3 mb-5">
-          <div className="relative">
-            <span className="w-2.5 h-2.5 bg-green-500 rounded-full inline-block animate-pulse" />
-          </div>
           <h3 className="text-lg font-bold text-neutral-900">Currently Working On</h3>
         </div>
         <div className="space-y-3">

@@ -369,7 +369,7 @@ function App() {
 
 
         {/* Kontak */}
-        <section className="kontak mt-24 md:mt-32 w-full max-w-5xl mx-auto px-4 mb-32" id="contact">
+        <section className="kontak mt-24 md:mt-32 w-full max-w-5xl mx-auto px-4 mb-8 md:mb-16" id="contact">
           <div className="relative">
             {/* Background Decorative Elements */}
             <motion.div 
