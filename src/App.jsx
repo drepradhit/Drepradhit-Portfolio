@@ -240,7 +240,7 @@ function App() {
             <div className="hidden md:block absolute top-0 right-0 w-96 h-96 bg-stone-800/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 -z-10 pointer-events-none"></div>
             <div className="hidden md:block absolute bottom-0 left-0 w-64 h-64 bg-neutral-800/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 -z-10 pointer-events-none"></div>
 
-            <div className="flex flex-col items-center text-center gap-10" data-aos="fade-up" data-aos-duration="1000">
+            <div className="flex flex-col items-center text-center gap-10">
 
               {/* About Section - Redesigned */}
               <div className="w-full relative z-10">
@@ -257,7 +257,7 @@ function App() {
                         Andre Pradhit
                       </h2>
                       <p className="text-xl text-neutral-500 font-medium">
-                        UI/UX Designer & Web Developer
+                        Web Developer
                       </p>
                     </div>
 
@@ -284,11 +284,11 @@ function App() {
                     </div>
 
                     {/* Skills Tags */}
-                    <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <div className="flex flex-wrap gap-2.5 justify-center md:justify-start">
                       {['User Research', 'Wireframing', 'Prototyping', 'Visual Design', 'Problem Solving'].map((skill) => (
-                        <div key={skill} className="px-3 py-1.5 md:px-4 md:py-2 bg-white border border-neutral-200 rounded-full flex items-center gap-1.5 md:gap-2 hover:border-neutral-900 transition-all duration-300 group cursor-default shadow-sm">
-                          <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 group-hover:bg-neutral-900 transition-colors"></div>
-                          <span className="text-xs md:text-sm text-neutral-600 group-hover:text-neutral-900 font-medium transition-colors">{skill}</span>
+                        <div key={skill} className="px-3.5 py-2 bg-neutral-900 border border-neutral-800 text-white rounded-xl flex items-center gap-2.5 hover:bg-neutral-800 transition-all duration-300 group cursor-default shadow-md">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                          <span className="text-xs md:text-sm font-bold tracking-wide">{skill}</span>
                         </div>
                       ))}
                     </div>
