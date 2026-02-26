@@ -278,8 +278,8 @@ function App() {
                     {/* Description */}
                     <div className="space-y-4">
                       <p className="text-base md:text-lg text-neutral-600 leading-relaxed">
-                        I am a <span className="text-neutral-950 font-medium">Computer Science student</span> with a strong passion for <span className="text-neutral-950 font-medium">UI/UX Design</span>.
-                        My academic background has shaped my problem-solving mindset and analytical thinking.
+                        I am a <span className="text-neutral-950 font-medium">Computer Science student</span> with a strong passion for <span className="text-neutral-950 font-medium">Web Development</span>.
+                        My academic background has shaped my problem-solving mindset, allowing me to build robust and scalable applications.
                       </p>
                     </div>
 
@@ -386,7 +386,7 @@ function App() {
                 </h2>
                 
                 <p className="text-neutral-500 mb-12 text-base md:text-lg max-w-xl mx-auto font-medium leading-relaxed">
-                  Have a great idea or just want to chat? My inbox is always open. Let's create something extraordinary together.
+                  Let's connect through any of my social media platforms below.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 w-full max-w-4xl mx-auto">
