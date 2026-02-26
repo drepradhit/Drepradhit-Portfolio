@@ -315,7 +315,7 @@ export default function GithubContribution() {
     <div className="mt-32 w-full max-w-6xl mx-auto px-4 sm:px-0" id="github">
       {/* Section Header */}
       <motion.div
-        className="text-center mb-14"
+        className="text-center mb-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -343,16 +343,7 @@ export default function GithubContribution() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <div className="flex items-center justify-center mb-6 md:mb-8 gap-4 w-full mx-auto">
-            <h3 className="text-xl md:text-2xl font-bold text-neutral-900 text-center">
-              Contribution Graph
-            </h3>
-            <div className="flex gap-1 justify-center">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-3 h-3 rounded-sm bg-green-500 opacity-20 animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
-              ))}
-            </div>
-          </div>
+
           
           <div className="w-full pb-2 flex items-center justify-center flex-1 overflow-hidden">
             <div className="w-full flex flex-col items-center justify-center overflow-hidden [&_text]:!fill-neutral-500 [&_text]:!opacity-100 text-neutral-900 transition-opacity duration-300">
@@ -371,16 +362,12 @@ export default function GithubContribution() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
-          <div className="w-full flex justify-center mb-6">
-            <h3 className="text-xl font-bold text-neutral-900 text-center">
-              Tech Proficiency
-            </h3>
-          </div>
+
           
           <CircularProficiency />
 
           {/* Mini Legend labels at bottom */}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3 mt-8 w-full">
+          <div className="grid grid-cols-2 gap-x-6 md:gap-x-10 gap-y-3 mt-12 w-fit mx-auto">
             {techStack.map(tech => (
               <div key={tech.name} className="flex items-center gap-2.5 group cursor-default">
                 <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: tech.color }} />
@@ -395,9 +382,7 @@ export default function GithubContribution() {
       <div
         className="mt-6 p-4 md:p-6 overflow-hidden bg-transparent"
       >
-        <div className="flex items-center justify-center gap-3 mb-5 w-full mx-auto">
-          <h3 className="text-lg font-bold text-neutral-900 text-center">Currently Working On</h3>
-        </div>
+
         <div className="space-y-3">
           {currentActivities.map((activity, idx) => (
             <ActivityCard key={activity.project} {...activity} delay={0.15 * idx} />
