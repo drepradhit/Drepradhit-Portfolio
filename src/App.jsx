@@ -252,11 +252,7 @@ function App() {
                   {/* Left Column - Identity & Bio */}
                   <div className="text-center md:text-left space-y-8">
                     <div>
-                      {/* Name Badge */}
-                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-100 border border-neutral-200 rounded-full mb-6">
-                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                        <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Available for projects</span>
-                      </div>
+
 
                       <h2 className="text-5xl md:text-6xl font-black text-neutral-900 tracking-tighter mb-2">
                         Andre Pradhit
@@ -302,7 +298,14 @@ function App() {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start mt-10">
-                  <a href="#project" className="inline-flex items-center justify-center gap-2 bg-neutral-900 text-white px-6 py-3 rounded-xl font-medium hover:bg-neutral-800 transition-colors group">
+                  <a 
+                    href="#project" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('project')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="inline-flex items-center justify-center gap-2 bg-neutral-900 text-white px-6 py-3 rounded-xl font-medium hover:bg-neutral-800 transition-colors group"
+                  >
                     <span>View Projects</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -411,7 +414,7 @@ function App() {
                   Have a great idea or just want to chat? My inbox is always open. Let's create something extraordinary together.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 w-full max-w-4xl mx-auto">
                   {[
                     {
                       name: "Instagram",
@@ -438,13 +441,15 @@ function App() {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ y: -5 }}
-                      className="group flex flex-col items-center p-8 bg-neutral-50 rounded-[2rem] transition-all duration-300 hover:bg-neutral-100"
+                      className="group flex flex-row md:flex-col items-center justify-start md:justify-center p-4 md:p-8 bg-neutral-50 rounded-2xl md:rounded-[2rem] transition-all duration-300 hover:bg-neutral-100 gap-4 md:gap-0"
                     >
-                      <div className="w-14 h-14 bg-white text-neutral-900 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-2xl">{social.icon}</span>
+                      <div className="w-10 h-10 md:w-14 md:h-14 bg-white text-neutral-900 rounded-full flex items-center justify-center md:mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <span className="text-xl md:text-2xl">{social.icon}</span>
                       </div>
-                      <h3 className="text-base font-black text-neutral-900 mb-1">{social.name}</h3>
-                      <p className="text-xs text-neutral-400 font-bold">{social.handle}</p>
+                      <div className="flex flex-col items-start md:items-center">
+                        <h3 className="text-sm md:text-base font-black text-neutral-900 mb-0.5 md:mb-1">{social.name}</h3>
+                        <p className="text-[10px] md:text-xs text-neutral-400 font-bold">{social.handle}</p>
+                      </div>
                     </motion.a>
                   ))}
                 </div>
