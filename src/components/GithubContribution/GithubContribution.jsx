@@ -343,8 +343,8 @@ export default function GithubContribution() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-xl font-bold text-neutral-900 flex items-center gap-3">
+          <div className="flex items-center justify-center mb-8 gap-4 w-full">
+            <h3 className="text-xl font-bold text-neutral-900">
               Contribution Graph
             </h3>
             <div className="flex gap-1">
