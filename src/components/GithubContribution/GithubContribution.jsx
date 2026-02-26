@@ -274,9 +274,9 @@ const ResponsiveGitHubCalendar = () => {
       blockMargin={4}
       fontSize={10}
       theme={{
-        dark: ['#1d2128', '#0e4429', '#006d32', '#26a641', '#39d353'],
+        light: ['#ebedf0', '#0e4429', '#006d32', '#26a641', '#39d353'],
       }}
-      colorScheme="dark"
+      colorScheme="light"
       transformData={(data) => {
         const sliced = data.slice(-weeks * 7);
         return sliced.map(day => {
@@ -325,14 +325,14 @@ export default function GithubContribution() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Contribution Calendar - Takes 3 columns */}
         <motion.div
-          className="lg:col-span-3 relative bg-neutral-900 border border-neutral-800 p-6 md:p-10 rounded-[2.5rem] shadow-2xl flex flex-col"
+          className="lg:col-span-3 relative bg-transparent p-4 md:p-6 flex flex-col"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-xl font-bold text-white flex items-center gap-3">
+            <h3 className="text-xl font-bold text-neutral-900 flex items-center gap-3">
               <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_12px_rgba(34,197,94,0.6)]" />
               Contribution Graph
             </h3>
@@ -344,7 +344,7 @@ export default function GithubContribution() {
           </div>
           
           <div className="w-full pb-2 flex items-center justify-center flex-1 overflow-hidden">
-            <div className="w-full flex justify-center overflow-hidden [&_text]:!fill-white [&_text]:!opacity-100 text-white transition-opacity duration-300">
+            <div className="w-full flex justify-center overflow-hidden [&_text]:!fill-neutral-500 [&_text]:!opacity-100 text-neutral-900 transition-opacity duration-300">
               <ResponsiveGitHubCalendar />
             </div>
           </div>
@@ -352,7 +352,7 @@ export default function GithubContribution() {
           <div className="mt-4 flex items-center justify-between text-[11px] text-neutral-500 font-bold uppercase tracking-widest">
             <span>Less</span>
             <div className="flex gap-1.5 grayscale opacity-80">
-              <div className="w-3 h-3 bg-[#1d2128] rounded-sm" />
+              <div className="w-3 h-3 bg-[#ebedf0] rounded-sm" />
               <div className="w-3 h-3 bg-[#0e4429] rounded-sm" />
               <div className="w-3 h-3 bg-[#006d32] rounded-sm" />
               <div className="w-3 h-3 bg-[#26a641] rounded-sm" />
@@ -364,7 +364,7 @@ export default function GithubContribution() {
 
         {/* Tech Stack Proficiency - Takes 2 columns */}
         <motion.div
-          className="lg:col-span-2 relative bg-white border border-neutral-200 p-6 md:p-10 rounded-[2.5rem] shadow-sm flex flex-col items-center overflow-hidden"
+          className="lg:col-span-2 relative p-6 md:p-10 flex flex-col items-center overflow-hidden bg-transparent"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -391,7 +391,7 @@ export default function GithubContribution() {
 
       {/* Discord-style Activity Status */}
       <div
-        className="mt-6 bg-white border border-neutral-200 p-6 md:p-8 rounded-3xl shadow-sm overflow-hidden"
+        className="mt-6 p-4 md:p-6 overflow-hidden bg-transparent"
       >
         <div className="flex items-center gap-3 mb-5">
           <div className="relative">

@@ -133,7 +133,7 @@ function App() {
           <div className="order-2 md:order-1 px-4 md:px-0 flex flex-col items-center md:items-start text-center md:text-left">
 
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-5xl font-bold leading-tight text-neutral-900 mb-4"
+              className="hidden md:block text-4xl sm:text-5xl md:text-5xl font-bold leading-tight text-neutral-900 mb-4"
               initial={isFirstVisit ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={isFirstVisit ? { duration: 0.6, ease: "easeOut" } : { duration: 0 }}
@@ -147,7 +147,7 @@ function App() {
                 Hi, I'm{" "}
               </motion.span>
               <motion.span
-                className="text-neutral-900 md:text-neutral-600 hero-name-anim"
+                className="hidden md:inline-block text-neutral-900 md:text-neutral-600 hero-name-anim"
                 initial={isFirstVisit ? { opacity: 0, x: -20 } : { opacity: 1, x: 0 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={isFirstVisit ? { delay: 0.4, duration: 0.6, ease: "easeOut" } : { duration: 0 }}
@@ -404,7 +404,7 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative z-10 bg-white/60 backdrop-blur-2xl p-8 md:p-14 rounded-[2.5rem] md:rounded-[3.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.04)] flex flex-col items-center text-center overflow-hidden"
+              className="relative z-10 p-4 md:p-8 flex flex-col items-center text-center overflow-hidden bg-transparent"
             >
               <div className="relative z-10 w-full">
                 <h2 className="text-5xl md:text-7xl font-black mb-6 text-neutral-900 tracking-tight leading-none">
