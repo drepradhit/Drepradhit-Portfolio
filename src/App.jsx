@@ -283,15 +283,7 @@ function App() {
                       </p>
                     </div>
 
-                    {/* Skills Tags */}
-                    <div className="flex flex-wrap gap-2.5 justify-center md:justify-start">
-                      {['User Research', 'Wireframing', 'Prototyping', 'Visual Design', 'Problem Solving'].map((skill) => (
-                        <div key={skill} className="px-3.5 py-2 bg-neutral-900 border border-neutral-800 text-white rounded-xl flex items-center gap-2.5 hover:bg-neutral-800 transition-all duration-300 group cursor-default shadow-md">
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                          <span className="text-xs md:text-sm font-bold tracking-wide">{skill}</span>
-                        </div>
-                      ))}
-                    </div>
+
                   </div>
                 </div>
 
