@@ -149,7 +149,7 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
 
 function CircularProficiency() {
   const radius = 75;
-  const strokeWidth = 14;
+  const strokeWidth = 8;
   const circumference = 2 * Math.PI * radius;
   
   const totalProficiency = techStack.reduce((acc, tech) => acc + tech.percentage, 0);
@@ -346,7 +346,7 @@ export default function GithubContribution() {
           </div>
           
           <div className="w-full pb-2 flex items-center justify-center flex-1 overflow-hidden">
-            <div className="w-full flex justify-center overflow-hidden">
+            <div className="w-full flex justify-center overflow-hidden [&_text]:!fill-neutral-400 [&_text]:!opacity-100 transition-opacity duration-300">
               <ResponsiveGitHubCalendar />
             </div>
           </div>
@@ -366,7 +366,7 @@ export default function GithubContribution() {
 
         {/* Tech Stack Proficiency - Takes 2 columns */}
         <motion.div
-          className="hidden lg:flex lg:col-span-2 relative bg-white border border-neutral-200 p-6 md:p-10 rounded-[2.5rem] shadow-sm flex-col items-center"
+          className="lg:col-span-2 relative bg-white border border-neutral-200 p-6 md:p-10 rounded-[2.5rem] shadow-sm flex flex-col items-center overflow-hidden"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -393,7 +393,7 @@ export default function GithubContribution() {
 
       {/* Discord-style Activity Status */}
       <motion.div
-        className="hidden lg:block mt-6 bg-white border border-neutral-200 p-6 md:p-8 rounded-3xl shadow-sm"
+        className="mt-6 bg-white border border-neutral-200 p-6 md:p-8 rounded-3xl shadow-sm overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
