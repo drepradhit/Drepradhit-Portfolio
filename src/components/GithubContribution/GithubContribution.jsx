@@ -148,8 +148,8 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
 }
 
 function CircularProficiency() {
-  const radius = 70;
-  const strokeWidth = 12;
+  const radius = 75;
+  const strokeWidth = 14;
   const circumference = 2 * Math.PI * radius;
   
   const totalProficiency = techStack.reduce((acc, tech) => acc + tech.percentage, 0);
@@ -158,17 +158,21 @@ function CircularProficiency() {
   let currentAccumulatedPercentage = 0;
   const segments = techStack.map((tech) => {
     const percentage = tech.percentage / totalProficiency;
-    const startAngle = currentAccumulatedPercentage * 360;
-    const segmentAngle = percentage * 360;
-    const midAngle = startAngle + segmentAngle / 2;
+    const arcLength = percentage * circumference;
+    const accumulatedArc = currentAccumulatedPercentage * circumference;
+    // Mid angle in radians (from 0 to 2PI)
+    const midAngle = (currentAccumulatedPercentage + percentage / 2) * 2 * Math.PI;
+    
     currentAccumulatedPercentage += percentage;
-    return { ...tech, startAngle, segmentAngle, midAngle };
+    return { ...tech, percentage, arcLength, accumulatedArc, midAngle };
   });
+
+  const gapVisual = 8; // The physical visual gap in units
 
   return (
     <div className="relative w-full aspect-square max-w-[240px] mx-auto flex items-center justify-center my-8">
       {/* Base track */}
-      <svg className="absolute inset-0 w-full h-full -rotate-90 transform" viewBox="0 0 200 200">
+      <svg className="absolute inset-0 w-full h-full -rotate-90 transform overflow-visible" viewBox="0 0 200 200">
         <circle
           cx="100"
           cy="100"
@@ -178,8 +182,11 @@ function CircularProficiency() {
           strokeWidth={strokeWidth}
         />
         {segments.map((segment, idx) => {
-          const dashArray = (segment.segmentAngle / 360) * circumference;
-          const dashOffset = (segment.startAngle / 360) * circumference;
+          // Math to calculate actual visible line segment length
+          // dashLength + strokeWidth = segment.arcLength - gapVisual
+          const dashLength = Math.max(0, segment.arcLength - gapVisual - strokeWidth);
+          // Math to calculate start offset
+          const dashOffset = segment.accumulatedArc + (gapVisual / 2) + (strokeWidth / 2);
           
           return (
             <motion.circle
@@ -190,47 +197,50 @@ function CircularProficiency() {
               fill="none"
               stroke={segment.color}
               strokeWidth={strokeWidth}
-              strokeDasharray={`${dashArray - 4} ${circumference}`}
-              strokeDashoffset={-dashOffset}
               strokeLinecap="round"
-              initial={{ opacity: 0, strokeDashoffset: 0 }}
-              whileInView={{ opacity: 1, strokeDashoffset: -dashOffset }}
+              strokeDasharray={`${dashLength} ${circumference}`}
+              strokeDashoffset={-dashOffset}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 + idx * 0.1, duration: 0.8, ease: "easeOut" }}
+              transition={{ delay: 0.3 + idx * 0.1, duration: 0.8 }}
             />
           );
         })}
+
+        {segments.map((segment, idx) => {
+          // Map to absolute SVG coordinates
+          const x = 100 + radius * Math.cos(segment.midAngle);
+          const y = 100 + radius * Math.sin(segment.midAngle);
+
+          return (
+            <foreignObject
+              key={`icon-${segment.name}`}
+              x={x - 16}
+              y={y - 16}
+              width="32"
+              height="32"
+              className="overflow-visible"
+            >
+              <motion.div
+                className="w-full h-full rounded-full bg-white border-2 shadow-sm flex items-center justify-center rotate-90"
+                style={{
+                  borderColor: segment.color,
+                  color: segment.color
+                }}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1 + idx * 0.1, type: "spring", stiffness: 200 }}
+              >
+                <div className="text-sm">
+                  {segment.icon}
+                </div>
+              </motion.div>
+            </foreignObject>
+          );
+        })}
       </svg>
-
-      {/* Manual Icon placement for 100% control */}
-      {segments.map((segment, idx) => {
-        // Adjust angle: -90 because SVG starts at 3 o'clock but we want 12 o'clock
-        const rad = ((segment.midAngle - 90) * Math.PI) / 180;
-        const x = 50 + (radius / 2) * Math.cos(rad);
-        const y = 50 + (radius / 2) * Math.sin(rad);
-
-        return (
-          <motion.div
-            key={`icon-${segment.name}`}
-            className="absolute w-8 h-8 rounded-full bg-white border-2 shadow-sm flex items-center justify-center z-10"
-            style={{
-              top: `${y}%`,
-              left: `${x}%`,
-              transform: 'translate(-50%, -50%)',
-              borderColor: segment.color,
-              color: segment.color
-            }}
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1 + idx * 0.1, type: "spring", stiffness: 200 }}
-          >
-            <div className="text-sm">
-              {segment.icon}
-            </div>
-          </motion.div>
-        );
-      })}
     </div>
   );
 }
