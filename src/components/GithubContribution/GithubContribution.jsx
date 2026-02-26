@@ -89,51 +89,56 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
 
   return (
     <motion.div
-      className="flex items-start gap-4 p-4 bg-neutral-50/80 rounded-2xl border border-neutral-100 hover:border-neutral-200 transition-all duration-300 group"
+      className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-neutral-50/80 rounded-2xl border border-neutral-100 hover:border-neutral-200 transition-all duration-300 group"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
     >
-      {/* Project Icon */}
-      <div
-        className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0 shadow-sm border border-neutral-200 bg-white group-hover:scale-105 transition-transform"
-        style={{ color: iconColor }}
-      >
-        {icon}
-      </div>
+      {/* Top/Left Section: Icon and Details */}
+      <div className="flex items-start gap-4 flex-1 min-w-0 w-full">
+        {/* Project Icon */}
+        <div
+          className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0 shadow-sm border border-neutral-200 bg-white group-hover:scale-105 transition-transform"
+          style={{ color: iconColor }}
+        >
+          {icon}
+        </div>
 
-      {/* Details */}
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-bold text-neutral-900 truncate">{project}</p>
-        <p className="text-xs text-neutral-500 truncate">{description}</p>
-        <div className="flex items-center gap-2 mt-1.5">
-          <span className="text-[11px] font-medium text-neutral-400 bg-neutral-100 px-2 py-0.5 rounded-full">{tech}</span>
+        {/* Details */}
+        <div className="flex-1 min-w-0 pr-2">
+          <p className="text-sm font-bold text-neutral-900 truncate">{project}</p>
+          <p className="text-xs text-neutral-500 truncate mb-1.5">{description}</p>
+          <div className="flex items-center">
+            <span className="text-[10px] font-semibold text-neutral-500 bg-white border border-neutral-200 px-2.5 py-0.5 rounded-full whitespace-nowrap truncate max-w-full inline-block">
+              {tech}
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Real-time Elapsed */}
-      <div className="text-right flex-shrink-0">
-        <div className="flex items-center gap-1.5">
+      {/* Bottom/Right Section: Real-time Elapsed */}
+      <div className="flex-shrink-0 mt-2 sm:mt-0 pl-[64px] sm:pl-0 w-full sm:w-auto">
+        <div className="flex items-center sm:justify-end gap-1.5">
           {days > 0 && (
             <div className="text-center">
-              <p className="text-base font-bold text-neutral-900 font-mono leading-none">{days}</p>
+              <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{days}</p>
               <p className="text-[9px] text-neutral-400 uppercase tracking-wider">days</p>
             </div>
           )}
           {days > 0 && <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>}
           <div className="text-center">
-            <p className="text-base font-bold text-neutral-900 font-mono leading-none">{hours.toString().padStart(2, "0")}</p>
+            <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{hours.toString().padStart(2, "0")}</p>
             <p className="text-[9px] text-neutral-400 uppercase tracking-wider">hrs</p>
           </div>
           <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>
           <div className="text-center">
-            <p className="text-base font-bold text-neutral-900 font-mono leading-none">{minutes.toString().padStart(2, "0")}</p>
+            <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{minutes.toString().padStart(2, "0")}</p>
             <p className="text-[9px] text-neutral-400 uppercase tracking-wider">min</p>
           </div>
           <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>
-          <div className="text-center bg-green-50 border border-green-200 rounded-lg px-2 py-1">
-            <p className="text-base font-bold text-green-600 font-mono leading-none">{seconds.toString().padStart(2, "0")}</p>
+          <div className="text-center bg-green-50/50 sm:bg-green-50 border border-green-200 rounded-lg px-2 py-1">
+            <p className="text-sm sm:text-base font-bold text-green-600 font-mono leading-none">{seconds.toString().padStart(2, "0")}</p>
             <p className="text-[9px] text-green-400 uppercase tracking-wider">sec</p>
           </div>
         </div>
