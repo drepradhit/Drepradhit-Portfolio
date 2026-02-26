@@ -89,26 +89,28 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
 
   return (
     <motion.div
-      className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-neutral-50/80 rounded-2xl border border-neutral-100 hover:border-neutral-200 transition-all duration-300 group overflow-hidden w-full"
+      className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-neutral-50/80 rounded-2xl border border-neutral-100 hover:border-neutral-200 transition-all duration-300 group"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5 }}
     >
       {/* Top/Left Section: Icon and Details */}
-      <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0 w-full">
+      <div className="flex items-start gap-4 flex-1 min-w-0 w-full">
+        {/* Project Icon */}
         <div
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-lg sm:text-xl flex-shrink-0 shadow-sm border border-neutral-200 bg-white group-hover:scale-105 transition-transform"
+          className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0 shadow-sm border border-neutral-200 bg-white group-hover:scale-105 transition-transform"
           style={{ color: iconColor }}
         >
           {icon}
         </div>
 
-        <div className="flex-1 min-w-0 pr-1">
-          <p className="text-xs sm:text-sm font-bold text-neutral-900 truncate">{project}</p>
-          <p className="text-[11px] sm:text-xs text-neutral-500 truncate mb-1.5">{description}</p>
+        {/* Details */}
+        <div className="flex-1 min-w-0 pr-2">
+          <p className="text-sm font-bold text-neutral-900 truncate">{project}</p>
+          <p className="text-xs text-neutral-500 truncate mb-1.5">{description}</p>
           <div className="flex items-center">
-            <span className="text-[9px] sm:text-[10px] font-semibold text-neutral-500 bg-white border border-neutral-200 px-2 sm:px-2.5 py-0.5 rounded-full whitespace-nowrap truncate max-w-full inline-block">
+            <span className="text-[10px] font-semibold text-neutral-500 bg-white border border-neutral-200 px-2.5 py-0.5 rounded-full whitespace-nowrap truncate max-w-full inline-block">
               {tech}
             </span>
           </div>
@@ -116,28 +118,28 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
       </div>
 
       {/* Bottom/Right Section: Real-time Elapsed */}
-      <div className="flex-shrink-0 mt-3 sm:mt-0 w-full sm:w-auto overflow-hidden">
-        <div className="flex items-center justify-end flex-wrap gap-1 sm:gap-1.5">
+      <div className="flex-shrink-0 mt-2 sm:mt-0 pl-[64px] sm:pl-0 w-full sm:w-auto">
+        <div className="flex items-center sm:justify-end gap-1.5">
           {days > 0 && (
-            <div className="text-center min-w-[32px]">
-              <p className="text-xs sm:text-sm font-bold text-neutral-900 font-mono leading-none">{days}</p>
-              <p className="text-[8px] sm:text-[9px] text-neutral-400 uppercase tracking-wider mt-0.5">days</p>
+            <div className="text-center">
+              <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{days}</p>
+              <p className="text-[9px] text-neutral-400 uppercase tracking-wider">days</p>
             </div>
           )}
-          {days > 0 && <span className="text-neutral-300 text-[10px] sm:text-xs font-mono self-start mt-0.5">:</span>}
-          <div className="text-center min-w-[32px]">
-            <p className="text-xs sm:text-sm font-bold text-neutral-900 font-mono leading-none">{hours.toString().padStart(2, "0")}</p>
-            <p className="text-[8px] sm:text-[9px] text-neutral-400 uppercase tracking-wider mt-0.5">hrs</p>
+          {days > 0 && <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>}
+          <div className="text-center">
+            <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{hours.toString().padStart(2, "0")}</p>
+            <p className="text-[9px] text-neutral-400 uppercase tracking-wider">hrs</p>
           </div>
-          <span className="text-neutral-300 text-[10px] sm:text-xs font-mono self-start mt-0.5">:</span>
-          <div className="text-center min-w-[32px]">
-            <p className="text-xs sm:text-sm font-bold text-neutral-900 font-mono leading-none">{minutes.toString().padStart(2, "0")}</p>
-            <p className="text-[8px] sm:text-[9px] text-neutral-400 uppercase tracking-wider mt-0.5">min</p>
+          <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>
+          <div className="text-center">
+            <p className="text-sm sm:text-base font-bold text-neutral-900 font-mono leading-none">{minutes.toString().padStart(2, "0")}</p>
+            <p className="text-[9px] text-neutral-400 uppercase tracking-wider">min</p>
           </div>
-          <span className="text-neutral-300 text-[10px] sm:text-xs font-mono self-start mt-0.5">:</span>
-          <div className="text-center bg-green-50/80 sm:bg-green-50 border border-green-200 rounded-lg px-2 py-1 min-w-[40px]">
-            <p className="text-xs sm:text-sm font-bold text-green-600 font-mono leading-none">{seconds.toString().padStart(2, "0")}</p>
-            <p className="text-[8px] sm:text-[9px] text-green-500 uppercase tracking-wider mt-0.5">sec</p>
+          <span className="text-neutral-300 text-xs font-mono self-start mt-0.5">:</span>
+          <div className="text-center bg-green-50/50 sm:bg-green-50 border border-green-200 rounded-lg px-2 py-1">
+            <p className="text-sm sm:text-base font-bold text-green-600 font-mono leading-none">{seconds.toString().padStart(2, "0")}</p>
+            <p className="text-[9px] text-green-400 uppercase tracking-wider">sec</p>
           </div>
         </div>
       </div>
@@ -152,12 +154,14 @@ function CircularProficiency() {
   
   const totalProficiency = techStack.reduce((acc, tech) => acc + tech.percentage, 0);
   
+  // Calculate segments with physical gaps
   let currentAccumulatedPercentage = 0;
-  const gapVisual = 6;
+  const gapVisual = 6; // 6 pixel gap between segments
   const segments = techStack.map((tech) => {
     const percentage = tech.percentage / totalProficiency;
     const arcLength = percentage * circumference;
     const accumulatedArc = currentAccumulatedPercentage * circumference;
+    // Mid angle in radians (from 0 to 2PI)
     const midAngle = (currentAccumulatedPercentage + percentage / 2) * 2 * Math.PI;
     
     currentAccumulatedPercentage += percentage;
@@ -165,63 +169,76 @@ function CircularProficiency() {
   });
 
   return (
-    <div className="relative w-full aspect-square max-w-[240px] mx-auto flex items-center justify-center my-8">
-      {/* Base SVG Track */}
-      <svg className="absolute inset-0 w-full h-full -rotate-90 transform" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r={radius} fill="none" stroke="#f5f5f5" strokeWidth={strokeWidth} />
+    <div className="w-full max-w-[260px] mx-auto my-8">
+      <svg className="w-full h-auto overflow-visible" viewBox="0 0 200 200">
+        {/* Base track */}
+        <circle
+          cx="100"
+          cy="100"
+          r={radius}
+          fill="none"
+          stroke="#f5f5f5"
+          strokeWidth={strokeWidth}
+        />
         
+        {/* Colorful Arcs */}
+        <g transform="rotate(-90 100 100)">
+          {segments.map((segment, idx) => {
+            // Flat butt caps, exact segment math
+            const dashLength = Math.max(0, segment.arcLength - gapVisual);
+            const dashOffset = segment.accumulatedArc + (gapVisual / 2);
+            
+            return (
+              <motion.circle
+                key={`arc-${segment.name}`}
+                cx="100"
+                cy="100"
+                r={radius}
+                fill="none"
+                stroke={segment.color}
+                strokeWidth={strokeWidth}
+                strokeLinecap="butt"
+                strokeDasharray={`${dashLength} ${circumference}`}
+                strokeDashoffset={-dashOffset}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + idx * 0.1, duration: 0.8 }}
+              />
+            );
+          })}
+        </g>
+
+        {/* Pure SVG Icons positioned perfectly without rotation */}
         {segments.map((segment, idx) => {
-          const dashLength = Math.max(0, segment.arcLength - gapVisual);
-          const dashOffset = segment.accumulatedArc + (gapVisual / 2);
-          
+          // Angle 0 is at 12 o'clock, so subtract PI/2
+          const angle = segment.midAngle - (Math.PI / 2);
+          const x = 100 + radius * Math.cos(angle);
+          const y = 100 + radius * Math.sin(angle);
+
           return (
-            <motion.circle
-              key={`arc-${segment.name}`}
-              cx="100"
-              cy="100"
-              r={radius}
-              fill="none"
-              stroke={segment.color}
-              strokeWidth={strokeWidth}
-              strokeLinecap="butt"
-              strokeDasharray={`${dashLength} ${circumference}`}
-              strokeDashoffset={-dashOffset}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            <motion.g
+              key={`icon-${segment.name}`}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 + idx * 0.1, duration: 0.8 }}
-            />
+              transition={{ delay: 1 + idx * 0.1, type: "spring", stiffness: 200 }}
+              style={{ transformOrigin: `${x}px ${y}px`, filter: "drop-shadow(0px 2px 4px rgba(0,0,0,0.15))" }}
+            >
+              {/* White Circle Background */}
+              <circle cx={x} cy={y} r="15" fill="#ffffff" stroke={segment.color} strokeWidth="2" />
+              {/* Placed React Icon inside */}
+              {React.cloneElement(segment.icon, { 
+                x: x - 8, 
+                y: y - 8, 
+                width: 16, 
+                height: 16, 
+                color: segment.color 
+              })}
+            </motion.g>
           );
         })}
       </svg>
-
-      {/* HTML Absolute Icons - Perfectly calculated to map to CSS rotate-90 SVG coordinates */}
-      {segments.map((segment, idx) => {
-        const radiusPct = (radius / 200) * 100; // 37.5%
-        const leftPct = 50 + radiusPct * Math.sin(segment.midAngle);
-        const topPct = 50 - radiusPct * Math.cos(segment.midAngle);
-
-        return (
-          <motion.div
-            key={`icon-${segment.name}`}
-            className="absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 flex items-center justify-center z-10"
-            style={{
-              top: `${topPct}%`,
-              left: `${leftPct}%`,
-              transform: 'translate(-50%, -50%)',
-              borderColor: segment.color,
-              color: segment.color,
-              boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
-            }}
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1 + idx * 0.1, type: "spring", stiffness: 200 }}
-          >
-            {React.cloneElement(segment.icon, { size: 14, className: "block" })}
-          </motion.div>
-        );
-      })}
     </div>
   );
 }
@@ -349,7 +366,7 @@ export default function GithubContribution() {
 
         {/* Tech Stack Proficiency - Takes 2 columns */}
         <motion.div
-          className="lg:col-span-2 relative bg-white border border-neutral-200 p-6 md:p-10 rounded-[2.5rem] shadow-sm flex flex-col items-center"
+          className="hidden lg:flex lg:col-span-2 relative bg-white border border-neutral-200 p-6 md:p-10 rounded-[2.5rem] shadow-sm flex-col items-center"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -376,7 +393,7 @@ export default function GithubContribution() {
 
       {/* Discord-style Activity Status */}
       <motion.div
-        className="mt-6 bg-white border border-neutral-200 p-6 md:p-8 rounded-3xl shadow-sm"
+        className="hidden lg:block mt-6 bg-white border border-neutral-200 p-6 md:p-8 rounded-3xl shadow-sm"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
