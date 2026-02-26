@@ -28,17 +28,9 @@ export default function ProjectDetail() {
 
     return (
         // MOBILE: min-h-screen (scrolling page). DESKTOP: h-screen (fixed split view)
-        <div className="relative w-full min-h-screen lg:h-screen bg-black text-white selection:bg-white/30 selection:text-white lg:overflow-hidden">
+        <div className="relative w-full min-h-screen lg:h-screen bg-white text-neutral-900 selection:bg-neutral-900/30 selection:text-neutral-900 lg:overflow-hidden">
 
-            {/* Background Ambient */}
-            <div className="absolute inset-0 z-0 opacity-60 fixed lg:absolute">
-                <Aurora
-                    colorStops={["#000000", "#1a1a1a", "#050505"]}
-                    blend={0.5}
-                    amplitude={1.0}
-                    speed={0.3}
-                />
-            </div>
+            {/* Background Ambient removed for clean modern light mode look */}
 
             {/* Back Button - Floating & Smart History */}
             <motion.div
@@ -49,10 +41,10 @@ export default function ProjectDetail() {
             >
                 <button
                     onClick={() => navigate(-1)}
-                    className="group flex items-center justify-center w-12 h-12 lg:w-auto lg:h-auto lg:px-6 lg:py-3 bg-black/50 lg:bg-white/10 backdrop-blur-md border border-white/10 rounded-full hover:bg-white/20 transition-all duration-300 shadow-xl cursor-pointer"
+                    className="group flex items-center justify-center w-12 h-12 lg:w-auto lg:h-auto lg:px-6 lg:py-3 bg-white/50 lg:bg-white backdrop-blur-md border border-neutral-200 rounded-full hover:bg-neutral-50 transition-all duration-300 shadow-sm cursor-pointer"
                 >
-                    <FaArrowLeft className="text-white group-hover:-translate-x-1 transition-transform" />
-                    <span className="hidden lg:block ml-3 font-medium text-sm">Back</span>
+                    <FaArrowLeft className="text-neutral-900 group-hover:-translate-x-1 transition-transform" />
+                    <span className="hidden lg:block ml-3 font-medium text-sm text-neutral-900">Back</span>
                 </button>
             </motion.div>
 
@@ -61,7 +53,7 @@ export default function ProjectDetail() {
                 {/* LEFT SIDE: Visual Showcase */}
                 {/* Mobile: Standard height. Desktop: Full height fixed */}
                 <motion.div
-                    className="relative w-full aspect-square lg:h-full lg:w-[60%] flex items-center justify-center p-8 lg:p-24 overflow-hidden"
+                    className="relative w-full aspect-square lg:h-full lg:w-[60%] flex items-center justify-center p-8 lg:p-24 overflow-hidden bg-neutral-50"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
@@ -71,25 +63,18 @@ export default function ProjectDetail() {
                     {/* Image Container with Decorative Frame */}
                     <div className="relative group z-10 max-w-[85%] max-h-[85%]">
 
-                        {/* Decorative Offset Border (The "Frame") */}
-                        <div className="absolute -inset-4 border border-white/20 rounded-2xl z-0" />
-
-                        {/* Second Decorative Element - Corner Accents */}
-                        <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-white rounded-tl-lg z-20" />
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-white rounded-br-lg z-20" />
-
                         {/* Main Image */}
                         <img
                             src={project.image}
                             alt={project.title}
-                            className="relative w-full h-full object-contain rounded-xl shadow-2xl border border-white/10 bg-neutral-900 z-10"
+                            className="relative w-full h-full object-contain rounded-xl shadow-xl border border-neutral-200 bg-white z-10"
                         />
                     </div>
                 </motion.div>
 
                 {/* RIGHT SIDE: Content */}
                 {/* Mobile: Normal block flow. Desktop: Scrollable column */}
-                <div className="flex-1 lg:h-full relative z-20 bg-black/50 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-t border-white/10 lg:border-t-0 rounded-t-3xl lg:rounded-none -mt-10 lg:mt-0 shadow-2xl lg:shadow-none lg:overflow-hidden flex flex-col">
+                <div className="flex-1 lg:h-full relative z-20 bg-white lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border-t border-neutral-200 lg:border-t-0 rounded-t-3xl lg:rounded-none -mt-10 lg:mt-0 shadow-2xl lg:shadow-none lg:overflow-hidden flex flex-col">
 
                     {/* Content Container */}
                     <div className="flex-1 lg:overflow-y-auto px-6 py-12 lg:p-20 lg:flex lg:flex-col lg:justify-center custom-scrollbar">
@@ -102,21 +87,21 @@ export default function ProjectDetail() {
                         >
                             {/* Tags & Year - Monochrome */}
                             <div className="flex items-center gap-4 mb-6">
-                                <span className="px-4 py-1.5 rounded-full bg-white text-black text-xs font-extrabold tracking-wider uppercase shadow-lg shadow-white/10">
+                                <span className="px-4 py-1.5 rounded-full bg-neutral-900 text-white text-xs font-bold tracking-wider uppercase shadow-sm">
                                     {project.category}
                                 </span>
-                                <span className="text-neutral-500 font-mono text-xs">
+                                <span className="text-neutral-500 font-mono text-xs font-semibold">
                                     {project.year}
                                 </span>
                             </div>
 
                             {/* Title */}
-                            <h1 className="text-4xl lg:text-7xl font-bold text-white mb-6 leading-none tracking-tight">
+                            <h1 className="text-4xl lg:text-7xl font-bold text-neutral-900 mb-6 leading-none tracking-tight">
                                 {project.title}
                             </h1>
 
-                            {/* Subtitle - White Border */}
-                            <p className="text-lg lg:text-xl text-neutral-400 font-light mb-10 leading-relaxed border-l-2 border-white pl-6">
+                            {/* Subtitle - Gray Border */}
+                            <p className="text-lg lg:text-xl text-neutral-600 font-light mb-10 leading-relaxed border-l-2 border-neutral-300 pl-6">
                                 {project.subtitle}
                             </p>
 
@@ -127,9 +112,9 @@ export default function ProjectDetail() {
                                     {project.techstack.map((tech, idx) => {
                                         const icon = getTechIcon(tech);
                                         return (
-                                            <div key={idx} className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/5 rounded-full hover:bg-white/10 hover:border-white/20 transition-all cursor-default group">
-                                                {icon && <img src={icon} alt={tech} className="w-5 h-5 object-contain" />}
-                                                <span className="text-sm text-neutral-300 group-hover:text-white transition-colors">{tech}</span>
+                                            <div key={idx} className="flex items-center gap-2 px-4 py-2 bg-white border border-neutral-200 rounded-full hover:border-neutral-400 hover:bg-neutral-50 shadow-sm transition-all cursor-default group">
+                                                {icon && <img src={icon} alt={tech} className="w-5 h-5 object-contain opacity-80 group-hover:opacity-100 transition-opacity" />}
+                                                <span className="text-sm font-medium text-neutral-600 group-hover:text-neutral-900 transition-colors">{tech}</span>
                                             </div>
                                         );
                                     })}
@@ -137,14 +122,14 @@ export default function ProjectDetail() {
                             </div>
 
                             {/* Description */}
-                            <div className="mb-12 prose prose-invert prose-lg text-neutral-400">
+                            <div className="mb-12 prose prose-lg text-neutral-700 leading-relaxed">
                                 <p>{project.fullDescription}</p>
                             </div>
 
                             {/* CTA Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 pb-10 lg:pb-0">
                                 {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
-                                    <button disabled className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-neutral-800 text-neutral-500 font-bold rounded-full cursor-not-allowed opacity-75">
+                                    <button disabled className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-neutral-100 text-neutral-400 font-bold rounded-full cursor-not-allowed border border-neutral-200">
                                         Under Maintenance
                                     </button>
                                 ) : project.url ? (
@@ -152,7 +137,7 @@ export default function ProjectDetail() {
                                         href={project.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 hover:shadow-lg hover:shadow-white/20 transition-all duration-300"
+                                        className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-neutral-900 text-white font-bold rounded-full hover:scale-105 hover:bg-black transition-all duration-300 shadow-md"
                                     >
                                         Visit Website
                                         <FaExternalLinkAlt className="text-sm" />

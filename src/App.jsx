@@ -10,6 +10,7 @@ import TerminalRoles from "./components/TerminalRoles/TerminalRoles";
 import AOS from 'aos';
 import ProjectGrid from "./components/ProjectGrid/ProjectGrid";
 import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee";
+import GithubContribution from "./components/GithubContribution/GithubContribution";
 
 
 
@@ -162,7 +163,7 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={isFirstVisit ? { delay: 0.6, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
             >
-              <TerminalRoles roles={["UI UX Designer", "Frontend Developer", "Web Developer"]} />
+              <TerminalRoles roles={["UI UX Designer", "Mobile Developer", "Web Developer", "Graphic Designer", "Video Editor"]} />
             </motion.div>
 
             <motion.div
@@ -171,7 +172,7 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={isFirstVisit ? { delay: 0.6, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
             >
-              <TerminalRoles roles={["UI UX Designer", "Frontend Developer", "Web Developer"]} />
+              <TerminalRoles roles={["UI UX Designer", "Mobile Developer", "Web Developer", "Graphic Designer", "Video Editor"]} />
             </motion.div>
 
             <motion.div
@@ -249,32 +250,30 @@ function App() {
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 
                   {/* Left Column - Identity & Bio */}
-                  <div className="text-center md:text-left space-y-6">
-                    {/* Name Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 border border-neutral-200 rounded-full backdrop-blur-sm">
-                      <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                      <span className="text-sm text-neutral-600">Available for projects</span>
-                    </div>
-
-                    {/* Name & Title */}
+                  <div className="text-center md:text-left space-y-8">
                     <div>
-                      <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-3">
-                        Andre
+                      {/* Name Badge */}
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-100 border border-neutral-200 rounded-full mb-6">
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                        <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Available for projects</span>
+                      </div>
+
+                      <h2 className="text-5xl md:text-6xl font-black text-neutral-900 tracking-tighter mb-2">
+                        Andre Pradhit
                       </h2>
-                      <p className="text-xl md:text-2xl text-neutral-600 font-light">
+                      <p className="text-xl text-neutral-500 font-medium">
                         UI/UX Designer & Web Developer
                       </p>
                     </div>
 
-                    {/* Education Badge */}
-                    <div className="inline-flex items-center gap-3 px-5 py-3 bg-white border border-neutral-200 rounded-2xl shadow-sm">
-                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                      </svg>
-                      <div className="text-left">
-                        <p className="text-xs text-neutral-500">Currently studying at</p>
-                        <p className="text-sm font-medium text-neutral-900">BINUS University - 6th Semester</p>
+                    {/* Education - Tighter Stacked Version */}
+                    <div className="flex flex-col gap-4 items-center md:items-start">
+                      <div className="relative md:pl-6 md:border-l-2 md:border-neutral-900/10 group md:hover:border-neutral-900 transition-colors duration-500 flex flex-col items-center md:items-start">
+                        <p className="text-[10px] font-black text-neutral-400 uppercase tracking-[0.2em] mb-1">Education</p>
+                        <h4 className="text-lg font-bold text-neutral-900">BINUS University</h4>
+                        <p className="text-sm text-neutral-500 font-medium mt-1">
+                          Computer Science <span className="mx-2 text-neutral-300">•</span> 6th Semester
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -370,64 +369,89 @@ function App() {
 
         {/* Proyek */}
 
+        <GithubContribution />
+
 
         {/* Kontak */}
-        {/* Kontak */}
-        <div className="kontak mt-24 md:mt-20 w-full max-w-4xl mx-auto p-4 sm:p-0 mb-20" id="contact">
-          <div
-            className="flex flex-col items-center justify-center relative"
-          >
-            {/* Background Glow Removed */}
+        <section className="kontak mt-24 md:mt-32 w-full max-w-5xl mx-auto px-4 mb-32" id="contact">
+          <div className="relative">
+            {/* Background Decorative Elements */}
+            <motion.div 
+              animate={{ 
+                scale: [1, 1.1, 1],
+                x: [0, 30, 0],
+                y: [0, -20, 0]
+              }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-10 -left-10 w-48 h-48 bg-purple-100/40 rounded-full blur-[80px] pointer-events-none"
+            />
+            <motion.div 
+              animate={{ 
+                scale: [1, 1.2, 1],
+                x: [0, -40, 0],
+                y: [0, 20, 0]
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute -bottom-10 -right-10 w-56 h-56 bg-blue-100/40 rounded-full blur-[80px] pointer-events-none"
+            />
 
-            {/* Content */}
-            <div className="w-full flex flex-col justify-center items-center text-center">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-neutral-900 tracking-tighter">
-                Let's Connect
-              </h1>
-              <p className="text-neutral-600 mb-12 max-w-lg mx-auto text-lg leading-relaxed">
-                Follow me on social media to see my latest work and design inspiration. Let's create something amazing together!
-              </p>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative z-10 bg-white/60 backdrop-blur-2xl p-8 md:p-14 rounded-[2.5rem] md:rounded-[3.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.04)] flex flex-col items-center text-center overflow-hidden"
+            >
+              <div className="relative z-10 w-full">
+                <h2 className="text-5xl md:text-7xl font-black mb-6 text-neutral-900 tracking-tight leading-none">
+                  Let's <span className="text-neutral-400">Connect</span>
+                </h2>
+                
+                <p className="text-neutral-500 mb-12 text-base md:text-lg max-w-xl mx-auto font-medium leading-relaxed">
+                  Have a great idea or just want to chat? My inbox is always open. Let's create something extraordinary together.
+                </p>
 
-              <div className="flex flex-wrap justify-center gap-6 w-full">
-
-                <a
-                  href="https://instagram.com/aaaaanddrre"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex items-center gap-3 px-8 py-4 bg-white border border-neutral-200 rounded-full hover:border-neutral-400 hover:bg-neutral-50 transition-all duration-300 md:w-auto w-full justify-center shadow-sm"
-                >
-                  <FaInstagram className="text-2xl text-neutral-500 group-hover:text-purple-600 transition-colors" />
-                  <span className="text-base font-medium text-neutral-600 group-hover:text-neutral-900 transition-colors">Instagram</span>
-                  <div className="absolute inset-0 rounded-full ring-2 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/andrepradhit/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex items-center gap-3 px-8 py-4 bg-white border border-neutral-200 rounded-full hover:border-neutral-400 hover:bg-neutral-50 transition-all duration-300 md:w-auto w-full justify-center shadow-sm"
-                >
-                  <FaLinkedin className="text-2xl text-neutral-500 group-hover:text-blue-600 transition-colors" />
-                  <span className="text-base font-medium text-neutral-600 group-hover:text-neutral-900 transition-colors">LinkedIn</span>
-                  <div className="absolute inset-0 rounded-full ring-2 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </a>
-
-                <a
-                  href="https://github.com/drepradhit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex items-center gap-3 px-8 py-4 bg-white border border-neutral-200 rounded-full hover:border-neutral-400 hover:bg-neutral-50 transition-all duration-300 md:w-auto w-full justify-center shadow-sm"
-                >
-                  <FaGithub className="text-2xl text-neutral-500 group-hover:text-neutral-900 transition-colors" />
-                  <span className="text-base font-medium text-neutral-600 group-hover:text-neutral-900 transition-colors">GitHub</span>
-                  <div className="absolute inset-0 rounded-full ring-2 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </a>
-
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
+                  {[
+                    {
+                      name: "Instagram",
+                      handle: "@aaaaanddrre",
+                      icon: <FaInstagram />,
+                      url: "https://instagram.com/aaaaanddrre"
+                    },
+                    {
+                      name: "LinkedIn",
+                      handle: "Andre Pradhit",
+                      icon: <FaLinkedin />,
+                      url: "https://www.linkedin.com/in/andrepradhit/"
+                    },
+                    {
+                      name: "GitHub",
+                      handle: "@drepradhit",
+                      icon: <FaGithub />,
+                      url: "https://github.com/drepradhit"
+                    }
+                  ].map((social, idx) => (
+                    <motion.a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -5 }}
+                      className="group flex flex-col items-center p-8 bg-neutral-50 rounded-[2rem] transition-all duration-300 hover:bg-neutral-100"
+                    >
+                      <div className="w-14 h-14 bg-white text-neutral-900 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                        <span className="text-2xl">{social.icon}</span>
+                      </div>
+                      <h3 className="text-base font-black text-neutral-900 mb-1">{social.name}</h3>
+                      <p className="text-xs text-neutral-400 font-bold">{social.handle}</p>
+                    </motion.a>
+                  ))}
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
-        {/* Kontak */}
+        </section>
 
       </main>
 
