@@ -13,7 +13,6 @@ import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee";
 import GithubContribution from "./components/GithubContribution/GithubContribution";
 
 
-
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 import 'aos/dist/aos.css';
@@ -268,7 +267,7 @@ function App() {
                         <p className="text-[10px] font-black text-neutral-400 uppercase tracking-[0.2em] mb-1">Education</p>
                         <h4 className="text-lg font-bold text-neutral-900">BINUS University</h4>
                         <p className="text-sm text-neutral-500 font-medium mt-1">
-                          Computer Science <span className="mx-2 text-neutral-300">•</span> 6th Semester
+                          Computer Science
                         </p>
                       </div>
                     </div>
@@ -320,6 +319,8 @@ function App() {
             </div>
           </div>
         </div>
+
+        {/* --- Work Experience Section Removed upon user request --- */}
         <div className="tools mt-32">
           <motion.div
             className="text-center mb-12"

@@ -45,7 +45,7 @@ export default function TerminalRoles({ roles = ["UI/UX Designer", "Mobile Devel
         <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
         <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-        <span className="ml-2 text-[10px] text-neutral-500 font-sans uppercase tracking-widest">zsh</span>
+        <span className="ml-2 text-[10px] text-neutral-500 font-sans uppercase tracking-widest">role</span>
       </div>
 
       {/* Terminal Content */}

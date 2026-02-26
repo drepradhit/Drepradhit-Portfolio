@@ -17,8 +17,13 @@ const InfiniteMarquee = ({ items, speed = 1.5, direction = "left" }) => {
     // The current x position (percentage)
     const baseX = useMotionValue(0);
 
-    // Speed factor - can be adjusted
-    const baseVelocity = direction === "left" ? -speed : speed;
+    // Normalize based on items.length so that absolute pixel speed/drag 
+    // matches regardless of how many items are in the marquee. 
+    // The bottom row has 4 items, so we'll use 4 as our baseline.
+    const lengthFactor = 4 / items.length;
+
+    // Speed factor - normalized
+    const baseVelocity = (direction === "left" ? -speed : speed) * lengthFactor;
 
     useAnimationFrame((t, delta) => {
         // Stop auto-scroll when dragging
@@ -48,7 +53,8 @@ const InfiniteMarquee = ({ items, speed = 1.5, direction = "left" }) => {
         // Adjust sensitivity based on device width
         // Mobile needs higher sensitivity for responsiveness
         const isMobile = window.innerWidth < 768;
-        const sensitivity = isMobile ? 0.04 : 0.005; // Tuned for paused-drag feel
+        const baseSensitivity = isMobile ? 0.04 : 0.005; // Tuned for paused-drag feel
+        const sensitivity = baseSensitivity * lengthFactor;
 
         baseX.set(baseX.get() + info.delta.x * sensitivity);
     };

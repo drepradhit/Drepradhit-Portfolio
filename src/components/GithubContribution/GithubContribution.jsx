@@ -88,12 +88,8 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
   const seconds = diff % 60;
 
   return (
-    <motion.div
+    <div
       className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-neutral-50/80 rounded-2xl border border-neutral-100 hover:border-neutral-200 transition-all duration-300 group"
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.5 }}
     >
       {/* Top/Left Section: Icon and Details */}
       <div className="flex items-start gap-4 flex-1 min-w-0 w-full">
@@ -143,7 +139,7 @@ function ActivityCard({ project, description, tech, icon, iconColor, startDate, 
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -348,7 +344,7 @@ export default function GithubContribution() {
           </div>
           
           <div className="w-full pb-2 flex items-center justify-center flex-1 overflow-hidden">
-            <div className="w-full flex justify-center overflow-hidden [&_text]:!fill-neutral-400 [&_text]:!opacity-100 transition-opacity duration-300">
+            <div className="w-full flex justify-center overflow-hidden [&_text]:!fill-white [&_text]:!opacity-100 text-white transition-opacity duration-300">
               <ResponsiveGitHubCalendar />
             </div>
           </div>
@@ -394,12 +390,8 @@ export default function GithubContribution() {
       </div>
 
       {/* Discord-style Activity Status */}
-      <motion.div
+      <div
         className="mt-6 bg-white border border-neutral-200 p-6 md:p-8 rounded-3xl shadow-sm overflow-hidden"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.7, delay: 0.5 }}
       >
         <div className="flex items-center gap-3 mb-5">
           <div className="relative">
@@ -412,7 +404,7 @@ export default function GithubContribution() {
             <ActivityCard key={activity.project} {...activity} delay={0.15 * idx} />
           ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
