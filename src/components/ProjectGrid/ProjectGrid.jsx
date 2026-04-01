@@ -16,114 +16,119 @@ function ProjectCard({ project, index }) {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Helper to find tool icon
-    const getTechIcon = (techName) => {
-        if (!techName) return null;
-        // Case insensitive match
-        const tool = listTools.find(t => t.nama.toLowerCase() === techName.toLowerCase());
-        return tool ? tool.gambar : null;
-    };
+    // Generate a pseudo-random rotation between -3deg and 3deg based on index
+    const randomRotation = (index % 5 - 2) * 2; // e.g. -4, -2, 0, 2, 4 degrees
 
-    // Card content (shared between mobile and desktop)
+    // Different tape & title colors per card
+    const tapeColors = [
+        { bg: 'from-pink-300/50 via-pink-200/40 to-pink-300/50', title: '#db2777' },
+        { bg: 'from-sky-300/50 via-sky-200/40 to-sky-300/50', title: '#0284c7' },
+        { bg: 'from-amber-300/50 via-amber-200/40 to-amber-300/50', title: '#d97706' },
+        { bg: 'from-emerald-300/50 via-emerald-200/40 to-emerald-300/50', title: '#059669' },
+        { bg: 'from-violet-300/50 via-violet-200/40 to-violet-300/50', title: '#7c3aed' },
+        { bg: 'from-rose-300/50 via-rose-200/40 to-rose-300/50', title: '#e11d48' },
+    ];
+    const colors = tapeColors[index % tapeColors.length];
+
     const cardContent = (
-        <>
-            {/* Image Container */}
-            <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
-                <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                />
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent opacity-60" />
+        <div className="w-full flex flex-col cursor-pointer">
+            {/* Polaroid Container */}
+            <div 
+                className="relative bg-[#fcfbf9] p-3 pb-10 sm:p-4 sm:pb-14 shadow-[2px_8px_20px_rgba(0,0,0,0.06)] border border-neutral-200/80 group-hover:shadow-[4px_24px_48px_rgba(0,0,0,0.15)] transition-shadow duration-500"
+            >
+                {/* Tape Strip - Straight, centered */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-30 w-14 sm:w-16 h-6 sm:h-7">
+                    {/* Tape body */}
+                    <div className={`w-full h-full bg-gradient-to-b ${colors.bg} backdrop-blur-[1px] shadow-[0_1px_2px_rgba(0,0,0,0.06)]`}
+                         style={{ clipPath: 'polygon(0% 0%, 100% 0%, 99% 100%, 1% 100%)' }}
+                    />
+                    {/* Tape shine */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/35 via-transparent to-white/15 pointer-events-none"
+                         style={{ clipPath: 'polygon(0% 0%, 100% 0%, 99% 100%, 1% 100%)' }}
+                    />
+                </div>
 
-                {/* Category Badge - Floating on Image */}
-                <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1.5 text-[10px] font-bold tracking-widest text-white uppercase bg-black/50 backdrop-blur-md border border-white/10 rounded-full shadow-lg">
-                        {project.category}
-                    </span>
+                {/* Image Area */}
+                <div className="relative w-full aspect-[4/3] bg-neutral-100 overflow-hidden mb-3 md:mb-5">
+                    <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                    />
+                    
+                    {/* Inner shadow to mimic physical photo depths */}
+                    <div className="absolute inset-0 shadow-[inset_0_0_8px_rgba(0,0,0,0.1)] pointer-events-none" />
+                    
+
+                </div>
+
+                {/* Polaroid Text Area */}
+                <div className="flex flex-col items-center px-1">
+                    <h3 
+                        className="text-lg md:text-2xl tracking-wide text-center"
+                        style={{ 
+                            fontFamily: "'Caveat', 'Kalam', 'Segoe Print', 'Bradley Hand', cursive", 
+                            color: project.title === 'Type Paper' ? '#000000' : colors.title 
+                        }}
+                    >
+                        {project.title}
+                    </h3>
+                </div>
+
+                {/* Handwritten Year */}
+                <div 
+                    className="absolute bottom-2 right-3 opacity-40"
+                    style={{ fontFamily: "'Caveat', cursive" }}
+                >
+                    <span className="text-xs sm:text-sm text-neutral-500">{project.year || ''}</span>
                 </div>
             </div>
-
-            {/* Content */}
-            <div className="flex flex-col flex-grow p-5 lg:p-6 bg-white">
-                <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                    {project.title}
-                </h3>
-
-                <p className="text-neutral-600 text-sm leading-relaxed line-clamp-2 mb-4 flex-grow">
-                    {project.subtitle}
-                </p>
-
-                {/* Footer / Action */}
-                <div className="flex items-center justify-between pt-4 border-t border-neutral-100 mt-auto">
-
-                    {/* Tech Stack Icons - Stacked */}
-                    <div className="flex items-center pl-2">
-                        {project.techstack && project.techstack.slice(0, 4).map((tech, idx) => {
-                            const icon = getTechIcon(tech);
-                            return icon ? (
-                                <div key={idx}
-                                    className={`w-8 h-8 rounded-full bg-white p-1.5 border border-neutral-200 flex items-center justify-center relative -ml-3 first:ml-0 shadow-sm`}
-                                    title={tech}
-                                >
-                                    <img src={icon} alt={tech} className="w-full h-full object-contain" />
-                                </div>
-                            ) : null;
-                        })}
-                    </div>
-
-                    <div className="flex items-center gap-2 text-xs font-medium text-neutral-900">
-                        <span>Details</span>
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </>
+        </div>
     );
 
     return (
         <Link
             to={`/project/${project.slug}`}
-            className="h-full block"
+            className="h-full block group relative z-10 hover:z-50 focus:z-50"
             onClick={() => {
                 sessionStorage.setItem("home_scroll_pos", window.scrollY.toString());
                 sessionStorage.setItem("should_restore_scroll", "true");
             }}
         >
-            {/* On mobile: no animations, just static card */}
-            {isMobile ? (
-                <div className="group relative flex flex-col h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden">
-                    {cardContent}
-                </div>
-            ) : (
-                /* On desktop: keep animations */
-                <motion.div
-                    className="group relative flex flex-col h-full bg-white border border-neutral-200 rounded-3xl overflow-hidden hover:border-neutral-300 hover:shadow-xl hover:shadow-neutral-200/50 transition-all duration-200"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                >
-                    {cardContent}
-                </motion.div>
-            )}
+            <motion.div
+                className="w-full"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ 
+                    rotate: randomRotation,
+                    x: isMobile ? (index % 2 === 0 ? -8 : 8) : 0
+                }}
+                whileHover={isMobile ? { y: -5, scale: 1.02 } : { 
+                    y: -20, 
+                    scale: 1.05,
+                    rotate: randomRotation * 0.5,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 20,
+                    mass: 0.8
+                }}
+            >
+                {cardContent}
+            </motion.div>
         </Link>
     );
 }
 
 export default function ProjectGrid({ projects }) {
     return (
-        <div className="w-full">
-            <div className="flex flex-wrap justify-center gap-6 md:gap-8 max-w-7xl mx-auto">
+        <div className="w-full py-8 md:py-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {projects.map((project, index) => (
-                    <div
-                        key={project.id}
-                        className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]" // Calculated for gap-8 (2rem)
-                    >
+                    <div key={project.id} className="w-full max-w-[320px] mx-auto relative hover:z-50">
                         <ProjectCard
                             project={project}
                             index={index}
@@ -134,4 +139,5 @@ export default function ProjectGrid({ projects }) {
         </div>
     );
 }
+
 

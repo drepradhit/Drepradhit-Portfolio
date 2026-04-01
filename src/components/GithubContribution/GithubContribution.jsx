@@ -378,17 +378,6 @@ export default function GithubContribution() {
         </motion.div>
       </div>
 
-      {/* Discord-style Activity Status */}
-      <div
-        className="mt-6 p-4 md:p-6 overflow-hidden bg-transparent"
-      >
-
-        <div className="space-y-3">
-          {currentActivities.map((activity, idx) => (
-            <ActivityCard key={activity.project} {...activity} delay={0.15 * idx} />
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

@@ -25,7 +25,6 @@ export const listTools = [
   { id: 6, gambar: ToolFigma, nama: "Figma", ket: "Design", dad: "900" },
   { id: 7, gambar: ToolAI, nama: "Illustrator", ket: "Design", dad: "1000" },
   { id: 8, gambar: ToolPS, nama: "Photoshop", ket: "Design", dad: "1100" },
-  { id: 9, gambar: ToolPR, nama: "Premiere Pro", ket: "Editing", dad: "1200" },
 ];
 
 import CertixImg from "/assets/proyek/certixx.png";
