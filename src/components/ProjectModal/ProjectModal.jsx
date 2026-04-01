@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiX, FiGithub } from 'react-icons/fi';
+import { FiX, FiGithub, FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar } from 'react-icons/fi';
 
 const ProjectModal = ({ isOpen, onClose, project }) => {
   const [isClosing, setIsClosing] = useState(false);
@@ -75,11 +75,139 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
 
           <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent mb-6"></div>
 
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider">About the Project</h3>
-            <p className="text-neutral-700 text-base md:text-lg leading-relaxed">
-              {project.fullDescription}
-            </p>
+          <div className="space-y-6">
+            {project.features && project.features.length > 0 && (
+              <div>
+                <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-3">Key Features</h3>
+                <ul className="space-y-2">
+                  {project.features.map((feature, idx) => (
+                    <li key={idx} className="flex gap-3 text-neutral-700 leading-relaxed">
+                      <span className="mt-2 min-w-[6px] h-[6px] bg-blue-500 rounded-full shrink-0"></span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {project.impact && (
+              <div>
+                <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-2">Impact</h3>
+                <p className="text-neutral-700 leading-relaxed italic bg-neutral-50 p-4 rounded-xl border border-neutral-100">
+                  {project.impact}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Process Section (Dark Mode Hand-drawn S-Curve) */}
+          <div className="mt-16 bg-[#1a1a1a] rounded-[2rem] py-14 md:py-20 px-4 md:px-6 text-white overflow-hidden relative shadow-inner">
+            
+            {/* Hand-drawn Circular Title */}
+            <div className="text-center mb-16 relative w-fit mx-auto">
+              <h3 className="text-2xl md:text-[34px] font-bold relative z-10 tracking-wide" style={{ fontFamily: "'Inter', sans-serif" }}>
+                Process for the project
+              </h3>
+              {/* Hand-drawn ellipse around title */}
+              <svg className="absolute -inset-4 w-[calc(100%+32px)] h-[calc(100%+32px)] text-white/90 pointer-events-none drop-shadow-md" viewBox="0 0 200 60" preserveAspectRatio="none">
+                <path d="M 100,5 C 150,2 195,15 190,30 C 185,50 120,58 80,55 C 30,50 5,35 15,20 C 25,5 80,8 110,10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            {/* Desktop Snake Timeline */}
+            <div className="hidden md:block relative w-full h-[350px] max-w-5xl mx-auto">
+              
+              {/* SVG S-Curve Line */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 400" preserveAspectRatio="none">
+                {/* 
+                    Math logic coordinates: 
+                    Amplitude toggles from Y=140 to Y=260. 
+                    X gaps = 175. Node X = 150, 325, 500, 675, 850 
+                */}
+                <path 
+                    d="M 50,300 
+                       C 50,140 150,140 237.5,140
+                       C 325,140 325,260 412.5,260
+                       C 500,260 500,140 587.5,140
+                       C 675,140 675,260 762.5,260
+                       C 850,260 900,140 980,240" 
+                    fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="10, 10" 
+                />
+                <circle cx="50" cy="300" r="4" fill="#fff" />
+                <path d="M 972,232 L 980,240 L 972,248" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+
+              {/* Node Overlay Points */}
+              {[
+                { title: "User Interview", icon: FiMessageSquare, color: "bg-blue-500", top: "35%", left: "15%", labelPos: "top" },
+                { title: "Understanding Touchpoints", icon: FiMapPin, color: "bg-[#0ea5e9]", top: "65%", left: "32.5%", labelPos: "bottom" },
+                { title: "Journey Mapping", icon: FiMap, color: "bg-[#22c55e]", top: "35%", left: "50%", labelPos: "top" },
+                { title: "Wireframing", icon: FiLayout, color: "bg-[#84cc16]", top: "65%", left: "67.5%", labelPos: "bottom" },
+                { title: "Final Design", icon: FiStar, color: "bg-[#eab308]", top: "35%", left: "85%", labelPos: "top" },
+              ].map((step, idx) => (
+                <div key={idx} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10" style={{ top: step.top, left: step.left }}>
+                  
+                  {/* Label Above */}
+                  {step.labelPos === 'top' && (
+                    <span className="absolute -top-10 text-white font-semibold text-[15px] whitespace-nowrap drop-shadow-md">
+                      {step.title}
+                    </span>
+                  )}
+
+                  {/* Mask & Dotted Ring Circle */}
+                  <div className="w-[88px] h-[88px] bg-[#1a1a1a] rounded-full flex items-center justify-center relative group hover:scale-110 transition-transform duration-300">
+                    <div className="absolute inset-1.5 rounded-full border-[1.5px] border-dashed border-white/90 animate-[spin_15s_linear_infinite]"></div>
+                    <div className={`w-[60px] h-[60px] rounded-full ${step.color} flex items-center justify-center text-white relative z-10 shadow-[0_4px_15px_rgba(0,0,0,0.3)]`}>
+                      <step.icon size={28} />
+                    </div>
+                  </div>
+
+                  {/* Label Below */}
+                  {step.labelPos === 'bottom' && (
+                    <span className="absolute -bottom-14 max-w-[120px] text-center leading-tight text-white font-semibold text-[15px] drop-shadow-md">
+                      {step.title}
+                    </span>
+                  )}
+
+                  {/* Fun hand-drawn burst for Final Design */}
+                  {idx === 4 && (
+                    <div className="absolute top-0 right-0 w-full h-full pointer-events-none drop-shadow-md">
+                      <div className="absolute -top-3 -right-2 w-1 h-6 bg-white rotate-[30deg] rounded-full"></div>
+                      <div className="absolute top-4 -right-8 w-1 h-8 bg-white rotate-[60deg] rounded-full"></div>
+                      <div className="absolute top-12 -right-8 w-1 h-6 bg-white rotate-[90deg] rounded-full"></div>
+                      <div className="absolute top-20 -right-2 w-1 h-5 bg-white rotate-[120deg] rounded-full"></div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Vertical Timeline */}
+            <div className="md:hidden relative flex flex-col gap-10 pl-6 w-full max-w-sm mx-auto">
+              {/* Vertical Dashed Line */}
+              <div className="absolute left-[3.35rem] top-6 bottom-6 w-[2px] border-l-[2px] border-dashed border-white/60"></div>
+              
+              {[
+                { title: "User Interview", icon: FiMessageSquare, color: "bg-blue-500" },
+                { title: "Understanding Touchpoints", icon: FiMapPin, color: "bg-[#0ea5e9]" },
+                { title: "Journey Mapping", icon: FiMap, color: "bg-[#22c55e]" },
+                { title: "Wireframing", icon: FiLayout, color: "bg-[#84cc16]" },
+                { title: "Final Design", icon: FiStar, color: "bg-[#eab308]" },
+              ].map((step, idx) => (
+                <div key={idx} className="relative flex items-center gap-6 z-10">
+                  <div className="w-[70px] h-[70px] bg-[#1a1a1a] rounded-full flex items-center justify-center relative shrink-0">
+                    <div className="absolute inset-1.5 rounded-full border-[1.5px] border-dashed border-white/90 animate-[spin_15s_linear_infinite]"></div>
+                    <div className={`w-[46px] h-[46px] rounded-full ${step.color} flex items-center justify-center text-white relative z-10`}>
+                      <step.icon size={22} />
+                    </div>
+                  </div>
+                  <span className="text-white font-medium text-[16px] leading-tight flex-1">
+                    {step.title}
+                  </span>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </div>

@@ -61,79 +61,15 @@ const ProfileCardComponent = ({
   };
 
   return (
-    <motion.div 
+    <div 
       className={`pc-polaroid-wrapper ${className}`.trim()}
-      initial="rest"
-      whileHover={!isTouchMode ? "hover" : ""}
-      animate={isBurstActive ? "hover" : "rest"}
-      onClick={handleInteraction}
-      onMouseEnter={() => !isTouchMode && setIsHovered(true)}
-      onMouseLeave={() => !isTouchMode && setIsHovered(false)}
       style={{ padding: isUltraMobile ? "40px" : "60px" }}
     >
-      {/* Floating Tech Stack Icons - Calibrated for PERFECT VISIBILITY */}
-      {featuredTools.map((tool, index) => {
-        const totalTools = featuredTools.length;
-        const angle = (index / (totalTools - 1)) * Math.PI;
-        
-        let distance = 300; 
-        if (isUltraMobile) distance = 148; 
-        else if (isTabletArea) distance = 170;
-        
-        // Add slight irregular distancing so they aren't painfully symmetrical
-        distance += (index % 3) * (isUltraMobile ? 6 : 20);
-        
-        // Slightly crush the horizontal spread on mobile to account for narrow viewports
-        const xAmplitude = isUltraMobile ? 0.95 : 1;
-        const x = Math.cos(angle) * distance * xAmplitude;
-        const y = Math.sin(angle) * distance;
 
-        return (
-          <motion.div
-            key={tool.id}
-            className={`absolute z-0 ${isUltraMobile ? 'w-10 h-10' : 'w-14 h-14'} flex items-center justify-center pointer-events-none will-change-transform`}
-            variants={{
-              rest: { opacity: 0, scale: 0, x: 0, y: 0, rotate: 0 },
-              hover: { 
-                opacity: 1, 
-                scale: 1, 
-                x: x, 
-                y: y,
-                rotate: (index % 2 === 0 ? 12 : -12),
-                transition: { type: "spring", stiffness: 150, damping: 15, delay: index * 0.02 }
-              }
-            }}
-          >
-            <img 
-              src={tool.gambar} 
-              alt={tool.nama} 
-              className="w-full h-full object-contain" 
-              style={{
-                filter: "url(#sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
-                WebkitFilter: "url(#sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
-              }}
-            />
-          </motion.div>
-        );
-      })}
 
-      <svg width="0" height="0" style={{ position: 'absolute', visibility: 'hidden' }}>
-        <defs>
-          <filter id="sticker-outline" x="-40%" y="-40%" width="180%" height="180%">
-            <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="3.5"/>
-            <feFlood floodColor="white" result="whiteFill"/>
-            <feComposite in="whiteFill" in2="dilated" operator="in" result="stroke"/>
-            <feMerge><feMergeNode in="stroke"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-      </svg>
-
-      <motion.div 
+      <div 
         className="pc-polaroid-card relative z-10"
-        variants={{
-          rest: { rotate: -1, scale: 1, y: 0 },
-          hover: { rotate: 0, scale: 1.05, y: -10, transition: { duration: 0.4, ease: "easeOut" } }
-        }}
+        style={{ transform: "rotate(-1deg)" }}
       >
         <div className="pc-grain-overlay" />
         <div className="pc-photo-area">
@@ -143,32 +79,8 @@ const ProfileCardComponent = ({
         <div className="pc-polaroid-info">
           <h3 className="pc-polaroid-name">Drepradhit's Portfolio</h3>
         </div>
-      </motion.div>
-
-      {/* DISCOVERY HINT - SAFELY POSITIONED WITHIN BOUNDS TO PREVENT CROP */}
-      {((isTouchMode && !isBurstActive) || (!isTouchMode && !isHovered)) && (
-        <div className={`absolute z-30 pointer-events-none flex flex-col items-center 
-          ${!isTouchMode 
-            ? 'left-[95%] top-1/2 -translate-y-1/2' 
-            : 'left-[90%] sm:left-[95%] top-[65%] -translate-y-1/2'
-          }`}
-        >
-          <span 
-            className={`text-neutral-700 ${isUltraMobile ? 'text-lg' : 'text-2xl'} font-bold tracking-wide`}
-            style={{ fontFamily: "'Caveat', cursive", lineHeight: 1 }}
-          >
-            {isTouchMode ? "Tap Me!" : "Hover Me!"}
-          </span>
-          <svg width={isUltraMobile ? "35" : "60"} height={isUltraMobile ? "35" : "60"} viewBox="0 0 45 40" fill="none" xmlns="http://www.w3.org/2000/svg" 
-            className={`text-neutral-400 ${isUltraMobile ? '-translate-x-1' : '-translate-x-3'}`}
-          >
-            <path d="M40 35 C35 25 25 15 10 5 M10 5 L18 6 M10 5 L11 13" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-      )}
-
-
-    </motion.div>
+      </div>
+    </div>
   );
 };
 

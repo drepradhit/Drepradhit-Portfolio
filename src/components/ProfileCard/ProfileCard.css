@@ -84,11 +84,11 @@
 /* Tablet View (iPad, etc.) */
 @media (min-width: 481px) and (max-width: 1023px) {
   .pc-polaroid-card {
-    width: 260px;
-    padding: 16px 16px 36px 16px;
+    width: 300px;
+    padding: 18px 18px 42px 18px;
   }
   .pc-polaroid-name {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 400;
   }
 }
@@ -96,11 +96,11 @@
 /* Mobile View (Phones) */
 @media (max-width: 480px) {
   .pc-polaroid-card {
-    width: 190px; 
-    padding: 12px 12px 28px 12px; 
+    width: 250px; 
+    padding: 16px 16px 36px 16px; 
   }
   .pc-polaroid-name {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     font-weight: 400;
   }
 }

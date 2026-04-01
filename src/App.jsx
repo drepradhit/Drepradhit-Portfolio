@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 
-import { listTools, listProyek, listProyekWeb, listProyekUIUX } from "./data";
+import { listTools, listProyek, listProyekWeb, listProyekUIUX, listExperience } from "./data";
 
 import ProjectModal from "./components/ProjectModal/ProjectModal";
 import Aurora from "./components/Aurora/Aurora";
@@ -13,6 +13,7 @@ import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee";
 import GithubDashboard from "./components/GithubContribution/GithubDashboard";
 import FinderWindow from "./components/FinderWindow/FinderWindow";
 import ToolsExplorer from "./components/ToolsExplorer/ToolsExplorer";
+import WorkExperience from "./components/WorkExperience/WorkExperience";
 
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -241,8 +242,11 @@ function App() {
           </div>
 
         </div>
-        {/* tentang Section with Refined Tactile Paper */}
-        <div className="mt-20 md:mt-32 w-full max-w-4xl mx-auto px-4 flex justify-center py-10" id="about">
+        {/* About & Work Experience Grid */}
+        <div className="mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" id="about">
+          
+          {/* tentang Section with Refined Tactile Paper */}
+          <div className="flex justify-center w-full">
           <motion.div 
             className="w-full flex justify-center"
             initial="rest"
@@ -374,7 +378,14 @@ function App() {
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Work Experience Section - Scrapbook Style */}
+          <div className="w-full flex justify-center lg:justify-start">
+            <WorkExperience experience={listExperience} />
+          </div>
+
         </div>
 
         {/* Tools Section - Updated to Finder Window */}
@@ -383,25 +394,8 @@ function App() {
         </div>
         {/* tentang */}
 
-
         {/* Proyek */}
-        <div className="proyek mt-20 md:mt-32 w-full max-w-5xl mx-auto px-4" id="project">
-          
-          {/* Section Header - Matching the ToolsExplorer style */}
-          <div className="flex flex-col items-center md:items-start mb-16 md:mb-20 px-4 md:px-0">
-            <div className="group cursor-default relative">
-              <div className="flex items-center">
-                <h2 
-                  className="text-4xl md:text-5xl text-neutral-800/80 -rotate-2 whitespace-nowrap" 
-                  style={{ fontFamily: "'Caveat', cursive" }}
-                >
-                  # recent projects
-                </h2>
-              </div>
-              <div className="w-48 h-[2px] bg-amber-400/40 mt-1 -ml-2 -rotate-1" />
-            </div>
-          </div>
-
+        <div className="proyek mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4" id="project">
           <FinderWindow />
         </div>
         {/* End Proyek */}
