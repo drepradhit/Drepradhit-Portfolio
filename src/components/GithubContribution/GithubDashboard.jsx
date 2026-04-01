@@ -184,8 +184,8 @@ export default function GithubDashboard() {
               <h3 className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Contributions</h3>
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             </div>
-            <div className="w-full flex items-center justify-center overflow-x-auto py-2">
-               <div className="min-w-fit overflow-hidden">
+            <div className="w-full overflow-x-auto py-2">
+               <div className="w-fit mx-auto">
                 <ResponsiveGitHubCalendar />
                </div>
             </div>
@@ -199,15 +199,16 @@ export default function GithubDashboard() {
 
           <div className="bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm flex flex-col h-fit self-start">
              <h3 className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-6">Stack Breakdown</h3>
-             <div className="grid grid-cols-2 gap-x-4 gap-y-5">
+             <div className="grid gap-x-4 gap-y-5" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(115px, 1fr))' }}>
                 {techStack.map(tech => (
                   <div key={tech.name} className="flex items-center gap-2.5">
-                    <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: tech.color }} />
-                    <span className="text-xs font-bold text-neutral-700 whitespace-nowrap">{tech.name}</span>
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full flex-shrink-0 shadow-sm" style={{ backgroundColor: tech.color, minWidth: '10px', minHeight: '10px' }} />
+                    <span className="text-xs font-bold text-neutral-700 sm:text-sm whitespace-nowrap overflow-hidden text-ellipsis">{tech.name}</span>
                   </div>
                 ))}
              </div>
           </div>
+
 
         </div>
       </div>

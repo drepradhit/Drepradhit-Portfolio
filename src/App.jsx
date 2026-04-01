@@ -84,7 +84,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="overflow-x-hidden relative w-full min-h-screen">
       <style>{`
         body {
           background-color: #fdfbf7;
@@ -137,9 +137,21 @@ function App() {
 
 `}</style>
 
-        <div className="hero grid md:grid-cols-2 items-center pt-12 gap-12 md:gap-20 grid-cols-1 max-w-6xl mx-auto">
-          <div className="order-2 md:order-1 px-4 md:px-0 flex flex-col items-center md:items-start text-center md:text-left">
+        <div className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto">
+          <motion.div
+            className="order-1 lg:order-2 w-full flex justify-center px-4 lg:px-0"
+            initial={isFirstVisit ? { opacity: 0, scale: 0.9 } : { opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={isFirstVisit ? { delay: 0.3, duration: 0.7, ease: "easeOut" } : { duration: 0 }}
+          >
+            <div className="w-full flex justify-center">
+              <ProfileCard
+                avatarUrl="./assets/andre.jpg"
+              />
+            </div>
+          </motion.div>
 
+          <div className="order-2 lg:order-1 px-4 flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl leading-[1.15] mb-6"
               style={{ 
@@ -164,26 +176,20 @@ function App() {
               </motion.span>
             </motion.h1>
 
+            {/* Consolidated TerminalRoles with consistent responsive alignment */}
             <motion.div
-              className="block md:hidden text-lg text-neutral-600 mb-8 leading-relaxed w-full max-w-[320px]"
+              className="text-lg text-neutral-600 mb-8 leading-relaxed w-full flex justify-center lg:justify-start"
               initial={isFirstVisit ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={isFirstVisit ? { delay: 0.6, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
             >
-              <TerminalRoles roles={["UI UX Designer", "Mobile Developer", "Web Developer", "Graphic Designer"]} />
+              <div className="w-full max-w-[340px] lg:max-w-none">
+                <TerminalRoles roles={["UI UX Designer", "Mobile Developer", "Web Developer", "Graphic Designer"]} />
+              </div>
             </motion.div>
 
             <motion.div
-              className="hidden md:block text-lg text-neutral-600 text-left mb-8 leading-relaxed w-full"
-              initial={isFirstVisit ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={isFirstVisit ? { delay: 0.6, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
-            >
-              <TerminalRoles roles={["UI UX Designer", "Mobile Developer", "Web Developer", "Graphic Designer"]} />
-            </motion.div>
-
-            <motion.div
-              className="flex flex-row items-center gap-3 justify-center md:justify-start w-full md:w-auto"
+              className="flex flex-row items-center gap-3 justify-center lg:justify-start w-full"
               initial={isFirstVisit ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={isFirstVisit ? { delay: 0.8, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
@@ -230,34 +236,10 @@ function App() {
                   </span>
                   <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 transform" />
                 </motion.a>
-
-
               </div>
-
             </motion.div>
           </div>
 
-          <motion.div
-            className="order-1 md:order-2 w-full flex justify-center px-4 md:px-0"
-            initial={isFirstVisit ? { opacity: 0, scale: 0.9 } : { opacity: 1, scale: 1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={isFirstVisit ? { delay: 0.3, duration: 0.7, ease: "easeOut" } : { duration: 0 }}
-          >
-            <div className="w-full flex justify-center">
-              <ProfileCard
-                name="Andre Pradhit"
-                title="Web Developer"
-                handle="drepradhit"
-                status="Online"
-                contactText="View Project"
-                avatarUrl="./assets/andre.jpg"
-                showUserInfo={true}
-                enableTilt={true}
-                enableMobileTilt={false}
-                onContactClick={() => document.getElementById('project')?.scrollIntoView({ behavior: 'smooth' })}
-              />
-            </div>
-          </motion.div>
         </div>
         {/* tentang Section with Refined Tactile Paper */}
         <div className="mt-20 md:mt-32 w-full max-w-4xl mx-auto px-4 flex justify-center py-10" id="about">
@@ -436,7 +418,7 @@ function App() {
         onClose={handleCloseModal}
         project={selectedProject}
       />
-    </>
+    </div>
   )
 }
 

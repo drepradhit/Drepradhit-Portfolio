@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @layer base {
+  html, body, #root {
+    overflow-x: hidden;
+    width: 100%;
+  }
   body {
     font-family: "Poppins", sans-serif;
     background-color: #fdfbf7;

@@ -81,13 +81,26 @@
   pointer-events: none;
 }
 
-@media (max-width: 480px) {
+/* Tablet View (iPad, etc.) */
+@media (min-width: 481px) and (max-width: 1023px) {
   .pc-polaroid-card {
-    width: 300px;
-    padding: 16px 16px 36px 16px; /* Shorter bottom padding on mobile */
+    width: 260px;
+    padding: 16px 16px 36px 16px;
   }
   .pc-polaroid-name {
-    font-size: 1.5rem; /* Smaller on mobile */
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+}
+
+/* Mobile View (Phones) */
+@media (max-width: 480px) {
+  .pc-polaroid-card {
+    width: 190px; 
+    padding: 12px 12px 28px 12px; 
+  }
+  .pc-polaroid-name {
+    font-size: 1.1rem;
     font-weight: 400;
   }
 }
