@@ -73,12 +73,16 @@ export default function ToolsExplorer({ tools }) {
                   className="flex flex-col items-center group cursor-pointer relative"
                 >
                   <div className="relative transition-all duration-300">
-                    {/* Icon */}
+                    {/* Icon with Sticker Effect */}
                     <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center mb-3">
                       <img 
                         src={tool.gambar} 
                         alt={tool.nama} 
-                        className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.06)] group-hover:scale-110 transition-transform duration-300" 
+                        className="w-full h-full object-contain transition-transform duration-300"
+                        style={{
+                          filter: "url(#tools-sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
+                          WebkitFilter: "url(#tools-sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
+                        }} 
                       />
                     </div>
 
@@ -100,6 +104,26 @@ export default function ToolsExplorer({ tools }) {
             })}
           </AnimatePresence>
         </div>
+
+        {/* HIDDEN SVG FILTER FOR BOLD STICKER OUTLINE (MATCHING HERO SECTION) */}
+        <svg width="0" height="0" style={{ position: 'absolute', visibility: 'hidden' }}>
+          <defs>
+            <filter id="tools-sticker-outline" x="-40%" y="-40%" width="180%" height="180%">
+              {/* Expand alpha mask for a bold white border */}
+              <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="3.5"/>
+              
+              {/* Fill the area with pure white */}
+              <feFlood floodColor="white" result="whiteFill"/>
+              <feComposite in="whiteFill" in2="dilated" operator="in" result="stroke"/>
+              
+              {/* Merge original logo on top of the stroke */}
+              <feMerge>
+                <feMergeNode in="stroke"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+        </svg>
       </div>
     </div>
   );

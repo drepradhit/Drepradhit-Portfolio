@@ -24,11 +24,18 @@ export default function ProjectDetail() {
     };
 
     return (
-        <div className="relative w-full min-h-screen lg:h-screen bg-[#faf9f5] text-neutral-800 lg:overflow-hidden selection:bg-blue-500/20">
+        <div className="relative w-full min-h-screen lg:h-screen bg-[#fdfbf7] text-neutral-800 lg:overflow-hidden selection:bg-blue-500/20"
+             style={{ 
+                 backgroundImage: `
+                     linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)
+                 `,
+                 backgroundSize: '40px 40px'
+             }}>
 
-            {/* Subtle retro noise texture overlay */}
+            {/* Subtle retro noise texture overlay - matching main site feel */}
             <div 
-                className="absolute inset-0 pointer-events-none opacity-[0.35] z-0 mix-blend-multiply" 
+                className="absolute inset-0 pointer-events-none opacity-[0.2] z-0 mix-blend-multiply" 
                 style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/cream-paper.png")' }}
             />
 
