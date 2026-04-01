@@ -18,6 +18,7 @@ export const listTools = [
   { id: 13, gambar: ToolNext, nama: "Next JS", ket: "Framework", dad: "150" },
   { id: 2, gambar: ToolJS, nama: "Javascript", ket: "Language", dad: "200" },
   { id: 3, gambar: ToolTS, nama: "TypeScript", ket: "Language", dad: "300" },
+  { id: 4, gambar: ToolHTML, nama: "HTML", ket: "Language", dad: "400" },
   { id: 5, gambar: ToolCSS, nama: "CSS", ket: "Language", dad: "500" },
   { id: 10, gambar: ToolNode, nama: "Node JS", ket: "Runtime", dad: "600" },
   { id: 11, gambar: ToolTailwind, nama: "Tailwind", ket: "Framework", dad: "700" },

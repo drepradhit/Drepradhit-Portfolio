@@ -8,7 +8,7 @@ export default function ToolsExplorer({ tools }) {
   const [activeTab, setActiveTab] = useState('All');
 
   const getFilteredTools = () => {
-    return tools;
+    return tools.filter(t => t.nama !== 'GSAP');
   };
 
   const filteredTools = getFilteredTools();
@@ -78,7 +78,7 @@ export default function ToolsExplorer({ tools }) {
                       <img 
                         src={tool.gambar} 
                         alt={tool.nama} 
-                        className={`w-full h-full object-contain transition-transform duration-300 ${tool.nama === 'GSAP' ? 'scale-[3.5]' : tool.nama === 'Node JS' ? 'scale-[1.4]' : ''}`}
+                        className={`w-full h-full object-contain transition-transform duration-300 ${tool.nama === 'Node JS' ? 'scale-[1.4]' : ''}`}
                         style={{
                           filter: "url(#tools-sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
                           WebkitFilter: "url(#tools-sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
