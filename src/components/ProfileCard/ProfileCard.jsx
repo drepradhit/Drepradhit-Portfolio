@@ -77,12 +77,15 @@ const ProfileCardComponent = ({
         const angle = (index / (totalTools - 1)) * Math.PI;
         
         let distance = 300; 
-        if (isUltraMobile) distance = 160;
-        else if (isTabletArea) distance = 200;
+        if (isUltraMobile) distance = 148; 
+        else if (isTabletArea) distance = 170;
         
-        distance += (index % 3) * (isUltraMobile ? 12 : 20);
+        // Add slight irregular distancing so they aren't painfully symmetrical
+        distance += (index % 3) * (isUltraMobile ? 6 : 20);
         
-        const x = Math.cos(angle) * distance;
+        // Slightly crush the horizontal spread on mobile to account for narrow viewports
+        const xAmplitude = isUltraMobile ? 0.95 : 1;
+        const x = Math.cos(angle) * distance * xAmplitude;
         const y = Math.sin(angle) * distance;
 
         return (
