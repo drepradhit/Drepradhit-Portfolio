@@ -5,6 +5,8 @@ import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
 import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers } from "react-icons/fi";
 import { useEffect } from "react";
 
+
+
 export default function ProjectDetail() {
     const { slug } = useParams();
     const navigate = useNavigate();
@@ -76,7 +78,7 @@ export default function ProjectDetail() {
                 </button>
             </motion.div>
 
-        <div className="detail-root relative z-10 w-full flex flex-col lg:flex-row max-w-[1600px] mx-auto min-h-screen lg:min-h-[900px] pb-24 lg:pb-0">
+        <div className="detail-root relative z-10 w-full flex flex-col lg:flex-row max-w-[1600px] mx-auto min-h-screen lg:min-h-[900px] pb-24 lg:pb-20">
 
             {/* LEFT SIDE: Polaroid + Title */}
             <div className="lg:w-[45%] flex items-start justify-center p-8 pt-24 lg:p-12 xl:p-16 h-fit">
@@ -146,21 +148,43 @@ export default function ProjectDetail() {
                             )}
                         </div>
 
-                        {/* Tech Stack */}
-                        <div className="flex flex-wrap gap-2 items-center justify-center">
-                            {project.techstack.map((tech, idx) => {
-                                const icon = getTechIcon(tech);
-                                const rotations = ['rotate-[-2deg]', 'rotate-[1deg]', 'rotate-[-1deg]', 'rotate-[2deg]', 'rotate-0'];
-                                return (
-                                    <motion.div key={idx}
-                                        className={`flex items-center gap-2 px-3 py-1.5 bg-white shadow-[1px_2px_6px_rgba(0,0,0,0.08)] border border-neutral-100 ${rotations[idx % rotations.length]}`}
-                                        style={{ borderRadius: '3px' }}
-                                        whileHover={{ rotate: 0, scale: 1.1, zIndex: 10 }}>
-                                        {icon && <img src={icon} alt={tech} className={`w-4 h-4 object-contain ${tech.toLowerCase() === "gsap" ? "scale-[3]" : ""}`} /> }
-                                        <span className="text-[11px] font-bold text-neutral-600 tracking-wide uppercase">{tech}</span>
-                                    </motion.div>
-                                );
-                            })}
+                        <div className="flex flex-col items-center gap-6 mt-4">
+                            {/* Tech Stack */}
+                            <div className="flex flex-wrap gap-2 items-center justify-center">
+                                {project.techstack.map((tech, idx) => {
+                                    const icon = getTechIcon(tech);
+                                    const rotations = ['rotate-[-2deg]', 'rotate-[1deg]', 'rotate-[-1deg]', 'rotate-[2deg]', 'rotate-0'];
+                                    return (
+                                        <motion.div key={idx}
+                                            className={`flex items-center gap-2 px-3 py-1.5 bg-white shadow-[1px_2px_6px_rgba(0,0,0,0.08)] border border-neutral-100 ${rotations[idx % rotations.length]}`}
+                                            style={{ borderRadius: '3px' }}
+                                            whileHover={{ rotate: 0, scale: 1.1, zIndex: 10 }}>
+                                            {icon && <img src={icon} alt={tech} className={`w-4 h-4 object-contain ${tech.toLowerCase() === "gsap" ? "scale-[3]" : ""}`} /> }
+                                            <span className="text-[11px] font-bold text-neutral-600 tracking-wide uppercase">{tech}</span>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Integrated Scroll Hint */}
+                            <motion.div 
+                                className="flex flex-col items-center gap-1.5 opacity-60"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 0.6, y: 0 }}
+                                transition={{ delay: 1.2, duration: 0.8 }}
+                            >
+                                <span className="text-lg font-bold text-neutral-500 rotate-[-1deg]" style={{ fontFamily: "'Caveat', cursive" }}>
+                                    keep scrolling!
+                                </span>
+                                <motion.div
+                                    animate={{ y: [0, 5, 0] }}
+                                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                >
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-400">
+                                        <path d="M7 13l5 5 5-5" />
+                                    </svg>
+                                </motion.div>
+                            </motion.div>
                         </div>
                         
                     </motion.div>
@@ -249,27 +273,6 @@ export default function ProjectDetail() {
                     )}
                 </div>
 
-                {/* Redesigned Center Scroll Indicator (Fixed inside container bottom) */}
-                <div className="absolute bottom-32 left-[30%] -translate-x-1/2 z-30 flex flex-col items-center gap-2">
-                    <motion.div 
-                        className="flex flex-col items-center gap-2"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 0.8 }}
-                    >
-                        <span className="text-xl font-bold text-neutral-500 rotate-[-1deg]" style={{ fontFamily: "'Caveat', cursive" }}>
-                            keep scrolling!
-                        </span>
-                        <motion.div
-                            animate={{ y: [0, 6, 0] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                        >
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-400">
-                                <path d="M7 13l5 5 5-5" />
-                            </svg>
-                        </motion.div>
-                    </motion.div>
-                </div>
             </div>
 
             {/* FULL WIDTH SPANNED SECTIONS BOTTOM */}
@@ -398,7 +401,7 @@ export default function ProjectDetail() {
 
                         <div className="flex flex-col gap-32 lg:gap-40 w-full items-center max-w-[1400px] px-4">
                                 {project.pageImages.map((img, i) => {
-                                const isMobile = project.slug === "thinkways" || project.slug === "certix";
+                                const isMobile = project.slug === "thinkways" || project.slug === "certix" || project.slug === "nance";
                                 const isEven = i % 2 === 0;
 
                                 return (

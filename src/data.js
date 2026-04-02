@@ -61,7 +61,14 @@ import DrevelopmentLanding from "/assets/drevelopment/Screenshot 2026-04-02 0509
 import CertixWelcome from "/assets/certix/Welcome Scren.png";
 import CertixHome from "/assets/certix/Home.png";
 
-export const listProyek = [
+import NanceDashboard from "/assets/Nance/Dashboard - Light Mode 1.png";
+import NanceCover from "/assets/Nance/cover.png";
+import NanceReceipt from "/assets/Nance/Success Receipt - Light Mode 1.png";
+import NanceTransactions from "/assets/Nance/Transactions - Light Mode 1.png";
+import NanceTransfer from "/assets/Nance/Transfer Money - Light Mode 1.png";
+import NanceStats from "/assets/Nance/Updated Statistics - Growth Chart 1.png";
+
+const listProyekBase = [
   {
     id: 1,
     slug: "thinkways",
@@ -231,7 +238,41 @@ export const listProyek = [
       { src: TypePaperResult, title: "Performance Results", desc: "Comprehensive post-test data visualization displaying actual WPM, raw speed, accuracy percentage, and specific error tracking." },
       { src: TypePaperSettings, title: "Test Customization", desc: "Deep customization menu allowing users to personalize their experience by selecting various color themes and keystroke sound effects." }
     ]
+  },
+  {
+    id: 7,
+    slug: "nance",
+    image: NanceCover,
+    images: [NanceCover, NanceTransfer, NanceStats],
+    title: "Nance",
+    category: "UI/UX",
+    subtitle: "A modern finance application for seamless money transfers and insightful financial analysis.",
+    role: "UI/UX Designer",
+    duration: "2 weeks",
+    features: [
+      "Designed a comprehensive finance application interface focusing on clarity, trust, and ease of use.",
+      "Created intuitive flows for money transfers, guaranteeing smooth and accessible transaction experiences.",
+      "Developed advanced analytics and statistical dashboards that visually present financial growth and transaction history."
+    ],
+    impact: "Empowered users to effortlessly manage their finances, execute rapid secure transfers, and gain comprehensive insights into their monetary habits.",
+    borderColor: "#333",
+    gradient: "transparent",
+    url: null,
+    year: "2026",
+    techstack: ["Figma", "Illustrator"],
+    dad: "700",
+    pageImages: [
+      { src: NanceDashboard, title: "Main Dashboard", desc: "A clean and comprehensive dashboard providing quick access to total balances, recent activity, and core financial tools." },
+      { src: NanceStats, title: "Financial Statistics", desc: "An advanced analytical charting view allowing users to visualize their portfolio growth and financial trends over time." },
+      { src: NanceTransfer, title: "Transfer Money", desc: "A streamlined, secure transaction interface designed to make sending money as quick and error-free as possible." },
+      { src: NanceReceipt, title: "Transaction Receipt", desc: "A clear, professionally formatted success receipt providing immediate proof of a completed transfer." },
+      { src: NanceTransactions, title: "Transaction History", desc: "A detailed and filterable ledger containing all past incoming and outgoing monetary interactions." }
+    ]
   }
+];
+
+export const listProyek = [
+  ...listProyekBase
 ];
 
 // Kategori terpisah

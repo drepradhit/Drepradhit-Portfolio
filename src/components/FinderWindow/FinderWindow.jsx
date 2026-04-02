@@ -5,7 +5,7 @@ import { listProyek } from '../../data';
 const FinderWindow = () => {
   return (
     <div className="w-full font-sans">
-      <ProjectGrid projects={listProyek} />
+      <ProjectGrid projects={listProyek.slice(0, 6)} />
     </div>
   );
 };

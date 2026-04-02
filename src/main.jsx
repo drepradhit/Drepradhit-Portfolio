@@ -4,6 +4,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import ProjectDetail from './pages/ProjectDetail/ProjectDetail.jsx'
+import ShowcaseGallery from './pages/ShowcaseGallery/ShowcaseGallery.jsx'
 import "animate.css"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
           </div>
         } />
         <Route path="/project/:slug" element={<ProjectDetail />} />
+        <Route path="/showcase" element={<ShowcaseGallery />} />
       </Routes>
     </HashRouter>
   </StrictMode>,

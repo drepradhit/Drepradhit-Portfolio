@@ -191,22 +191,52 @@ const boardPositions = [
 ];
 
 // Decorative elements scattered on the board (Now STATIC for premium look)
-function BoardDecorations() {
+function BoardDecorations({ isShowcase = false, isMobile = false }) {
     return (
         <>
-            {/* Post-it note */}
-            <div className="absolute top-[8%] left-[74%] z-10 w-[16%] rotate-[4deg]">
-                <div className="bg-[#fff176] p-3 shadow-[2px_3px_6px_rgba(0,0,0,0.12)]" style={{ clipPath: 'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)' }}>
-                    <p className="text-[10px] text-neutral-600 leading-tight" style={{ fontFamily: "'Caveat', cursive" }}>
-                        more coming soon...
-                    </p>
-                </div>
-            </div>
+            {/* Post-it note - View All (Desktop only) */}
+            {!isShowcase && !isMobile && (
+                <Link to="/showcase" className="absolute top-[8%] left-[74%] z-50 w-[20%] rotate-[4deg] group cursor-pointer"
+                      onClick={() => {
+                          sessionStorage.setItem("home_scroll_pos", window.scrollY.toString());
+                          sessionStorage.setItem("should_restore_scroll", "true");
+                      }}>
+                    <motion.div 
+                        className="bg-[#fff176] p-3 shadow-[2px_3px_6px_rgba(0,0,0,0.12)] border border-[#f5e656] group-hover:bg-[#ffea4c] transition-colors" 
+                        style={{ clipPath: 'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)' }}
+                        whileHover={{ scale: 1.05, rotate: 2 }}
+                    >
+                        <p className="text-[14px] text-neutral-800 leading-tight font-bold text-center underline decoration-wavy decoration-red-400" style={{ fontFamily: "'Caveat', cursive" }}>
+                            View All Projects!
+                        </p>
+                    </motion.div>
+                </Link>
+            )}
 
-            {/* Radio Sticker */}
-            <div className="absolute top-[48%] left-[85%] z-20 rotate-[15deg] w-48 h-auto opacity-100 drop-shadow-lg scale-110">
-                <img src={StikerRadio} alt="Radio Sticker" className="w-full h-auto pointer-events-none" />
-            </div>
+            {/* Desktop only stickers - hid on mobile because mobile uses tailored small stickers */}
+            {!isMobile && (
+                <>
+                    {/* Radio Sticker */}
+                    <div className="absolute top-[48%] left-[85%] z-20 rotate-[15deg] w-48 h-auto opacity-100 drop-shadow-lg scale-110">
+                        <img src={StikerRadio} alt="Radio Sticker" className="w-full h-auto pointer-events-none" />
+                    </div>
+
+                    {/* Kuning Sticker */}
+                    <div className="absolute top-[22%] left-[78%] z-20 rotate-[8deg] w-56 h-auto drop-shadow-xl scale-105">
+                        <img src={StikerKuning} alt="Circle Sticker" className="w-full h-auto pointer-events-none" />
+                    </div>
+
+                    {/* Pala Sticker */}
+                    <div className="absolute top-[54%] left-[76%] z-20 rotate-[-12deg] w-24 h-auto opacity-100">
+                        <img src={StikerPala} alt="Face Sticker" className="w-full h-auto pointer-events-none" />
+                    </div>
+
+                    {/* HP Sticker */}
+                    <div className="absolute top-[75%] left-[82%] z-20 rotate-[-8deg] w-36 h-auto opacity-100 drop-shadow-md">
+                        <img src={StikerHP} alt="Phone Sticker" className="w-full h-auto pointer-events-none" />
+                    </div>
+                </>
+            )}
 
             {/* Washi tape strip - coral */}
             <div className="absolute top-[93%] left-[12%] z-5 w-[14%] h-[10px] rotate-[-2deg] opacity-60 pointer-events-none"
@@ -224,26 +254,11 @@ function BoardDecorations() {
                      mixBlendMode: 'multiply',
                  }} />
 
-            {/* Kuning Sticker */}
-            <div className="absolute top-[22%] left-[78%] z-20 rotate-[8deg] w-56 h-auto drop-shadow-xl scale-105">
-                <img src={StikerKuning} alt="Circle Sticker" className="w-full h-auto pointer-events-none" />
-            </div>
-
             {/* Vintage stamp */}
             <div className="absolute top-[85%] left-[4%] z-10 rotate-[8deg]">
                 <div className="px-2 py-1 border-2 border-red-400/50 rounded-sm opacity-50" style={{ borderStyle: 'double' }}>
                     <span className="text-[7px] font-black text-red-400/60 tracking-widest uppercase">Portfolio</span>
                 </div>
-            </div>
-
-            {/* Pala Sticker */}
-            <div className="absolute top-[54%] left-[76%] z-20 rotate-[-12deg] w-24 h-auto opacity-100">
-                <img src={StikerPala} alt="Face Sticker" className="w-full h-auto pointer-events-none" />
-            </div>
-
-            {/* HP Sticker */}
-            <div className="absolute top-[75%] left-[82%] z-20 rotate-[-8deg] w-36 h-auto opacity-100 drop-shadow-md">
-                <img src={StikerHP} alt="Phone Sticker" className="w-full h-auto pointer-events-none" />
             </div>
 
             {/* Washi tape - purple vertical right side */}
@@ -321,7 +336,7 @@ export default function ProjectGrid({ projects }) {
                     </div>
 
                     {/* Decorative elements — Back inside for clean static look */}
-                    <BoardDecorations />
+                    <BoardDecorations isMobile={true} />
 
                     {/* Inner clip container to preserve board boundaries for cards ONLY */}
                     <div className="relative w-full h-full overflow-hidden rounded-lg p-4 pt-10">
@@ -373,7 +388,26 @@ export default function ProjectGrid({ projects }) {
                                 </motion.div>
                             </Link>
                         ))}
-                    </div>
+                        </div>
+
+                        {/* Safe Mobile Bottom "View All Projects" Call to Action */}
+                        <div className="flex justify-center mt-8 w-full pb-2 relative z-30">
+                            <Link to="/showcase" className="block group cursor-pointer"
+                                  onClick={() => {
+                                      sessionStorage.setItem("home_scroll_pos", window.scrollY.toString());
+                                      sessionStorage.setItem("should_restore_scroll", "true");
+                                  }}>
+                                <motion.div 
+                                    className="bg-[#fff176] px-6 py-2.5 shadow-[2px_3px_6px_rgba(0,0,0,0.12)] border border-[#f5e656] rotate-[2deg] group-hover:bg-[#ffea4c] transition-colors"
+                                    style={{ clipPath: 'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)' }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <p className="text-lg text-neutral-800 leading-tight font-bold text-center underline decoration-wavy decoration-red-400" style={{ fontFamily: "'Caveat', cursive" }}>
+                                        View All Projects!
+                                    </p>
+                                </motion.div>
+                            </Link>
+                        </div>
 
                     </div>
                 </div>
