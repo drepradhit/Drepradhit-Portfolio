@@ -155,7 +155,7 @@ function App() {
           <div className="order-2 lg:order-1 px-4 flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl leading-[1.15] mb-6"
-              style={{ 
+              style={{
                 fontFamily: "'Playfair Display', serif",
                 fontStyle: 'italic',
                 fontWeight: 600,
@@ -244,140 +244,140 @@ function App() {
         </div>
         {/* About & Work Experience Grid */}
         <div className="mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" id="about">
-          
+
           {/* tentang Section with Refined Tactile Paper */}
           <div className="flex justify-center w-full">
-          <motion.div 
-            className="w-full flex justify-center"
-            initial="rest"
-            whileHover="hover"
-            animate="rest"
-          >
-            {/* Realistic Notebook Paper Column */}
-            <motion.div 
-              className="relative w-full max-w-2xl bg-[#fefcf5] py-8 pr-6 md:py-16 md:pr-14 overflow-hidden mx-auto rounded-[3px] border border-[#f0e6d2] cursor-default"
-              variants={{
-                rest: { 
-                  rotate: -1, 
-                  scale: 1, 
-                  y: 0, 
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.04)" 
-                },
-                hover: { 
-                  rotate: 0, 
-                  scale: 1.03, 
-                  y: -15, 
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.08)",
-                  transition: { 
-                    type: "spring", 
-                    stiffness: 200, 
-                    damping: 25 
-                  }
-                }
-              }}
-              style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.04)" }}
+            <motion.div
+              className="w-full flex justify-center"
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
             >
-              
-              {/* Torn Tape - Clean straighten */}
-              <motion.div 
-                className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-10 bg-[#e6ceb1] shadow-[0_1px_3px_rgba(0,0,0,0.1)] z-20 backdrop-blur-sm" 
+              {/* Realistic Notebook Paper Column */}
+              <motion.div
+                className="relative w-full max-w-2xl bg-[#fefcf5] py-8 pr-6 md:py-16 md:pr-14 overflow-hidden mx-auto rounded-[3px] border border-[#f0e6d2] cursor-default"
                 variants={{
-                  rest: { rotate: 2, y: 0, opacity: 0.9 },
-                  hover: { 
-                    rotate: 0, 
-                    y: -2, 
-                    opacity: 1, 
-                    transition: { duration: 0.4 }
+                  rest: {
+                    rotate: -1,
+                    scale: 1,
+                    y: 0,
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.04)"
+                  },
+                  hover: {
+                    rotate: 0,
+                    scale: 1.03,
+                    y: -15,
+                    boxShadow: "0 30px 60px rgba(0,0,0,0.08)",
+                    transition: {
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 25
+                    }
                   }
                 }}
-                style={{ 
-                  mixBlendMode: 'multiply',
-                  clipPath: 'polygon(3% 0%, 97% 2%, 99% 100%, 1% 98%)'
-                }} 
-              />
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-10 bg-white/30 rotate-[2deg] z-20 pointer-events-none" 
-                   style={{ clipPath: 'polygon(3% 0%, 97% 2%, 99% 100%, 1% 98%)' }} 
-              />
-              
-              {/* Binder Holes (Loose Leaf) - Left Edge */}
-              {[20, 50, 80].map((top) => (
-                <div 
-                  key={top}
-                  className="hidden md:block absolute w-5 h-5 rounded-full bg-neutral-900/[0.04] shadow-[inset_1px_2px_4px_rgba(0,0,0,0.15),0_1px_1px_rgba(255,255,255,0.8)] border border-neutral-900/[0.02]"
-                  style={{ top: `${top}%`, left: '25px', transform: 'translateY(-50%)' }}
-                />
-              ))}
-
-              {/* Paperclip - Subtle Adjustment */}
-              <motion.div 
-                className="absolute top-4 right-4 md:right-8 z-30 opacity-70"
-                variants={{
-                  rest: { rotate: 15, x: 0 },
-                  hover: { 
-                    rotate: 10, 
-                    x: 3,
-                    transition: { type: "spring", stiffness: 300, damping: 15 } 
-                  }
-                }}
+                style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.04)" }}
               >
-                <svg width="24" height="48" viewBox="0 0 24 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-12">
-                  <path d="M12 2C8.68629 2 6 4.68629 6 8V38C6 42.4183 9.58172 46 14 46C18.4183 46 22 42.4183 22 38V12C22 9.79086 20.2091 8 18 8C15.7909 8 14 9.79086 14 12V36C14 37.1046 13.1046 38 12 38C10.8954 38 10 37.1046 10 36V8C10 6.89543 10.8954 6 12 6C13.1046 6 14 6.89543 14 8V32" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </motion.div>
 
-              {/* Red Line Margin (Fixed positioning) */}
-              <div className="absolute top-0 bottom-0 left-[60px] md:left-[80px] w-[2px] bg-red-400/50 z-10" />
-              <div className="absolute top-0 bottom-0 left-[64px] md:left-[84px] w-[0.5px] bg-red-400/20 z-10" />
-
-              {/* Marginalia - Handwritten Arrow note */}
-              <div 
-                className="hidden lg:block absolute left-[10px] top-[40%] -rotate-90 origin-center text-neutral-400/40 text-[10px] uppercase tracking-widest whitespace-nowrap"
-                style={{ fontFamily: "'Caveat', cursive" }}
-              >
-                ← handwritten note
-              </div>
-
-              {/* Ruled Lines Background */}
-              <div 
-                className="absolute inset-0 pointer-events-none z-0 mt-[14px]"
-                style={{ 
-                  background: 'repeating-linear-gradient(transparent, transparent 31px, rgba(59, 130, 246, 0.15) 31px, rgba(59, 130, 246, 0.15) 32px)',
-                  backgroundPosition: '0 0px'
-                }} 
-              />
-
-              {/* Dog-ear fold */}
-              <div className="absolute bottom-0 right-0 w-8 h-8 bg-gradient-to-tl from-neutral-200 to-transparent pointer-events-none"
-                   style={{ clipPath: 'polygon(100% 0, 0 100%, 100% 100%)' }} />
-
-              {/* Text Container aligned properly offset from margins */}
-              <div className="relative z-10 pl-[75px] md:pl-[120px] pt-0 md:pt-4">
-                <motion.h2 
-                  className="text-3xl md:text-5xl text-[#854d0e] font-bold mb-4 md:mb-10 tracking-wide"
-                  style={{ fontFamily: "'Caveat', 'Kalam', 'Segoe Print', 'Bradley Hand', cursive" }}
+                {/* Torn Tape - Clean straighten */}
+                <motion.div
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-10 bg-[#e6ceb1] shadow-[0_1px_3px_rgba(0,0,0,0.1)] z-20 backdrop-blur-sm"
                   variants={{
-                    rest: { scale: 1, x: 0 },
-                    hover: { 
-                      scale: 1.05, 
-                      x: 8,
-                      transition: { type: "spring", stiffness: 400, damping: 20 } 
+                    rest: { rotate: 2, y: 0, opacity: 0.9 },
+                    hover: {
+                      rotate: 0,
+                      y: -2,
+                      opacity: 1,
+                      transition: { duration: 0.4 }
+                    }
+                  }}
+                  style={{
+                    mixBlendMode: 'multiply',
+                    clipPath: 'polygon(3% 0%, 97% 2%, 99% 100%, 1% 98%)'
+                  }}
+                />
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-10 bg-white/30 rotate-[2deg] z-20 pointer-events-none"
+                  style={{ clipPath: 'polygon(3% 0%, 97% 2%, 99% 100%, 1% 98%)' }}
+                />
+
+                {/* Binder Holes (Loose Leaf) - Left Edge */}
+                {[20, 50, 80].map((top) => (
+                  <div
+                    key={top}
+                    className="hidden md:block absolute w-5 h-5 rounded-full bg-neutral-900/[0.04] shadow-[inset_1px_2px_4px_rgba(0,0,0,0.15),0_1px_1px_rgba(255,255,255,0.8)] border border-neutral-900/[0.02]"
+                    style={{ top: `${top}%`, left: '25px', transform: 'translateY(-50%)' }}
+                  />
+                ))}
+
+                {/* Paperclip - Subtle Adjustment */}
+                <motion.div
+                  className="absolute top-4 right-4 md:right-8 z-30 opacity-70"
+                  variants={{
+                    rest: { rotate: 15, x: 0 },
+                    hover: {
+                      rotate: 10,
+                      x: 3,
+                      transition: { type: "spring", stiffness: 300, damping: 15 }
                     }
                   }}
                 >
-                  Hi! I'm Andre
-                </motion.h2>
-                
-                <div className="text-[14px] md:text-base leading-[28px] md:leading-[32px] text-neutral-700 font-medium pb-2">
-                  <p className="mb-4 md:mb-8">
-                    I'm a <strong className="text-neutral-900 relative z-10">Computer Science</strong> student at <strong className="text-neutral-900">BINUS University</strong>, passionate about <strong className="text-neutral-900">Web Development</strong> and UI/UX. I build <strong className="text-neutral-900">web apps, interactive platforms, and digital experiences</strong> that feel meaningful.
-                  </p>
-                  
-                  <p className="mb-0">
-                    Currently open to <strong className="text-neutral-900">internships & freelance projects</strong>.
-                  </p>
+                  <svg width="24" height="48" viewBox="0 0 24 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-12">
+                    <path d="M12 2C8.68629 2 6 4.68629 6 8V38C6 42.4183 9.58172 46 14 46C18.4183 46 22 42.4183 22 38V12C22 9.79086 20.2091 8 18 8C15.7909 8 14 9.79086 14 12V36C14 37.1046 13.1046 38 12 38C10.8954 38 10 37.1046 10 36V8C10 6.89543 10.8954 6 12 6C13.1046 6 14 6.89543 14 8V32" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </motion.div>
+
+                {/* Red Line Margin (Fixed positioning) */}
+                <div className="absolute top-0 bottom-0 left-[60px] md:left-[80px] w-[2px] bg-red-400/50 z-10" />
+                <div className="absolute top-0 bottom-0 left-[64px] md:left-[84px] w-[0.5px] bg-red-400/20 z-10" />
+
+                {/* Marginalia - Handwritten Arrow note */}
+                <div
+                  className="hidden lg:block absolute left-[10px] top-[40%] -rotate-90 origin-center text-neutral-400/40 text-[10px] uppercase tracking-widest whitespace-nowrap"
+                  style={{ fontFamily: "'Caveat', cursive" }}
+                >
+                  ← handwritten note
                 </div>
-              </div>
-            </motion.div>
+
+                {/* Ruled Lines Background */}
+                <div
+                  className="absolute inset-0 pointer-events-none z-0 mt-[14px]"
+                  style={{
+                    background: 'repeating-linear-gradient(transparent, transparent 31px, rgba(59, 130, 246, 0.15) 31px, rgba(59, 130, 246, 0.15) 32px)',
+                    backgroundPosition: '0 0px'
+                  }}
+                />
+
+                {/* Dog-ear fold */}
+                <div className="absolute bottom-0 right-0 w-8 h-8 bg-gradient-to-tl from-neutral-200 to-transparent pointer-events-none"
+                  style={{ clipPath: 'polygon(100% 0, 0 100%, 100% 100%)' }} />
+
+                {/* Text Container aligned properly offset from margins */}
+                <div className="relative z-10 pl-[75px] md:pl-[120px] pt-0 md:pt-4">
+                  <motion.h2
+                    className="text-3xl md:text-5xl text-[#854d0e] font-bold mb-4 md:mb-10 tracking-wide"
+                    style={{ fontFamily: "'Caveat', 'Kalam', 'Segoe Print', 'Bradley Hand', cursive" }}
+                    variants={{
+                      rest: { scale: 1, x: 0 },
+                      hover: {
+                        scale: 1.05,
+                        x: 8,
+                        transition: { type: "spring", stiffness: 400, damping: 20 }
+                      }
+                    }}
+                  >
+                    Hi! I'm Andre
+                  </motion.h2>
+
+                  <div className="text-[14px] md:text-base leading-[28px] md:leading-[32px] text-neutral-700 font-medium pb-2">
+                    <p className="mb-4 md:mb-8">
+                      I'm a <strong className="text-neutral-900 relative z-10">Computer Science</strong> student at <strong className="text-neutral-900">BINUS University</strong>, passionate about <strong className="text-neutral-900">Web Development</strong> and UI/UX. I build <strong className="text-neutral-900">web apps, interactive platforms, and digital experiences</strong> that feel meaningful.
+                    </p>
+
+                    <p className="mb-0">
+                      Currently open to <strong className="text-neutral-900">internships & freelance projects</strong>.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
 

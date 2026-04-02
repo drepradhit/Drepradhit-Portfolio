@@ -76,11 +76,10 @@ export default function ProjectDetail() {
                 </button>
             </motion.div>
 
-            {/* Top Section Layout: Left = Polaroid | Right = Brief Info */}
-            <div className="detail-root relative z-10 w-full flex flex-col lg:flex-row max-w-[1600px] mx-auto">
+        <div className="detail-root relative z-10 w-full flex flex-col lg:flex-row max-w-[1600px] mx-auto min-h-screen lg:min-h-[900px] pb-24 lg:pb-0">
 
-                {/* LEFT SIDE: Polaroid + Title */}
-                <div className="lg:w-[45%] flex items-start justify-center p-8 pt-24 lg:p-12 xl:p-16 h-fit">
+            {/* LEFT SIDE: Polaroid + Title */}
+            <div className="lg:w-[45%] flex items-start justify-center p-8 pt-24 lg:p-12 xl:p-16 h-fit">
                     <motion.div
                         className="flex flex-col items-center gap-8 max-w-md w-full"
                         initial={{ opacity: 0, y: 20 }}
@@ -164,25 +163,6 @@ export default function ProjectDetail() {
                             })}
                         </div>
                         
-                        {/* Desktop Scroll Indicator */}
-                        <motion.div 
-                            className="hidden lg:flex flex-col items-center gap-3 mt-14"
-                            initial={{ opacity: 0, y: -5 }}
-                            animate={{ opacity: 0.9, y: 5 }}
-                            transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-                        >
-                            <span className="text-xs font-bold tracking-[0.25em] uppercase text-neutral-600" style={{ fontFamily: "'Space Mono', monospace" }}>
-                                Scroll for details
-                            </span>
-                            <div className="w-[3px] h-12 bg-neutral-200 rounded-full overflow-hidden relative shadow-inner">
-                                <motion.div 
-                                    className="w-full h-1/2 bg-neutral-700 rounded-full"
-                                    animate={{ y: [0, 24, 0] }}
-                                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                                />
-                            </div>
-                        </motion.div>
-
                     </motion.div>
                 </div>
 
@@ -259,7 +239,7 @@ export default function ProjectDetail() {
                                 <h3 className="text-2xl md:text-3xl font-bold text-[#3d2b1a] mb-4"
                                     style={{ fontFamily: "'Caveat', cursive" }}>
                                     Impact & Outcome
-                                </h3>
+                                  </h3>
 
                                 <p className="text-[#4a3520] leading-[1.9] font-medium text-[14px] md:text-[15px]">
                                     {project.impact}
@@ -267,6 +247,28 @@ export default function ProjectDetail() {
                             </div>
                         </motion.div>
                     )}
+                </div>
+
+                {/* Redesigned Center Scroll Indicator (Fixed inside container bottom) */}
+                <div className="absolute bottom-32 left-[30%] -translate-x-1/2 z-30 flex flex-col items-center gap-2">
+                    <motion.div 
+                        className="flex flex-col items-center gap-2"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 0.8 }}
+                    >
+                        <span className="text-xl font-bold text-neutral-500 rotate-[-1deg]" style={{ fontFamily: "'Caveat', cursive" }}>
+                            keep scrolling!
+                        </span>
+                        <motion.div
+                            animate={{ y: [0, 6, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-400">
+                                <path d="M7 13l5 5 5-5" />
+                            </svg>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </div>
 

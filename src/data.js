@@ -180,15 +180,16 @@ export const listProyek = [
     images: [DamianosImg, Proyek1, Proyek2],
     title: "Damianos Production",
     category: "Web Development",
-    subtitle: "A modern company profile tailored for a creative agency.",
+    subtitle: "A comprehensive company profile showcasing a high-end creative agency's end-to-end production workflow.",
     role: "Frontend Developer",
     duration: "1 week",
     features: [
-      "Developed a clean, high-performance company profile website tailored for a creative agency.",
-      "Implemented modern layout structures using Next.js and Tailwind CSS for optimal loading speeds and SEO.",
-      "Created elegant portfolio showcases to highlight the agency's best work effectively."
+      "Built a professional agency landing page using Next.js and GSAP for fluid, high-end transitions.",
+      "Developed a dedicated 'How We Work' section detailing the agency's full production cycle: Pre-Production, Production, and Post-Production.",
+      "Implemented responsive project showcases and interactive carousels to highlight diverse creative outputs.",
+      "Optimized performance and SEO to ensure a premium, reliable experience for potential high-value clients."
     ],
-    impact: "Showcased the agency's capabilities with a premium digital presence, driving potential client inquiries through a professional portfolio interface.",
+    impact: "Successfully communicated the agency's professional workflow and depth of service, positioning them as a premium partner for end-to-end creative projects.",
     borderColor: "#333",
     gradient: "transparent",
     url: "UNDER_MAINTENANCE",
@@ -197,7 +198,7 @@ export const listProyek = [
     dad: "400",
     pageImages: [
       { src: DamianosHero, title: "Hero Section", desc: "A captivating landing page emphasizing bold typography and high-quality hero imagery to instantly establish brand identity." },
-      { src: DamianosWorks, title: "Our Works", desc: "An elegantly structured portfolio gallery designed to showcase the agency's highest quality productions and creative projects." },
+      { src: DamianosWorks, title: "How We Work", desc: "A detailed breakdown of our creative workflow, showcasing our end-to-end process from initial Pre-Production and concept development through to high-quality Production and final Post-Production delivery." },
       { src: DamianosServices, title: "Projects Carousel", desc: "An interactive carousel component displaying a curated selection of previously completed projects, allowing visitors to easily swipe through the agency's showcase." },
       { src: DamianosClients, title: "About Us", desc: "A narrative section detailing the agency's roots, creative mission, and historical background within the creative industry." },
       { src: DamianosFooter, title: "Complete Portfolio Gallery", desc: "A comprehensive showcase presenting an extensive collection of successful client projects completed by Damianos since its founding as a creative agency." }
