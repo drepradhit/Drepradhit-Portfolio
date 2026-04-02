@@ -71,7 +71,7 @@ export const listProyek = [
     category: "UI/UX",
     subtitle: "A personalized learning application tailored to individual learning styles.",
     role: "UI/UX Designer",
-    duration: "1 month",
+    duration: "3 weeks",
     features: [
       "Conducted user research to identify diverse learning styles and define application requirements.",
       "Designed wireframes and high-fidelity mockups focusing on an adaptive, personalized user journey.",
@@ -100,7 +100,7 @@ export const listProyek = [
     category: "Web Development",
     subtitle: "A professional landing page for Web Development & UI/UX Design services.",
     role: "Frontend Developer & UI/UX Designer",
-    duration: "1.5 months",
+    duration: "2 weeks",
     features: [
       "Designed and developed a professional landing page tailored for a digital agency.",
       "Implemented a sleek, modern aesthetic using React JS and Tailwind CSS to build trust with potential clients.",
@@ -123,10 +123,10 @@ export const listProyek = [
     image: Proyek2,
     images: [Proyek2, Proyek5, Proyek1],
     title: "Rupiah Flow",
-    category: "Fullstack",
+    category: "Web Development",
     subtitle: "A fullstack app to manage your income, expenses, and categories.",
     role: "Fullstack Developer",
-    duration: "2 months",
+    duration: "4 months",
     features: [
       "Developed a fullstack financial dashboard web application using React, Node.js, and PostgreSQL for structured financial data management.",
       "Built RESTful APIs to handle financial transactions (income & expenses) with full CRUD functionality.",
@@ -155,7 +155,7 @@ export const listProyek = [
     category: "UI/UX",
     subtitle: "A concert discovery and ticketing app for your city.",
     role: "UI/UX Designer",
-    duration: "3 weeks",
+    duration: "1 week",
     features: [
       "Designed an intuitive mobile application interface for live concert discovery and ticketing.",
       "Created user flows for browsing event lineups, reviewing artist profiles, and securing tickets seamlessly.",
@@ -182,7 +182,7 @@ export const listProyek = [
     category: "Web Development",
     subtitle: "A modern company profile tailored for a creative agency.",
     role: "Frontend Developer",
-    duration: "1 month",
+    duration: "1 week",
     features: [
       "Developed a clean, high-performance company profile website tailored for a creative agency.",
       "Implemented modern layout structures using Next.js and Tailwind CSS for optimal loading speeds and SEO.",
@@ -212,7 +212,7 @@ export const listProyek = [
     category: "Web Development",
     subtitle: "A minimalist typing test inspired by Monkeytype.",
     role: "Frontend Developer",
-    duration: "2 weeks",
+    duration: "4 days",
     features: [
       "Built a minimalist, distraction-free typing test application inspired by Monkeytype.",
       "Developed real-time WPM tracking and precision accuracy metrics using React JS state management.",

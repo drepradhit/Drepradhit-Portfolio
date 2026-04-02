@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { listTools } from "../../data";
+import StikerHP from "/assets/Stiker/hp.png";
+import StikerKuning from "/assets/Stiker/kuning.png";
+import StikerPala from "/assets/Stiker/pala.png";
+import StikerRadio from "/assets/Stiker/radio.png";
 
 // Binder clip SVG
 function BinderClip({ color = '#333', size = 24 }) {
@@ -140,9 +144,10 @@ function BoardCard({ project, index, pos }) {
                                 <span 
                                     className="block font-bold truncate leading-tight"
                                     style={{ 
-                                        fontFamily: "'Caveat', cursive", 
+                                        fontFamily: "'Permanent Marker', cursive", 
                                         color: titleColors[index % titleColors.length],
-                                        fontSize: 'clamp(11px, 1.1vw, 18px)',
+                                        fontSize: 'clamp(9px, 0.9vw, 14px)',
+                                        fontWeight: '400',
                                     }}
                                 >
                                     {project.title}
@@ -193,27 +198,18 @@ function BoardDecorations() {
             <div className="absolute top-[8%] left-[74%] z-10 w-[16%] rotate-[4deg]">
                 <div className="bg-[#fff176] p-3 shadow-[2px_3px_6px_rgba(0,0,0,0.12)]" style={{ clipPath: 'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)' }}>
                     <p className="text-[10px] text-neutral-600 leading-tight" style={{ fontFamily: "'Caveat', cursive" }}>
-                        more coming soon... ✍
-                    </p>
-                </div>
-            </div>
-
-            {/* Pink post-it */}
-            <div className="absolute top-[80%] left-[76%] z-10 w-[16%] rotate-[-3deg]">
-                <div className="bg-[#f8bbd0] p-3 shadow-[2px_3px_6px_rgba(0,0,0,0.12)]" style={{ clipPath: 'polygon(0% 2%, 100% 0%, 97% 100%, 3% 98%)' }}>
-                    <p className="text-[10px] text-neutral-700 leading-tight" style={{ fontFamily: "'Caveat', cursive" }}>
-                        built with ♡
+                        more coming soon...
                     </p>
                 </div>
             </div>
 
 
 
-            {/* Star burst sticker */}
-            <div className="absolute top-[44%] left-[82%] z-8 rotate-[15deg]">
-                <div className="bg-[#ffe082] w-9 h-9 flex items-center justify-center shadow-[1px_2px_5px_rgba(0,0,0,0.12)]" style={{ clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' }}>
-                    <span className="text-[7px] font-black text-amber-800">NEW</span>
-                </div>
+
+
+            {/* Radio Sticker */}
+            <div className="absolute top-[48%] left-[85%] z-20 rotate-[15deg] w-48 h-auto opacity-100 drop-shadow-lg scale-110">
+                <img src={StikerRadio} alt="Radio Sticker" className="w-full h-auto" />
             </div>
 
             {/* Washi tape strip - coral */}
@@ -232,14 +228,10 @@ function BoardDecorations() {
                      mixBlendMode: 'multiply',
                  }} />
 
-            {/* Retro round sticker - "COOL" */}
-            <div className="absolute top-[30%] left-[80%] z-10 rotate-[10deg]">
-                <div className="w-11 h-11 rounded-full bg-[#ef5350] flex items-center justify-center shadow-[1px_3px_6px_rgba(0,0,0,0.2)] border-2 border-white/30">
-                    <span className="text-[8px] font-black text-white tracking-wider">COOL</span>
-                </div>
+            {/* Kuning Sticker */}
+            <div className="absolute top-[22%] left-[78%] z-20 rotate-[8deg] w-56 h-auto drop-shadow-xl scale-105">
+                <img src={StikerKuning} alt="Circle Sticker" className="w-full h-auto" />
             </div>
-
-
 
             {/* Vintage stamp */}
             <div className="absolute top-[85%] left-[4%] z-10 rotate-[8deg]">
@@ -248,11 +240,14 @@ function BoardDecorations() {
                 </div>
             </div>
 
+            {/* Pala Sticker */}
+            <div className="absolute top-[54%] left-[76%] z-20 rotate-[-12deg] w-24 h-auto opacity-100">
+                <img src={StikerPala} alt="Face Sticker" className="w-full h-auto" />
+            </div>
 
-
-            {/* Heart sticker */}
-            <div className="absolute top-[55%] left-[77%] z-8 rotate-[-8deg]">
-                <div className="bg-[#f48fb1] w-8 h-7 shadow-[1px_2px_4px_rgba(0,0,0,0.12)]" style={{ clipPath: 'polygon(50% 100%, 0% 35%, 15% 0%, 50% 20%, 85% 0%, 100% 35%)' }} />
+            {/* HP Sticker */}
+            <div className="absolute top-[75%] left-[82%] z-20 rotate-[-8deg] w-36 h-auto opacity-100 drop-shadow-md">
+                <img src={StikerHP} alt="Phone Sticker" className="w-full h-auto" />
             </div>
 
 
@@ -304,11 +299,27 @@ export default function ProjectGrid({ projects }) {
                             <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 z-10">
                                 <Pushpin color="#e74c3c" size={12} />
                             </div>
-                            <h2 className="text-base text-neutral-700 font-bold" 
-                                style={{ fontFamily: "'Caveat', cursive" }}>
+                            <h2 className="text-base text-neutral-700 font-normal uppercase tracking-tight" 
+                                style={{ fontFamily: "'Permanent Marker', cursive" }}>
                                 recent projects ✦
                             </h2>
                         </div>
+                    </div>
+
+                    {/* Mobile Stickers — Outside overflow-hidden so they can stick out */}
+                    {/* Pala Sticker — between row 1 & 2, center */}
+                    <div className="absolute top-[38%] left-[44%] z-30 rotate-[-10deg] w-12 h-auto pointer-events-none">
+                        <img src={StikerPala} alt="Face Sticker" className="w-full h-auto" />
+                    </div>
+
+                    {/* Radio Sticker — between row 2 & 3, right */}
+                    <div className="absolute top-[64%] right-[-8px] z-30 rotate-[12deg] w-14 h-auto pointer-events-none">
+                        <img src={StikerRadio} alt="Radio Sticker" className="w-full h-auto" />
+                    </div>
+
+                    {/* Kuning Sticker — top right corner sticking out */}
+                    <div className="absolute top-[-24px] right-[-12px] z-30 rotate-[6deg] w-16 h-auto pointer-events-none">
+                        <img src={StikerKuning} alt="Circle Sticker" className="w-full h-auto" />
                     </div>
 
                     {/* Inner clip container to preserve board boundaries for cards ONLY */}
@@ -348,8 +359,8 @@ export default function ProjectGrid({ projects }) {
                                         </div>
                                     </div>
                                     <div className="px-1.5 pt-1 pb-2">
-                                        <span className="block text-[12px] font-bold truncate"
-                                              style={{ fontFamily: "'Caveat', cursive", color: titleColors[index % titleColors.length] }}>
+                                        <span className="block text-[11px] truncate uppercase tracking-tighter"
+                                              style={{ fontFamily: "'Permanent Marker', cursive", color: titleColors[index % titleColors.length] }}>
                                             {project.title}
                                         </span>
                                         <span className="block text-[8px] text-neutral-400"
@@ -363,27 +374,6 @@ export default function ProjectGrid({ projects }) {
                         ))}
                     </div>
 
-                    {/* Scattered decorations — in gaps between rows, not on cards */}
-                    {/* Heart — between row 1 & 2, center */}
-                    <div className="absolute top-[38%] left-[46%] z-30 rotate-[-10deg]">
-                        <div className="bg-[#f48fb1] w-5 h-4 shadow-sm" style={{ clipPath: 'polygon(50% 100%, 0% 35%, 15% 0%, 50% 20%, 85% 0%, 100% 35%)' }} />
-                    </div>
-
-
-
-                    {/* Star burst — between row 2 & 3, right */}
-                    <div className="absolute top-[64%] right-[6%] z-30 rotate-[12deg]">
-                        <div className="bg-[#ffe082] w-6 h-6 flex items-center justify-center shadow-sm" style={{ clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' }}>
-                            <span className="text-[4px] font-black text-amber-800">NEW</span>
-                        </div>
-                    </div>
-
-                    {/* COOL badge — top right corner */}
-                    <div className="absolute top-2 right-3 z-30 rotate-[6deg]">
-                        <div className="w-7 h-7 rounded-full bg-[#ef5350] flex items-center justify-center shadow-[1px_2px_4px_rgba(0,0,0,0.15)] border-2 border-white/30">
-                            <span className="text-[5px] font-black text-white tracking-wider">COOL</span>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -413,8 +403,8 @@ export default function ProjectGrid({ projects }) {
                         <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
                             <Pushpin color="#e74c3c" size={16} />
                         </div>
-                        <h2 className="text-2xl xl:text-3xl text-neutral-700 font-bold" 
-                            style={{ fontFamily: "'Caveat', cursive" }}>
+                        <h2 className="text-xl xl:text-2xl text-neutral-700 font-normal uppercase tracking-tight" 
+                            style={{ fontFamily: "'Permanent Marker', cursive" }}>
                             recent projects ✦
                         </h2>
                     </div>

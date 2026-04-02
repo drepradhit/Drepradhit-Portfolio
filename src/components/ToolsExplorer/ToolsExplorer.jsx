@@ -22,8 +22,8 @@ export default function ToolsExplorer({ tools }) {
           <div className="group cursor-default relative">
             <div className="flex items-center">
                <h3 
-                className="text-4xl md:text-5xl text-neutral-800/80 -rotate-2 whitespace-nowrap"
-                style={{ fontFamily: "'Caveat', cursive" }}
+                className="text-4xl md:text-5xl text-neutral-800/90 -rotate-2 whitespace-nowrap tracking-tight"
+                style={{ fontFamily: "'Permanent Marker', cursive" }}
                >
                 # tools
                </h3>
@@ -44,7 +44,7 @@ export default function ToolsExplorer({ tools }) {
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M3 12h18m0 0l-7-7m7 7l-7 7" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] mt-1 ml-1 opacity-50" style={{ fontFamily: "'Caveat', cursive" }}>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] mt-1 ml-1 opacity-60" style={{ fontFamily: "'Permanent Marker', cursive" }}>
             my digital stack
           </p>
         </div>

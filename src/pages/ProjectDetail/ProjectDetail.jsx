@@ -401,7 +401,7 @@ export default function ProjectDetail() {
                                 const isEven = i % 2 === 0;
 
                                 return (
-                                    <div key={i} className={`flex flex-col lg:flex-row items-center lg:items-center justify-center gap-8 lg:gap-16 w-full group overflow-hidden lg:overflow-visible transition-all duration-300
+                                    <div key={i} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center lg:items-center justify-center gap-8 lg:gap-16 w-full group overflow-hidden lg:overflow-visible transition-all duration-300
                                         bg-white lg:bg-transparent p-6 md:p-8 lg:p-0 shadow-[0_4px_24px_rgba(0,0,0,0.06)] lg:shadow-none border border-[#e8dfd1] lg:border-none relative
                                         ${isEven ? 'rotate-[-1deg]' : 'rotate-[1deg]'} lg:rotate-0 mb-8 lg:mb-0
                                     `}>
@@ -413,7 +413,7 @@ export default function ProjectDetail() {
                                         <div className={`absolute -top-3 ${isEven ? 'right-8 rotate-[4deg]' : 'left-8 rotate-[-3deg]'} lg:hidden ${['washi-pink', 'washi-green', 'washi-yellow'][i % 3]} w-20 h-8 z-20 mix-blend-multiply opacity-90 shadow-sm`}></div>
 
                                         {/* Text Annotation Area */}
-                                        <div className={`w-full lg:w-[40%] flex flex-col ${isEven ? 'lg:items-end lg:text-right' : 'lg:items-start lg:text-left'} items-start lg:items-end relative z-20`}>
+                                        <div className={`w-full lg:w-[40%] flex flex-col ${isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-start relative z-20`}>
                                             
                                             {/* Black Label for INTERFACE XX (Mobile) */}
                                             <div className="lg:hidden bg-[#1a1a1a] text-white px-5 py-2 mt-2 mb-6 rotate-[-2deg] shadow-md self-start ml-2 lg:ml-0">
@@ -423,15 +423,15 @@ export default function ProjectDetail() {
                                             </div>
 
                                             {/* Desktop Default Label */}
-                                            <div className="hidden lg:flex items-center gap-2 mb-2 w-full justify-start">
-                                                <h4 className={`text-[12px] md:text-sm font-bold text-neutral-400 tracking-[0.2em] uppercase ${isEven ? 'lg:text-right lg:w-full' : 'lg:text-left lg:w-full'}`} style={{ fontFamily: "'Space Mono', monospace" }}>
+                                            <div className="hidden lg:flex items-center gap-2 mb-2 w-full">
+                                                <h4 className={`text-[12px] md:text-sm font-bold text-neutral-400 tracking-[0.2em] uppercase w-full`} style={{ fontFamily: "'Space Mono', monospace" }}>
                                                     Interface 0{i + 1}
                                                 </h4>
                                             </div>
                                             
                                             {/* Image Title with Marker Highlight (Mobile mimicking Screenshot) */}
-                                            <div className="relative inline-block mb-5 w-full text-left lg:text-left">
-                                                <h5 className={`text-3xl md:text-3xl font-extrabold text-neutral-900 z-10 relative ${isEven ? 'lg:text-right lg:w-full' : 'lg:text-left lg:w-full'}`} style={{ fontFamily: "'Playfair Display', serif" }}>
+                                            <div className="relative inline-block mb-5 w-full">
+                                                <h5 className={`text-3xl md:text-3xl font-extrabold text-neutral-900 z-10 relative w-full`} style={{ fontFamily: "'Playfair Display', serif" }}>
                                                     {img.title}
                                                 </h5>
                                                 {/* Blue highlight swoosh (Mobile only) */}
@@ -439,12 +439,12 @@ export default function ProjectDetail() {
                                             </div>
 
                                             {/* Description Text */}
-                                            <p className={`text-neutral-600 text-sm md:text-base leading-relaxed z-10 relative ${isEven ? 'lg:text-right w-full' : 'lg:text-left w-full'} text-left`} style={{ fontFamily: "'Inter', sans-serif" }}>
+                                            <p className={`text-neutral-600 text-sm md:text-base leading-relaxed z-10 relative w-full text-left ${!isEven ? 'lg:text-right' : 'lg:text-left'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
                                                 {img.desc || `Detailed breakdown of the ${img.title.toLowerCase()} flow, highlighting user journey, accessibility, and clean interface information architecture.`}
                                             </p>
 
                                             {/* Clean Sweeping Arrow SVG (Desktop Only) */}
-                                            <div className={`hidden lg:flex w-full ${isEven ? 'justify-end pr-8' : 'justify-start pl-8'} mt-6`}>
+                                            <div className={`hidden lg:flex w-full ${isEven ? 'justify-start' : 'justify-end'} mt-6`}>
                                                 <svg width="140" height="60" viewBox="0 0 140 60" fill="none" className={`text-neutral-400 opacity-80 ${!isEven ? 'scale-x-[-1]' : ''}`}>
                                                     <path d="M10 40 Q 60 15 125 30" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" />
                                                     <path d="M105 20 L126 30 L110 45" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
