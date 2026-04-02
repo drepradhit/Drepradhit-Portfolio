@@ -49,13 +49,13 @@
 
 /* MATCHING Project Card font style precisely */
 .pc-polaroid-name {
-  font-family: 'Caveat', 'Kalam', 'Segoe Print', 'Bradley Hand', cursive;
-  font-size: 1.8rem; /* Smaller sizing as requested */
-  color: #000000; /* Pure black as requested */
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.6rem;
+  color: #2e1805; /* Deep, earthy brown */
   margin: 0;
   line-height: 1;
-  letter-spacing: 0.01em; 
-  font-weight: 400; /* Tipis (Thinner) as requested */
+  letter-spacing: 0.05em; 
+  font-weight: 400;
   transform: rotate(-1deg) translateY(4px);
 }
 

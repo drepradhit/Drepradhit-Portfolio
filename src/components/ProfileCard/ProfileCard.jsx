@@ -77,7 +77,7 @@ const ProfileCardComponent = ({
           <div className="pc-film-shine" />
         </div>
         <div className="pc-polaroid-info">
-          <h3 className="pc-polaroid-name">Drepradhit's Portfolio</h3>
+          <h3 className="pc-polaroid-name">Open to Work!</h3>
         </div>
       </div>
     </div>

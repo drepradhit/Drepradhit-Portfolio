@@ -199,7 +199,7 @@ export const listProyek = [
       { src: DamianosHero, title: "Hero Section", desc: "A captivating landing page emphasizing bold typography and high-quality hero imagery to instantly establish brand identity." },
       { src: DamianosWorks, title: "Our Works", desc: "An elegantly structured portfolio gallery designed to showcase the agency's highest quality productions and creative projects." },
       { src: DamianosServices, title: "Projects Carousel", desc: "An interactive carousel component displaying a curated selection of previously completed projects, allowing visitors to easily swipe through the agency's showcase." },
-      { src: DamianosClients, title: "About Us & History", desc: "A narrative section detailing the agency's roots, creative mission, and historical background within the creative industry." },
+      { src: DamianosClients, title: "About Us", desc: "A narrative section detailing the agency's roots, creative mission, and historical background within the creative industry." },
       { src: DamianosFooter, title: "Complete Portfolio Gallery", desc: "A comprehensive showcase presenting an extensive collection of successful client projects completed by Damianos since its founding as a creative agency." }
     ]
   },

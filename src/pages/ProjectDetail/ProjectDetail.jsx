@@ -197,7 +197,7 @@ export default function ProjectDetail() {
                             transition={{ delay: 0.5, duration: 0.6 }}
                             className="w-full max-w-xl"
                         >
-                            <div className="relative p-7 md:p-10 bg-[#fdfdf5] shadow-[6px_10px_30px_rgba(0,0,0,0.1)] border border-[#e5ddd0] paper-lined overflow-hidden" 
+                            <div className="relative p-7 md:p-10 bg-[#fdfdf5] shadow-[6px_10px_30px_rgba(0,0,0,0.1)] border border-[#e5ddd0] paper-lined overflow-visible" 
                                  style={{ borderRadius: '2px 3px 3px 2px' }}>
 
                                 {/* Red margin line */}
@@ -384,13 +384,12 @@ export default function ProjectDetail() {
                         );
                     })()}
                 </motion.div>
-
-                {/* Gallery Section */}
+                    {/* Gallery Section */}
                 {project.pageImages && project.pageImages.length > 0 && (
                     <div className="w-full flex flex-col items-center gap-24">
                         <div className="text-center relative w-fit flex flex-col items-center mx-auto">
                             <h3 className="text-xl md:text-2xl font-bold text-neutral-800 tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Mono', monospace" }}>
-                                Key Interfaces
+                                Page Detail
                             </h3>
                             <div className="w-16 h-[2px] bg-neutral-300 mt-4 rounded-full"></div>
                         </div>
@@ -415,17 +414,17 @@ export default function ProjectDetail() {
                                         {/* Text Annotation Area */}
                                         <div className={`w-full lg:w-[40%] flex flex-col ${isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-start relative z-20`}>
                                             
-                                            {/* Black Label for INTERFACE XX (Mobile) */}
+                                            {/* Black Label for PAGE #X (Mobile) */}
                                             <div className="lg:hidden bg-[#1a1a1a] text-white px-5 py-2 mt-2 mb-6 rotate-[-2deg] shadow-md self-start ml-2 lg:ml-0">
                                                 <h4 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Mono', monospace" }}>
-                                                    Interface 0{i + 1}
+                                                    PAGE #{i + 1}
                                                 </h4>
                                             </div>
 
                                             {/* Desktop Default Label */}
                                             <div className="hidden lg:flex items-center gap-2 mb-2 w-full">
                                                 <h4 className={`text-[12px] md:text-sm font-bold text-neutral-400 tracking-[0.2em] uppercase w-full`} style={{ fontFamily: "'Space Mono', monospace" }}>
-                                                    Interface 0{i + 1}
+                                                    PAGE #{i + 1}
                                                 </h4>
                                             </div>
                                             
@@ -444,7 +443,7 @@ export default function ProjectDetail() {
                                             </p>
 
                                             {/* Clean Sweeping Arrow SVG (Desktop Only) */}
-                                            <div className={`hidden lg:flex w-full ${isEven ? 'justify-start' : 'justify-end'} mt-6`}>
+                                            <div className={`hidden lg:flex w-full ${isEven ? 'justify-end' : 'justify-start'} mt-6`}>
                                                 <svg width="140" height="60" viewBox="0 0 140 60" fill="none" className={`text-neutral-400 opacity-80 ${!isEven ? 'scale-x-[-1]' : ''}`}>
                                                     <path d="M10 40 Q 60 15 125 30" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" />
                                                     <path d="M105 20 L126 30 L110 45" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
