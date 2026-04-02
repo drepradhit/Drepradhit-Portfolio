@@ -190,37 +190,23 @@ const boardPositions = [
     { top: '52%', left: '55%',  rotate: 1.5, width: '20%', zIndex: 15 },
 ];
 
-// Decorative elements scattered on the board
-function BoardDecorations({ boardRef }) {
+// Decorative elements scattered on the board (Now STATIC for premium look)
+function BoardDecorations() {
     return (
         <>
             {/* Post-it note */}
-            <motion.div 
-                className="absolute top-[8%] left-[74%] z-10 w-[16%] rotate-[4deg] cursor-grab active:cursor-grabbing"
-                drag
-                dragConstraints={boardRef}
-                dragElastic={0.1}
-                whileHover={{ scale: 1.05, zIndex: 100 }}
-                whileTap={{ scale: 0.95 }}
-            >
+            <div className="absolute top-[8%] left-[74%] z-10 w-[16%] rotate-[4deg]">
                 <div className="bg-[#fff176] p-3 shadow-[2px_3px_6px_rgba(0,0,0,0.12)]" style={{ clipPath: 'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)' }}>
                     <p className="text-[10px] text-neutral-600 leading-tight" style={{ fontFamily: "'Caveat', cursive" }}>
                         more coming soon...
                     </p>
                 </div>
-            </motion.div>
+            </div>
 
             {/* Radio Sticker */}
-            <motion.div 
-                className="absolute top-[48%] left-[85%] z-20 rotate-[15deg] w-48 h-auto opacity-100 drop-shadow-lg scale-110 cursor-grab active:cursor-grabbing"
-                drag
-                dragConstraints={boardRef}
-                dragElastic={0.1}
-                whileHover={{ scale: 1.2, zIndex: 100 }}
-                whileTap={{ scale: 0.9 }}
-            >
+            <div className="absolute top-[48%] left-[85%] z-20 rotate-[15deg] w-48 h-auto opacity-100 drop-shadow-lg scale-110">
                 <img src={StikerRadio} alt="Radio Sticker" className="w-full h-auto pointer-events-none" />
-            </motion.div>
+            </div>
 
             {/* Washi tape strip - coral */}
             <div className="absolute top-[93%] left-[12%] z-5 w-[14%] h-[10px] rotate-[-2deg] opacity-60 pointer-events-none"
@@ -239,16 +225,9 @@ function BoardDecorations({ boardRef }) {
                  }} />
 
             {/* Kuning Sticker */}
-            <motion.div 
-                className="absolute top-[22%] left-[78%] z-20 rotate-[8deg] w-56 h-auto drop-shadow-xl scale-105 cursor-grab active:cursor-grabbing"
-                drag
-                dragConstraints={boardRef}
-                dragElastic={0.1}
-                whileHover={{ scale: 1.15, zIndex: 100 }}
-                whileTap={{ scale: 0.9 }}
-            >
+            <div className="absolute top-[22%] left-[78%] z-20 rotate-[8deg] w-56 h-auto drop-shadow-xl scale-105">
                 <img src={StikerKuning} alt="Circle Sticker" className="w-full h-auto pointer-events-none" />
-            </motion.div>
+            </div>
 
             {/* Vintage stamp */}
             <div className="absolute top-[85%] left-[4%] z-10 rotate-[8deg]">
@@ -258,30 +237,14 @@ function BoardDecorations({ boardRef }) {
             </div>
 
             {/* Pala Sticker */}
-            <motion.div 
-                className="absolute top-[54%] left-[76%] z-20 rotate-[-12deg] w-24 h-auto opacity-100 cursor-grab active:cursor-grabbing"
-                drag
-                dragConstraints={boardRef}
-                dragElastic={0.1}
-                whileHover={{ scale: 1.3, zIndex: 100 }}
-                whileTap={{ scale: 0.8 }}
-            >
+            <div className="absolute top-[54%] left-[76%] z-20 rotate-[-12deg] w-24 h-auto opacity-100">
                 <img src={StikerPala} alt="Face Sticker" className="w-full h-auto pointer-events-none" />
-            </motion.div>
+            </div>
 
             {/* HP Sticker */}
-            <motion.div 
-                className="absolute top-[75%] left-[82%] z-20 rotate-[-8deg] w-36 h-auto opacity-100 drop-shadow-md cursor-grab active:cursor-grabbing"
-                drag
-                dragConstraints={boardRef}
-                dragElastic={0.1}
-                whileHover={{ scale: 1.2, zIndex: 100 }}
-                whileTap={{ scale: 0.9 }}
-            >
+            <div className="absolute top-[75%] left-[82%] z-20 rotate-[-8deg] w-36 h-auto opacity-100 drop-shadow-md">
                 <img src={StikerHP} alt="Phone Sticker" className="w-full h-auto pointer-events-none" />
-            </motion.div>
-
-
+            </div>
 
             {/* Washi tape - purple vertical right side */}
             <div className="absolute top-[28%] left-[93%] z-5 w-[5%] h-[35px] rotate-[88deg] opacity-50"
@@ -293,6 +256,7 @@ function BoardDecorations({ boardRef }) {
         </>
     );
 }
+
 
 export default function ProjectGrid({ projects }) {
     const [isMobile, setIsMobile] = useState(false);
@@ -355,6 +319,9 @@ export default function ProjectGrid({ projects }) {
                     <div className="absolute top-[-24px] right-[-12px] z-30 rotate-[6deg] w-16 h-auto pointer-events-none">
                         <img src={StikerKuning} alt="Circle Sticker" className="w-full h-auto" />
                     </div>
+
+                    {/* Decorative elements — Back inside for clean static look */}
+                    <BoardDecorations />
 
                     {/* Inner clip container to preserve board boundaries for cards ONLY */}
                     <div className="relative w-full h-full overflow-hidden rounded-lg p-4 pt-10">
@@ -467,8 +434,8 @@ export default function ProjectGrid({ projects }) {
                     {/* Inner shadow */}
                     <div className="absolute inset-0 shadow-[inset_0_6px_24px_rgba(0,0,0,0.15)] pointer-events-none z-30 rounded-sm" />
 
-                    {/* Decorative elements */}
-                    <BoardDecorations boardRef={desktopBoardRef} />
+                    {/* Decorative elements — Back inside for clean static look */}
+                    <BoardDecorations />
 
                     {/* Project cards */}
                     {projects.map((project, index) => {
