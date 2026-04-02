@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { listTools } from "../../data";
@@ -191,29 +191,39 @@ const boardPositions = [
 ];
 
 // Decorative elements scattered on the board
-function BoardDecorations() {
+function BoardDecorations({ boardRef }) {
     return (
         <>
             {/* Post-it note */}
-            <div className="absolute top-[8%] left-[74%] z-10 w-[16%] rotate-[4deg]">
+            <motion.div 
+                className="absolute top-[8%] left-[74%] z-10 w-[16%] rotate-[4deg] cursor-grab active:cursor-grabbing"
+                drag
+                dragConstraints={boardRef}
+                dragElastic={0.1}
+                whileHover={{ scale: 1.05, zIndex: 100 }}
+                whileTap={{ scale: 0.95 }}
+            >
                 <div className="bg-[#fff176] p-3 shadow-[2px_3px_6px_rgba(0,0,0,0.12)]" style={{ clipPath: 'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)' }}>
                     <p className="text-[10px] text-neutral-600 leading-tight" style={{ fontFamily: "'Caveat', cursive" }}>
                         more coming soon...
                     </p>
                 </div>
-            </div>
-
-
-
-
+            </motion.div>
 
             {/* Radio Sticker */}
-            <div className="absolute top-[48%] left-[85%] z-20 rotate-[15deg] w-48 h-auto opacity-100 drop-shadow-lg scale-110">
-                <img src={StikerRadio} alt="Radio Sticker" className="w-full h-auto" />
-            </div>
+            <motion.div 
+                className="absolute top-[48%] left-[85%] z-20 rotate-[15deg] w-48 h-auto opacity-100 drop-shadow-lg scale-110 cursor-grab active:cursor-grabbing"
+                drag
+                dragConstraints={boardRef}
+                dragElastic={0.1}
+                whileHover={{ scale: 1.2, zIndex: 100 }}
+                whileTap={{ scale: 0.9 }}
+            >
+                <img src={StikerRadio} alt="Radio Sticker" className="w-full h-auto pointer-events-none" />
+            </motion.div>
 
             {/* Washi tape strip - coral */}
-            <div className="absolute top-[93%] left-[12%] z-5 w-[14%] h-[10px] rotate-[-2deg] opacity-60"
+            <div className="absolute top-[93%] left-[12%] z-5 w-[14%] h-[10px] rotate-[-2deg] opacity-60 pointer-events-none"
                  style={{ 
                      background: 'repeating-linear-gradient(90deg, #ffab91 0px, #ffab91 4px, #ffcc80 4px, #ffcc80 8px)',
                      clipPath: 'polygon(0% 10%, 100% 0%, 98% 100%, 2% 90%)',
@@ -221,7 +231,7 @@ function BoardDecorations() {
                  }} />
 
             {/* Washi tape strip - blue */}
-            <div className="absolute top-[92%] left-[55%] z-5 w-[10%] h-[8px] rotate-[2deg] opacity-45"
+            <div className="absolute top-[92%] left-[55%] z-5 w-[10%] h-[8px] rotate-[2deg] opacity-45 pointer-events-none"
                  style={{ 
                      background: 'repeating-linear-gradient(90deg, #90caf9 0px, #90caf9 3px, #bbdefb 3px, #bbdefb 6px)',
                      clipPath: 'polygon(1% 5%, 99% 0%, 100% 100%, 0% 95%)',
@@ -229,9 +239,16 @@ function BoardDecorations() {
                  }} />
 
             {/* Kuning Sticker */}
-            <div className="absolute top-[22%] left-[78%] z-20 rotate-[8deg] w-56 h-auto drop-shadow-xl scale-105">
-                <img src={StikerKuning} alt="Circle Sticker" className="w-full h-auto" />
-            </div>
+            <motion.div 
+                className="absolute top-[22%] left-[78%] z-20 rotate-[8deg] w-56 h-auto drop-shadow-xl scale-105 cursor-grab active:cursor-grabbing"
+                drag
+                dragConstraints={boardRef}
+                dragElastic={0.1}
+                whileHover={{ scale: 1.15, zIndex: 100 }}
+                whileTap={{ scale: 0.9 }}
+            >
+                <img src={StikerKuning} alt="Circle Sticker" className="w-full h-auto pointer-events-none" />
+            </motion.div>
 
             {/* Vintage stamp */}
             <div className="absolute top-[85%] left-[4%] z-10 rotate-[8deg]">
@@ -241,14 +258,28 @@ function BoardDecorations() {
             </div>
 
             {/* Pala Sticker */}
-            <div className="absolute top-[54%] left-[76%] z-20 rotate-[-12deg] w-24 h-auto opacity-100">
-                <img src={StikerPala} alt="Face Sticker" className="w-full h-auto" />
-            </div>
+            <motion.div 
+                className="absolute top-[54%] left-[76%] z-20 rotate-[-12deg] w-24 h-auto opacity-100 cursor-grab active:cursor-grabbing"
+                drag
+                dragConstraints={boardRef}
+                dragElastic={0.1}
+                whileHover={{ scale: 1.3, zIndex: 100 }}
+                whileTap={{ scale: 0.8 }}
+            >
+                <img src={StikerPala} alt="Face Sticker" className="w-full h-auto pointer-events-none" />
+            </motion.div>
 
             {/* HP Sticker */}
-            <div className="absolute top-[75%] left-[82%] z-20 rotate-[-8deg] w-36 h-auto opacity-100 drop-shadow-md">
-                <img src={StikerHP} alt="Phone Sticker" className="w-full h-auto" />
-            </div>
+            <motion.div 
+                className="absolute top-[75%] left-[82%] z-20 rotate-[-8deg] w-36 h-auto opacity-100 drop-shadow-md cursor-grab active:cursor-grabbing"
+                drag
+                dragConstraints={boardRef}
+                dragElastic={0.1}
+                whileHover={{ scale: 1.2, zIndex: 100 }}
+                whileTap={{ scale: 0.9 }}
+            >
+                <img src={StikerHP} alt="Phone Sticker" className="w-full h-auto pointer-events-none" />
+            </motion.div>
 
 
 
@@ -265,6 +296,8 @@ function BoardDecorations() {
 
 export default function ProjectGrid({ projects }) {
     const [isMobile, setIsMobile] = useState(false);
+    const desktopBoardRef = useRef(null);
+    const mobileBoardRef = useRef(null);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -281,6 +314,7 @@ export default function ProjectGrid({ projects }) {
         return (
             <div className="w-full py-8">
                 <div className="relative rounded-xl"
+                     ref={mobileBoardRef}
                      style={{
                          border: '4px solid #a08060',
                          backgroundColor: '#b5885a',
@@ -412,6 +446,7 @@ export default function ProjectGrid({ projects }) {
 
                 {/* Inner board — overflow hidden so cards don't bleed out */}
                 <div className="relative w-full overflow-hidden rounded-sm"
+                     ref={desktopBoardRef}
                      style={{
                          backgroundColor: '#b5885a',
                          backgroundImage: `
@@ -433,7 +468,7 @@ export default function ProjectGrid({ projects }) {
                     <div className="absolute inset-0 shadow-[inset_0_6px_24px_rgba(0,0,0,0.15)] pointer-events-none z-30 rounded-sm" />
 
                     {/* Decorative elements */}
-                    <BoardDecorations />
+                    <BoardDecorations boardRef={desktopBoardRef} />
 
                     {/* Project cards */}
                     {projects.map((project, index) => {

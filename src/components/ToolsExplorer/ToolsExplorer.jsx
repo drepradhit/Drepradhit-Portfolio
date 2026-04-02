@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Reorder } from 'framer-motion';
 
 // Pseudo-random rotations for organic feel
 const rotations = [-3, 2, -1, 3, -2, 1, -3, 2, -1, 3, -2, 1];
 
 export default function ToolsExplorer({ tools }) {
-  const [activeTab, setActiveTab] = useState('All');
-
-  const getFilteredTools = () => {
-    return tools.filter(t => t.nama !== 'GSAP');
-  };
-
-  const filteredTools = getFilteredTools();
+  const [items, setItems] = useState(() => tools.filter(t => t.nama !== 'GSAP'));
 
   return (
     <div className="w-full max-w-5xl mx-auto pt-10 px-4 md:px-0">
@@ -49,10 +43,10 @@ export default function ToolsExplorer({ tools }) {
           </p>
         </div>
 
-        {/* Tools Grid - Flowing naturally after the header */}
+        {/* Tools Grid - Stable Version */}
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-4 gap-y-12 sm:gap-x-6 sm:gap-y-16">
           <AnimatePresence mode="popLayout">
-            {filteredTools.map((tool, index) => {
+            {items.map((tool, index) => {
               const rotation = rotations[index % rotations.length];
               
               return (
@@ -81,7 +75,6 @@ export default function ToolsExplorer({ tools }) {
                         className={`w-full h-full object-contain transition-transform duration-300 ${tool.nama === 'Node JS' ? 'scale-[1.4]' : ''}`}
                         style={{
                           filter: "url(#tools-sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
-                          WebkitFilter: "url(#tools-sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
                         }} 
                       />
                     </div>
@@ -95,9 +88,7 @@ export default function ToolsExplorer({ tools }) {
                     </p>
                     
                     {/* Subtle sketch underline on hover */}
-                    <motion.div 
-                      className="w-0 h-[1px] bg-amber-400 group-hover:w-full mx-auto mt-0.5 transition-all duration-300" 
-                    />
+                    <div className="w-0 h-[1px] bg-amber-400 group-hover:w-full mx-auto mt-0.5 transition-all duration-300" />
                   </div>
                 </motion.div>
               );
