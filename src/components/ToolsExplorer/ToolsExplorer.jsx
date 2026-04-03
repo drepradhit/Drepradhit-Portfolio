@@ -26,12 +26,7 @@ export default function ToolsExplorer({ tools }) {
           </div>
         </div>
 
-        {/* Retro Starburst Doodle - Still floating but moved slightly */}
-        <div className="absolute top-0 right-10 pointer-events-none opacity-20 hidden md:block rotate-12">
-          <svg width="60" height="60" viewBox="0 0 100 100" fill="currentColor" className="text-neutral-900">
-            <path d="M50 0 L55 40 L95 45 L55 50 L50 90 L45 50 L5 45 L45 40 Z" />
-          </svg>
-        </div>
+        {/* Removed retro starburst doodle */}
 
         {/* Hand-drawn Arrow SVG - Still floating far left */}
         <div className="absolute top-40 -left-16 text-neutral-300/40 pointer-events-none hidden xl:block rotate-12">

@@ -23,7 +23,7 @@ function BinderClip({ color = '#333', size = 24 }) {
 }
 
 // Pushpin SVG
-function Pushpin({ color = '#e74c3c', size = 18 }) {
+function Pushpin({ color = '#1e293b', size = 18 }) {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="10" r="7" fill={color} />
@@ -35,10 +35,10 @@ function Pushpin({ color = '#e74c3c', size = 18 }) {
 }
 
 function BoardCard({ project, index, pos }) {
-    const clipColors = ['#2c3e50', '#c0392b', '#2980b9', '#27ae60', '#8e44ad', '#d35400'];
+    const clipColors = ['#1e293b', '#334155', '#475569', '#64748b', '#94a3b8', '#cbd5e1'];
     const clipColor = clipColors[index % clipColors.length];
-    const pinColors = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6', '#e67e22'];
-    const titleColors = ['#c2185b', '#0277bd', '#ef6c00', '#2e7d32', '#6a1b9a', '#c62828'];
+    const pinColors = ['#1e293b', '#0f172a', '#334155', '#3498db', '#2980b9', '#0284c7'];
+    const titleColors = ['#1e293b', '#334155', '#0f172a', '#0369a1', '#1e293b', '#075985'];
 
     // Alternate between clips and pins
     const usePin = index % 3 === 0;
@@ -241,7 +241,7 @@ function BoardDecorations({ isShowcase = false, isMobile = false }) {
             {/* Washi tape strip - coral */}
             <div className="absolute top-[93%] left-[12%] z-5 w-[14%] h-[10px] rotate-[-2deg] opacity-60 pointer-events-none"
                  style={{ 
-                     background: 'repeating-linear-gradient(90deg, #ffab91 0px, #ffab91 4px, #ffcc80 4px, #ffcc80 8px)',
+                     background: 'repeating-linear-gradient(90deg, #94a3b8 0px, #94a3b8 4px, #cbd5e1 4px, #cbd5e1 8px)',
                      clipPath: 'polygon(0% 10%, 100% 0%, 98% 100%, 2% 90%)',
                      mixBlendMode: 'multiply',
                  }} />
@@ -256,15 +256,15 @@ function BoardDecorations({ isShowcase = false, isMobile = false }) {
 
             {/* Vintage stamp */}
             <div className="absolute top-[85%] left-[4%] z-10 rotate-[8deg]">
-                <div className="px-2 py-1 border-2 border-red-400/50 rounded-sm opacity-50" style={{ borderStyle: 'double' }}>
-                    <span className="text-[7px] font-black text-red-400/60 tracking-widest uppercase">Portfolio</span>
+                <div className="px-2 py-1 border-2 border-slate-400/50 rounded-sm opacity-50" style={{ borderStyle: 'double' }}>
+                    <span className="text-[7px] font-black text-slate-400/60 tracking-widest uppercase">Portfolio</span>
                 </div>
             </div>
 
-            {/* Washi tape - purple vertical right side */}
+            {/* Washi tape - slate vertical right side */}
             <div className="absolute top-[28%] left-[93%] z-5 w-[5%] h-[35px] rotate-[88deg] opacity-50"
                  style={{ 
-                     background: 'repeating-linear-gradient(0deg, #ce93d8 0px, #ce93d8 4px, #e1bee7 4px, #e1bee7 8px)',
+                     background: 'repeating-linear-gradient(0deg, #94a3b8 0px, #94a3b8 4px, #cbd5e1 4px, #cbd5e1 8px)',
                      clipPath: 'polygon(0% 5%, 100% 0%, 98% 100%, 2% 95%)',
                      mixBlendMode: 'multiply',
                  }} />
@@ -286,8 +286,8 @@ export default function ProjectGrid({ projects }) {
     }, []);
 
     if (isMobile) {
-        const titleColors = ['#c2185b', '#0277bd', '#ef6c00', '#2e7d32', '#6a1b9a', '#c62828'];
-        const pinColors = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6', '#e67e22'];
+        const titleColors = ['#1e293b', '#0277bd', '#0f172a', '#334155', '#475569', '#c62828'];
+        const pinColors = ['#475569', '#3498db', '#94a3b8', '#1e293b', '#334155', '#0f172a'];
         const rotations = [-2, 1.5, -1.5, 2, -1, 2.5];
 
         return (
@@ -314,7 +314,7 @@ export default function ProjectGrid({ projects }) {
                             </div>
                             <h2 className="text-base text-neutral-700 font-normal uppercase tracking-tight" 
                                 style={{ fontFamily: "'Permanent Marker', cursive" }}>
-                                recent projects ✦
+                                recent projects
                             </h2>
                         </div>
                     </div>
@@ -440,7 +440,7 @@ export default function ProjectGrid({ projects }) {
                         </div>
                         <h2 className="text-xl xl:text-2xl text-neutral-700 font-normal uppercase tracking-tight" 
                             style={{ fontFamily: "'Permanent Marker', cursive" }}>
-                            recent projects ✦
+                            recent projects
                         </h2>
                     </div>
                 </motion.div>

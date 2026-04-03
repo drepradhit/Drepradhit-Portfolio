@@ -6,7 +6,7 @@ const WorkExperience = ({ experience }) => {
     <div className="w-full relative py-6 flex flex-col items-center z-10">
       <style>{`
         .washi-tape-1 {
-          background-color: #93c5fd;
+          background-color: #94a3b8;
           background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.2) 50%);
           background-size: 10px 10px;
           opacity: 0.85;
@@ -58,7 +58,7 @@ const WorkExperience = ({ experience }) => {
                 }}
               >
                 {/* Tape on title */}
-                <div className="absolute -top-3 left-6 w-16 h-4 washi-tape-1 -rotate-2 z-30" style={{ clipPath: 'polygon(2% 10%, 98% 0%, 100% 90%, 0% 100%)' }}></div>
+                <div className="absolute -top-3 left-6 w-16 h-4 washi-tape-2 -rotate-2 z-30" style={{ clipPath: 'polygon(2% 10%, 98% 0%, 100% 90%, 0% 100%)' }}></div>
                 <h2 className="text-2xl md:text-3xl font-bold tracking-[0.15em] uppercase" style={{ fontFamily: "'Space Mono', monospace" }}>
                   Experience
                 </h2>
@@ -81,14 +81,14 @@ const WorkExperience = ({ experience }) => {
                       
                       {/* Company Name */}
                       <h3 className="text-2xl md:text-[34px] font-black leading-tight drop-shadow-sm text-neutral-900"
-                          style={{ fontFamily: "'Playfair Display', serif" }}>
+                          style={{ fontFamily: "'Space Grotesk', sans-serif", textTransform: 'uppercase' }}>
                         {item.company}
                       </h3>
                       
                       {/* Date Stamp / Sticky Note (No Overlap) */}
                       <div className="shrink-0 pt-1">
-                        <div className={`bg-[#fdf8d5] px-3 py-1 md:py-1.5 border border-black/5 shadow-[2px_3px_8px_rgba(0,0,0,0.12)] ${stickyRotate}`}>
-                          <span className="text-[9px] md:text-[11px] font-black tracking-widest text-[#991b1b] uppercase whitespace-nowrap"
+                        <div className={`bg-[#f1f5f9] px-3 py-1 md:py-1.5 border border-neutral-200 shadow-[2px_3px_8px_rgba(0,0,0,0.08)] ${stickyRotate}`}>
+                          <span className="text-[9px] md:text-[11px] font-black tracking-widest text-[#1e293b] uppercase whitespace-nowrap"
                                 style={{ fontFamily: "'Space Mono', monospace" }}>
                             {item.period}
                           </span>
@@ -116,12 +116,7 @@ const WorkExperience = ({ experience }) => {
                       </p>
                     </div>
 
-                    {/* Fun decorative doodle on specific items */}
-                    {index === 1 && (
-                      <svg className="absolute bottom-2 right-0 w-6 h-6 text-neutral-300 rotate-12 select-none pointer-events-none" viewBox="0 0 100 100" fill="currentColor">
-                        <path d="M50 10 L60 40 L90 50 L60 60 L50 90 L40 60 L10 50 L40 40 Z" />
-                      </svg>
-                    )}
+                    {/* Removed decorative star doodle */}
                   </div>
                 );
               })}

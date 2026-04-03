@@ -169,15 +169,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                     </span>
                   )}
 
-                  {/* Fun hand-drawn burst for Final Design */}
-                  {idx === 4 && (
-                    <div className="absolute top-0 right-0 w-full h-full pointer-events-none drop-shadow-md">
-                      <div className="absolute -top-3 -right-2 w-1 h-6 bg-white rotate-[30deg] rounded-full"></div>
-                      <div className="absolute top-4 -right-8 w-1 h-8 bg-white rotate-[60deg] rounded-full"></div>
-                      <div className="absolute top-12 -right-8 w-1 h-6 bg-white rotate-[90deg] rounded-full"></div>
-                      <div className="absolute top-20 -right-2 w-1 h-5 bg-white rotate-[120deg] rounded-full"></div>
-                    </div>
-                  )}
+                  {/* Removed hand-drawn burst */}
                 </div>
               ))}
             </div>

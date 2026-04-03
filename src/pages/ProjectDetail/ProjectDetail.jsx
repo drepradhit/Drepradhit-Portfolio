@@ -27,7 +27,7 @@ export default function ProjectDetail() {
     };
 
     return (
-        <div className="relative w-full min-h-screen bg-[#fdfbf7] text-neutral-800 selection:bg-amber-200/40"
+        <div className="relative w-full min-h-screen bg-[#f8fafc] text-neutral-800 selection:bg-blue-100/50"
              style={{ 
                  backgroundImage: `
                      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
@@ -37,11 +37,11 @@ export default function ProjectDetail() {
              }}>
 
             <style>{`
-                .washi-pink {
-                    background-color: #ff9a9e;
-                    background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.2) 50%);
+                .washi-slate {
+                    background-color: #94a3b8;
+                    background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.15) 50%);
                     background-size: 8px 8px;
-                    opacity: 0.8;
+                    opacity: 0.7;
                     mix-blend-mode: multiply;
                 }
                 .washi-green {
@@ -257,7 +257,7 @@ export default function ProjectDetail() {
                                  }}>
 
                                 {/* Washi tape */}
-                                <div className="absolute -top-2 left-6 w-16 h-5 washi-pink rotate-[-8deg] z-20"
+                                <div className="absolute -top-2 left-6 w-16 h-5 washi-slate rotate-[-8deg] z-20"
                                      style={{ clipPath: 'polygon(0% 5%, 100% 0%, 98% 100%, 2% 95%)' }} />
 
                                 <h3 className="text-2xl md:text-3xl font-bold text-[#3d2b1a] mb-4"
@@ -414,7 +414,7 @@ export default function ProjectDetail() {
                                         <div className="absolute inset-0 paper-lined opacity-40 lg:hidden pointer-events-none"></div>
                                         
                                         {/* Decorative Tape (Mobile Only) */}
-                                        <div className={`absolute -top-3 ${isEven ? 'right-8 rotate-[4deg]' : 'left-8 rotate-[-3deg]'} lg:hidden ${['washi-pink', 'washi-green', 'washi-yellow'][i % 3]} w-20 h-8 z-20 mix-blend-multiply opacity-90 shadow-sm`}></div>
+                                        <div className={`absolute -top-3 ${isEven ? 'right-8 rotate-[4deg]' : 'left-8 rotate-[-3deg]'} lg:hidden ${['washi-slate', 'washi-green', 'washi-yellow'][i % 3]} w-20 h-8 z-20 mix-blend-multiply opacity-90 shadow-sm`}></div>
 
                                         {/* Text Annotation Area */}
                                         <div className={`w-full lg:w-[40%] flex flex-col ${isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-start relative z-20`}>

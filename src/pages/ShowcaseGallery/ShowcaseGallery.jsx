@@ -12,7 +12,7 @@ import StikerRadio from "/assets/Stiker/radio.png";
 import { useState } from 'react';
 
 function ShowcaseCard({ project, index }) {
-    const titleColors = ['#c2185b', '#0277bd', '#ef6c00', '#2e7d32', '#6a1b9a', '#c62828'];
+    const titleColors = ['#1e293b', '#0277bd', '#0f172a', '#334155', '#475569', '#c62828'];
     const titleColor = titleColors[index % titleColors.length];
     
     // Some are instant photos
@@ -149,13 +149,13 @@ const ShowcaseGallery = () => {
     }, []);
 
     return (
-        <div className="w-full min-h-screen bg-[#fdfbf7] py-12 px-4 md:px-8">
+        <div className="w-full min-h-screen bg-[#f8fafc] py-12 px-4 md:px-8">
             <style>{`
                 body {
-                  background-color: #fdfbf7;
+                  background-color: #f8fafc;
                   background-image: 
-                    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+                    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
                   background-size: 40px 40px;
                 }
             `}</style>
@@ -202,7 +202,7 @@ const ShowcaseGallery = () => {
                             </div>
                             <h1 className="text-xl sm:text-2xl md:text-3xl text-neutral-800 font-bold uppercase tracking-wide whitespace-nowrap" 
                                 style={{ fontFamily: "'Permanent Marker', cursive" }}>
-                                ALL PROJECT SHOWCASE ✦
+                                ALL PROJECT SHOWCASE
                             </h1>
                         </div>
                     </div>
@@ -212,11 +212,11 @@ const ShowcaseGallery = () => {
                         
                         {/* Washi tapes mapping logic for decoration */}
                         <div className="absolute top-[8%] left-[-1%] z-10 w-[8%] h-[20px] rotate-[-15deg] opacity-60 pointer-events-none"
-                             style={{ background: 'repeating-linear-gradient(90deg, #ffab91 0px, #ffab91 4px, #ffcc80 4px, #ffcc80 8px)', mixBlendMode: 'multiply' }} />
+                             style={{ background: 'repeating-linear-gradient(90deg, #94a3b8 0px, #94a3b8 4px, #cbd5e1 4px, #cbd5e1 8px)', mixBlendMode: 'multiply' }} />
                         <div className="absolute top-[25%] right-[2%] z-10 w-[10%] h-[15px] rotate-[20deg] opacity-50 pointer-events-none"
                              style={{ background: 'repeating-linear-gradient(90deg, #90caf9 0px, #90caf9 3px, #bbdefb 3px, #bbdefb 6px)', mixBlendMode: 'multiply' }} />
                         <div className="absolute bottom-[10%] left-[8%] z-10 w-[5%] h-[35px] rotate-[88deg] opacity-50 pointer-events-none"
-                            style={{ background: 'repeating-linear-gradient(0deg, #ce93d8 0px, #ce93d8 4px, #e1bee7 4px, #e1bee7 8px)', mixBlendMode: 'multiply' }} />
+                            style={{ background: 'repeating-linear-gradient(0deg, #94a3b8 0px, #94a3b8 4px, #cbd5e1 4px, #cbd5e1 8px)', mixBlendMode: 'multiply' }} />
 
                         {/* STICKER 1: Far top left near the main board pin */}
                         <div className="absolute top-[48px] left-2 md:top-6 md:left-12 z-20 pointer-events-none drop-shadow-xl rotate-[-8deg]">
@@ -240,7 +240,7 @@ const ShowcaseGallery = () => {
 
                                 <SectionHeader 
                                     title="Website Project's" 
-                                    color="#ff1744" 
+                                    color="#0284c7" 
                                     rotateClass="rotate-[-4deg]" 
                                     alignClass="justify-center md:justify-start" 
                                 />

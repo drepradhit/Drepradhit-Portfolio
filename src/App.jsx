@@ -88,10 +88,10 @@ function App() {
     <div className="overflow-x-hidden relative w-full min-h-screen">
       <style>{`
         body {
-          background-color: #fdfbf7;
+          background-color: #f8fafc;
           background-image: 
-            linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+            linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
           background-size: 40px 40px;
         }
       `}</style>
@@ -147,18 +147,17 @@ function App() {
           >
             <div className="w-full flex justify-center">
               <ProfileCard
-                avatarUrl="./assets/andre.jpg"
+                avatarUrl="./assets/andre.png"
               />
             </div>
           </motion.div>
 
           <div className="order-2 lg:order-1 px-4 flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl leading-[1.15] mb-6"
+              className="text-4xl sm:text-5xl md:text-6xl md:text-7xl leading-[1.1] mb-6 uppercase tracking-tight"
               style={{
-                fontFamily: "'Playfair Display', serif",
-                fontStyle: 'italic',
-                fontWeight: 600,
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 900,
               }}
               initial={isFirstVisit ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
@@ -167,13 +166,13 @@ function App() {
               <span style={{ color: '#1a1a1a' }}>Hi, I'm </span>
               <motion.span
                 className="inline"
-                style={{ color: '#4a3728' }}
+                style={{ color: '#1e293b' }}
                 initial={isFirstVisit ? { opacity: 0, x: -20 } : { opacity: 1, x: 0 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={isFirstVisit ? { delay: 0.4, duration: 0.6, ease: "easeOut" } : { duration: 0 }}
               >
                 Andre<br />
-                <span style={{ color: '#4a3728' }}>Pradhit</span>
+                <span style={{ color: '#1e293b' }}>Pradhit</span>
               </motion.span>
             </motion.h1>
 
@@ -255,7 +254,7 @@ function App() {
             >
               {/* Realistic Notebook Paper Column */}
               <motion.div
-                className="relative w-full max-w-2xl bg-[#fefcf5] py-8 pr-6 md:py-16 md:pr-14 overflow-hidden mx-auto rounded-[3px] border border-[#f0e6d2] cursor-default"
+                className="relative w-full max-w-2xl bg-[#ffffff] py-8 pr-6 md:py-16 md:pr-14 overflow-hidden mx-auto rounded-[3px] border border-[#e2e8f0] cursor-default"
                 variants={{
                   rest: {
                     rotate: -1,
@@ -280,7 +279,7 @@ function App() {
 
                 {/* Torn Tape - Clean straighten */}
                 <motion.div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-10 bg-[#e6ceb1] shadow-[0_1px_3px_rgba(0,0,0,0.1)] z-20 backdrop-blur-sm"
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-10 bg-[#94a3b8] shadow-[0_1px_3px_rgba(0,0,0,0.1)] z-20 backdrop-blur-sm"
                   variants={{
                     rest: { rotate: 2, y: 0, opacity: 0.9 },
                     hover: {
@@ -325,14 +324,14 @@ function App() {
                   </svg>
                 </motion.div>
 
-                {/* Red Line Margin (Fixed positioning) */}
-                <div className="absolute top-0 bottom-0 left-[60px] md:left-[80px] w-[2px] bg-red-400/50 z-10" />
-                <div className="absolute top-0 bottom-0 left-[64px] md:left-[84px] w-[0.5px] bg-red-400/20 z-10" />
+                {/* Slate Line Margin (Standardized for masculine look) */}
+                <div className="absolute top-0 bottom-0 left-[60px] md:left-[80px] w-[2px] bg-slate-400/50 z-10" />
+                <div className="absolute top-0 bottom-0 left-[64px] md:left-[84px] w-[0.5px] bg-slate-400/20 z-10" />
 
                 {/* Marginalia - Handwritten Arrow note */}
                 <div
                   className="hidden lg:block absolute left-[10px] top-[40%] -rotate-90 origin-center text-neutral-400/40 text-[10px] uppercase tracking-widest whitespace-nowrap"
-                  style={{ fontFamily: "'Caveat', cursive" }}
+                  style={{ fontFamily: "'Rock Salt', cursive", fontSize: '8px' }}
                 >
                   ← handwritten note
                 </div>
@@ -353,8 +352,8 @@ function App() {
                 {/* Text Container aligned properly offset from margins */}
                 <div className="relative z-10 pl-[75px] md:pl-[120px] pt-0 md:pt-4">
                   <motion.h2
-                    className="text-3xl md:text-5xl text-[#854d0e] font-bold mb-4 md:mb-10 tracking-wide"
-                    style={{ fontFamily: "'Caveat', 'Kalam', 'Segoe Print', 'Bradley Hand', cursive" }}
+                    className="text-3xl md:text-5xl text-[#1e293b] font-black mb-4 md:mb-10 uppercase"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                     variants={{
                       rest: { scale: 1, x: 0 },
                       hover: {
