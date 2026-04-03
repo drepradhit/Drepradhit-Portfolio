@@ -154,10 +154,10 @@ function App() {
 
           <div className="order-2 lg:order-1 px-4 flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl md:text-7xl leading-[1.1] mb-6 uppercase tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl leading-[1.1] mb-6 uppercase tracking-tight"
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 900,
+                fontFamily: "'Outfit', sans-serif",
+                fontWeight: 700,
               }}
               initial={isFirstVisit ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
@@ -195,7 +195,7 @@ function App() {
               transition={isFirstVisit ? { delay: 0.8, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
             >
               <motion.a
-                href="https://drive.google.com/file/d/1rsZOQbZAnQ5zOIqSQkpXDh7DP02Kflrv/view?usp=sharing"
+                href="https://drive.google.com/file/d/1je3WZmUi7OidlNM-QsVvqG-CNeG1YXp2/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 sm:flex-none flex items-center justify-center relative font-medium bg-white border border-neutral-200 text-neutral-900 px-6 sm:px-8 py-3 rounded-full overflow-hidden transition-all duration-300 group hover:border-neutral-900 hover:bg-neutral-50 shadow-sm"
@@ -334,7 +334,7 @@ function App() {
                 {/* Marginalia - Handwritten Arrow note */}
                 <div
                   className="hidden lg:block absolute left-[10px] top-[40%] -rotate-90 origin-center text-neutral-400/40 text-[10px] uppercase tracking-widest whitespace-nowrap"
-                  style={{ fontFamily: "'Rock Salt', cursive", fontSize: '8px' }}
+                  style={{ fontFamily: "'Rock Salt', cursive", fontSize: '0.8rem' }}
                 >
                   ← handwritten note
                 </div>
@@ -355,8 +355,8 @@ function App() {
                 {/* Text Container aligned properly offset from margins */}
                 <div className="relative z-10 pl-[75px] md:pl-[120px] pt-0 md:pt-4">
                   <motion.h2
-                    className="text-3xl md:text-5xl text-[#1e293b] font-black mb-4 md:mb-10 uppercase"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    className="text-2xl md:text-4xl text-[#1e293b] font-bold mb-4 md:mb-10 uppercase"
+                    style={{ fontFamily: "'Outfit', sans-serif" }}
                     variants={{
                       rest: { scale: 1, x: 0 },
                       hover: {

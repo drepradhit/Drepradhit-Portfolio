@@ -49,14 +49,14 @@
 
 /* MATCHING Project Card font style precisely */
 .pc-polaroid-name {
-  font-family: 'Permanent Marker', cursive;
-  font-size: 1.6rem;
-  color: #1e293b; /* Deep Navy */
+  font-family: 'Caveat', cursive;
+  font-size: 2.6rem; /* Caveat runs small */
+  color: #1e293b; 
   margin: 0;
-  line-height: 1;
-  letter-spacing: 0.05em; 
-  font-weight: 400;
-  transform: rotate(-1deg) translateY(4px);
+  line-height: 0.9;
+  letter-spacing: 0.02em; 
+  font-weight: 700;
+  transform: rotate(-2deg) translateY(2px);
 }
 
 /* Removing subtitle completely as per "hapus aja" request */
