@@ -254,9 +254,7 @@ const ShowcaseGallery = () => {
                             {/* SECTION 2: UI/UX PROJECTS */}
                             <div className="mb-16 md:mb-24 mt-6 md:mt-12 relative w-full pt-4 md:pt-16">
                                 {/* STICKER 3: Top left of UI/UX header line */}
-                                <div className="absolute -top-4 left-4 md:top-0 md:left-12 z-20 pointer-events-none drop-shadow-md rotate-[-12deg]">
-                                    <img src={StikerPala} alt="Pala Sticker" className="w-[56px] md:w-32 h-auto" />
-                                </div>
+                                {/* Removed pink face sticker */}
 
                                 <SectionHeader 
                                     title="UI/UX Project's" 

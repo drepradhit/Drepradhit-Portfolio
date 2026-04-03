@@ -227,9 +227,7 @@ function BoardDecorations({ isShowcase = false, isMobile = false }) {
                     </div>
 
                     {/* Pala Sticker */}
-                    <div className="absolute top-[54%] left-[76%] z-20 rotate-[-12deg] w-24 h-auto opacity-100">
-                        <img src={StikerPala} alt="Face Sticker" className="w-full h-auto pointer-events-none" />
-                    </div>
+                    {/* Removed pink face sticker */}
 
                     {/* HP Sticker */}
                     <div className="absolute top-[75%] left-[82%] z-20 rotate-[-8deg] w-36 h-auto opacity-100 drop-shadow-md">
@@ -321,9 +319,7 @@ export default function ProjectGrid({ projects }) {
 
                     {/* Mobile Stickers — Outside overflow-hidden so they can stick out */}
                     {/* Pala Sticker — between row 1 & 2, center */}
-                    <div className="absolute top-[38%] left-[44%] z-30 rotate-[-10deg] w-12 h-auto pointer-events-none">
-                        <img src={StikerPala} alt="Face Sticker" className="w-full h-auto" />
-                    </div>
+                    {/* Removed pink face sticker */}
 
                     {/* Radio Sticker — between row 2 & 3, right */}
                     <div className="absolute top-[64%] right-[-8px] z-30 rotate-[12deg] w-14 h-auto pointer-events-none">
