@@ -132,6 +132,8 @@ function BoardCard({ project, index, pos }) {
                             <img 
                                 src={project.image} 
                                 alt={project.title}
+                                width="400"
+                                height="300"
                                 className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out" 
                             />
                             <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.1)] pointer-events-none" />
@@ -365,7 +367,13 @@ export default function ProjectGrid({ projects }) {
                                 >
                                     <div className="p-[4px] pb-0">
                                         <div className="relative w-full aspect-[4/3] overflow-hidden bg-neutral-100">
-                                            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                                            <img 
+                                                src={project.image} 
+                                                alt={project.title} 
+                                                width="300"
+                                                height="225"
+                                                className="w-full h-full object-cover" 
+                                            />
                                             <div className="absolute inset-0 shadow-[inset_0_0_8px_rgba(0,0,0,0.08)] pointer-events-none" />
                                             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.06)_100%)] pointer-events-none" />
                                         </div>

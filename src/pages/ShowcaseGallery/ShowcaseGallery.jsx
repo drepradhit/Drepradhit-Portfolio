@@ -85,6 +85,8 @@ function ShowcaseCard({ project, index }) {
                             <img 
                                 src={project.image} 
                                 alt={project.title}
+                                width="300"
+                                height="225"
                                 className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out" 
                             />
                             <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.1)] pointer-events-none" />

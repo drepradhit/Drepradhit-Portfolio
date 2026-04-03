@@ -70,6 +70,7 @@ export default function ProjectDetail() {
             >
                 <button 
                     onClick={() => navigate(-1)}
+                    aria-label="Go back to previous page"
                     className="group flex items-center gap-2 px-5 py-2.5 bg-[#fefcf5] border border-[#e5ddd0] shadow-[2px_3px_8px_rgba(0,0,0,0.08)] hover:shadow-[3px_5px_12px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-pointer rotate-[-2deg] hover:rotate-0"
                     style={{ borderRadius: '3px' }}
                 >
@@ -101,7 +102,13 @@ export default function ProjectDetail() {
                                      style={{ clipPath: 'polygon(2% 0%, 98% 3%, 96% 100%, 4% 97%)' }} />
 
                                 <div className="relative w-full aspect-[4/3] bg-neutral-100 overflow-hidden">
-                                    <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                                    <img 
+                                        src={project.image} 
+                                        alt={project.title} 
+                                        width="400" 
+                                        height="300" 
+                                        className="w-full h-full object-cover" 
+                                    />
                                 </div>
 
                                 <div className="absolute bottom-[4%] left-0 right-0 flex justify-center">
@@ -462,6 +469,9 @@ export default function ProjectDetail() {
                                                 <img 
                                                     src={img.src} 
                                                     alt={img.title} 
+                                                    width={isMobile ? "300" : "1200"}
+                                                    height={isMobile ? "600" : "800"}
+                                                    loading="lazy"
                                                     className={`w-full h-auto object-contain relative z-20 ${isMobile ? 'shadow-[0_20px_40px_rgba(0,0,0,0.12)] rounded-[1.5rem] md:rounded-[1.8rem] border-[5px] border-[#1a1a1a] bg-white' : 'shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]'}`} 
                                                 />
                                             </div>

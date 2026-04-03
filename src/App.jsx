@@ -147,7 +147,7 @@ function App() {
           >
             <div className="w-full flex justify-center">
               <ProfileCard
-                avatarUrl="./assets/andre.png"
+                avatarUrl="./assets/andre.jpg"
               />
             </div>
           </motion.div>
@@ -214,6 +214,7 @@ function App() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative bg-white border border-neutral-200 text-neutral-900 p-3 rounded-full overflow-hidden transition-all duration-300 group hover:border-neutral-900 hover:bg-neutral-50 shadow-sm"
+                  aria-label="LinkedIn Profile"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -228,6 +229,7 @@ function App() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative bg-white border border-neutral-200 text-neutral-900 p-3 rounded-full overflow-hidden transition-all duration-300 group hover:border-neutral-900 hover:bg-neutral-50 shadow-sm"
+                  aria-label="Instagram Profile"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
