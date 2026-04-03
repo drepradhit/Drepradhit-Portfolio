@@ -206,7 +206,7 @@ function BoardDecorations({ isShowcase = false, isMobile = false }) {
                         style={{ clipPath: 'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)' }}
                         whileHover={{ scale: 1.05, rotate: 2 }}
                     >
-                        <p className="text-[14px] text-neutral-800 leading-tight font-bold text-center underline decoration-wavy decoration-red-400" style={{ fontFamily: "'Caveat', cursive" }}>
+                        <p className="text-[14px] text-neutral-800 leading-tight font-bold text-center underline decoration-wavy decoration-slate-400" style={{ fontFamily: "'Caveat', cursive" }}>
                             View All Projects!
                         </p>
                     </motion.div>
