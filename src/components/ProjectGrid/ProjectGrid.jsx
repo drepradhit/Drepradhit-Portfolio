@@ -310,7 +310,7 @@ export default function ProjectGrid({ projects }) {
                     <div className="absolute -top-4 -left-2 z-30 pointer-events-none rotate-[-5deg]">
                         <div className="relative bg-[#fffde7] px-4 py-1.5 shadow-[2px_3px_8px_rgba(0,0,0,0.15)]">
                             <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 z-10">
-                                <Pushpin color="#e74c3c" size={12} />
+                                <Pushpin color="#1e293b" size={12} />
                             </div>
                             <h2 className="text-base text-neutral-700 font-normal uppercase tracking-tight" 
                                 style={{ fontFamily: "'Permanent Marker', cursive" }}>
@@ -402,7 +402,7 @@ export default function ProjectGrid({ projects }) {
                                     style={{ clipPath: 'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)' }}
                                     whileTap={{ scale: 0.95 }}
                                 >
-                                    <p className="text-lg text-neutral-800 leading-tight font-bold text-center underline decoration-wavy decoration-red-400" style={{ fontFamily: "'Caveat', cursive" }}>
+                                    <p className="text-lg text-neutral-800 leading-tight font-bold text-center underline decoration-wavy decoration-slate-400" style={{ fontFamily: "'Caveat', cursive" }}>
                                         View All Projects!
                                     </p>
                                 </motion.div>
@@ -436,7 +436,7 @@ export default function ProjectGrid({ projects }) {
                 >
                     <div className="relative bg-[#fffde7] px-5 py-2.5 shadow-[2px_4px_10px_rgba(0,0,0,0.15)] rotate-[-6deg]">
                         <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-                            <Pushpin color="#e74c3c" size={16} />
+                            <Pushpin color="#1e293b" size={16} />
                         </div>
                         <h2 className="text-xl xl:text-2xl text-neutral-700 font-normal uppercase tracking-tight" 
                             style={{ fontFamily: "'Permanent Marker', cursive" }}>
