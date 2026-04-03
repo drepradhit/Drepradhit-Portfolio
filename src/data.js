@@ -285,6 +285,14 @@ import LinestagLogo from "/assets/Career/Linestag.webp";
 
 export const listExperience = [
   {
+    id: 4,
+    company: "Damianos Productions",
+    role: "Web Developer",
+    period: "Feb 2026 - Present",
+    logo: DamianosImg,
+    description: "Developed a high-end company profile website for a creative agency using Next.js and GSAP for fluid, premium transitions.",
+  },
+  {
     id: 1,
     company: "Dinas Perhubungan",
     role: "Full-stack Developer (Internship)",

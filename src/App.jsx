@@ -195,8 +195,9 @@ function App() {
               transition={isFirstVisit ? { delay: 0.8, duration: 0.5, ease: "easeOut" } : { duration: 0 }}
             >
               <motion.a
-                href="./assets/proyek/Resume - Andre Pradhit.pdf"
-                download="Resume - Andre Pradhit.pdf"
+                href="https://drive.google.com/file/d/1rsZOQbZAnQ5zOIqSQkpXDh7DP02Kflrv/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex-1 sm:flex-none flex items-center justify-center relative font-medium bg-white border border-neutral-200 text-neutral-900 px-6 sm:px-8 py-3 rounded-full overflow-hidden transition-all duration-300 group hover:border-neutral-900 hover:bg-neutral-50 shadow-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
