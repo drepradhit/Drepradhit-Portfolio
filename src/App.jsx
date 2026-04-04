@@ -52,6 +52,26 @@ function App() {
     setSelectedProject(null);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: "spring", stiffness: 70, damping: 20 }
+    },
+  };
+
   return (
     <div className="overflow-x-hidden relative w-full min-h-screen">
       <style>{`
@@ -64,12 +84,15 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         
         {/* HERO SECTION */}
-        <div className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto">
+        <motion.div 
+          className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <motion.div
             className="order-1 lg:order-2 w-full flex justify-center px-4 lg:px-0"
-            initial={isFirstVisit ? { opacity: 0, scale: 0.9 } : { opacity: 1, scale: 1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={isFirstVisit ? { delay: 0.3, duration: 0.7, ease: "easeOut" } : { duration: 0 }}
+            variants={itemVariants}
           >
             <div className="w-full flex justify-center">
               <ProfileCard avatarUrl="./assets/andre.png" />
@@ -80,20 +103,25 @@ function App() {
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl leading-[1.1] mb-6 font-bold tracking-tight"
               style={{ fontFamily: "'Outfit', sans-serif" }}
-              initial={isFirstVisit ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
+              variants={itemVariants}
             >
               <span style={{ color: '#1a1a1a' }}>Hi, I'm </span>
               <span style={{ color: '#1e293b' }}>Andre<br />Pradhit</span>
             </motion.h1>
 
-            <div className="text-lg text-neutral-600 mb-8 leading-relaxed w-full flex justify-center lg:justify-start">
+            <motion.div 
+              className="text-lg text-neutral-600 mb-8 leading-relaxed w-full flex justify-center lg:justify-start"
+              variants={itemVariants}
+            >
               <div className="w-full max-w-[340px] lg:max-w-none">
                 <TerminalRoles roles={["UI UX Designer", "Mobile Developer", "Web Developer", "Graphic Designer"]} />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-row items-center gap-3 justify-center lg:justify-start w-full">
+            <motion.div 
+              className="flex flex-row items-center gap-3 justify-center lg:justify-start w-full"
+              variants={itemVariants}
+            >
               <motion.a
                 href="https://drive.google.com/file/d/1je3WZmUi7OidlNM-QsVvqG-CNeG1YXp2/view?usp=sharing"
                 target="_blank"
@@ -126,9 +154,9 @@ function App() {
                   </motion.a>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* ABOUT & EXPERIENCE SECTION (Aligned Horizontally) */}
         <div className="mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" id="about">
