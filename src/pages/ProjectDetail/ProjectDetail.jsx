@@ -5,8 +5,6 @@ import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
 import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers } from "react-icons/fi";
 import { useEffect } from "react";
 
-
-
 export default function ProjectDetail() {
     const { slug } = useParams();
     const navigate = useNavigate();
@@ -79,10 +77,10 @@ export default function ProjectDetail() {
                 </button>
             </motion.div>
 
-        <div className="detail-root relative z-10 w-full flex flex-col lg:flex-row max-w-[1600px] mx-auto min-h-screen lg:min-h-[900px] pb-24 lg:pb-20">
+            <div className="detail-root relative z-10 w-full flex flex-col lg:flex-row max-w-[1600px] mx-auto min-h-screen lg:min-h-[900px] pb-24 lg:pb-20">
 
-            {/* LEFT SIDE: Polaroid + Title */}
-            <div className="lg:w-[45%] flex items-start justify-center p-8 pt-24 lg:p-12 xl:p-16 h-fit">
+                {/* LEFT SIDE: Polaroid + Title */}
+                <div className="lg:w-[45%] flex items-start justify-center p-8 pt-24 lg:p-12 xl:p-16 h-fit">
                     <motion.div
                         className="flex flex-col items-center gap-8 max-w-md w-full"
                         initial={{ opacity: 0, y: 20 }}
@@ -105,8 +103,6 @@ export default function ProjectDetail() {
                                     <img 
                                         src={project.image} 
                                         alt={project.title} 
-                                        width="400" 
-                                        height="300" 
                                         className="w-full h-full object-cover" 
                                     />
                                 </div>
@@ -173,6 +169,31 @@ export default function ProjectDetail() {
                                 })}
                             </div>
 
+                            {/* Mobile-only Visit Website (above keep scrolling) */}
+                            <div className="lg:hidden flex justify-center w-full">
+                                {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
+                                    <div className="relative px-8 py-3 bg-[#fefcf5] text-neutral-400 font-bold text-sm border border-[#e5ddd0] shadow-sm cursor-not-allowed rotate-[-1deg]"
+                                         style={{ fontFamily: "'Caveat', cursive" }}>
+                                        <div className="absolute -top-2 left-6 w-10 h-4 bg-neutral-900/10 rotate-[5deg] mix-blend-multiply pointer-events-none"
+                                             style={{ clipPath: 'polygon(3% 0%, 97% 5%, 95% 100%, 5% 95%)' }}></div>
+                                        currently offline :(
+                                    </div>
+                                ) : project.url ? (
+                                    <motion.a 
+                                        href={project.url} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="relative inline-flex items-center gap-2.5 px-8 py-3 bg-[#fefcf5] border border-[#e5ddd0] shadow-[2px_3px_8px_rgba(0,0,0,0.08)] text-[#7c2d12] font-bold text-lg rotate-[-2deg] hover:rotate-0 hover:shadow-[3px_5px_12px_rgba(0,0,0,0.12)] transition-all"
+                                        style={{ fontFamily: "'Caveat', cursive" }}
+                                        whileHover={{ scale: 1.05 }}
+                                    >
+                                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-4 bg-[#7c2d12]/20 rotate-[3deg] mix-blend-multiply pointer-events-none"
+                                             style={{ clipPath: 'polygon(3% 0%, 97% 5%, 95% 100%, 5% 95%)' }}></div>
+                                        visit website → <FaExternalLinkAlt className="text-[10px]" />
+                                    </motion.a>
+                                ) : null}
+                            </div>
+
                             {/* Integrated Scroll Hint */}
                             <motion.div 
                                 className="flex flex-col items-center gap-1.5 opacity-60"
@@ -193,12 +214,36 @@ export default function ProjectDetail() {
                                 </motion.div>
                             </motion.div>
                         </div>
-                        
                     </motion.div>
                 </div>
 
                 {/* RIGHT SIDE: Concept & Impact */}
                 <div className="lg:w-[55%] px-6 lg:px-10 xl:px-14 py-16 lg:py-24 xl:py-28 flex flex-col gap-12 lg:items-start text-left items-center pt-10">
+
+                    {/* Visit Website CTA (Desktop only — mobile version is in left column) */}
+                    <div className="hidden lg:flex justify-start w-full">
+                        {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
+                            <div className="relative px-8 py-3 bg-[#fefcf5] text-neutral-400 font-bold text-sm border border-[#e5ddd0] shadow-sm cursor-not-allowed rotate-[-1deg]"
+                                 style={{ fontFamily: "'Caveat', cursive" }}>
+                                <div className="absolute -top-2 left-6 w-10 h-4 bg-neutral-900/10 rotate-[5deg] mix-blend-multiply pointer-events-none"
+                                     style={{ clipPath: 'polygon(3% 0%, 97% 5%, 95% 100%, 5% 95%)' }}></div>
+                                currently offline :(
+                            </div>
+                        ) : project.url ? (
+                            <motion.a 
+                                href={project.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="relative inline-flex items-center gap-2.5 px-8 py-3 bg-[#fefcf5] border border-[#e5ddd0] shadow-[2px_3px_8px_rgba(0,0,0,0.08)] text-[#7c2d12] font-bold text-lg rotate-[-2deg] hover:rotate-0 hover:shadow-[3px_5px_12px_rgba(0,0,0,0.12)] transition-all"
+                                style={{ fontFamily: "'Caveat', cursive" }}
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-4 bg-[#7c2d12]/20 rotate-[3deg] mix-blend-multiply pointer-events-none"
+                                     style={{ clipPath: 'polygon(3% 0%, 97% 5%, 95% 100%, 5% 95%)' }}></div>
+                                visit website → <FaExternalLinkAlt className="text-[10px]" />
+                            </motion.a>
+                        ) : null}
+                    </div>
 
                     {/* Features - Lined Paper Note */}
                     {project.features && project.features.length > 0 && (
@@ -211,17 +256,14 @@ export default function ProjectDetail() {
                             <div className="relative p-7 md:p-10 bg-[#fdfdf5] shadow-[6px_10px_30px_rgba(0,0,0,0.1)] border border-[#e5ddd0] paper-lined overflow-visible" 
                                  style={{ borderRadius: '2px 3px 3px 2px' }}>
 
-                                {/* Red margin line */}
                                 <div className="absolute top-0 bottom-0 left-[50px] md:left-[60px] w-[2px] bg-red-400/40 z-10" />
 
-                                {/* Paperclip */}
                                 <div className="absolute -top-4 right-8 z-30 opacity-60" style={{ transform: 'rotate(15deg)' }}>
                                     <svg width="20" height="40" viewBox="0 0 24 48" fill="none" stroke="#9CA3AF" strokeWidth="2.5" strokeLinecap="round" className="w-5 h-10">
                                         <path d="M12 2C8.68629 2 6 4.68629 6 8V38C6 42.4183 9.58172 46 14 46C18.4183 46 22 42.4183 22 38V12C22 9.79086 20.2091 8 18 8C15.7909 8 14 9.79086 14 12V36C14 37.1046 13.1046 38 12 38C10.8954 38 10 37.1046 10 36V8C10 6.89543 10.8954 6 12 6C13.1046 6 14 6.89543 14 8V32" />
                                     </svg>
                                 </div>
 
-                                {/* Content */}
                                 <div className="pl-[40px] md:pl-[50px]">
                                     <h3 className="text-2xl md:text-3xl font-bold text-[#854d0e] mb-5"
                                         style={{ fontFamily: "'Caveat', cursive" }}>
@@ -241,14 +283,12 @@ export default function ProjectDetail() {
                                     </ul>
                                 </div>
 
-                                {/* Dog-ear */}
                                 <div className="absolute bottom-0 right-0 w-8 h-8 bg-gradient-to-tl from-neutral-200/80 to-transparent" 
                                      style={{ clipPath: 'polygon(100% 0, 0% 100%, 100% 100%)' }} />
                             </div>
                         </motion.div>
                     )}
 
-                    {/* Impact - Kraft Paper */}
                     {project.impact && (
                         <motion.div
                             initial={{ opacity: 0, y: 30, rotate: -2 }}
@@ -263,7 +303,6 @@ export default function ProjectDetail() {
                                      backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E\")",
                                  }}>
 
-                                {/* Washi tape */}
                                 <div className="absolute -top-2 left-6 w-16 h-5 washi-slate rotate-[-8deg] z-20"
                                      style={{ clipPath: 'polygon(0% 5%, 100% 0%, 98% 100%, 2% 95%)' }} />
 
@@ -305,7 +344,7 @@ export default function ProjectDetail() {
                                 { title: "QA Testing", icon: FiCheckCircle, color: "bg-emerald-600", top: "65%", left: "67.5%", labelPos: "bottom" },
                                 { title: "Cloud Launch", icon: FiGlobe, color: "bg-amber-500", top: "35%", left: "85%", labelPos: "top" },
                             ];
-                        } else if (project.category === "Web Development") {
+                        } else if (project.category === "Website") {
                             title = "Development Lifecycle";
                             processSteps = [
                                 { title: "Requirement", icon: FiSearch, color: "bg-purple-500", top: "35%", left: "15%", labelPos: "top" },
@@ -327,7 +366,6 @@ export default function ProjectDetail() {
 
                         return (
                             <div className="relative w-full py-12 flex flex-col items-center">
-                                {/* Hand-drawn Circular Title */}
                                 <div className="text-center mb-24 relative w-fit mx-auto">
                                     <h3 className="text-2xl md:text-[28px] font-bold relative z-10 tracking-tight text-neutral-800" style={{ fontFamily: "'Inter', sans-serif" }}>
                                         {title}
@@ -337,7 +375,6 @@ export default function ProjectDetail() {
                                     </svg>
                                 </div>
 
-                                {/* Desktop Snake Timeline */}
                                 <div className="hidden 2xl:block relative w-full h-[320px] mx-auto">
                                     <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 1000 400" preserveAspectRatio="none">
                                         <path 
@@ -372,7 +409,6 @@ export default function ProjectDetail() {
                                     ))}
                                 </div>
 
-                                {/* Mobile Vertical Timeline */}
                                 <div className="2xl:hidden relative flex flex-col gap-12 pl-6 w-full max-w-sm mx-auto">
                                     <div className="absolute left-[3.5rem] top-10 bottom-10 w-[2px] border-l-[2px] border-dashed border-neutral-300"></div>
                                     {processSteps.map((step, idx) => (
@@ -396,7 +432,7 @@ export default function ProjectDetail() {
                         );
                     })()}
                 </motion.div>
-                    {/* Gallery Section */}
+
                 {project.pageImages && project.pageImages.length > 0 && (
                     <div className="w-full flex flex-col items-center gap-24">
                         <div className="text-center relative w-fit flex flex-col items-center mx-auto">
@@ -407,8 +443,8 @@ export default function ProjectDetail() {
                         </div>
 
                         <div className="flex flex-col gap-32 lg:gap-40 w-full items-center max-w-[1400px] px-4">
-                                {project.pageImages.map((img, i) => {
-                                const isMobile = project.slug === "thinkways" || project.slug === "certix" || project.slug === "nance";
+                            {project.pageImages.map((img, i) => {
+                                const isMobile = project.slug === "thinkways" || project.slug === "certix" || project.slug === "nance" || project.slug === "whoof-meow";
                                 const isEven = i % 2 === 0;
 
                                 return (
@@ -417,44 +453,33 @@ export default function ProjectDetail() {
                                         ${isEven ? 'rotate-[-1deg]' : 'rotate-[1deg]'} lg:rotate-0 mb-8 lg:mb-0
                                     `}>
 
-                                        {/* Mobile Grid Paper Texture */}
                                         <div className="absolute inset-0 paper-lined opacity-40 lg:hidden pointer-events-none"></div>
-                                        
-                                        {/* Decorative Tape (Mobile Only) */}
                                         <div className={`absolute -top-3 ${isEven ? 'right-8 rotate-[4deg]' : 'left-8 rotate-[-3deg]'} lg:hidden ${['washi-slate', 'washi-green', 'washi-yellow'][i % 3]} w-20 h-8 z-20 mix-blend-multiply opacity-90 shadow-sm`}></div>
 
-                                        {/* Text Annotation Area */}
                                         <div className={`w-full lg:w-[40%] flex flex-col ${isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-start relative z-20`}>
-                                            
-                                            {/* Black Label for PAGE #X (Mobile) */}
                                             <div className="lg:hidden bg-[#1a1a1a] text-white px-5 py-2 mt-2 mb-6 rotate-[-2deg] shadow-md self-start ml-2 lg:ml-0">
                                                 <h4 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Mono', monospace" }}>
                                                     PAGE #{i + 1}
                                                 </h4>
                                             </div>
 
-                                            {/* Desktop Default Label */}
                                             <div className="hidden lg:flex items-center gap-2 mb-2 w-full">
                                                 <h4 className={`text-[12px] md:text-sm font-bold text-neutral-400 tracking-[0.2em] uppercase w-full`} style={{ fontFamily: "'Space Mono', monospace" }}>
                                                     PAGE #{i + 1}
                                                 </h4>
                                             </div>
                                             
-                                            {/* Image Title with Marker Highlight (Mobile mimicking Screenshot) */}
                                             <div className="relative inline-block mb-5 w-full">
                                                 <h5 className={`text-3xl md:text-3xl font-extrabold text-neutral-900 z-10 relative w-full`} style={{ fontFamily: "'Playfair Display', serif" }}>
                                                     {img.title}
                                                 </h5>
-                                                {/* Blue highlight swoosh (Mobile only) */}
                                                 <div className="absolute bottom-1 -left-2 w-[105%] h-3 bg-sky-200/60 mix-blend-multiply -rotate-1 z-0 lg:hidden rounded-sm"></div>
                                             </div>
 
-                                            {/* Description Text */}
                                             <p className={`text-neutral-600 text-sm md:text-base leading-relaxed z-10 relative w-full text-left ${!isEven ? 'lg:text-right' : 'lg:text-left'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
                                                 {img.desc || `Detailed breakdown of the ${img.title.toLowerCase()} flow, highlighting user journey, accessibility, and clean interface information architecture.`}
                                             </p>
 
-                                            {/* Clean Sweeping Arrow SVG (Desktop Only) */}
                                             <div className={`hidden lg:flex w-full ${isEven ? 'justify-end' : 'justify-start'} mt-6`}>
                                                 <svg width="140" height="60" viewBox="0 0 140 60" fill="none" className={`text-neutral-400 opacity-80 ${!isEven ? 'scale-x-[-1]' : ''}`}>
                                                     <path d="M10 40 Q 60 15 125 30" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" />
@@ -463,45 +488,22 @@ export default function ProjectDetail() {
                                             </div>
                                         </div>
 
-                                        {/* Smart Sizing Image Area */}
                                         <div className={`w-full lg:w-[60%] flex ${isEven ? 'lg:justify-start' : 'lg:justify-end'} justify-center relative mt-8 lg:mt-0`}>
                                             <div className={`relative z-10 w-full flex justify-center ${isEven ? 'lg:justify-start' : 'lg:justify-end'} ${isMobile ? 'max-w-[200px] md:max-w-[240px]' : 'max-w-[800px] md:max-w-[900px]'}`}>
                                                 <img 
                                                     src={img.src} 
                                                     alt={img.title} 
-                                                    width={isMobile ? "300" : "1200"}
-                                                    height={isMobile ? "600" : "800"}
                                                     loading="lazy"
                                                     className={`w-full h-auto object-contain relative z-20 ${isMobile ? 'shadow-[0_20px_40px_rgba(0,0,0,0.12)] rounded-[1.5rem] md:rounded-[1.8rem] border-[5px] border-[#1a1a1a] bg-white' : 'shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]'}`} 
                                                 />
                                             </div>
                                         </div>
-                                        
                                     </div>
                                 );
                             })}
                         </div>
                     </div>
                 )}
-
-                {/* CTA Button */}
-                <div className="flex justify-center w-full pt-10">
-                    {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
-                        <button disabled className="px-8 py-3 bg-[#fefcf5] text-neutral-400 font-bold uppercase tracking-wider text-xs border border-[#e5ddd0] shadow-sm cursor-not-allowed">
-                            Currently Offline
-                        </button>
-                    ) : project.url ? (
-                        <motion.a 
-                            href={project.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2.5 px-8 py-3 bg-[#1f2937] text-white font-bold uppercase tracking-wider text-xs shadow-md"
-                            whileHover={{ scale: 1.05 }}
-                        >
-                            Visit Website <FaExternalLinkAlt className="text-[10px]" />
-                        </motion.a>
-                    ) : null}
-                </div>
             </div>
         </div>
     );

@@ -40,7 +40,6 @@ const roadmapData = [
 export default function LearningRoadmap() {
   return (
     <div className="w-full max-w-7xl mx-auto py-32 px-6 font-sans select-none">
-      {/* Editorial Header */}
       <div className="mb-32 flex flex-col md:flex-row md:items-end justify-between border-b border-neutral-200 pb-16 gap-10">
         <div className="space-y-6">
           <div className="flex items-center gap-2">
@@ -64,14 +63,12 @@ export default function LearningRoadmap() {
         </div>
       </div>
 
-      {/* Modern List Layout */}
       <div className="space-y-px bg-neutral-200 border-y border-neutral-200">
         {roadmapData.map((item, index) => (
           <RoadmapRow key={index} item={item} index={index} />
         ))}
       </div>
 
-      {/* Technical Footer */}
       <div className="mt-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 px-4">
          <div className="flex items-center gap-8">
             <div className="flex flex-col">
@@ -100,12 +97,10 @@ function RoadmapRow({ item, index }) {
       viewport={{ once: true }}
       className="group bg-[#fdfbf7] hover:bg-white transition-colors duration-500 p-8 md:p-16 flex flex-col md:grid md:grid-cols-12 gap-12 items-start relative overflow-hidden"
     >
-      {/* Background Year Decor */}
       <div className="absolute top-1/2 -translate-y-1/2 right-20 text-[20vw] font-black text-neutral-100/30 leading-none pointer-events-none group-hover:text-black/[0.02] transition-colors duration-700 italic select-none">
         {item.year}
       </div>
 
-      {/* Info Column */}
       <div className="md:col-span-5 relative z-10">
         <div className="flex items-center gap-4 mb-8">
           <span className="text-[11px] font-black tracking-[0.2em] text-neutral-900 py-1.5 px-3 bg-neutral-100 rounded-lg">
@@ -123,7 +118,6 @@ function RoadmapRow({ item, index }) {
         </p>
       </div>
 
-      {/* Code / Visual Column */}
       <div className="md:col-span-1 hidden md:flex items-center justify-center">
          <div className="w-[1px] h-32 bg-neutral-200" />
       </div>

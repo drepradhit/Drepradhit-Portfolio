@@ -3,18 +3,6 @@ import { motion } from "framer-motion";
 import { listTools } from "../../data";
 import "./ProfileCard.css";
 
-// Explicitly select and prioritize tools for the hover burst as requested
-const featuredTools = [
-  listTools.find(t => t.nama === "React JS"),
-  listTools.find(t => t.nama === "Next JS"),
-  listTools.find(t => t.nama === "Javascript"),
-  listTools.find(t => t.nama === "TypeScript"),
-  listTools.find(t => t.nama === "Tailwind"),
-  listTools.find(t => t.nama === "Figma"),
-  listTools.find(t => t.nama === "PostgreSQL"),
-  listTools.find(t => t.nama === "HTML")
-].filter(Boolean); // Ensure no nulls if naming mismatch
-
 const ProfileCardComponent = ({
   avatarUrl = "./assets/andre.jpg",
   className = "",
@@ -28,12 +16,9 @@ const ProfileCardComponent = ({
     const checkTouchMode = () => {
       if (typeof window === "undefined") return false;
       
-      // If the browser natively reports having a fine-grained pointer (mouse/trackpad),
-      // we ALWAYS treat it as a Desktop without touch-first UI, EVEN on touchscreen laptops.
       const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       if (hasMouse) return false;
 
-      // If no fine pointer is definitively found, fallback to Touch detection (iPads, Phones)
       const hasTouch = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
       return hasTouch || window.innerWidth < 1024;
     };

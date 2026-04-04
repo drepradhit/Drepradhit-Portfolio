@@ -96,14 +96,14 @@ const ResponsiveGitHubCalendar = () => {
       const handleResize = () => {
         const width = window.innerWidth;
         if (width < 640) {
-          setWeeks(11);
-          setBlockSize(12);
+          setWeeks(52);
+          setBlockSize(10);
         } else if (width < 1024) {
-          setWeeks(15);
-          setBlockSize(14);
+          setWeeks(52);
+          setBlockSize(12);
         } else {
-          setWeeks(22); 
-          setBlockSize(16);
+          setWeeks(52); 
+          setBlockSize(14);
         }
       };
       handleResize();
@@ -119,29 +119,7 @@ const ResponsiveGitHubCalendar = () => {
         fontSize={10}
         theme={{ light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'] }}
         colorScheme="light"
-        labels={{ totalCount: '629 contributions in the last year' }}
-        transformData={(data) => {
-          const sliced = data.slice(-weeks * 7);
-          return sliced.map(day => {
-            if (day.count > 0) return { ...day };
-            let hash = 0;
-            for (let i = 0; i < day.date.length; i++) {
-              hash = Math.imul(31, hash) + day.date.charCodeAt(i) | 0;
-            }
-            const seed = Math.abs(hash);
-            const magic = (Math.sin(seed) * 10000 - Math.floor(Math.sin(seed) * 10000)) > 0.2;
-            if (magic) {
-              const levelProb = Math.sin(seed + 1) * 10000 - Math.floor(Math.sin(seed + 1) * 10000);
-              const countRand = Math.sin(seed + 2) * 10000 - Math.floor(Math.sin(seed + 2) * 10000);
-              return {
-                ...day,
-                count: Math.floor(countRand * 15) + 3,
-                level: levelProb > 0.7 ? 4 : levelProb > 0.4 ? 3 : 2
-              };
-            }
-            return { ...day };
-          });
-        }}
+        transformData={(data) => data}
       />
     );
   };

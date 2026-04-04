@@ -68,7 +68,98 @@ import NanceTransactions from "/assets/Nance/Transactions - Light Mode 1.png";
 import NanceTransfer from "/assets/Nance/Transfer Money - Light Mode 1.png";
 import NanceStats from "/assets/Nance/Updated Statistics - Growth Chart 1.png";
 
+import WhoofMeowCover from "/assets/whoof & Meow/cover.png";
+import WhoofMeowHome from "/assets/whoof & Meow/home.jpeg";
+import WhoofMeowGameplay from "/assets/whoof & Meow/gameplay.jpeg";
+import WhoofMeowMode from "/assets/whoof & Meow/mode.jpeg";
+import WhoofMeowResult from "/assets/whoof & Meow/match result.jpeg";
+
 const listProyekBase = [
+  {
+    id: 8,
+    slug: "whoof-meow",
+    image: WhoofMeowCover,
+    images: [WhoofMeowCover, WhoofMeowHome, WhoofMeowGameplay, WhoofMeowMode, WhoofMeowResult],
+    title: "Whoof and Meow",
+    category: "Game",
+    subtitle: "A high-energy Tic Tac Toe game featuring Cat vs Dog personalization, real-time multiplayer, and AI mode.",
+    role: "Fullstack Developer",
+    duration: "2 weeks",
+    features: [
+      "Developed a personalized Tic Tac Toe experience where users can choose between Cat and Dog characters with unique icons.",
+      "Implemented a real-time multiplayer system using Pusher, allowing players to compete with friends via invite codes.",
+      "Built a challenging AI opponent for single-player mode, ensuring an engaging experience for solo users.",
+      "Designed a vibrant Neo-Brutalist interface with fluid animations using Framer Motion and GSAP."
+    ],
+    impact: "Modernized a classic game with real-time connectivity and a unique visual style, resulting in a highly interactive and social gaming experience.",
+    borderColor: "#333",
+    gradient: "transparent",
+    url: "https://whoofmeow.vercel.app/",
+    year: "2026",
+    techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
+    dad: "800",
+    pageImages: [
+      { src: WhoofMeowHome, title: "Landing Page", desc: "The main hero section introducing the game characters and the high-energy Neo-Brutalist visual style." },
+      { src: WhoofMeowMode, title: "Game Mode Selection", desc: "An interface where players can choose between VS AI, Local PVP, or Online Real-time multiplayer." },
+      { src: WhoofMeowGameplay, title: "Game Board", desc: "The core gameplay interface featuring the synchronized Cat and Dog icons and real-time status updates." },
+      { src: WhoofMeowResult, title: "Match Results", desc: "A dynamic end-game screen celebrating the winner with personalized character animations." }
+    ]
+  },
+  {
+    id: 3,
+    slug: "drevelopment",
+    image: Proyek3,
+    images: [Proyek3, Proyek1, Proyek4],
+    title: "Drevelopment",
+    category: "Website",
+    subtitle: "A professional landing page for Web Development & UI/UX Design services.",
+    role: "Frontend Developer & UI/UX Designer",
+    duration: "2 weeks",
+    features: [
+      "Designed and developed a professional landing page tailored for a digital agency.",
+      "Implemented a sleek, modern aesthetic using React JS and Tailwind CSS to build trust with potential clients.",
+      "Showcased service packages, portfolios, and client testimonials with highly visible and interactive layouts."
+    ],
+    impact: "Enhanced the digital footprint of the agency, providing a scalable and visually striking platform to attract and convert new clients.",
+    borderColor: "#333",
+    gradient: "transparent",
+    url: null,
+    year: "2026",
+    techstack: ["React JS", "Tailwind", "Javascript", "Figma", "GSAP"],
+    dad: "300",
+    pageImages: [
+      { src: DrevelopmentLanding, title: "Parallax Agency Landing", desc: "A sleek and immersive landing page offering Website creation and UI/UX Design services. It features dynamic parallax scrolling effects that create a premium, deep visual experience for visitors." }
+    ]
+  },
+  {
+    id: 2,
+    slug: "rupiah-flow",
+    image: Proyek2,
+    images: [Proyek2, Proyek5, Proyek1],
+    title: "Rupiah Flow",
+    category: "Website",
+    subtitle: "A fullstack app to manage your income, expenses, and categories.",
+    role: "Fullstack Developer",
+    duration: "4 months",
+    features: [
+      "Developed a fullstack financial dashboard web application using React, Node.js, and PostgreSQL for structured financial data management.",
+      "Built RESTful APIs to handle financial transactions (income & expenses) with full CRUD functionality.",
+      "Designed a responsive and modern dashboard UI using Tailwind CSS, focusing on clarity and usability.",
+      "Implemented financial data summaries and visualizations to help users track and analyze their financial status."
+    ],
+    impact: "Streamlined personal finance management by enabling users to easily track their income and expenses, export data to PDF, and view comprehensive monthly or yearly financial summaries.",
+    borderColor: "#333",
+    gradient: "transparent",
+    url: "UNDER_MAINTENANCE",
+    year: "2025",
+    techstack: ["Node JS", "React JS", "Tailwind", "PostgreSQL", "Javascript"],
+    dad: "200",
+    pageImages: [
+      { src: RupiahFlowHome, title: "Main Dashboard", desc: "A comprehensive overview displaying current balances, total income vs expenses, a visual transaction bar graph, recent history, and a quick-action shortcut to instantly log transactions." },
+      { src: RupiahFlowCategories, title: "Category Settings", desc: "A streamlined category management interface where users can view and organize income and expense groupings, featuring full CRUD capability to freely add, edit, or delete items." },
+      { src: RupiahFlowReports, title: "Financial Reports", desc: "An advanced reporting view offering monthly and yearly financial data. It features detailed spending breakdowns per category and allows users to export these summaries directly to PDF." }
+    ]
+  },
   {
     id: 1,
     slug: "thinkways",
@@ -96,61 +187,6 @@ const listProyekBase = [
       { src: ThinkWaysPersonality, title: "Personality Test", desc: "An initial diagnostic questionnaire to analyze learning styles, allowing the AI to recommend and curate a customized course roadmap." },
       { src: ThinkWaysCourse, title: "Course Overview", desc: "A comprehensive preview of the selected course, detailing the learning objectives, modules, and structure before the user begins." },
       { src: ThinkWaysJourney, title: "Learning Journey", desc: "A gamified progress map that visually tracks the user's progress level by level as they successfully complete course materials." }
-    ]
-  },
-  {
-    id: 3,
-    slug: "drevelopment",
-    image: Proyek3,
-    images: [Proyek3, Proyek1, Proyek4],
-    title: "Drevelopment",
-    category: "Web Development",
-    subtitle: "A professional landing page for Web Development & UI/UX Design services.",
-    role: "Frontend Developer & UI/UX Designer",
-    duration: "2 weeks",
-    features: [
-      "Designed and developed a professional landing page tailored for a digital agency.",
-      "Implemented a sleek, modern aesthetic using React JS and Tailwind CSS to build trust with potential clients.",
-      "Showcased service packages, portfolios, and client testimonials with highly visible and interactive layouts."
-    ],
-    impact: "Enhanced the digital footprint of the agency, providing a scalable and visually striking platform to attract and convert new clients.",
-    borderColor: "#333",
-    gradient: "transparent",
-    url: "https://drevelopments.vercel.app/",
-    year: "2026",
-    techstack: ["React JS", "Tailwind", "Javascript", "Figma", "GSAP"],
-    dad: "300",
-    pageImages: [
-      { src: DrevelopmentLanding, title: "Parallax Agency Landing", desc: "A sleek and immersive landing page offering Website creation and UI/UX Design services. It features dynamic parallax scrolling effects that create a premium, deep visual experience for visitors." }
-    ]
-  },
-  {
-    id: 2,
-    slug: "rupiah-flow",
-    image: Proyek2,
-    images: [Proyek2, Proyek5, Proyek1],
-    title: "Rupiah Flow",
-    category: "Web Development",
-    subtitle: "A fullstack app to manage your income, expenses, and categories.",
-    role: "Fullstack Developer",
-    duration: "4 months",
-    features: [
-      "Developed a fullstack financial dashboard web application using React, Node.js, and PostgreSQL for structured financial data management.",
-      "Built RESTful APIs to handle financial transactions (income & expenses) with full CRUD functionality.",
-      "Designed a responsive and modern dashboard UI using Tailwind CSS, focusing on clarity and usability.",
-      "Implemented financial data summaries and visualizations to help users track and analyze their financial status."
-    ],
-    impact: "Streamlined personal finance management by enabling users to easily track their income and expenses, export data to PDF, and view comprehensive monthly or yearly financial summaries.",
-    borderColor: "#333",
-    gradient: "transparent",
-    url: "UNDER_MAINTENANCE",
-    year: "2025",
-    techstack: ["Node JS", "React JS", "Tailwind", "PostgreSQL", "Javascript"],
-    dad: "200",
-    pageImages: [
-      { src: RupiahFlowHome, title: "Main Dashboard", desc: "A comprehensive overview displaying current balances, total income vs expenses, a visual transaction bar graph, recent history, and a quick-action shortcut to instantly log transactions." },
-      { src: RupiahFlowCategories, title: "Category Settings", desc: "A streamlined category management interface where users can view and organize income and expense groupings, featuring full CRUD capability to freely add, edit, or delete items." },
-      { src: RupiahFlowReports, title: "Financial Reports", desc: "An advanced reporting view offering monthly and yearly financial data. It features detailed spending breakdowns per category and allows users to export these summaries directly to PDF." }
     ]
   },
   {
@@ -186,7 +222,7 @@ const listProyekBase = [
     image: DamianosImg,
     images: [DamianosImg, Proyek1, Proyek2],
     title: "Damianos Production",
-    category: "Web Development",
+    category: "Website",
     subtitle: "A comprehensive company profile showcasing a high-end creative agency's end-to-end production workflow.",
     role: "Frontend Developer",
     duration: "1 week",
@@ -217,7 +253,7 @@ const listProyekBase = [
     image: TypePaperImg,
     images: [TypePaperImg],
     title: "Type Paper",
-    category: "Web Development",
+    category: "Game",
     subtitle: "A minimalist typing test inspired by Monkeytype.",
     role: "Frontend Developer",
     duration: "4 days",
@@ -276,8 +312,9 @@ export const listProyek = [
 ];
 
 // Kategori terpisah
-export const listProyekWeb = listProyek.filter(p => p.category === "Fullstack" || p.category === "Web Development");
+export const listProyekWeb = listProyek.filter(p => p.category === "Fullstack" || p.category === "Website");
 export const listProyekUIUX = listProyek.filter(p => p.category === "UI/UX");
+export const listProyekGame = listProyek.filter(p => p.category === "Game");
 
 import DishubLogo from "/assets/Career/Dishub.png";
 import DuniaSandangLogo from "/assets/Career/Dunia Sandang.jpeg";

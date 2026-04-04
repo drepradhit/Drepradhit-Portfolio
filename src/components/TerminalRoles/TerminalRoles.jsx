@@ -12,17 +12,14 @@ export default function TerminalRoles({ roles = ["UI/UX Designer", "Mobile Devel
     
     const handleTyping = () => {
       if (!isDeleting) {
-        // Typing
         setDisplayedText(role.substring(0, displayedText.length + 1));
         setTypingSpeed(100);
 
         if (displayedText === role) {
-          // Finished typing, wait before deleting
           setIsDeleting(true);
           setTypingSpeed(2000);
         }
       } else {
-        // Deleting
         setDisplayedText(role.substring(0, displayedText.length - 1));
         setTypingSpeed(50);
 
@@ -40,7 +37,6 @@ export default function TerminalRoles({ roles = ["UI/UX Designer", "Mobile Devel
 
   return (
     <div className="w-full max-w-md bg-white border border-neutral-200/60 rounded-xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] font-mono">
-      {/* Terminal Header */}
       <div className="flex items-center px-4 py-3 bg-[#f5f5f5] border-b border-neutral-200/60 relative">
         <div className="flex gap-2 z-10">
           <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
@@ -48,13 +44,11 @@ export default function TerminalRoles({ roles = ["UI/UX Designer", "Mobile Devel
           <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
         </div>
         
-        {/* Centered Title */}
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-xs text-neutral-400 font-sans font-medium tracking-wide">Role — zsh</span>
         </div>
       </div>
 
-      {/* Terminal Content */}
       <div className="p-4 md:p-5 min-h-[90px] flex flex-col gap-1.5 bg-white overflow-hidden text-sm md:text-base">
         <div className="flex flex-row items-center flex-nowrap gap-2 w-full">
           <span className="text-emerald-500 font-medium whitespace-nowrap shrink-0">~ $</span>

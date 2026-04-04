@@ -24,7 +24,6 @@ function App() {
   const aboutRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Check if user has visited before in this session to prevent re-animation on back nav
   const [isFirstVisit, setIsFirstVisit] = useState(true);
 
   useEffect(() => {
@@ -36,23 +35,20 @@ function App() {
     }
   }, []);
 
-  // Manual Scroll Restoration Logic
   useEffect(() => {
     const shouldRestore = sessionStorage.getItem("should_restore_scroll");
     const savedPos = sessionStorage.getItem("home_scroll_pos");
 
     if (shouldRestore === "true" && savedPos) {
-      // Small timeout to allow DOM to settle if needed, though instant is better if content is ready
       setTimeout(() => {
         window.scrollTo(0, parseInt(savedPos));
       }, 0);
 
-      // Clear the flag so future refreshes start at top (standard behavior)
       sessionStorage.removeItem("should_restore_scroll");
     }
   }, []);
 
-  const [selectedProject, setSelectedProject] = useState(null); // null = modal tertutup
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -61,7 +57,6 @@ function App() {
   const handleCloseModal = () => {
     setSelectedProject(null);
   };
-  // -------------------------
 
 
 
@@ -176,7 +171,6 @@ function App() {
               </motion.span>
             </motion.h1>
 
-            {/* Consolidated TerminalRoles with consistent responsive alignment */}
             <motion.div
               className="text-lg text-neutral-600 mb-8 leading-relaxed w-full flex justify-center lg:justify-start"
               initial={isFirstVisit ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
@@ -203,7 +197,7 @@ function App() {
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="relative z-10 flex items-center gap-2 text-sm sm:text-base">
-                  My Resume
+                  resume
                   <svg className="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 </span>
                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 transform" />
@@ -221,6 +215,21 @@ function App() {
                 >
                   <span className="relative z-10 flex items-center justify-center">
                     <FaLinkedin className="w-5 h-5" />
+                  </span>
+                  <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 transform" />
+                </motion.a>
+
+                <motion.a
+                  href="https://github.com/drepradhit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative bg-white border border-neutral-200 text-neutral-900 p-3 rounded-full overflow-hidden transition-all duration-300 group hover:border-neutral-900 hover:bg-neutral-50 shadow-sm"
+                  aria-label="GitHub Profile"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    <FaGithub className="w-5 h-5" />
                   </span>
                   <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 transform" />
                 </motion.a>
@@ -244,10 +253,7 @@ function App() {
           </div>
 
         </div>
-        {/* About & Work Experience Grid */}
         <div className="mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" id="about">
-
-          {/* tentang Section with Refined Tactile Paper */}
           <div className="flex justify-center w-full">
             <motion.div
               className="w-full flex justify-center"
@@ -255,7 +261,6 @@ function App() {
               whileHover="hover"
               animate="rest"
             >
-              {/* Realistic Notebook Paper Column */}
               <motion.div
                 className="relative w-full max-w-2xl bg-[#ffffff] py-8 pr-6 md:py-16 md:pr-14 overflow-hidden mx-auto rounded-[3px] border border-[#e2e8f0] cursor-default"
                 variants={{
@@ -280,7 +285,6 @@ function App() {
                 style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.04)" }}
               >
 
-                {/* Torn Tape - Clean straighten */}
                 <motion.div
                   className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-10 bg-[#94a3b8] shadow-[0_1px_3px_rgba(0,0,0,0.1)] z-20 backdrop-blur-sm"
                   variants={{
@@ -301,7 +305,6 @@ function App() {
                   style={{ clipPath: 'polygon(3% 0%, 97% 2%, 99% 100%, 1% 98%)' }}
                 />
 
-                {/* Binder Holes (Loose Leaf) - Left Edge */}
                 {[20, 50, 80].map((top) => (
                   <div
                     key={top}
@@ -310,7 +313,6 @@ function App() {
                   />
                 ))}
 
-                {/* Paperclip - Subtle Adjustment */}
                 <motion.div
                   className="absolute top-4 right-4 md:right-8 z-30 opacity-70"
                   variants={{
@@ -327,7 +329,6 @@ function App() {
                   </svg>
                 </motion.div>
 
-                {/* Slate Line Margin (Standardized for masculine look) */}
                 <div className="absolute top-0 bottom-0 left-[60px] md:left-[80px] w-[2px] bg-slate-400/50 z-10" />
                 <div className="absolute top-0 bottom-0 left-[64px] md:left-[84px] w-[0.5px] bg-slate-400/20 z-10" />
 
@@ -339,7 +340,6 @@ function App() {
                   ← handwritten note
                 </div>
 
-                {/* Ruled Lines Background */}
                 <div
                   className="absolute inset-0 pointer-events-none z-0 mt-[14px]"
                   style={{
@@ -352,7 +352,6 @@ function App() {
                 <div className="absolute bottom-0 right-0 w-8 h-8 bg-gradient-to-tl from-neutral-200 to-transparent pointer-events-none"
                   style={{ clipPath: 'polygon(100% 0, 0 100%, 100% 100%)' }} />
 
-                {/* Text Container aligned properly offset from margins */}
                 <div className="relative z-10 pl-[75px] md:pl-[120px] pt-0 md:pt-4">
                   <motion.h2
                     className="text-2xl md:text-4xl text-[#1e293b] font-bold mb-4 md:mb-10 uppercase"
@@ -383,24 +382,19 @@ function App() {
             </motion.div>
           </div>
 
-          {/* Work Experience Section - Scrapbook Style */}
           <div className="w-full flex justify-center lg:justify-start">
             <WorkExperience experience={listExperience} />
           </div>
 
         </div>
 
-        {/* Tools Section - Updated to Finder Window */}
-        <div className="tools mt-20 md:mt-32 w-full mx-auto px-4" id="skills">
-          <ToolsExplorer tools={listTools} />
-        </div>
-        {/* tentang */}
-
-        {/* Proyek */}
         <div className="proyek mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4" id="project">
           <FinderWindow />
         </div>
-        {/* End Proyek */}
+
+        <div className="tools mt-20 md:mt-32 w-full mx-auto px-4" id="skills">
+          <ToolsExplorer tools={listTools} />
+        </div>
 
         <GithubDashboard />
 
