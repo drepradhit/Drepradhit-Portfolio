@@ -98,6 +98,13 @@ const listProyekBase = [
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
     dad: "800",
+    processSteps: [
+      { title: "Multiplayer Architecture", icon: "FiServer", color: "bg-blue-600" },
+      { title: "Logic & State Handling", icon: "FiCode", color: "bg-[#0ea5e9]" },
+      { title: "AI Opponent Brain", icon: "FiCpu", color: "bg-[#22c55e]" },
+      { title: "Real-time Syncing", icon: "FiActivity", color: "bg-[#84cc16]" },
+      { title: "Juicy Animations", icon: "FiStar", color: "bg-[#eab308]" },
+    ],
     pageImages: [
       { src: WhoofMeowHome, title: "Landing Page", desc: "The main hero section introducing the game characters and the high-energy Neo-Brutalist visual style." },
       { src: WhoofMeowMode, title: "Game Mode Selection", desc: "An interface where players can choose between VS AI, Local PVP, or Online Real-time multiplayer." },
@@ -269,6 +276,13 @@ const listProyekBase = [
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
     dad: "500",
+    processSteps: [
+      { title: "WPM Logic Design", icon: "FiCode", color: "bg-blue-600" },
+      { title: "Real-time Validation", icon: "FiActivity", color: "bg-[#0ea5e9]" },
+      { title: "Performance Metrics", icon: "FiCpu", color: "bg-[#22c55e]" },
+      { title: "Minimalist Interface", icon: "FiLayout", color: "bg-[#84cc16]" },
+      { title: "Refining Experience", icon: "FiStar", color: "bg-[#eab308]" },
+    ],
     pageImages: [
       { src: TypePaperStart, title: "Typing Interface", desc: "A clean, distraction-free environment focused entirely on the user's typing process, inspired by minimal design principles." },
       { src: TypePaperResult, title: "Performance Results", desc: "Comprehensive post-test data visualization displaying actual WPM, raw speed, accuracy percentage, and specific error tracking." },

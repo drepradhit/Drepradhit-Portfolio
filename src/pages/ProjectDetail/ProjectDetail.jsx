@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { listProyek, listTools } from "../../data";
 import { motion } from "framer-motion";
 import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
-import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers } from "react-icons/fi";
+import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity } from "react-icons/fi";
 import { useEffect } from "react";
 
 export default function ProjectDetail() {
@@ -332,10 +332,29 @@ export default function ProjectDetail() {
                     className="w-full max-w-[1200px] flex flex-col items-center px-4"
                 >
                     {(() => {
-                        let title = "Design Process";
+                        const iconMap = {
+                            FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity
+                        };
+
+                        const isDevProject = project.category === "Fullstack" || project.category === "Website" || project.category === "Game";
+                        
+                        let title = isDevProject ? "Development Workflow" : "Design Process";
                         let processSteps = [];
 
-                        if (project.category === "Fullstack") {
+                        if (project.processSteps) {
+                            const positions = [
+                                { top: "35%", left: "15%", labelPos: "top" },
+                                { top: "65%", left: "32.5%", labelPos: "bottom" },
+                                { top: "35%", left: "50%", labelPos: "top" },
+                                { top: "65%", left: "67.5%", labelPos: "bottom" },
+                                { top: "35%", left: "85%", labelPos: "top" },
+                            ];
+                            processSteps = project.processSteps.map((step, idx) => ({
+                                ...step,
+                                icon: iconMap[step.icon] || FiStar,
+                                ...positions[idx]
+                            }));
+                        } else if (project.category === "Fullstack") {
                             title = "Technical Architecture";
                             processSteps = [
                                 { title: "DB Modeling", icon: FiDatabase, color: "bg-indigo-600", top: "35%", left: "15%", labelPos: "top" },
@@ -344,8 +363,8 @@ export default function ProjectDetail() {
                                 { title: "QA Testing", icon: FiCheckCircle, color: "bg-emerald-600", top: "65%", left: "67.5%", labelPos: "bottom" },
                                 { title: "Cloud Launch", icon: FiGlobe, color: "bg-amber-500", top: "35%", left: "85%", labelPos: "top" },
                             ];
-                        } else if (project.category === "Website") {
-                            title = "Development Lifecycle";
+                        } else if (project.category === "Website" || project.category === "Game") {
+                            title = isDevProject ? "Development Lifecycle" : "Design Process";
                             processSteps = [
                                 { title: "Requirement", icon: FiSearch, color: "bg-purple-500", top: "35%", left: "15%", labelPos: "top" },
                                 { title: "Architecture", icon: FiLayers, color: "bg-slate-600", top: "65%", left: "32.5%", labelPos: "bottom" },
