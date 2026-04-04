@@ -75,9 +75,9 @@ const WorkExperience = ({ experience }) => {
                           style={{ fontFamily: "'Space Grotesk', sans-serif", textTransform: 'uppercase' }}>
                         {item.company}
                       </h3>
-                      <div className="shrink-0 pt-0 sm:pt-1">
-                        <div className={`bg-[#f1f5f9] px-3 py-1 md:py-1.5 border border-neutral-200 shadow-[2px_3px_8px_rgba(0,0,0,0.08)] ${stickyRotate}`}>
-                          <span className="text-[10px] md:text-[11px] font-black tracking-widest text-[#1e293b] uppercase"
+                       <div className="shrink-0 pt-0 sm:pt-1 mr-2 md:mr-0">
+                        <div className={`bg-[#f1f5f9] px-3 py-1 md:py-1.5 border border-neutral-200 shadow-[2px_3px_8px_rgba(0,0,0,0.08)] ${stickyRotate} transform-gpu`}>
+                          <span className="text-[10px] md:text-[11px] font-black tracking-widest text-[#1e293b] uppercase whitespace-nowrap"
                                 style={{ fontFamily: "'Space Mono', monospace" }}>
                             {item.period}
                           </span>
