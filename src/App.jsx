@@ -162,10 +162,10 @@ function App() {
           <div className="flex flex-col w-full min-h-[400px] items-center lg:items-start pt-0">
             <motion.div
               className="relative w-full bg-white overflow-hidden rounded-[32px] border border-neutral-200 cursor-default shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
               {/* iOS Notes Header Bar */}
               <div className="flex items-center justify-between px-8 pt-8 pb-6 bg-white/80 backdrop-blur-sm sticky top-0 z-20">
@@ -210,9 +210,16 @@ function App() {
           </div>
 
           {/* Column 2: Work Experience (Aligned with About) */}
-          <div className="w-full flex justify-center lg:justify-start pt-0" id="experience">
+          <motion.div 
+            className="w-full min-h-[400px] flex justify-center lg:justify-start pt-0" 
+            id="experience"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <WorkExperience experience={listExperience} />
-          </div>
+          </motion.div>
         </div>
 
         {/* PROJECTS SECTION */}
