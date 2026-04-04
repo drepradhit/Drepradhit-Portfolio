@@ -148,7 +148,7 @@ function App() {
           >
             <div className="w-full flex justify-center">
               <ProfileCard
-                avatarUrl="./assets/andre.jpg"
+                avatarUrl="./assets/andre.png"
               />
             </div>
           </motion.div>
