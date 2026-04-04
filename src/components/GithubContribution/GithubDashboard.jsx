@@ -95,15 +95,16 @@ const ResponsiveGitHubCalendar = () => {
     React.useEffect(() => {
       const handleResize = () => {
         const width = window.innerWidth;
+        // Total 21 weeks is roughly 5 months
+        const targetWeeks = 21;
+        setWeeks(targetWeeks);
+        
         if (width < 640) {
-          setWeeks(52);
-          setBlockSize(10);
-        } else if (width < 1024) {
-          setWeeks(52);
           setBlockSize(12);
-        } else {
-          setWeeks(52); 
+        } else if (width < 1024) {
           setBlockSize(14);
+        } else {
+          setBlockSize(16);
         }
       };
       handleResize();
@@ -119,7 +120,7 @@ const ResponsiveGitHubCalendar = () => {
         fontSize={10}
         theme={{ light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'] }}
         colorScheme="light"
-        transformData={(data) => data}
+        transformData={(data) => data.slice(-weeks * 7)}
       />
     );
   };
@@ -128,9 +129,7 @@ export default function GithubDashboard() {
   return (
     <div className="mt-32 w-full max-w-6xl mx-auto px-4 sm:px-0" id="github">
       <div className="bg-[#f0ece4] rounded-2xl border border-neutral-300/60 shadow-[0_20px_60px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col md:flex-row min-h-[500px]">
-        {/* Sidebar */}
         <div className="w-full md:w-56 bg-neutral-100/50 border-b md:border-b-0 md:border-r border-neutral-200 p-4 shrink-0">
-          {/* Traffic Lights */}
           <div className="flex gap-1.5 mb-8">
             <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
             <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
@@ -153,10 +152,8 @@ export default function GithubDashboard() {
           </div>
         </div>
 
-        {/* Main Content Area */}
         <div className="flex-1 p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           
-          {/* Contribution Heatmap Card */}
           <div className="md:col-span-2 bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Contributions</h3>
@@ -169,7 +166,6 @@ export default function GithubDashboard() {
             </div>
           </div>
 
-          {/* Bottom section with individual heights to avoid stretching */}
           <div className="bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm flex flex-col items-center">
             <h3 className="text-xs font-bold text-neutral-500 uppercase tracking-widest self-start mb-4">Focus Areas</h3>
             <CircularProficiency />
