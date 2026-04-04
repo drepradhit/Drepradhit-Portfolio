@@ -19,10 +19,10 @@ function ProjectCard({ project, index }) {
         >
             <motion.div
                 className="bg-white rounded-[24px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-neutral-100 flex flex-col h-full transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
             >
                 {/* Visual Section */}
                 <div className="relative h-[280px] overflow-hidden">

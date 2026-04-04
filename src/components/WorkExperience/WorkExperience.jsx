@@ -6,13 +6,13 @@ const WorkExperience = ({ experience }) => {
     <div className="w-full relative flex flex-col items-center z-10 pt-0">
       <div className="relative w-full max-w-2xl mx-auto pb-12 pt-0">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.5 }}
           className="relative group pt-0"
         >
-          <div className="relative bg-white border border-neutral-200 shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300"
+          <div className="relative bg-white border border-neutral-200 shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 min-h-[400px]"
                style={{ borderRadius: '32px' }}>
             
             {/* iOS Notes Header Bar */}

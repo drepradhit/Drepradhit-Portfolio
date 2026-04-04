@@ -11,10 +11,7 @@ import WorkExperience from "./components/WorkExperience/WorkExperience";
 import GithubDashboard from "./components/GithubContribution/GithubDashboard";
 
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { motion } from "framer-motion";
-import 'aos/dist/aos.css';
-
-AOS.init();
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -162,13 +159,13 @@ function App() {
         <div className="mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" id="about">
           
           {/* Column 1: About Card */}
-          <div className="flex flex-col w-full h-full items-center lg:items-start pt-0">
+          <div className="flex flex-col w-full min-h-[400px] items-center lg:items-start pt-0">
             <motion.div
               className="relative w-full bg-white overflow-hidden rounded-[32px] border border-neutral-200 cursor-default shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
             >
               {/* iOS Notes Header Bar */}
               <div className="flex items-center justify-between px-8 pt-8 pb-6 bg-white/80 backdrop-blur-sm sticky top-0 z-20">
