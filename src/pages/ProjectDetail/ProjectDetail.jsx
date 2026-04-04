@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { listProyek, listTools } from "../../data";
 import { motion } from "framer-motion";
 import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
-import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity } from "react-icons/fi";
+import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity, FiTarget, FiPenTool } from "react-icons/fi";
 import { useEffect } from "react";
 
 export default function ProjectDetail() {
@@ -333,15 +333,17 @@ export default function ProjectDetail() {
                 >
                     {(() => {
                         const iconMap = {
-                            FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity
+                            FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity, FiTarget, FiPenTool
                         };
 
-                        const isDevProject = project.category === "Fullstack" || project.category === "Website" || project.category === "Game";
-                        
-                        let title = isDevProject ? "Development Workflow" : "Design Process";
+                        let title = "Project Process";
                         let processSteps = [];
 
                         if (project.processSteps) {
+                            title = project.category === "Game" ? "Game Development Workflow" : 
+                                    project.category === "Fullstack" ? "Technical Architecture" : 
+                                    project.category === "Website" ? "Production Lifecycle" : "Design Process";
+                                    
                             const positions = [
                                 { top: "35%", left: "15%", labelPos: "top" },
                                 { top: "65%", left: "32.5%", labelPos: "bottom" },
@@ -354,32 +356,41 @@ export default function ProjectDetail() {
                                 icon: iconMap[step.icon] || FiStar,
                                 ...positions[idx]
                             }));
-                        } else if (project.category === "Fullstack") {
-                            title = "Technical Architecture";
+                        } else if (project.category === "Game") {
+                            title = "Game Mechanics Workflow";
                             processSteps = [
-                                { title: "DB Modeling", icon: FiDatabase, color: "bg-indigo-600", top: "35%", left: "15%", labelPos: "top" },
-                                { title: "API Development", icon: FiServer, color: "bg-slate-700", top: "65%", left: "32.5%", labelPos: "bottom" },
-                                { title: "Logic & Logic", icon: FiCode, color: "bg-sky-500", top: "35%", left: "50%", labelPos: "top" },
-                                { title: "QA Testing", icon: FiCheckCircle, color: "bg-emerald-600", top: "65%", left: "67.5%", labelPos: "bottom" },
-                                { title: "Cloud Launch", icon: FiGlobe, color: "bg-amber-500", top: "35%", left: "85%", labelPos: "top" },
+                                { title: "Mechanics Design", icon: FiTarget, color: "bg-orange-600", top: "35%", left: "15%", labelPos: "top" },
+                                { title: "Asset Pipeline", icon: FiPenTool, color: "bg-rose-500", top: "65%", left: "32.5%", labelPos: "bottom" },
+                                { title: "Logic & Physics", icon: FiCode, color: "bg-blue-600", top: "35%", left: "50%", labelPos: "top" },
+                                { title: "Playtesting", icon: FiActivity, color: "bg-emerald-500", top: "65%", left: "67.5%", labelPos: "bottom" },
+                                { title: "Build Release", icon: FiGlobe, color: "bg-amber-500", top: "35%", left: "85%", labelPos: "top" },
                             ];
-                        } else if (project.category === "Website" || project.category === "Game") {
-                            title = isDevProject ? "Development Lifecycle" : "Design Process";
+                        } else if (project.category === "Fullstack") {
+                            title = "System Architecture";
                             processSteps = [
-                                { title: "Requirement", icon: FiSearch, color: "bg-purple-500", top: "35%", left: "15%", labelPos: "top" },
-                                { title: "Architecture", icon: FiLayers, color: "bg-slate-600", top: "65%", left: "32.5%", labelPos: "bottom" },
-                                { title: "UI/UX Build", icon: FiLayout, color: "bg-emerald-500", top: "35%", left: "50%", labelPos: "top" },
-                                { title: "Coding & Integration", icon: FiCode, color: "bg-sky-500", top: "65%", left: "67.5%", labelPos: "bottom" },
-                                { title: "Vercel Launch", icon: FiGlobe, color: "bg-amber-500", top: "35%", left: "85%", labelPos: "top" },
+                                { title: "DB Schematics", icon: FiDatabase, color: "bg-indigo-600", top: "35%", left: "15%", labelPos: "top" },
+                                { title: "API Infrastructure", icon: FiServer, color: "bg-slate-700", top: "65%", left: "32.5%", labelPos: "bottom" },
+                                { title: "Backend Logic", icon: FiCpu, color: "bg-sky-600", top: "35%", left: "50%", labelPos: "top" },
+                                { title: "Frontend Sync", icon: FiLayout, color: "bg-blue-500", top: "65%", left: "67.5%", labelPos: "bottom" },
+                                { title: "Cloud Deployment", icon: FiGlobe, color: "bg-amber-500", top: "35%", left: "85%", labelPos: "top" },
+                            ];
+                        } else if (project.category === "Website") {
+                            title = "Web Production Cycle";
+                            processSteps = [
+                                { title: "Audit & Analysis", icon: FiSearch, color: "bg-purple-500", top: "35%", left: "15%", labelPos: "top" },
+                                { title: "Component Arch", icon: FiLayers, color: "bg-slate-600", top: "65%", left: "32.5%", labelPos: "bottom" },
+                                { title: "Interface Build", icon: FiLayout, color: "bg-emerald-500", top: "35%", left: "50%", labelPos: "top" },
+                                { title: "Client Side Logic", icon: FiCode, color: "bg-sky-500", top: "65%", left: "67.5%", labelPos: "bottom" },
+                                { title: "Vercel Edge", icon: FiGlobe, color: "bg-amber-500", top: "35%", left: "85%", labelPos: "top" },
                             ];
                         } else {
-                            title = "Design Process";
+                            title = "Design Methodology";
                             processSteps = [
-                                { title: "User Interview", icon: FiMessageSquare, color: "bg-blue-500", top: "35%", left: "15%", labelPos: "top" },
-                                { title: "Journey Mapping", icon: FiMapPin, color: "bg-[#0ea5e9]", top: "65%", left: "32.5%", labelPos: "bottom" },
-                                { title: "Information Arch", icon: FiMap, color: "bg-[#22c55e]", top: "35%", left: "50%", labelPos: "top" },
+                                { title: "User Research", icon: FiMessageSquare, color: "bg-blue-500", top: "35%", left: "15%", labelPos: "top" },
+                                { title: "Journey Flow", icon: FiMapPin, color: "bg-[#0ea5e9]", top: "65%", left: "32.5%", labelPos: "bottom" },
+                                { title: "Info Architecture", icon: FiMap, color: "bg-[#22c55e]", top: "35%", left: "50%", labelPos: "top" },
                                 { title: "Wireframing", icon: FiLayout, color: "bg-lime-500", top: "65%", left: "67.5%", labelPos: "bottom" },
-                                { title: "Hi-Fi Prototype", icon: FiStar, color: "bg-[#f59e0b]", top: "35%", left: "85%", labelPos: "top" },
+                                { title: "Hi-Fi Prototyping", icon: FiStar, color: "bg-[#f59e0b]", top: "35%", left: "85%", labelPos: "top" },
                             ];
                         }
 

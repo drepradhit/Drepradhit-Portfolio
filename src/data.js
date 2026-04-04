@@ -134,6 +134,13 @@ const listProyekBase = [
     year: "2026",
     techstack: ["React JS", "Tailwind", "Javascript", "Figma", "GSAP"],
     dad: "300",
+    processSteps: [
+      { title: "Service Strategy", icon: "FiSearch", color: "bg-purple-500" },
+      { title: "Visual Identity", icon: "FiPenTool", color: "bg-rose-500" },
+      { title: "Frontend Core", icon: "FiCode", color: "bg-blue-600" },
+      { title: "Scroll Experience", icon: "FiActivity", color: "bg-emerald-500" },
+      { title: "Showcase Launch", icon: "FiGlobe", color: "bg-amber-500" },
+    ],
     pageImages: [
       { src: DrevelopmentLanding, title: "Parallax Agency Landing", desc: "A sleek and immersive landing page offering Website creation and UI/UX Design services. It features dynamic parallax scrolling effects that create a premium, deep visual experience for visitors." }
     ]
@@ -161,6 +168,13 @@ const listProyekBase = [
     year: "2025",
     techstack: ["Node JS", "React JS", "Tailwind", "PostgreSQL", "Javascript"],
     dad: "200",
+    processSteps: [
+      { title: "Financial Logic", icon: "FiCpu", color: "bg-indigo-600" },
+      { title: "REST API Setup", icon: "FiServer", color: "bg-slate-700" },
+      { title: "Postgres Schema", icon: "FiDatabase", color: "bg-sky-600" },
+      { title: "PDF Export System", icon: "FiCheckCircle", color: "bg-emerald-600" },
+      { title: "Data Dashboard", icon: "FiLayout", color: "bg-amber-500" },
+    ],
     pageImages: [
       { src: RupiahFlowHome, title: "Main Dashboard", desc: "A comprehensive overview displaying current balances, total income vs expenses, a visual transaction bar graph, recent history, and a quick-action shortcut to instantly log transactions." },
       { src: RupiahFlowCategories, title: "Category Settings", desc: "A streamlined category management interface where users can view and organize income and expense groupings, featuring full CRUD capability to freely add, edit, or delete items." },
@@ -189,6 +203,13 @@ const listProyekBase = [
     year: "2024",
     techstack: ["Figma", "Illustrator"],
     dad: "100",
+    processSteps: [
+      { title: "Learning Research", icon: "FiSearch", color: "bg-blue-500" },
+      { title: "User Flows", icon: "FiMap", color: "bg-[#0ea5e9]" },
+      { title: "Adaptive Layout", icon: "FiLayout", color: "bg-[#22c55e]" },
+      { title: "Gamified UI", icon: "FiStar", color: "bg-lime-500" },
+      { title: "Personality Sync", icon: "FiActivity", color: "bg-[#f59e0b]" },
+    ],
     pageImages: [
       { src: ThinkWaysLogin, title: "Login Experience", desc: "A clean and accessible authentication screen welcoming the user to begin their personalized educational experience." },
       { src: ThinkWaysPersonality, title: "Personality Test", desc: "An initial diagnostic questionnaire to analyze learning styles, allowing the AI to recommend and curate a customized course roadmap." },
@@ -218,6 +239,13 @@ const listProyekBase = [
     year: "2026",
     techstack: ["Figma", "Illustrator"],
     dad: "600",
+    processSteps: [
+      { title: "Event Exploration", icon: "FiSearch", color: "bg-indigo-500" },
+      { title: "Ticket Purchase Flow", icon: "FiActivity", color: "bg-rose-500" },
+      { title: "Vibrant UI", icon: "FiStar", color: "bg-orange-500" },
+      { title: "Lineup Discovery", icon: "FiLayers", color: "bg-emerald-500" },
+      { title: "Mobile Polish", icon: "FiLayout", color: "bg-slate-700" },
+    ],
     pageImages: [
       { src: CertixWelcome, title: "Welcome Screen", desc: "An inviting, energetic splash and onboarding screen that hooks users into the personalized concert discovery experience." },
       { src: CertixHome, title: "Discovery Homepage", desc: "The main hub where users can seamlessly browse various concert genres, select specific dates, and discover exactly what live events are available." }
@@ -246,6 +274,13 @@ const listProyekBase = [
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
     dad: "400",
+    processSteps: [
+      { title: "Concept Design", icon: "FiPenTool", color: "bg-blue-600" },
+      { title: "Pre-Production", icon: "FiSearch", color: "bg-purple-500" },
+      { title: "Full Production", icon: "FiActivity", color: "bg-rose-500" },
+      { title: "Post-Production", icon: "FiCode", color: "bg-[#0ea5e9]" },
+      { title: "Client Handoff", icon: "FiCheckCircle", color: "bg-emerald-600" },
+    ],
     pageImages: [
       { src: DamianosHero, title: "Hero Section", desc: "A captivating landing page emphasizing bold typography and high-quality hero imagery to instantly establish brand identity." },
       { src: DamianosWorks, title: "How We Work", desc: "A detailed breakdown of our creative workflow, showcasing our end-to-end process from initial Pre-Production and concept development through to high-quality Production and final Post-Production delivery." },
@@ -317,6 +352,13 @@ const listProyekBase = [
       { src: NanceTransfer, title: "Transfer Money", desc: "A streamlined, secure transaction interface designed to make sending money as quick and error-free as possible." },
       { src: NanceReceipt, title: "Transaction Receipt", desc: "A clear, professionally formatted success receipt providing immediate proof of a completed transfer." },
       { src: NanceTransactions, title: "Transaction History", desc: "A detailed and filterable ledger containing all past incoming and outgoing monetary interactions." }
+    ],
+    processSteps: [
+      { title: "Finance Research", icon: "FiSearch", color: "bg-blue-600" },
+      { title: "Transfer Flow UX", icon: "FiActivity", color: "bg-[#0ea5e9]" },
+      { title: "Analytics Charts", icon: "FiStar", color: "bg-[#22c55e]" },
+      { title: "Secure Dashboard", icon: "FiLayout", color: "bg-[#84cc16]" },
+      { title: "Receipt Engine", icon: "FiCheckCircle", color: "bg-[#eab308]" },
     ]
   }
 ];
