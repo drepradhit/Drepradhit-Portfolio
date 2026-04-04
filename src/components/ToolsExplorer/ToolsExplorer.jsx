@@ -1,116 +1,95 @@
-import { useState } from 'react';
-import React from 'react';
-import { motion, AnimatePresence, Reorder } from 'framer-motion';
-
-// Pseudo-random rotations for organic feel
-const rotations = [-3, 2, -1, 3, -2, 1, -3, 2, -1, 3, -2, 1];
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ToolsExplorer({ tools }) {
-  const [items, setItems] = useState(() => tools.filter(t => t.nama !== 'GSAP'));
+  const [currentPage, setCurrentPage] = useState(0);
+  
+  const itemsPerPage = 9;
+  const totalPages = Math.ceil(tools.length / itemsPerPage);
+  const currentTools = tools.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+
+  const paginate = (direction) => {
+    const next = (currentPage + direction + totalPages) % totalPages;
+    setCurrentPage(next);
+  };
 
   return (
-    <div className="w-full max-w-5xl mx-auto pt-10 px-4 md:px-0">
-      <div className="relative min-h-[400px]">
-        
-        {/* Retro Header - Now in normal flow to prevent collisions */}
-        <div className="flex flex-col items-center md:items-start mb-16 md:mb-20">
-          <div className="group cursor-default relative">
-            <div className="flex items-center">
-               <h3 
-                className="text-4xl md:text-5xl text-neutral-800/90 -rotate-2 whitespace-nowrap tracking-tight"
-                style={{ fontFamily: "'Permanent Marker', cursive" }}
-               >
-                # tools
-               </h3>
-            </div>
-            <div className="w-32 h-[2px] bg-amber-400/40 mt-1 -ml-2 -rotate-1" />
-          </div>
-        </div>
+    <div className="w-full flex flex-col items-center max-w-[360px] mx-auto lg:mx-0 mt-12 group select-none">
+      
+      {/* Container with a subtle "Wallpaper" glow to make white text pop */}
+      <div className="relative w-full p-10 flex flex-col items-center rounded-[60px] overflow-hidden">
+        {/* Dynamic Wallpaper Glow (Like an iOS wallpaper) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-[#e5e5ea] to-neutral-300 opacity-80" />
+        <div className="absolute top-[-10%] right-[-10%] w-60 h-60 bg-blue-400/20 blur-[100px] rounded-full" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-60 h-60 bg-yellow-400/20 blur-[100px] rounded-full" />
 
-        {/* Removed retro starburst doodle */}
+        {/* iOS Folder Heading - Bold & Centered (White) */}
+        <h3 className="relative z-10 text-[32px] font-bold text-white mb-8 tracking-tight text-center w-full drop-shadow-sm">
+          Tech Stack
+        </h3>
 
-        {/* Hand-drawn Arrow SVG - Still floating far left */}
-        <div className="absolute top-40 -left-16 text-neutral-300/40 pointer-events-none hidden xl:block rotate-12">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M3 12h18m0 0l-7-7m7 7l-7 7" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] mt-1 ml-1 opacity-60" style={{ fontFamily: "'Permanent Marker', cursive" }}>
-            my digital stack
-          </p>
-        </div>
+        {/* iOS Folder - Extreme Frosted Glass */}
+        <div className="relative z-10 w-full aspect-square bg-white/10 backdrop-blur-[60px] rounded-[52px] border border-white/20 p-8 shadow-[0_40px_100px_rgba(0,0,0,0.1)] flex flex-col items-center">
+          
+          {/* Glass Gloss (Top highlight) */}
+          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/10 to-transparent rounded-t-[52px] pointer-events-none" />
 
-        {/* Tools Grid - Stable Version */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-4 gap-y-12 sm:gap-x-6 sm:gap-y-16">
-          <AnimatePresence mode="popLayout">
-            {items.map((tool, index) => {
-              const rotation = rotations[index % rotations.length];
-              
-              return (
-                <motion.div
-                  key={tool.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.7, rotate: rotation * 2 }}
-                  animate={{ opacity: 1, scale: 1, rotate: rotation }}
-                  exit={{ opacity: 0, scale: 0.7 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 25, delay: index * 0.03 }}
-                  whileHover={{ 
-                    scale: 1.15, 
-                    rotate: 0, 
-                    y: -10,
-                    zIndex: 20,
-                    transition: { duration: 0.2 } 
-                  }}
-                  className="flex flex-col items-center group cursor-pointer relative"
-                >
-                  <div className="relative transition-all duration-300">
-                    {/* Icon with Sticker Effect */}
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center mb-3">
+          {/* 3x3 Exact Icons Grid */}
+          <div className="w-full h-full relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentPage}
+                initial={{ opacity: 0, scale: 0.85, filter: "blur(10px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 1.15, filter: "blur(10px)" }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className="grid grid-cols-3 gap-x-2 gap-y-12 h-full w-full content-start pt-2"
+              >
+                {currentTools.map((tool) => (
+                  <div key={tool.id} className="flex flex-col items-center gap-2">
+                    {/* iOS App Square */}
+                    <motion.div 
+                      className="w-[66px] h-[66px] sm:w-[74px] sm:h-[74px] bg-white rounded-[18px] shadow-[0_10px_25px_rgba(0,0,0,0.08)] flex items-center justify-center p-3 relative overflow-hidden active:scale-90 transition-transform"
+                      whileHover={{ scale: 1.05 }}
+                    >
                       <img 
                         src={tool.gambar} 
                         alt={tool.nama} 
-                        className={`w-full h-full object-contain transition-transform duration-300 ${tool.nama === 'Node JS' ? 'scale-[1.4]' : ''}`}
-                        style={{
-                          filter: "url(#tools-sticker-outline) drop-shadow(0 4px 6px rgba(0,0,0,0.12))",
-                        }} 
+                        className="w-full h-full object-contain pointer-events-none drop-shadow-sm" 
                       />
-                    </div>
-
-                    {/* Name - handwritten style floating */}
-                    <p 
-                      className="text-[10px] sm:text-xs md:text-sm text-center text-neutral-500 font-medium tracking-wide group-hover:text-neutral-900 transition-colors"
-                      style={{ fontFamily: "'Caveat', cursive" }}
-                    >
-                      {tool.nama}
-                    </p>
+                      {/* Subtle gloss on icon */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
+                    </motion.div>
                     
-                    {/* Subtle sketch underline on hover */}
-                    <div className="w-0 h-[1px] bg-amber-400 group-hover:w-full mx-auto mt-0.5 transition-all duration-300" />
+                    {/* iOS White Label */}
+                    <span className="text-[12px] font-medium text-white tracking-tight text-center w-full truncate px-1 drop-shadow-sm">
+                      {tool.nama}
+                    </span>
                   </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-        {/* HIDDEN SVG FILTER FOR BOLD STICKER OUTLINE (MATCHING HERO SECTION) */}
-        <svg width="0" height="0" style={{ position: 'absolute', visibility: 'hidden' }}>
-          <defs>
-            <filter id="tools-sticker-outline" x="-40%" y="-40%" width="180%" height="180%">
-              {/* Expand alpha mask for a bold white border */}
-              <feMorphology in="SourceAlpha" result="dilated" operator="dilate" radius="3.5"/>
-              
-              {/* Fill the area with pure white */}
-              <feFlood floodColor="white" result="whiteFill"/>
-              <feComposite in="whiteFill" in2="dilated" operator="in" result="stroke"/>
-              
-              {/* Merge original logo on top of the stroke */}
-              <feMerge>
-                <feMergeNode in="stroke"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-        </svg>
+          {/* Pagination Interaction Mask */}
+          {totalPages > 1 && (
+            <div className="absolute inset-0 z-20 flex">
+              <div className="w-1/3 h-full cursor-pointer" onClick={() => paginate(-1)} />
+              <div className="w-1/3 h-full pointer-events-none" />
+              <div className="w-1/3 h-full cursor-pointer" onClick={() => paginate(1)} />
+            </div>
+          )}
+
+          {/* iOS White Pagination Dots */}
+          <div className="absolute bottom-6 left-0 w-full flex justify-center gap-2 z-30">
+            {[...Array(totalPages)].map((_, i) => (
+              <div 
+                key={i} 
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentPage ? 'bg-white scale-125' : 'bg-white/30'}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

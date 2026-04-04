@@ -3,115 +3,70 @@ import { motion } from "framer-motion";
 
 const WorkExperience = ({ experience }) => {
   return (
-    <div className="w-full relative py-6 flex flex-col items-center z-10">
-      <style>{`
-        .washi-tape-1 {
-          background-color: #94a3b8;
-          background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.2) 50%);
-          background-size: 10px 10px;
-          opacity: 0.85;
-          mix-blend-mode: multiply;
-          box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-        .washi-tape-2 {
-          background-color: #cbd5e1;
-          opacity: 0.8;
-          mix-blend-mode: multiply;
-          box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-        .paper-grid {
-          background-color: #ffffff;
-          background-image: 
-            linear-gradient(#f1f5f9 1.5px, transparent 1.5px),
-            linear-gradient(90deg, #f1f5f9 1.5px, transparent 1.5px);
-          background-size: 24px 24px;
-        }
-      `}</style>
-
-      <div className="relative w-full max-w-2xl px-4 md:px-0 mx-auto pb-12 mt-6">
+    <div className="w-full relative flex flex-col items-center z-10 pt-0">
+      <div className="relative w-full max-w-2xl mx-auto pb-12 pt-0">
         <motion.div 
-          initial={{ opacity: 0, y: 30, rotate: -2 }}
-          whileInView={{ opacity: 1, y: 0, rotate: -1 }}
-          viewport={{ once: true, margin: "-50px" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative group"
+          className="relative group pt-0"
         >
-          <div className="relative px-6 py-8 md:px-10 md:py-10 paper-grid border border-neutral-200 shadow-[4px_12px_44px_rgba(0,0,0,0.08)] bg-white transition-transform duration-500 hover:scale-[1.01]"
-               style={{ borderRadius: '3px 8px 4px 6px' }}>
+          <div className="relative bg-white border border-neutral-200 shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300"
+               style={{ borderRadius: '32px' }}>
             
-            <div className="absolute -top-4 left-6 w-24 h-6 washi-tape-2 rotate-3 z-40 hidden sm:block"
-                 style={{ clipPath: 'polygon(2% 10%, 98% 0%, 100% 85%, 0% 100%)' }} />
-                 
-            <div className="absolute -bottom-3 right-6 w-20 h-5 washi-tape-1 -rotate-2 z-40 hidden sm:block"
-                 style={{ clipPath: 'polygon(1% 0%, 96% 2%, 100% 90%, 5% 100%)' }} />
-
-            <div className="relative mb-10 w-full flex justify-start z-30">
-              <div 
-                className="relative inline-block bg-[#171717] text-[#f8fafc] px-6 py-2.5 shadow-[2px_4px_8px_rgba(23,23,23,0.3)] -rotate-1"
-                style={{ 
-                  clipPath: 'polygon(1% 0%, 99% 2%, 100% 98%, 0% 100%)',
-                }}
-              >
-                <div className="absolute -top-3 left-6 w-16 h-4 washi-tape-2 -rotate-2 z-30" style={{ clipPath: 'polygon(2% 10%, 98% 0%, 100% 90%, 0% 100%)' }}></div>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-[0.15em] uppercase" style={{ fontFamily: "'Space Mono', monospace" }}>
-                  Experience
-                </h2>
+            {/* iOS Notes Header Bar */}
+            <div className="flex items-center justify-between px-8 pt-8 pb-6 bg-white/80 backdrop-blur-sm sticky top-0 z-20">
+              <div className="flex items-center gap-6">
+                <button className="text-[#eab308] hover:opacity-70 transition-opacity">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+              </div>
+              <div className="flex items-center gap-6">
+                <button className="text-[#eab308] hover:opacity-70 transition-opacity">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                </button>
+                <span className="text-[#eab308] font-semibold text-[17px] ml-2 cursor-pointer hover:opacity-70 transition-opacity">Done</span>
               </div>
             </div>
 
-            <div className="relative z-10 flex flex-col gap-10 md:gap-12">
-              
-              {experience.map((item, index) => {
-                // Neutral and masculine highlighter colors (Blue & Yellow)
-                const highlightColor = index % 2 === 0 ? "bg-[#38bdf8]/30" : "bg-[#fde047]/50";
-                const stickyRotate = index % 2 === 0 ? "rotate-4" : "-rotate-3";
+            <div className="px-8 md:px-12 pt-2 pb-12">
+              <div className="relative mb-10 w-full flex justify-start z-30">
+                <h2 className="text-3xl md:text-5xl font-bold text-[#1e293b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  Experience
+                </h2>
+              </div>
 
-                return (
-                  <div key={item.id} className="relative flex flex-col items-start border-b-[2px] border-neutral-900/5 pb-10 md:pb-10 last:border-0 last:pb-0">
-                    
-                    <div className="flex flex-col sm:flex-row justify-between items-start w-full gap-3 sm:gap-4 mb-2 sm:mb-0">
-                      
-                      <h3 className="text-2xl md:text-[34px] font-black leading-tight drop-shadow-sm text-neutral-900"
-                          style={{ fontFamily: "'Space Grotesk', sans-serif", textTransform: 'uppercase' }}>
-                        {item.company}
-                      </h3>
-                       <div className="shrink-0 pt-0 sm:pt-1 mr-2 md:mr-0">
-                        <div className={`bg-[#f1f5f9] px-3 py-1 md:py-1.5 border border-neutral-200 shadow-[2px_3px_8px_rgba(0,0,0,0.08)] ${stickyRotate} transform-gpu`}>
-                          <span className="text-[10px] md:text-[11px] font-black tracking-widest text-[#1e293b] uppercase whitespace-nowrap"
-                                style={{ fontFamily: "'Space Mono', monospace" }}>
-                            {item.period}
-                          </span>
-                        </div>
+              <div className="relative z-10 flex flex-col gap-6">
+                {experience.map((item, index) => {
+                  return (
+                    <div key={item.id} className="relative border-b border-neutral-100 pb-6 last:border-0 last:pb-0">
+                      <div className="flex justify-between items-baseline mb-1">
+                        <h3 className="text-[17px] font-bold text-black tracking-tight">
+                          {item.company}
+                        </h3>
+                        <span className="text-[13px] font-medium text-neutral-400 uppercase tracking-tight">
+                          {item.period}
+                        </span>
                       </div>
                       
-                    </div>
-                    
-                    <div className="relative inline-block mt-1 mb-5 md:mb-6">
-                      <span className="relative z-10 text-[16px] md:text-[20px] font-bold tracking-wide text-neutral-700"
-                            style={{ fontFamily: "'Caveat', cursive" }}>
-                        {item.role}
-                      </span>
-                      <div className={`absolute bottom-[2px] left-[-2%] w-[104%] h-[10px] opacity-90 ${highlightColor} -rotate-1 z-0`}></div>
-                    </div>
-                    
-                    <div className="relative w-full">
-                      <span className="absolute -top-4 -left-4 text-5xl opacity-5 font-serif select-none pointer-events-none">"</span>
-                      <p className="text-[14px] md:text-[15px] leading-relaxed max-w-[90%] md:max-w-[88%] text-neutral-600 font-medium relative z-10"
-                         style={{ fontFamily: "'Inter', sans-serif" }}>
+                      <div className="mb-2">
+                        <span className="text-[15px] font-medium text-neutral-600">
+                          {item.role}
+                        </span>
+                      </div>
+                      
+                      <p className="text-[14px] leading-[1.4] text-neutral-500 font-normal">
                         {item.description}
                       </p>
                     </div>
-
-                    {/* Removed decorative star doodle */}
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-
           </div>
         </motion.div>
       </div>
-
     </div>
   );
 };

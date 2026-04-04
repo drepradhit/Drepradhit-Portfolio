@@ -1,74 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { listTools } from "../../data";
-import "./ProfileCard.css";
 
-const ProfileCardComponent = ({
-  avatarUrl = "./assets/andre.jpg",
-  className = "",
-}) => {
-  const [isBurstActive, setIsBurstActive] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isTouchMode, setIsTouchMode] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
-
-  useEffect(() => {
-    const checkTouchMode = () => {
-      if (typeof window === "undefined") return false;
-      
-      const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-      if (hasMouse) return false;
-
-      const hasTouch = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-      return hasTouch || window.innerWidth < 1024;
-    };
-
-    setIsTouchMode(checkTouchMode());
-
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-      setIsTouchMode(checkTouchMode());
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const isUltraMobile = windowWidth < 480;
-  const isTabletArea = windowWidth >= 480 && windowWidth < 1024;
-  const isDesktopArea = windowWidth >= 1024;
-
-  const handleInteraction = (e) => {
-    if (isTouchMode) {
-      e.stopPropagation();
-      setIsBurstActive(!isBurstActive);
-    }
-  };
-
+const ProfileCard = ({ avatarUrl = "./assets/andre.png", className = "" }) => {
   return (
-    <div 
-      className={`pc-polaroid-wrapper ${className}`.trim()}
-      style={{ padding: isUltraMobile ? "40px" : "60px" }}
-    >
-
-
-      <div 
-        className="pc-polaroid-card relative z-10"
-        style={{ transform: "rotate(-1deg)" }}
-      >
-        <div className="pc-grain-overlay" />
-        <div className="pc-photo-area">
-          <img className="pc-avatar" src={avatarUrl} alt="UI UX Designer" loading="lazy" />
-          <div className="pc-film-shine" />
+    <div className={`relative flex items-center justify-center py-10 sm:py-20 ${className}`.trim()}>
+      <div className="relative w-full max-w-[420px] aspect-[4/5]">
+        
+        {/* Bottom Stack Polaroid */}
+        <div 
+          className="absolute inset-0 bg-white p-5 pb-16 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-neutral-100 rotate-[-6deg] -translate-x-3 -translate-y-2 z-10"
+        >
+          <div className="w-full h-full bg-neutral-50 shadow-inner overflow-hidden">
+             <div className="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-50 opacity-40" />
+          </div>
         </div>
-        <div className="pc-polaroid-info">
-          <h3 className="pc-polaroid-name">portfolio</h3>
+
+        {/* Middle Stack Polaroid */}
+        <div 
+          className="absolute inset-0 bg-white p-5 pb-16 shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-neutral-100 rotate-[3deg] translate-x-4 translate-y-2 z-20"
+        >
+          <div className="w-full h-full bg-neutral-100 shadow-inner overflow-hidden">
+             <div className="w-full h-full bg-gradient-to-tl from-neutral-200 to-neutral-100 opacity-30" />
+          </div>
         </div>
+
+        {/* Top/Primary Polaroid */}
+        <motion.div 
+          className="relative bg-white p-5 pb-14 shadow-[0_20px_70px_rgba(0,0,0,0.12)] border border-neutral-100 z-30 transform-gpu rotate-[-1deg]"
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 80, damping: 22, delay: 0.2 }}
+        >
+          {/* Main Photo Area */}
+          <div className="relative aspect-square w-full overflow-hidden bg-neutral-50 shadow-inner border border-neutral-100/30">
+            <img 
+              className="w-full h-full object-cover" 
+              src={avatarUrl} 
+              alt="Andre Pradhit" 
+              loading="lazy" 
+            />
+            {/* Inner frame shadow */}
+            <div className="absolute inset-0 shadow-[inset_0_0_30px_rgba(0,0,0,0.03)] pointer-events-none" />
+          </div>
+
+          {/* Authentic Paper Texture Overlay */}
+          <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/paper.png')]" />
+        </motion.div>
       </div>
     </div>
   );
 };
 
-
-const ProfileCard = React.memo(ProfileCardComponent);
 export default ProfileCard;

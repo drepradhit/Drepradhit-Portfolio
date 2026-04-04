@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { listProyek, listTools } from "../../data";
 import { motion } from "framer-motion";
 import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
-import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity, FiTarget, FiPenTool } from "react-icons/fi";
+import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity, FiTarget, FiPenTool, FiChevronLeft } from "react-icons/fi";
 import { useEffect } from "react";
 
 export default function ProjectDetail() {
@@ -25,14 +25,7 @@ export default function ProjectDetail() {
     };
 
     return (
-        <div className="relative w-full min-h-screen bg-[#f8fafc] text-neutral-800 selection:bg-blue-100/50"
-             style={{ 
-                 backgroundImage: `
-                     linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-                     linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)
-                 `,
-                 backgroundSize: '40px 40px'
-             }}>
+        <div className="relative w-full min-h-screen bg-[#f8fafc] text-neutral-800 selection:bg-blue-100/50 font-inter">
 
             <style>{`
                 .washi-slate {
@@ -69,11 +62,10 @@ export default function ProjectDetail() {
                 <button 
                     onClick={() => navigate(-1)}
                     aria-label="Go back to previous page"
-                    className="group flex items-center gap-2 px-5 py-2.5 bg-[#fefcf5] border border-[#e5ddd0] shadow-[2px_3px_8px_rgba(0,0,0,0.08)] hover:shadow-[3px_5px_12px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-pointer rotate-[-2deg] hover:rotate-0"
-                    style={{ borderRadius: '3px' }}
+                    className="group flex items-center gap-1.5 px-0 py-2 text-[#007AFF] cursor-pointer"
                 >
-                    <FaArrowLeft className="text-neutral-500 text-xs group-hover:-translate-x-1 transition-transform" />
-                    <span className="font-bold text-sm text-neutral-600" style={{ fontFamily: "'Caveat', cursive" }}>go back</span>
+                    <FiChevronLeft className="text-2xl active:opacity-50 transition-opacity" />
+                    <span className="font-medium text-[17px] tracking-tight active:opacity-50 transition-opacity">Back</span>
                 </button>
             </motion.div>
 
@@ -89,15 +81,13 @@ export default function ProjectDetail() {
                     >
                         {/* Polaroid */}
                         <motion.div
-                            initial={{ rotate: -5, scale: 0.9 }}
-                            animate={{ rotate: -2, scale: 1 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            initial={{ rotate: 0, scale: 1 }}
+                            animate={{ rotate: 0, scale: 1 }}
                         >
-                            <div className="relative bg-white p-4 pb-16 sm:p-5 sm:pb-20 shadow-[4px_8px_24px_rgba(0,0,0,0.1)] border border-neutral-100 rotate-[-2deg] hover:rotate-[-1deg] hover:scale-[1.02] transition-all duration-500 w-[320px] sm:w-[380px]">
+                            <div className="relative bg-white p-4 pb-4 sm:p-5 sm:pb-5 shadow-[4px_8px_24px_rgba(0,0,0,0.1)] border border-neutral-100 transition-all duration-500 w-[320px] sm:w-[380px]">
                                 
-                                {/* Tape */}
-                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-7 washi-yellow rotate-[3deg] z-30"
-                                     style={{ clipPath: 'polygon(2% 0%, 98% 3%, 96% 100%, 4% 97%)' }} />
+                                {/* Header Accent */}
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-neutral-900/5" />
 
                                 <div className="relative w-full aspect-[4/3] bg-neutral-100 overflow-hidden">
                                     <img 
@@ -106,48 +96,36 @@ export default function ProjectDetail() {
                                         className="w-full h-full object-cover" 
                                     />
                                 </div>
-
-                                <div className="absolute bottom-[4%] left-0 right-0 flex justify-center">
-                                    <span style={{ fontFamily: "'Caveat', 'Kalam', cursive" }} className="text-2xl sm:text-3xl text-neutral-700 tracking-wide font-bold rotate-[-1deg]">
-                                        {project.title}
-                                    </span>
-                                </div>
                             </div>
                         </motion.div>
 
                         {/* Title + Subtitle */}
                         <div className="text-center">
-                            <h1 className="text-4xl sm:text-5xl font-bold text-[#2e1805] mb-3 leading-tight"
-                                style={{ fontFamily: "'Playfair Display', serif" }}>
+                            <h1 className="text-4xl sm:text-6xl font-black text-neutral-900 mb-3 tracking-tighter leading-[1.1]">
                                 {project.title}
                             </h1>
-                            <p className="text-neutral-500 italic leading-relaxed max-w-sm mx-auto text-base">
-                                "{project.subtitle}"
+                            <p className="text-neutral-500 font-medium leading-relaxed max-w-sm mx-auto text-[15px] tracking-tight">
+                                {project.subtitle}
                             </p>
                         </div>
 
                         {/* Meta Labels */}
                         <div className="flex flex-wrap gap-2.5 items-center justify-center">
                             {project.role && (
-                                <motion.div className="px-4 py-2 bg-[#1f2937] text-white text-xs font-bold uppercase tracking-wider shadow-md rotate-[-1deg]"
-                                    style={{ borderRadius: '2px', fontFamily: "'Space Mono', monospace" }}
-                                    whileHover={{ rotate: 0, scale: 1.05 }}>
+                                <div className="px-4 py-2 bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-[0.15em] rounded-lg shadow-sm">
                                     {project.role}
-                                </motion.div>
+                                </div>
                             )}
                             {project.duration && (
-                                <motion.div className="px-3 py-1.5 bg-white border border-neutral-200 text-neutral-600 text-xs font-bold uppercase tracking-wider shadow-sm rotate-[2deg]"
-                                    style={{ borderRadius: '2px', fontFamily: "'Space Mono', monospace" }}
-                                    whileHover={{ rotate: 0, scale: 1.05 }}>
-                                    ⏱ {project.duration}
-                                </motion.div>
+                                <div className="px-4 py-2 bg-white border border-neutral-200 text-neutral-600 text-[10px] font-bold uppercase tracking-[0.1em] rounded-lg shadow-sm flex items-center gap-1.5">
+                                    <FiActivity className="text-[12px] text-blue-500" />
+                                    {project.duration}
+                                </div>
                             )}
                             {project.year && (
-                                <motion.div className="px-3 py-1.5 bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider shadow-sm rotate-[-1deg]"
-                                    style={{ borderRadius: '2px', fontFamily: "'Space Mono', monospace" }}
-                                    whileHover={{ rotate: 0, scale: 1.05 }}>
+                                <div className="px-4 py-2 bg-blue-50 border border-blue-100 text-[#007aff] text-[10px] font-bold uppercase tracking-[0.1em] rounded-lg shadow-sm">
                                     {project.year}
-                                </motion.div>
+                                </div>
                             )}
                         </div>
 
@@ -156,15 +134,13 @@ export default function ProjectDetail() {
                             <div className="flex flex-wrap gap-2 items-center justify-center">
                                 {project.techstack.map((tech, idx) => {
                                     const icon = getTechIcon(tech);
-                                    const rotations = ['rotate-[-2deg]', 'rotate-[1deg]', 'rotate-[-1deg]', 'rotate-[2deg]', 'rotate-0'];
                                     return (
-                                        <motion.div key={idx}
-                                            className={`flex items-center gap-2 px-3 py-1.5 bg-white shadow-[1px_2px_6px_rgba(0,0,0,0.08)] border border-neutral-100 ${rotations[idx % rotations.length]}`}
-                                            style={{ borderRadius: '3px' }}
-                                            whileHover={{ rotate: 0, scale: 1.1, zIndex: 10 }}>
+                                        <div key={idx}
+                                            className="flex items-center gap-2 px-3 py-1.5 bg-white shadow-[1px_2px_6px_rgba(0,0,0,0.08)] border border-neutral-100"
+                                            style={{ borderRadius: '3px' }}>
                                             {icon && <img src={icon} alt={tech} className={`w-4 h-4 object-contain ${tech.toLowerCase() === "gsap" ? "scale-[3]" : ""}`} /> }
                                             <span className="text-[11px] font-bold text-neutral-600 tracking-wide uppercase">{tech}</span>
-                                        </motion.div>
+                                        </div>
                                     );
                                 })}
                             </div>
@@ -172,25 +148,18 @@ export default function ProjectDetail() {
                             {/* Mobile-only Visit Website (above keep scrolling) */}
                             <div className="lg:hidden flex justify-center w-full">
                                 {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
-                                    <div className="relative px-8 py-3 bg-[#fefcf5] text-neutral-400 font-bold text-sm border border-[#e5ddd0] shadow-sm cursor-not-allowed rotate-[-1deg]"
-                                         style={{ fontFamily: "'Caveat', cursive" }}>
-                                        <div className="absolute -top-2 left-6 w-10 h-4 bg-neutral-900/10 rotate-[5deg] mix-blend-multiply pointer-events-none"
-                                             style={{ clipPath: 'polygon(3% 0%, 97% 5%, 95% 100%, 5% 95%)' }}></div>
-                                        currently offline :(
+                                    <div className="relative px-8 py-3 bg-white text-neutral-400 font-bold text-xs border border-neutral-200 shadow-sm cursor-not-allowed uppercase tracking-widest rounded-lg">
+                                        currently offline
                                     </div>
                                 ) : project.url ? (
-                                    <motion.a 
+                                    <a 
                                         href={project.url} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="relative inline-flex items-center gap-2.5 px-8 py-3 bg-[#fefcf5] border border-[#e5ddd0] shadow-[2px_3px_8px_rgba(0,0,0,0.08)] text-[#7c2d12] font-bold text-lg rotate-[-2deg] hover:rotate-0 hover:shadow-[3px_5px_12px_rgba(0,0,0,0.12)] transition-all"
-                                        style={{ fontFamily: "'Caveat', cursive" }}
-                                        whileHover={{ scale: 1.05 }}
+                                        className="relative inline-flex items-center gap-2.5 px-8 py-3 bg-neutral-900 border border-neutral-800 shadow-[0_10px_30px_rgba(0,0,0,0.2)] text-white font-bold text-sm rounded-full transition-all"
                                     >
-                                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-4 bg-[#7c2d12]/20 rotate-[3deg] mix-blend-multiply pointer-events-none"
-                                             style={{ clipPath: 'polygon(3% 0%, 97% 5%, 95% 100%, 5% 95%)' }}></div>
-                                        visit website → <FaExternalLinkAlt className="text-[10px]" />
-                                    </motion.a>
+                                        Visit Website <FaExternalLinkAlt className="text-[10px]" />
+                                    </a>
                                 ) : null}
                             </div>
 
@@ -201,8 +170,8 @@ export default function ProjectDetail() {
                                 animate={{ opacity: 0.6, y: 0 }}
                                 transition={{ delay: 1.2, duration: 0.8 }}
                             >
-                                <span className="text-lg font-bold text-neutral-500 rotate-[-1deg]" style={{ fontFamily: "'Caveat', cursive" }}>
-                                    keep scrolling!
+                                <span className="text-[11px] font-extrabold text-neutral-500 uppercase tracking-[0.2em]">
+                                    keep scrolling
                                 </span>
                                 <motion.div
                                     animate={{ y: [0, 5, 0] }}
@@ -223,97 +192,72 @@ export default function ProjectDetail() {
                     {/* Visit Website CTA (Desktop only — mobile version is in left column) */}
                     <div className="hidden lg:flex justify-start w-full">
                         {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
-                            <div className="relative px-8 py-3 bg-[#fefcf5] text-neutral-400 font-bold text-sm border border-[#e5ddd0] shadow-sm cursor-not-allowed rotate-[-1deg]"
-                                 style={{ fontFamily: "'Caveat', cursive" }}>
-                                <div className="absolute -top-2 left-6 w-10 h-4 bg-neutral-900/10 rotate-[5deg] mix-blend-multiply pointer-events-none"
-                                     style={{ clipPath: 'polygon(3% 0%, 97% 5%, 95% 100%, 5% 95%)' }}></div>
-                                currently offline :(
+                            <div className="relative px-8 py-3 bg-white text-neutral-400 font-bold text-xs border border-neutral-200 shadow-sm cursor-not-allowed uppercase tracking-widest rounded-lg">
+                                currently offline
                             </div>
                         ) : project.url ? (
-                            <motion.a 
+                            <a 
                                 href={project.url} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="relative inline-flex items-center gap-2.5 px-8 py-3 bg-[#fefcf5] border border-[#e5ddd0] shadow-[2px_3px_8px_rgba(0,0,0,0.08)] text-[#7c2d12] font-bold text-lg rotate-[-2deg] hover:rotate-0 hover:shadow-[3px_5px_12px_rgba(0,0,0,0.12)] transition-all"
-                                style={{ fontFamily: "'Caveat', cursive" }}
-                                whileHover={{ scale: 1.05 }}
+                                className="relative inline-flex items-center gap-2.5 px-8 py-3 bg-neutral-900 border border-neutral-800 shadow-[0_10px_30px_rgba(0,0,0,0.2)] text-white font-bold text-sm rounded-full transition-all"
                             >
-                                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-4 bg-[#7c2d12]/20 rotate-[3deg] mix-blend-multiply pointer-events-none"
-                                     style={{ clipPath: 'polygon(3% 0%, 97% 5%, 95% 100%, 5% 95%)' }}></div>
-                                visit website → <FaExternalLinkAlt className="text-[10px]" />
-                            </motion.a>
+                                Visit Website <FaExternalLinkAlt className="text-[10px]" />
+                            </a>
                         ) : null}
                     </div>
 
-                    {/* Features - Lined Paper Note */}
+                    {/* Features - iOS Notes Style */}
                     {project.features && project.features.length > 0 && (
                         <motion.div
-                            initial={{ opacity: 0, y: 30, rotate: 1 }}
-                            animate={{ opacity: 1, y: 0, rotate: 1 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5, duration: 0.6 }}
                             className="w-full max-w-xl"
                         >
-                            <div className="relative p-7 md:p-10 bg-[#fdfdf5] shadow-[6px_10px_30px_rgba(0,0,0,0.1)] border border-[#e5ddd0] paper-lined overflow-visible" 
-                                 style={{ borderRadius: '2px 3px 3px 2px' }}>
-
-                                <div className="absolute top-0 bottom-0 left-[50px] md:left-[60px] w-[2px] bg-red-400/40 z-10" />
-
-                                <div className="absolute -top-4 right-8 z-30 opacity-60" style={{ transform: 'rotate(15deg)' }}>
-                                    <svg width="20" height="40" viewBox="0 0 24 48" fill="none" stroke="#9CA3AF" strokeWidth="2.5" strokeLinecap="round" className="w-5 h-10">
-                                        <path d="M12 2C8.68629 2 6 4.68629 6 8V38C6 42.4183 9.58172 46 14 46C18.4183 46 22 42.4183 22 38V12C22 9.79086 20.2091 8 18 8C15.7909 8 14 9.79086 14 12V36C14 37.1046 13.1046 38 12 38C10.8954 38 10 37.1046 10 36V8C10 6.89543 10.8954 6 12 6C13.1046 6 14 6.89543 14 8V32" />
-                                    </svg>
-                                </div>
-
-                                <div className="pl-[40px] md:pl-[50px]">
-                                    <h3 className="text-2xl md:text-3xl font-bold text-[#854d0e] mb-5"
-                                        style={{ fontFamily: "'Caveat', cursive" }}>
+                            <div className="relative bg-white rounded-[32px] p-8 md:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.05)] border border-neutral-100 overflow-hidden">
+                                <div className="flex flex-col gap-0 mb-8 border-b border-neutral-50 pb-4 text-center sm:text-left">
+                                    <span className="text-neutral-400 text-[13px] font-medium tracking-tight">Today, 11:24 PM</span>
+                                    <h3 className="text-2xl md:text-3xl font-extrabold text-black tracking-tight mt-2">
                                         What I Did
                                     </h3>
-                                    <ul className="space-y-3.5">
-                                        {project.features.map((feature, idx) => (
-                                            <motion.li key={idx}
-                                                className="flex items-start gap-3 text-neutral-700 leading-[1.8] font-medium text-[14px] md:text-[15px]"
-                                                initial={{ opacity: 0, x: -10 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ delay: 0.6 + idx * 0.1 }}>
-                                                <span className="mt-1.5 text-amber-500 text-lg leading-none">•</span>
-                                                <span>{feature}</span>
-                                            </motion.li>
-                                        ))}
-                                    </ul>
                                 </div>
-
-                                <div className="absolute bottom-0 right-0 w-8 h-8 bg-gradient-to-tl from-neutral-200/80 to-transparent" 
-                                     style={{ clipPath: 'polygon(100% 0, 0% 100%, 100% 100%)' }} />
+                                
+                                <ul className="space-y-5">
+                                    {project.features.map((feature, idx) => (
+                                        <motion.li key={idx}
+                                            className="flex items-start gap-4 text-neutral-800 leading-[1.6] text-[15px] md:text-[16px]"
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.6 + idx * 0.1 }}>
+                                            <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#ff9500] shrink-0" />
+                                            <span className="font-medium tracking-tight text-left">{feature}</span>
+                                        </motion.li>
+                                    ))}
+                                </ul>
                             </div>
                         </motion.div>
                     )}
 
+                    {/* Impact & Outcome - iOS Notes Style */}
                     {project.impact && (
                         <motion.div
-                            initial={{ opacity: 0, y: 30, rotate: -2 }}
-                            animate={{ opacity: 1, y: 0, rotate: -2 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7, duration: 0.6 }}
                             className="w-full max-w-xl"
                         >
-                            <div className="relative p-6 md:p-8 shadow-[3px_6px_20px_rgba(0,0,0,0.1)] border border-[#c9b99a]"
-                                 style={{
-                                     borderRadius: '2px',
-                                     backgroundColor: '#d1bfae',
-                                     backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E\")",
-                                 }}>
+                            <div className="relative bg-white rounded-[32px] p-8 md:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.05)] border border-neutral-100 overflow-hidden">
+                                <div className="flex flex-col gap-0 mb-6 border-b border-neutral-50 pb-4 text-center sm:text-left">
+                                    <span className="text-neutral-400 text-[13px] font-medium tracking-tight">Project Summary • Key Outcomes</span>
+                                    <h3 className="text-2xl md:text-3xl font-extrabold text-black tracking-tight mt-2">
+                                        Impact & Outcome
+                                    </h3>
+                                </div>
 
-                                <div className="absolute -top-2 left-6 w-16 h-5 washi-slate rotate-[-8deg] z-20"
-                                     style={{ clipPath: 'polygon(0% 5%, 100% 0%, 98% 100%, 2% 95%)' }} />
-
-                                <h3 className="text-2xl md:text-3xl font-bold text-[#3d2b1a] mb-4"
-                                    style={{ fontFamily: "'Caveat', cursive" }}>
-                                    Impact & Outcome
-                                  </h3>
-
-                                <p className="text-[#4a3520] leading-[1.9] font-medium text-[14px] md:text-[15px]">
+                                <div className="text-neutral-800 leading-[1.6] text-[15px] md:text-[16px] font-medium tracking-tight text-left">
                                     {project.impact}
-                                </p>
+                                </div>
                             </div>
                         </motion.div>
                     )}
@@ -397,19 +341,16 @@ export default function ProjectDetail() {
                         return (
                             <div className="relative w-full py-12 flex flex-col items-center">
                                 <div className="text-center mb-24 relative w-fit mx-auto">
-                                    <h3 className="text-2xl md:text-[28px] font-bold relative z-10 tracking-tight text-neutral-800" style={{ fontFamily: "'Inter', sans-serif" }}>
+                                    <h3 className="text-2xl md:text-[32px] font-black relative z-10 tracking-tight text-neutral-900">
                                         {title}
                                     </h3>
-                                    <svg className="absolute -inset-x-8 -inset-y-4 w-[calc(100%+64px)] h-[calc(100%+32px)] text-neutral-800 pointer-events-none opacity-20" viewBox="0 0 240 60" preserveAspectRatio="none">
-                                        <path d="M 5,30 C 5,5 235,5 235,30 C 235,55 5,55 5,30" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="6, 4" />
-                                    </svg>
                                 </div>
 
                                 <div className="hidden 2xl:block relative w-full h-[320px] mx-auto">
-                                    <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 1000 400" preserveAspectRatio="none">
-                                        <path 
-                                            d="M 50,200 C 50,140 100,140 150,140 C 200,140 275,260 325,260 C 375,260 450,140 500,140 C 550,140 625,260 675,260 C 725,260 800,140 850,140" 
-                                            fill="none" stroke="#4a4a4a" strokeWidth="2.5" strokeDasharray="10, 10" strokeLinecap="round"
+                                    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 400">
+                                        <line 
+                                            x1="50" y1="200" x2="950" y2="200" 
+                                            stroke="#e2e8f0" strokeWidth="2" strokeDasharray="8, 8" strokeLinecap="round"
                                         />
                                     </svg>
 
@@ -422,9 +363,9 @@ export default function ProjectDetail() {
                                                     </span>
                                                 </div>
                                             )}
-                                            <div className="w-[80px] h-[80px] bg-white rounded-full flex items-center justify-center relative group hover:scale-110 transition-transform duration-300 shadow-sm border border-neutral-200">
+                                            <div className="w-[80px] h-[80px] bg-white rounded-full flex items-center justify-center relative shadow-sm border border-neutral-200">
                                                 <div className="absolute inset-1.5 rounded-full border-[1.5px] border-dashed border-neutral-400 animate-[spin_30s_linear_infinite]"></div>
-                                                <div className={`w-[52px] h-[52px] rounded-full ${step.color} flex items-center justify-center text-white relative z-10 shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-transform duration-300 group-hover:scale-105`}>
+                                                <div className={`w-[52px] h-[52px] rounded-full ${step.color} flex items-center justify-center text-white relative z-10 shadow-[0_4px_12px_rgba(0,0,0,0.1)]`}>
                                                     <step.icon size={22} />
                                                 </div>
                                             </div>
@@ -464,12 +405,12 @@ export default function ProjectDetail() {
                 </motion.div>
 
                 {project.pageImages && project.pageImages.length > 0 && (
-                    <div className="w-full flex flex-col items-center gap-24">
+                    <div className="w-full flex flex-col items-center gap-24 mt-20">
                         <div className="text-center relative w-fit flex flex-col items-center mx-auto">
-                            <h3 className="text-xl md:text-2xl font-bold text-neutral-800 tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Mono', monospace" }}>
-                                Page Detail
+                            <h3 className="text-[10px] font-black text-neutral-400 tracking-[0.4em] uppercase opacity-50">
+                                Page Breakdown
                             </h3>
-                            <div className="w-16 h-[2px] bg-neutral-300 mt-4 rounded-full"></div>
+                            <div className="w-8 h-[2px] bg-neutral-200 mt-4 rounded-full"></div>
                         </div>
 
                         <div className="flex flex-col gap-32 lg:gap-40 w-full items-center max-w-[1400px] px-4">
@@ -479,43 +420,32 @@ export default function ProjectDetail() {
 
                                 return (
                                     <div key={i} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center lg:items-center justify-center gap-8 lg:gap-16 w-full group overflow-hidden lg:overflow-visible transition-all duration-300
-                                        bg-white lg:bg-transparent p-6 md:p-8 lg:p-0 shadow-[0_4px_24px_rgba(0,0,0,0.06)] lg:shadow-none border border-[#e8dfd1] lg:border-none relative
-                                        ${isEven ? 'rotate-[-1deg]' : 'rotate-[1deg]'} lg:rotate-0 mb-8 lg:mb-0
+                                        bg-white lg:bg-transparent p-6 md:p-8 lg:p-0 relative
+                                        mb-8 lg:mb-0
                                     `}>
 
-                                        <div className="absolute inset-0 paper-lined opacity-40 lg:hidden pointer-events-none"></div>
-                                        <div className={`absolute -top-3 ${isEven ? 'right-8 rotate-[4deg]' : 'left-8 rotate-[-3deg]'} lg:hidden ${['washi-slate', 'washi-green', 'washi-yellow'][i % 3]} w-20 h-8 z-20 mix-blend-multiply opacity-90 shadow-sm`}></div>
-
                                         <div className={`w-full lg:w-[40%] flex flex-col ${isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-start relative z-20`}>
-                                            <div className="lg:hidden bg-[#1a1a1a] text-white px-5 py-2 mt-2 mb-6 rotate-[-2deg] shadow-md self-start ml-2 lg:ml-0">
-                                                <h4 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Mono', monospace" }}>
-                                                    PAGE #{i + 1}
+                                            <div className="lg:hidden bg-[#1a1a1a] text-white px-5 py-2 mt-2 mb-6 shadow-md self-start ml-2 lg:ml-0 rounded">
+                                                <h4 className="text-[10px] font-bold tracking-[0.2em] uppercase">
+                                                    SECTION 0{i + 1}
                                                 </h4>
                                             </div>
 
                                             <div className="hidden lg:flex items-center gap-2 mb-2 w-full">
-                                                <h4 className={`text-[12px] md:text-sm font-bold text-neutral-400 tracking-[0.2em] uppercase w-full`} style={{ fontFamily: "'Space Mono', monospace" }}>
-                                                    PAGE #{i + 1}
+                                                <h4 className="text-[11px] font-bold text-neutral-400 tracking-[0.2em] uppercase w-full">
+                                                    SECTION 0{i + 1}
                                                 </h4>
                                             </div>
                                             
-                                            <div className="relative inline-block mb-5 w-full">
-                                                <h5 className={`text-3xl md:text-3xl font-extrabold text-neutral-900 z-10 relative w-full`} style={{ fontFamily: "'Playfair Display', serif" }}>
+                                            <div className="relative inline-block mb-3 w-full">
+                                                <h5 className="text-2xl md:text-4xl font-black text-neutral-900 tracking-tight z-10 relative w-full">
                                                     {img.title}
                                                 </h5>
-                                                <div className="absolute bottom-1 -left-2 w-[105%] h-3 bg-sky-200/60 mix-blend-multiply -rotate-1 z-0 lg:hidden rounded-sm"></div>
                                             </div>
 
-                                            <p className={`text-neutral-600 text-sm md:text-base leading-relaxed z-10 relative w-full text-left ${!isEven ? 'lg:text-right' : 'lg:text-left'}`} style={{ fontFamily: "'Inter', sans-serif" }}>
+                                            <p className={`text-neutral-600 text-sm md:text-base leading-relaxed z-10 relative w-full text-left ${!isEven ? 'lg:text-right' : 'lg:text-left'}`}>
                                                 {img.desc || `Detailed breakdown of the ${img.title.toLowerCase()} flow, highlighting user journey, accessibility, and clean interface information architecture.`}
                                             </p>
-
-                                            <div className={`hidden lg:flex w-full ${isEven ? 'justify-end' : 'justify-start'} mt-6`}>
-                                                <svg width="140" height="60" viewBox="0 0 140 60" fill="none" className={`text-neutral-400 opacity-80 ${!isEven ? 'scale-x-[-1]' : ''}`}>
-                                                    <path d="M10 40 Q 60 15 125 30" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-                                                    <path d="M105 20 L126 30 L110 45" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                                                </svg>
-                                            </div>
                                         </div>
 
                                         <div className={`w-full lg:w-[60%] flex ${isEven ? 'lg:justify-start' : 'lg:justify-end'} justify-center relative mt-8 lg:mt-0`}>

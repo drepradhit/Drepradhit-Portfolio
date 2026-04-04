@@ -97,8 +97,8 @@ const ResponsiveGitHubCalendar = () => {
 export default function GithubDashboard() {
   return (
     <div className="mt-32 w-full max-w-6xl mx-auto px-4 sm:px-0" id="github">
-      <div className="bg-[#f0ece4] rounded-2xl border border-neutral-300/60 shadow-[0_20px_60px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col md:flex-row min-h-[500px]">
-        <div className="w-full md:w-56 bg-neutral-100/50 border-b md:border-b-0 md:border-r border-neutral-200 p-4 shrink-0">
+      <div className="bg-white rounded-2xl border border-neutral-200 shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col md:flex-row min-h-[500px]">
+        <div className="w-full md:w-56 bg-neutral-50/50 border-b md:border-b-0 md:border-r border-neutral-100 p-4 shrink-0">
           <div className="flex gap-1.5 mb-8">
             <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
             <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
@@ -112,9 +112,9 @@ export default function GithubDashboard() {
             ].map((item) => (
               <div 
                 key={item.label}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer font-medium ${item.active ? 'bg-amber-200/50 text-amber-900 shadow-sm' : 'text-neutral-500 hover:bg-neutral-200/50'}`}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer font-bold ${item.active ? 'bg-[#007aff] text-white shadow-sm' : 'text-neutral-500 hover:bg-neutral-200/50'}`}
               >
-                <div className={`${item.active ? 'text-amber-700' : 'text-neutral-400'}`}>{item.icon}</div>
+                <div className={`${item.active ? 'text-white' : 'text-neutral-400'}`}>{item.icon}</div>
                 {item.label}
               </div>
             ))}
