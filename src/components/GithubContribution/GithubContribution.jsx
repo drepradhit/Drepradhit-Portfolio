@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GitHubCalendar } from "react-github-calendar";
+import CustomGithubCalendar from "./CustomGithubCalendar";
 import { motion } from "framer-motion";
 import { FaGithub, FaCode, FaReact } from "react-icons/fa";
 import { SiNextdotjs, SiFlutter, SiJavascript, SiTypescript, SiTailwindcss } from "react-icons/si";
@@ -242,71 +242,8 @@ function CircularProficiency() {
 }
 
 const ResponsiveGitHubCalendar = () => {
-  const [weeks, setWeeks] = React.useState(18);
-  const [blockSize, setBlockSize] = React.useState(16);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        // Mobile: Tight but clear
-        setWeeks(11);
-        setBlockSize(14);
-      } else if (width < 1024) {
-        // Tablet: Mid-range
-        setWeeks(15);
-        setBlockSize(16);
-      } else {
-        // Desktop: High density to fill the wide card
-        setWeeks(22);
-        setBlockSize(17);
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <GitHubCalendar
-      username="drepradhit"
-      blockSize={blockSize}
-      blockMargin={4}
-      fontSize={10}
-      theme={{
-        light: ['#ebedf0', '#0e4429', '#006d32', '#26a641', '#39d353'],
-      }}
-      colorScheme="light"
-      labels={{
-        totalCount: '629 contributions in the last year'
-      }}
-      transformData={(data) => {
-        const sliced = data.slice(-weeks * 7);
-        return sliced.map(day => {
-          if (day.count > 0) return { ...day };
-          
-          // Deterministic pseudo-random based on the date string
-          let hash = 0;
-          for (let i = 0; i < day.date.length; i++) {
-            hash = Math.imul(31, hash) + day.date.charCodeAt(i) | 0;
-          }
-          const seed = Math.abs(hash);
-          
-          const magic = (Math.sin(seed) * 10000 - Math.floor(Math.sin(seed) * 10000)) > 0.4;
-          
-          if (magic) {
-            const levelProb = Math.sin(seed + 1) * 10000 - Math.floor(Math.sin(seed + 1) * 10000);
-            const countRand = Math.sin(seed + 2) * 10000 - Math.floor(Math.sin(seed + 2) * 10000);
-            return {
-              ...day,
-              count: Math.floor(countRand * 15) + 3,
-              level: levelProb > 0.7 ? 4 : levelProb > 0.4 ? 3 : 2
-            };
-          }
-          return { ...day };
-        });
-      }}
-    />
+    <CustomGithubCalendar username="drepradhit" months={5} />
   );
 };
 

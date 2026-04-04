@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GitHubCalendar } from "react-github-calendar";
+import CustomGithubCalendar from "./CustomGithubCalendar";
 import { motion } from "framer-motion";
 import { FaGithub, FaCode, FaReact, FaFolder, FaCamera, FaTrophy, FaTree, FaTerminal } from "react-icons/fa";
 import { SiNextdotjs, SiFlutter, SiJavascript, SiTypescript, SiTailwindcss } from "react-icons/si";
@@ -89,41 +89,10 @@ function CircularProficiency() {
 }
 
 const ResponsiveGitHubCalendar = () => {
-    const [weeks, setWeeks] = React.useState(18);
-    const [blockSize, setBlockSize] = React.useState(14); 
-  
-    React.useEffect(() => {
-      const handleResize = () => {
-        const width = window.innerWidth;
-        // Total 21 weeks is roughly 5 months
-        const targetWeeks = 21;
-        setWeeks(targetWeeks);
-        
-        if (width < 640) {
-          setBlockSize(12);
-        } else if (width < 1024) {
-          setBlockSize(14);
-        } else {
-          setBlockSize(16);
-        }
-      };
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-  
-    return (
-      <GitHubCalendar
-        username="drepradhit"
-        blockSize={blockSize}
-        blockMargin={4}
-        fontSize={10}
-        theme={{ light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'] }}
-        colorScheme="light"
-        transformData={(data) => data.slice(-weeks * 7)}
-      />
-    );
-  };
+  return (
+    <CustomGithubCalendar username="drepradhit" months={5} />
+  );
+};
 
 export default function GithubDashboard() {
   return (
