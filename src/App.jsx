@@ -54,8 +54,8 @@ function App() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
+        staggerChildren: 0.05,
+        delayChildren: 0.05,
       },
     },
   };
@@ -82,7 +82,7 @@ function App() {
         
         {/* HERO SECTION */}
         <motion.div 
-          className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto min-h-[700px] lg:min-h-[600px]"
+          className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto min-h-[500px]"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -92,7 +92,7 @@ function App() {
             variants={itemVariants}
           >
             <div className="w-full flex justify-center">
-              <ProfileCard avatarUrl="./assets/andre.png" />
+              <ProfileCard avatarUrl="./assets/andre.jpg" />
             </div>
           </motion.div>
 

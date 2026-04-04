@@ -27,9 +27,6 @@ const ProfileCard = ({ avatarUrl = "./assets/andre.png", className = "" }) => {
         {/* Top/Primary Polaroid */}
         <motion.div 
           className="relative bg-white p-5 pb-14 shadow-[0_20px_70px_rgba(0,0,0,0.12)] border border-neutral-100 z-30 transform-gpu rotate-[-1deg]"
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 80, damping: 22, delay: 0.2 }}
         >
           {/* Main Photo Area */}
           <div className="relative aspect-square w-full overflow-hidden bg-neutral-50 shadow-inner border border-neutral-100/30">
@@ -37,7 +34,7 @@ const ProfileCard = ({ avatarUrl = "./assets/andre.png", className = "" }) => {
               className="w-full h-full object-cover" 
               src={avatarUrl} 
               alt="Andre Pradhit" 
-              loading="lazy" 
+              loading="eager" 
             />
             {/* Inner frame shadow */}
             <div className="absolute inset-0 shadow-[inset_0_0_30px_rgba(0,0,0,0.03)] pointer-events-none" />
