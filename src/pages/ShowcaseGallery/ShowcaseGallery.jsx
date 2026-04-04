@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
 import { listProyekWeb, listProyekUIUX, listProyekGame, listTools } from '../../data';
 import { Link, useNavigate } from 'react-router-dom';
@@ -99,8 +99,8 @@ function ShowcaseCard({ project, index }) {
                     className="relative inline-flex items-center gap-2 px-6 py-2 bg-[#fefcf5] border border-[#e5ddd0] shadow-[2px_3px_6px_rgba(0,0,0,0.06)] text-[#7c2d12] font-bold text-[15px] rotate-[-1deg] hover:rotate-0 hover:shadow-[3px_5px_10px_rgba(0,0,0,0.1)] transition-all"
                     style={{ fontFamily: "'Caveat', cursive" }}
                     onClick={() => {
-                        sessionStorage.setItem("home_scroll_pos", window.scrollY.toString());
-                        sessionStorage.setItem("should_restore_scroll", "true");
+                        sessionStorage.setItem("showcase_scroll_pos", window.scrollY.toString());
+                        sessionStorage.setItem("should_restore_showcase_scroll", "true");
                     }}
                 >
                     <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#7c2d12]/15 rotate-[2deg] mix-blend-multiply pointer-events-none"
@@ -115,11 +115,29 @@ function ShowcaseCard({ project, index }) {
 const ShowcaseGallery = () => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
+    useLayoutEffect(() => {
+        const shouldRestore = sessionStorage.getItem("should_restore_showcase_scroll");
+        const savedPos = sessionStorage.getItem("showcase_scroll_pos");
+
+        if (shouldRestore === "true" && savedPos) {
+            window.scrollTo({
+                top: parseInt(savedPos),
+                behavior: 'instant'
+            });
+            sessionStorage.removeItem("should_restore_showcase_scroll");
+        } else {
+            window.scrollTo(0, 0);
+        }
     }, []);
 
-    const [filter, setFilter] = useState('web');
+    const [filter, setFilter] = useState(() => {
+        return sessionStorage.getItem('active_showcase_tab') || 'web';
+    });
+
+    const handleFilterChange = (newFilter) => {
+        setFilter(newFilter);
+        sessionStorage.setItem('active_showcase_tab', newFilter);
+    };
 
     const filteredProjects = 
           filter === 'web' ? listProyekWeb 
@@ -158,7 +176,7 @@ const ShowcaseGallery = () => {
                         ].map((f) => (
                             <button 
                                 key={f.id}
-                                onClick={() => setFilter(f.id)}
+                                onClick={() => handleFilterChange(f.id)}
                                 className={`relative px-6 py-2.5 text-[14px] font-bold tracking-wide transition-all cursor-pointer ${f.rot} hover:rotate-0 ${
                                     filter === f.id 
                                     ? 'bg-[#7c2d12] text-white shadow-md scale-105 z-20' 

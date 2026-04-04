@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 
 import { listTools, listProyek, listProyekWeb, listProyekUIUX, listExperience } from "./data";
@@ -36,15 +36,21 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const shouldRestore = sessionStorage.getItem("should_restore_scroll");
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    const shouldRestore = sessionStorage.getItem("should_restore_home_scroll");
     const savedPos = sessionStorage.getItem("home_scroll_pos");
 
     if (shouldRestore === "true" && savedPos) {
-      setTimeout(() => {
-        window.scrollTo(0, parseInt(savedPos));
-      }, 0);
-
-      sessionStorage.removeItem("should_restore_scroll");
+      window.scrollTo({
+        top: parseInt(savedPos),
+        behavior: 'instant'
+      });
+      sessionStorage.removeItem("should_restore_home_scroll");
     }
   }, []);
 

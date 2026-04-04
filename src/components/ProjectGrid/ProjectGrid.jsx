@@ -111,7 +111,7 @@ function ProjectCard({ project, index }) {
                     style={{ fontFamily: "'Caveat', cursive" }}
                     onClick={() => {
                         sessionStorage.setItem("home_scroll_pos", window.scrollY.toString());
-                        sessionStorage.setItem("should_restore_scroll", "true");
+                        sessionStorage.setItem("should_restore_home_scroll", "true");
                     }}
                 >
                     <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#7c2d12]/15 rotate-[2deg] mix-blend-multiply pointer-events-none"
@@ -149,7 +149,7 @@ export default function ProjectGrid({ projects }) {
                           style={{ borderRadius: '2px' }}
                           onClick={() => {
                               sessionStorage.setItem("home_scroll_pos", window.scrollY.toString());
-                              sessionStorage.setItem("should_restore_scroll", "true");
+                              sessionStorage.setItem("should_restore_home_scroll", "true");
                           }}>
                         <div className="flex flex-col items-start leading-none">
                             <span className="text-neutral-400 text-[10px] uppercase tracking-widest mb-1 font-bold" style={{ fontFamily: "'Space Mono', monospace" }}>
