@@ -61,7 +61,7 @@ function App() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 10 },
     visible: { 
       opacity: 1, 
       y: 0,
@@ -82,7 +82,7 @@ function App() {
         
         {/* HERO SECTION */}
         <motion.div 
-          className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto"
+          className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto min-h-[700px] lg:min-h-[600px]"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
