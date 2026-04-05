@@ -11,7 +11,8 @@ import WorkExperience from "./components/WorkExperience/WorkExperience";
 import GithubDashboard from "./components/GithubContribution/GithubDashboard";
 
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import GridBackground from "./components/GridBackground/GridBackground";
 
 function App() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -54,8 +55,8 @@ function App() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.05,
+        staggerChildren: 0.03,
+        delayChildren: 0,
       },
     },
   };
@@ -65,7 +66,7 @@ function App() {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { type: "spring", stiffness: 70, damping: 20 }
+      transition: { type: "spring", stiffness: 120, damping: 20 }
     },
   };
 
@@ -73,10 +74,14 @@ function App() {
     <div className="overflow-x-hidden relative w-full min-h-screen">
       <style>{`
         body {
-          background-color: #f2f2f7;
+          background-color: transparent;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          overflow-x: hidden;
         }
       `}</style>
+
+      {/* DYNAMIC BACKGROUND LAYER */}
+      <GridBackground />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         
@@ -123,9 +128,10 @@ function App() {
                 href="https://drive.google.com/file/d/1je3WZmUi7OidlNM-QsVvqG-CNeG1YXp2/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 sm:flex-none flex items-center justify-center relative font-medium bg-white border border-neutral-200 text-neutral-900 px-8 py-3 rounded-full transition-all duration-300 group hover:border-neutral-900 hover:bg-neutral-50 shadow-sm"
-                whileHover={{ scale: 1.05 }}
+                className="flex-1 sm:flex-none flex items-center justify-center relative font-medium bg-white/80 backdrop-blur-sm border border-neutral-200 text-neutral-900 px-8 py-3 rounded-full group hover:border-neutral-900 hover:bg-neutral-50 shadow-lg shadow-black/5"
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                variants={itemVariants}
               >
                 Resume
                 <svg className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
@@ -142,10 +148,10 @@ function App() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white border border-neutral-200 text-neutral-900 p-3 rounded-full transition-all duration-300 hover:border-neutral-900 hover:bg-neutral-50 shadow-sm"
+                    className="bg-white/80 backdrop-blur-sm border border-neutral-200 text-neutral-900 p-3 rounded-full hover:border-neutral-900 hover:bg-neutral-50 shadow-lg shadow-black/5"
                     aria-label={social.label}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.15, rotate: 5, y: -2 }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     <social.icon className="w-5 h-5" />
                   </motion.a>
@@ -161,11 +167,16 @@ function App() {
           {/* Column 1: About Card */}
           <div className="flex flex-col w-full min-h-[400px] items-center lg:items-start pt-0">
             <motion.div
-              className="relative w-full bg-white overflow-hidden rounded-[32px] border border-neutral-200 cursor-default shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="relative w-full bg-white/95 backdrop-blur-md overflow-hidden rounded-[32px] border border-neutral-200 cursor-default shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
+              initial={{ opacity: 0, y: 20, rotate: -1.5 }}
+              whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
+              whileHover={{ 
+                y: -10, 
+                rotate: -3,
+                shadow: "0 25px 60px rgba(0,0,0,0.12)" 
+              }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* iOS Notes Header Bar */}
               <div className="flex items-center justify-between px-8 pt-8 pb-6 bg-white/80 backdrop-blur-sm sticky top-0 z-20">
@@ -187,22 +198,40 @@ function App() {
                   <div className="pt-4 italic text-neutral-500 text-sm">Currently open to <span className="text-neutral-900 font-medium not-italic">internships & freelance projects</span>.</div>
                 </div>
 
-                {/* INTEGRATED TECH STACK */}
+                {/* DUAL-ROW INFINITE MARQUEE TECH STACK */}
                 <div className="pt-8 border-t border-neutral-100/80">
                    <h3 className="text-xs font-bold text-neutral-400 opacity-60 uppercase tracking-widest mb-6 px-1 text-center sm:text-left">Tech Ecosystem</h3>
-                   <div className="flex flex-wrap gap-x-8 gap-y-8 justify-center sm:justify-start pl-1">
-                      {listTools.filter(t => t.nama !== "GSAP").map((tool) => (
-                        <div key={tool.id} className="group relative">
-                          <img 
-                            src={tool.gambar} 
-                            alt={tool.nama} 
-                            className="w-8 h-8 sm:w-9 sm:h-9 object-contain opacity-90 grayscale-[0.2] group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
-                          />
-                          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-neutral-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-30">
-                             {tool.nama}
+                   
+                   <div className="relative flex flex-col gap-0 overflow-hidden group -mt-4">
+                     {/* Gradient Masks for seamless edges */}
+                     <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white/95 to-transparent z-10 pointer-events-none" />
+                     <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white/95 to-transparent z-10 pointer-events-none" />
+                     
+                     {/* Row 1: Right to Left */}
+                     <motion.div 
+                       className="flex gap-10 py-3"
+                       animate={{ x: ["0%", "-50%"] }}
+                       transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                     >
+                        {[...listTools.filter(t => t.nama !== "GSAP").slice(0, 6), ...listTools.filter(t => t.nama !== "GSAP").slice(0, 6), ...listTools.filter(t => t.nama !== "GSAP").slice(0, 6), ...listTools.filter(t => t.nama !== "GSAP").slice(0, 6)].map((tool, index) => (
+                          <div key={`${tool.id}-r1-${index}`} className="shrink-0">
+                            <img src={tool.gambar} alt={tool.nama} className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                     </motion.div>
+
+                     {/* Row 2: Left to Right */}
+                     <motion.div 
+                       className="flex gap-10 py-3"
+                       animate={{ x: ["-50%", "0%"] }}
+                       transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                     >
+                        {[...listTools.filter(t => t.nama !== "GSAP").slice(6), ...listTools.filter(t => t.nama !== "GSAP").slice(6), ...listTools.filter(t => t.nama !== "GSAP").slice(6), ...listTools.filter(t => t.nama !== "GSAP").slice(6)].map((tool, index) => (
+                          <div key={`${tool.id}-r2-${index}`} className="shrink-0">
+                            <img src={tool.gambar} alt={tool.nama} className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
+                          </div>
+                        ))}
+                     </motion.div>
                    </div>
                 </div>
               </div>

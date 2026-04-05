@@ -13,20 +13,20 @@ export default function TerminalRoles({ roles = ["UI/UX Designer", "Mobile Devel
     const handleTyping = () => {
       if (!isDeleting) {
         setDisplayedText(role.substring(0, displayedText.length + 1));
-        setTypingSpeed(100);
+        setTypingSpeed(70);
 
         if (displayedText === role) {
           setIsDeleting(true);
-          setTypingSpeed(2000);
+          setTypingSpeed(1500);
         }
       } else {
         setDisplayedText(role.substring(0, displayedText.length - 1));
-        setTypingSpeed(50);
+        setTypingSpeed(30);
 
         if (displayedText === "") {
           setIsDeleting(false);
           setCurrentRoleIdx((prev) => (prev + 1) % roles.length);
-          setTypingSpeed(500);
+          setTypingSpeed(300);
         }
       }
     };

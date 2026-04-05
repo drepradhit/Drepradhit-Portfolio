@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
 import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity, FiTarget, FiPenTool, FiChevronLeft } from "react-icons/fi";
 import { useEffect } from "react";
+import GridBackground from "../../components/GridBackground/GridBackground";
 
 export default function ProjectDetail() {
     const { slug } = useParams();
@@ -25,7 +26,8 @@ export default function ProjectDetail() {
     };
 
     return (
-        <div className="relative w-full min-h-screen bg-[#f8fafc] text-neutral-800 selection:bg-blue-100/50 font-inter">
+        <div className="relative w-full min-h-screen text-neutral-800 selection:bg-blue-100/50 font-inter">
+            <GridBackground />
 
             <style>{`
                 .washi-slate {
