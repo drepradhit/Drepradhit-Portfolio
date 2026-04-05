@@ -18,6 +18,7 @@ const SlideToExploreButton = () => {
     // Interactive fading based on precise pixel drag position
     const textOpacity = useTransform(dragX, [0, dragLimit / 1.5], [1, 0]);
     const bgOpacity = useTransform(dragX, [0, dragLimit], [0, 1]);
+    const confirmedOpacity = useTransform(dragX, [dragLimit * 0.5, dragLimit * 0.95], [0, 0.9]); // Spoiler starts earlier and clearer
     const fillWidth = useTransform(dragX, [0, dragLimit], [thumbWidth + padding * 2, buttonWidth]);
 
     const handleDrag = () => {
@@ -53,10 +54,15 @@ const SlideToExploreButton = () => {
                 Slide to view more projects
             </motion.div>
 
-            {/* Confirmed Text (Dark for contrast on white bg) */}
-            <div className={`absolute w-full text-center pointer-events-none transition-opacity duration-300 flex justify-center pr-8 ${isComplete ? 'opacity-100 delay-100' : 'opacity-0'}`}>
-                <span className="text-[16px] font-bold text-neutral-900 tracking-wide">Confirmed!</span>
-            </div>
+            {/* Confirmed Text Spoiler (Black on White background reveal) */}
+            <motion.div 
+                className="absolute w-full text-center pointer-events-none flex justify-center pr-8 z-30"
+                style={{ opacity: isComplete ? 1 : confirmedOpacity }}
+            >
+                <span className="text-[16px] font-bold tracking-wide text-black opacity-90">
+                    Confirmed!
+                </span>
+            </motion.div>
 
             {/* Draggable Circle Thumb with strong shadow (Blue glow removed) */}
             <motion.div 
