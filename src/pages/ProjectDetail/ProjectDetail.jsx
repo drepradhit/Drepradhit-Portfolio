@@ -3,16 +3,35 @@ import { listProyek, listTools } from "../../data";
 import { motion } from "framer-motion";
 import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
 import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity, FiTarget, FiPenTool, FiChevronLeft } from "react-icons/fi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GridBackground from "../../components/GridBackground/GridBackground";
 
 export default function ProjectDetail() {
     const { slug } = useParams();
     const navigate = useNavigate();
     const project = listProyek.find((p) => p.slug === slug);
+    const [showBack, setShowBack] = useState(true);
 
+    // Single fire on mount
     useEffect(() => {
         window.scrollTo(0, 0);
+    }, []);
+
+    // Scroll listener for back button visibility
+    useEffect(() => {
+        let lastPos = 0;
+        const controlNavbar = () => {
+            const current = window.scrollY;
+            if (current > lastPos && current > 100) {
+                setShowBack(false);
+            } else {
+                setShowBack(true);
+            }
+            lastPos = current;
+        };
+
+        window.addEventListener('scroll', controlNavbar, { passive: true });
+        return () => window.removeEventListener('scroll', controlNavbar);
     }, []);
 
     if (!project) return null;
@@ -54,20 +73,29 @@ export default function ProjectDetail() {
                 }
             `}</style>
 
-            {/* Back Button */}
+            {/* Back Button - iOS 26 Glassmorphic Style */}
             <motion.div 
                 className="fixed top-6 left-6 z-50"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, scale: 0.8, y: -20 }}
+                animate={{ 
+                    opacity: showBack ? 1 : 0, 
+                    y: showBack ? 0 : -100,
+                    scale: showBack ? 1 : 0.8,
+                    pointerEvents: showBack ? "auto" : "none"
+                }}
+                transition={{ 
+                    duration: 0.4, 
+                    ease: [0.16, 1, 0.3, 1] 
+                }}
             >
                 <button 
                     onClick={() => navigate(-1)}
-                    aria-label="Go back to previous page"
-                    className="group flex items-center gap-1.5 px-0 py-2 text-[#007AFF] cursor-pointer"
+                    className="w-12 h-12 flex items-center justify-center bg-white/40 backdrop-blur-[20px] rounded-full shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/40 hover:bg-white/60 active:scale-90 transition-all duration-300 group relative"
                 >
-                    <FiChevronLeft className="text-2xl active:opacity-50 transition-opacity" />
-                    <span className="font-medium text-[17px] tracking-tight active:opacity-50 transition-opacity">Back</span>
+                    {/* iOS style nested inner outline for depth */}
+                    <div className="absolute inset-[1px] rounded-full border border-white/20 pointer-events-none" />
+                    
+                    <FiChevronLeft className="text-2xl text-[#007AFF] transition-transform duration-300 group-hover:-translate-x-0.5" />
                 </button>
             </motion.div>
 

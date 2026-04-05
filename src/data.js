@@ -97,6 +97,7 @@ const listProyekBase = [
     url: "https://whoofmeow.vercel.app/",
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
+    themeColor: "#050505",
     dad: "800",
     processSteps: [
       { title: "Multiplayer Architecture", icon: "FiServer", color: "bg-blue-600" },
@@ -133,6 +134,7 @@ const listProyekBase = [
     url: null,
     year: "2026",
     techstack: ["React JS", "Tailwind", "Javascript", "Figma", "GSAP"],
+    themeColor: "#2d2f4a",
     dad: "300",
     processSteps: [
       { title: "Service Strategy", icon: "FiSearch", color: "bg-purple-500" },
@@ -167,6 +169,7 @@ const listProyekBase = [
     url: "UNDER_MAINTENANCE",
     year: "2025",
     techstack: ["Node JS", "React JS", "Tailwind", "PostgreSQL", "Javascript"],
+    themeColor: "#0b0c14",
     dad: "200",
     processSteps: [
       { title: "Financial Logic", icon: "FiCpu", color: "bg-indigo-600" },
@@ -202,6 +205,7 @@ const listProyekBase = [
     url: null,
     year: "2024",
     techstack: ["Figma", "Illustrator"],
+    themeColor: "#1a1e36",
     dad: "100",
     processSteps: [
       { title: "Learning Research", icon: "FiSearch", color: "bg-blue-500" },
@@ -238,6 +242,7 @@ const listProyekBase = [
     url: null,
     year: "2026",
     techstack: ["Figma", "Illustrator"],
+    themeColor: "#1e0b3d",
     dad: "600",
     processSteps: [
       { title: "Event Exploration", icon: "FiSearch", color: "bg-indigo-500" },
@@ -273,6 +278,7 @@ const listProyekBase = [
     url: "UNDER_MAINTENANCE",
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
+    themeColor: "#4f46e5",
     dad: "400",
     processSteps: [
       { title: "Concept Design", icon: "FiPenTool", color: "bg-blue-600" },
@@ -310,6 +316,7 @@ const listProyekBase = [
     url: null,
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
+    themeColor: "#331804",
     dad: "500",
     processSteps: [
       { title: "WPM Logic Design", icon: "FiCode", color: "bg-blue-600" },
@@ -345,6 +352,7 @@ const listProyekBase = [
     url: null,
     year: "2026",
     techstack: ["Figma", "Illustrator"],
+    themeColor: "#041c17",
     dad: "700",
     pageImages: [
       { src: NanceDashboard, title: "Main Dashboard", desc: "A clean and comprehensive dashboard providing quick access to total balances, recent activity, and core financial tools." },

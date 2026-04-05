@@ -207,31 +207,43 @@ function App() {
                      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white/95 to-transparent z-10 pointer-events-none" />
                      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white/95 to-transparent z-10 pointer-events-none" />
                      
-                     {/* Row 1: Right to Left */}
-                     <motion.div 
-                       className="flex gap-10 py-3"
-                       animate={{ x: ["0%", "-50%"] }}
-                       transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                     >
-                        {[...listTools.filter(t => t.nama !== "GSAP").slice(0, 6), ...listTools.filter(t => t.nama !== "GSAP").slice(0, 6), ...listTools.filter(t => t.nama !== "GSAP").slice(0, 6), ...listTools.filter(t => t.nama !== "GSAP").slice(0, 6)].map((tool, index) => (
-                          <div key={`${tool.id}-r1-${index}`} className="shrink-0">
-                            <img src={tool.gambar} alt={tool.nama} className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
-                          </div>
-                        ))}
-                     </motion.div>
+                    {/* Filter out GSAP and split into two distinct halves */}
+                    {(() => {
+                      const filteredTools = listTools.filter(t => t.nama.toLowerCase() !== "gsap");
+                      const midPoint = Math.ceil(filteredTools.length / 2);
+                      const topRowTools = filteredTools.slice(0, midPoint);
+                      const bottomRowTools = filteredTools.slice(midPoint);
 
-                     {/* Row 2: Left to Right */}
-                     <motion.div 
-                       className="flex gap-10 py-3"
-                       animate={{ x: ["-50%", "0%"] }}
-                       transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                     >
-                        {[...listTools.filter(t => t.nama !== "GSAP").slice(6), ...listTools.filter(t => t.nama !== "GSAP").slice(6), ...listTools.filter(t => t.nama !== "GSAP").slice(6), ...listTools.filter(t => t.nama !== "GSAP").slice(6)].map((tool, index) => (
-                          <div key={`${tool.id}-r2-${index}`} className="shrink-0">
-                            <img src={tool.gambar} alt={tool.nama} className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
-                          </div>
-                        ))}
-                     </motion.div>
+                      return (
+                        <>
+                          {/* Row 1: Right to Left */}
+                          <motion.div 
+                            className="flex gap-10 py-3 w-max"
+                            animate={{ x: [0, -1000] }}
+                            transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+                          >
+                            {[...topRowTools, ...topRowTools, ...topRowTools, ...topRowTools, ...topRowTools].map((tool, index) => (
+                              <div key={`${tool.id}-r1-${index}`} className="shrink-0">
+                                <img src={tool.gambar} alt={tool.nama} className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
+                              </div>
+                            ))}
+                          </motion.div>
+
+                          {/* Row 2: Left to Right */}
+                          <motion.div 
+                            className="flex gap-10 py-3 w-max"
+                            animate={{ x: [-1000, 0] }}
+                            transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+                          >
+                            {[...bottomRowTools, ...bottomRowTools, ...bottomRowTools, ...bottomRowTools, ...bottomRowTools].map((tool, index) => (
+                              <div key={`${tool.id}-r2-${index}`} className="shrink-0">
+                                <img src={tool.gambar} alt={tool.nama} className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
+                              </div>
+                            ))}
+                          </motion.div>
+                        </>
+                      );
+                    })()}
                    </div>
                 </div>
               </div>
@@ -252,7 +264,7 @@ function App() {
         </div>
 
         {/* PROJECTS SECTION */}
-        <div className="proyek mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4" id="projects">
+        <div className="proyek mt-20 md:mt-32 w-full" id="projects">
           <FinderWindow />
         </div>
 
