@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectGrid from '../ProjectGrid/ProjectGrid';
 import { listProyek } from '../../data';
 
 const FinderWindow = () => {
-  // Only show the first 6 projects on the home page grid
-  // Nance and Type Paper (ids 7 and 8) will be available in the full Showcase Gallery
-  const displayProjects = listProyek.slice(0, 6);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize(); // Initial check properly on mount
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Base list for home is first 6
+  const homeProjects = listProyek.slice(0, 6);
+  
+  // Specific mobile filtering as requested
+  const displayProjects = isMobile 
+    ? homeProjects.filter(p => !["Damianos Production", "Certix", "Drevelopment"].includes(p.title))
+    : homeProjects;
 
   return (
     <div className="w-full font-sans">
