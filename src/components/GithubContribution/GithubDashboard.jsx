@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CustomGithubCalendar from "./CustomGithubCalendar";
+import GithubActivityTimeline from "./GithubActivityTimeline";
 import { motion } from "framer-motion";
 import { FaGithub, FaCode, FaReact, FaFolder, FaCamera, FaTrophy, FaTree, FaTerminal } from "react-icons/fa";
 import { SiNextdotjs, SiFlutter, SiJavascript, SiTypescript, SiTailwindcss } from "react-icons/si";
@@ -33,8 +34,10 @@ function CircularProficiency() {
     return { ...tech, percentage, arcLength, accumulatedArc, midAngle };
   });
 
+  const appleFontStack = { fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' };
+
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-4">
+    <div className="w-full h-full flex flex-col items-center justify-center p-4" style={appleFontStack}>
       <div className="relative w-44 h-44 md:w-52 md:h-52">
         <svg className="w-full h-full overflow-visible" viewBox="0 0 200 200">
           <circle
@@ -66,7 +69,7 @@ function CircularProficiency() {
             })}
           </g>
         </svg>
-        {segments.map((segment, idx) => {
+        {segments.map((segment) => {
           const angle = segment.midAngle - (Math.PI / 2);
           const radiusPercent = 32.5; 
           const left = 50 + radiusPercent * Math.cos(angle);
@@ -95,9 +98,12 @@ const ResponsiveGitHubCalendar = () => {
 };
 
 export default function GithubDashboard() {
+  const appleFontStack = { fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' };
+
   return (
-    <div className="mt-32 w-full max-w-6xl mx-auto px-4 sm:px-0" id="github">
+    <div className="mt-32 w-full max-w-6xl mx-auto px-4 sm:px-0" id="github" style={appleFontStack}>
       <div className="bg-white rounded-2xl border border-neutral-200 shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col md:flex-row min-h-[500px]">
+        {/* SIDEBAR */}
         <div className="w-full md:w-56 bg-neutral-50/50 border-b md:border-b-0 md:border-r border-neutral-100 p-4 shrink-0">
           <div className="flex gap-1.5 mb-8">
             <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
@@ -107,52 +113,49 @@ export default function GithubDashboard() {
 
           <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-4 ml-2">Activity</p>
           <div className="space-y-1">
-            {[
-              { label: 'Github', icon: <FaGithub />, active: true },
-            ].map((item) => (
-              <div 
-                key={item.label}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer font-bold ${item.active ? 'bg-[#007aff] text-white shadow-sm' : 'text-neutral-500 hover:bg-neutral-200/50'}`}
-              >
-                <div className={`${item.active ? 'text-white' : 'text-neutral-400'}`}>{item.icon}</div>
-                {item.label}
-              </div>
-            ))}
+            <div className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all cursor-pointer font-semibold bg-[#007aff] text-white shadow-sm">
+                <div className="text-white"><FaGithub /></div>
+                Github
+            </div>
           </div>
         </div>
 
-        <div className="flex-1 p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-          
-          <div className="md:col-span-2 bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm">
+        {/* MAIN CONTENT Area */}
+        <div className="flex-1 p-4 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          {/* --- TOP ROW --- */}
+          <div className="md:col-span-2 bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm flex flex-col h-full">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Contributions</h3>
+              <h3 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest">Contributions</h3>
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             </div>
-            <div className="w-full overflow-x-auto py-2">
-               <div className="w-fit mx-auto">
+            <div className="w-full overflow-x-auto py-2 flex flex-col items-center justify-center flex-1">
+              <div className="w-fit mx-auto">
                 <ResponsiveGitHubCalendar />
-               </div>
+              </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm flex flex-col items-center">
-            <h3 className="text-xs font-bold text-neutral-500 uppercase tracking-widest self-start mb-4">Focus Areas</h3>
+          <div className="md:col-span-1 bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm flex flex-col items-center h-full justify-center min-h-[250px]">
+            <h3 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest self-start mb-0">Focus Areas</h3>
             <CircularProficiency />
           </div>
 
-          <div className="bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm flex flex-col h-fit self-start">
-             <h3 className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-6">Stack Breakdown</h3>
-             <div className="grid gap-x-4 gap-y-5" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(115px, 1fr))' }}>
-                {techStack.map(tech => (
-                  <div key={tech.name} className="flex items-center gap-2.5">
-                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full flex-shrink-0 shadow-sm" style={{ backgroundColor: tech.color, minWidth: '10px', minHeight: '10px' }} />
-                    <span className="text-xs font-bold text-neutral-700 sm:text-sm whitespace-nowrap overflow-hidden text-ellipsis">{tech.name}</span>
-                  </div>
-                ))}
-             </div>
+          {/* --- BOTTOM ROW --- */}
+          <div className="md:col-span-2 flex flex-col h-full">
+            <GithubActivityTimeline />
           </div>
 
-
+          <div className="md:col-span-1 bg-white rounded-xl border border-neutral-200/60 p-6 shadow-sm flex flex-col h-full">
+            <h3 className="text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-6">Stack Breakdown</h3>
+            <div className="grid gap-x-4 gap-y-5" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))' }}>
+              {techStack.map(tech => (
+                <div key={tech.name} className="flex items-center gap-2.5">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full flex-shrink-0 shadow-sm" style={{ backgroundColor: tech.color, minWidth: '10px', minHeight: '10px' }} />
+                  <span className="text-xs font-semibold text-neutral-800 sm:text-sm whitespace-nowrap overflow-hidden text-ellipsis">{tech.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

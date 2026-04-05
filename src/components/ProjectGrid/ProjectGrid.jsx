@@ -12,7 +12,8 @@ const SlideToExploreButton = () => {
     const buttonWidth = 320;
     const thumbWidth = 72;
     const padding = 4;
-    const dragLimit = buttonWidth - thumbWidth - (padding * 2);
+    const paddingRight = 12; // Increased padding for more space at the end
+    const dragLimit = buttonWidth - thumbWidth - padding - paddingRight;
 
     // Interactive fading based on precise pixel drag position
     const textOpacity = useTransform(dragX, [0, dragLimit / 1.5], [1, 0]);
@@ -32,12 +33,12 @@ const SlideToExploreButton = () => {
 
     return (
         <div 
-            className="relative flex items-center bg-[#E5E5EA] rounded-full h-[80px] overflow-hidden select-none shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] border border-[#D1D1D6]/50" 
+            className="relative flex items-center bg-neutral-900 rounded-full h-[80px] overflow-hidden select-none shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)] border border-white/5" 
             style={{ width: buttonWidth }}
         >
-            {/* The sliding confirmed background (Changed from Green to Blue) */}
+            {/* The sliding confirmed background (White for High Contrast) */}
             <motion.div 
-                className="absolute left-0 top-0 bottom-0 bg-[#007aff] rounded-full shadow-[0_0_20px_rgba(0,122,255,0.3)]"
+                className="absolute left-0 top-0 bottom-0 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                 style={{ 
                     width: isComplete ? buttonWidth : fillWidth,
                     opacity: isComplete ? 1 : bgOpacity 
@@ -46,18 +47,18 @@ const SlideToExploreButton = () => {
 
             {/* Default Text (Cleaned up) */}
             <motion.div 
-                className="absolute w-full text-center pointer-events-none flex justify-center pl-10 text-[15px] font-bold text-neutral-500/80" 
+                className="absolute w-full text-center pointer-events-none flex justify-center pl-10 text-[15px] font-bold text-neutral-400/90" 
                 style={{ opacity: isComplete ? 0 : textOpacity }}
             >
                 Slide to view more projects
             </motion.div>
 
-            {/* Confirmed Text (Reduced font weight) */}
+            {/* Confirmed Text (Dark for contrast on white bg) */}
             <div className={`absolute w-full text-center pointer-events-none transition-opacity duration-300 flex justify-center pr-8 ${isComplete ? 'opacity-100 delay-100' : 'opacity-0'}`}>
-                <span className="text-[16px] font-bold text-white tracking-wide drop-shadow-sm">Confirmed!</span>
+                <span className="text-[16px] font-bold text-neutral-900 tracking-wide">Confirmed!</span>
             </div>
 
-            {/* Draggable Circle Thumb with breathing glow and strong shadow */}
+            {/* Draggable Circle Thumb with strong shadow (Blue glow removed) */}
             <motion.div 
                 drag={!isComplete ? "x" : false}
                 dragConstraints={{ left: 0, right: dragLimit }}
@@ -68,9 +69,9 @@ const SlideToExploreButton = () => {
                 animate={isComplete ? { x: dragLimit } : {
                     x: dragX.get(),
                     boxShadow: [
-                        "0 8px 25px rgba(0,0,0,0.15), 0 0 0 rgba(0,122,255,0)",
-                        "0 12px 30px rgba(0,0,0,0.2), 0 0 15px rgba(0,122,255,0.2)",
-                        "0 8px 25px rgba(0,0,0,0.15), 0 0 0 rgba(0,122,255,0)"
+                        "0 8px 25px rgba(0,0,0,0.3)",
+                        "0 12px 30px rgba(0,0,0,0.45)",
+                        "0 8px 25px rgba(0,0,0,0.3)"
                     ]
                 }}
                 transition={isComplete ? { type: "spring", stiffness: 500, damping: 40 } : {
@@ -80,7 +81,7 @@ const SlideToExploreButton = () => {
                         ease: "easeInOut"
                     }
                 }}
-                className={`w-[72px] h-[72px] bg-white rounded-full flex items-center justify-center z-10 relative shadow-[0_8px_20px_-4px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.1)] ${isComplete ? 'cursor-default' : 'cursor-grab active:cursor-grabbing'}`}
+                className={`w-[72px] h-[72px] bg-neutral-800 border border-white/10 rounded-full flex items-center justify-center z-10 relative ${isComplete ? 'cursor-default' : 'cursor-grab active:cursor-grabbing'}`}
                 style={{ x: dragX, marginLeft: padding }}
                 whileHover={!isComplete ? { scale: 1.05 } : {}}
                 whileTap={!isComplete ? { scale: 0.96 } : {}}
@@ -96,7 +97,7 @@ const SlideToExploreButton = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </motion.svg>
                 ) : (
-                    <svg className="w-6 h-6 text-neutral-800 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <svg className="w-6 h-6 text-white ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 )}
