@@ -38,7 +38,11 @@ function CircularProficiency() {
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-4" style={appleFontStack}>
-      <div className="relative w-44 h-44 md:w-52 md:h-52">
+      <motion.div 
+        className="relative w-44 h-44 md:w-52 md:h-52"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      >
         <svg className="w-full h-full overflow-visible" viewBox="0 0 200 200">
           <circle
             cx="100"
@@ -75,18 +79,20 @@ function CircularProficiency() {
           const left = 50 + radiusPercent * Math.cos(angle);
           const top = 50 + radiusPercent * Math.sin(angle);
           return (
-            <div
+            <motion.div
               key={`icon-${segment.name}`}
-              className="absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 shadow-sm z-10"
+              className="absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 shadow-sm z-10 overflow-hidden"
               style={{ left: `${left}%`, top: `${top}%`, borderColor: segment.color, color: segment.color }}
+              animate={{ rotate: -360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             >
               <div className="w-1/2 h-1/2 flex items-center justify-center">
                 {React.cloneElement(segment.icon, { className: "w-full h-full" })}
               </div>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -18,13 +18,31 @@ export default function ProjectCard({ project, scrollKey = "home" }) {
         navigate(`/project/${project.slug}`);
     };
 
+    const defaultVariants = {
+        hidden: { opacity: 0, scale: 0.9, y: 10 },
+        visible: { 
+            opacity: 1, scale: 1, y: 0,
+            transition: {
+                duration: 0.4, 
+                ease: [0.23, 1, 0.32, 1]
+            }
+        },
+        exit: { opacity: 0, scale: 0.9, y: 10 }
+    };
+
     return (
         <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            layout
+            variants={defaultVariants}
+            transition={{ 
+                layout: { 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 30
+                }
+            }}
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.3 }}
-            className="group relative flex flex-col md:flex-row bg-white/80 backdrop-blur-xl rounded-[32px] overflow-hidden border border-neutral-100 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.06)] transition-all duration-500 cursor-pointer"
+            className="group relative flex flex-col md:flex-row bg-white/80 backdrop-blur-xl rounded-[32px] overflow-hidden border border-neutral-100 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.06)] cursor-pointer"
             onClick={handleNavigate}
         >
             {/* Project Cover */}

@@ -76,12 +76,12 @@ import WhoofMeowResult from "/assets/whoof & Meow/match result.jpeg";
 
 const listProyekBase = [
   {
-    id: 8,
+    id: 1,
     slug: "whoof-meow",
     image: WhoofMeowCover,
     images: [WhoofMeowCover, WhoofMeowHome, WhoofMeowGameplay, WhoofMeowMode, WhoofMeowResult],
     title: "Whoof and Meow",
-    category: "Game",
+    category: "Website",
     subtitle: "A high-energy Tic Tac Toe game featuring Cat vs Dog personalization, real-time multiplayer, and AI mode.",
     role: "Fullstack Developer",
     duration: "2 weeks",
@@ -114,7 +114,7 @@ const listProyekBase = [
     ]
   },
   {
-    id: 3,
+    id: 2,
     slug: "drevelopment",
     image: Proyek3,
     images: [Proyek3, Proyek1, Proyek4],
@@ -148,7 +148,7 @@ const listProyekBase = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     slug: "rupiah-flow",
     image: Proyek2,
     images: [Proyek2, Proyek5, Proyek1],
@@ -185,7 +185,7 @@ const listProyekBase = [
     ]
   },
   {
-    id: 1,
+    id: 4,
     slug: "thinkways",
     image: Proyek1,
     images: [Proyek1, Proyek2, Proyek3],
@@ -222,7 +222,7 @@ const listProyekBase = [
     ]
   },
   {
-    id: 6,
+    id: 5,
     slug: "certix",
     image: CertixImg,
     images: [CertixImg, Proyek2, Proyek3],
@@ -257,7 +257,7 @@ const listProyekBase = [
     ]
   },
   {
-    id: 4,
+    id: 6,
     slug: "damianos-production",
     image: DamianosImg,
     images: [DamianosImg, Proyek1, Proyek2],
@@ -296,12 +296,12 @@ const listProyekBase = [
     ]
   },
   {
-    id: 5,
+    id: 7,
     slug: "type-paper",
     image: TypePaperImg,
     images: [TypePaperImg],
     title: "Type Paper",
-    category: "Game",
+    category: "Website",
     subtitle: "A minimalist typing test inspired by Monkeytype.",
     role: "Frontend Developer",
     duration: "4 days",
@@ -332,7 +332,7 @@ const listProyekBase = [
     ]
   },
   {
-    id: 7,
+    id: 8,
     slug: "nance",
     image: NanceCover,
     images: [NanceCover, NanceTransfer, NanceStats],
@@ -371,14 +371,9 @@ const listProyekBase = [
   }
 ];
 
-export const listProyek = [
-  ...listProyekBase
-];
-
-// Kategori terpisah
-export const listProyekWeb = listProyek.filter(p => p.category === "Fullstack" || p.category === "Website");
+export const listProyek = [...listProyekBase];
+export const listProyekWeb = listProyek.filter(p => p.category === "Website");
 export const listProyekUIUX = listProyek.filter(p => p.category === "UI/UX");
-export const listProyekGame = listProyek.filter(p => p.category === "Game");
 
 import DishubLogo from "/assets/Career/Dishub.png";
 import DuniaSandangLogo from "/assets/Career/Dunia Sandang.jpeg";
@@ -386,7 +381,7 @@ import LinestagLogo from "/assets/Career/Linestag.webp";
 
 export const listExperience = [
   {
-    id: 4,
+    id: 1,
     company: "Damianos Productions",
     role: "Web Developer",
     period: "Feb 2026 - Present",
@@ -394,7 +389,7 @@ export const listExperience = [
     description: "Developed a high-end company profile website for a creative agency using Next.js and GSAP for fluid, premium transitions.",
   },
   {
-    id: 1,
+    id: 2,
     company: "Dinas Perhubungan",
     role: "Full-stack Developer (Internship)",
     period: "Feb 2026 - Present",
@@ -402,7 +397,7 @@ export const listExperience = [
     description: "Developed and maintained web applications using Next.js, React.js, and modern web technologies.",
   },
   {
-    id: 2,
+    id: 3,
     company: "Dunia Sandang",
     role: "Web Maintenance (Freelance)",
     period: "Oct 2024",
@@ -410,7 +405,7 @@ export const listExperience = [
     description: "Maintained web platforms and implemented continuous updates utilizing WordPress and PHP environments.",
   },
   {
-    id: 3,
+    id: 4,
     company: "Linestag Indonesia",
     role: "Creative Designer & Script Writer",
     period: "Apr 2022 - Sep 2022",
@@ -418,3 +413,4 @@ export const listExperience = [
     description: "Designed creative assets using Adobe Illustrator & Photoshop, wrote TikTok Live scripts, and organized events.",
   }
 ];
+

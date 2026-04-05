@@ -12,12 +12,10 @@ export default function ProjectDetail() {
     const project = listProyek.find((p) => p.slug === slug);
     const [showBack, setShowBack] = useState(true);
 
-    // Single fire on mount
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    // Scroll listener for back button visibility
     useEffect(() => {
         let lastPos = 0;
         const controlNavbar = () => {
@@ -73,7 +71,6 @@ export default function ProjectDetail() {
                 }
             `}</style>
 
-            {/* Back Button - iOS 26 Glassmorphic Style */}
             <motion.div 
                 className="fixed top-6 left-6 z-50"
                 initial={{ opacity: 0, scale: 0.8, y: -20 }}
@@ -90,18 +87,15 @@ export default function ProjectDetail() {
             >
                 <button 
                     onClick={() => navigate(-1)}
-                    className="w-12 h-12 flex items-center justify-center bg-white/40 backdrop-blur-[20px] rounded-full shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/40 hover:bg-white/60 active:scale-90 transition-all duration-300 group relative"
+                    className="w-12 h-12 flex items-center justify-center bg-white/10 [backdrop-filter:blur(16px)_saturate(180%)] rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.12)] border border-white/20 hover:bg-white/20 active:scale-90 transition-all duration-300 group relative"
                 >
-                    {/* iOS style nested inner outline for depth */}
-                    <div className="absolute inset-[1px] rounded-full border border-white/20 pointer-events-none" />
-                    
+                    <div className="absolute inset-[1px] rounded-full border border-white/10 pointer-events-none" />
                     <FiChevronLeft className="text-2xl text-[#007AFF] transition-transform duration-300 group-hover:-translate-x-0.5" />
                 </button>
             </motion.div>
 
             <div className="detail-root relative z-10 w-full flex flex-col lg:flex-row max-w-[1600px] mx-auto min-h-screen lg:min-h-[900px] pb-24 lg:pb-20">
 
-                {/* LEFT SIDE: Polaroid + Title */}
                 <div className="lg:w-[45%] flex items-start justify-center p-8 pt-24 lg:p-12 xl:p-16 h-fit">
                     <motion.div
                         className="flex flex-col items-center gap-8 max-w-md w-full"
@@ -109,16 +103,12 @@ export default function ProjectDetail() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7 }}
                     >
-                        {/* Polaroid */}
                         <motion.div
                             initial={{ rotate: 0, scale: 1 }}
                             animate={{ rotate: 0, scale: 1 }}
                         >
                             <div className="relative bg-white p-4 pb-4 sm:p-5 sm:pb-5 shadow-[4px_8px_24px_rgba(0,0,0,0.1)] border border-neutral-100 transition-all duration-500 w-[320px] sm:w-[380px]">
-                                
-                                {/* Header Accent */}
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-neutral-900/5" />
-
                                 <div className="relative w-full aspect-[4/3] bg-neutral-100 overflow-hidden">
                                     <img 
                                         src={project.image} 
@@ -129,7 +119,6 @@ export default function ProjectDetail() {
                             </div>
                         </motion.div>
 
-                        {/* Title + Subtitle */}
                         <div className="text-center">
                             <h1 className="text-4xl sm:text-6xl font-black text-neutral-900 mb-3 tracking-tighter leading-[1.1]">
                                 {project.title}
@@ -139,7 +128,6 @@ export default function ProjectDetail() {
                             </p>
                         </div>
 
-                        {/* Meta Labels */}
                         <div className="flex flex-wrap gap-2.5 items-center justify-center">
                             {project.role && (
                                 <div className="px-4 py-2 bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-[0.15em] rounded-lg shadow-sm">
@@ -160,7 +148,6 @@ export default function ProjectDetail() {
                         </div>
 
                         <div className="flex flex-col items-center gap-6 mt-4">
-                            {/* Tech Stack */}
                             <div className="flex flex-wrap gap-2 items-center justify-center">
                                 {project.techstack.map((tech, idx) => {
                                     const icon = getTechIcon(tech);
@@ -175,7 +162,6 @@ export default function ProjectDetail() {
                                 })}
                             </div>
 
-                            {/* Mobile-only Visit Website (above keep scrolling) */}
                             <div className="lg:hidden flex justify-center w-full">
                                 {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
                                     <div className="relative px-8 py-3 bg-white text-neutral-400 font-bold text-xs border border-neutral-200 shadow-sm cursor-not-allowed uppercase tracking-widest rounded-lg">
@@ -193,7 +179,6 @@ export default function ProjectDetail() {
                                 ) : null}
                             </div>
 
-                            {/* Integrated Scroll Hint */}
                             <motion.div 
                                 className="flex flex-col items-center gap-1.5 opacity-60"
                                 initial={{ opacity: 0, y: 10 }}
@@ -216,10 +201,8 @@ export default function ProjectDetail() {
                     </motion.div>
                 </div>
 
-                {/* RIGHT SIDE: Concept & Impact */}
                 <div className="lg:w-[55%] px-6 lg:px-10 xl:px-14 py-16 lg:py-24 xl:py-28 flex flex-col gap-12 lg:items-start text-left items-center pt-10">
 
-                    {/* Visit Website CTA (Desktop only — mobile version is in left column) */}
                     <div className="hidden lg:flex justify-start w-full">
                         {project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON" ? (
                             <div className="relative px-8 py-3 bg-white text-neutral-400 font-bold text-xs border border-neutral-200 shadow-sm cursor-not-allowed uppercase tracking-widest rounded-lg">
@@ -237,7 +220,6 @@ export default function ProjectDetail() {
                         ) : null}
                     </div>
 
-                    {/* Features - iOS Notes Style */}
                     {project.features && project.features.length > 0 && (
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -269,7 +251,6 @@ export default function ProjectDetail() {
                         </motion.div>
                     )}
 
-                    {/* Impact & Outcome - iOS Notes Style */}
                     {project.impact && (
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -295,10 +276,8 @@ export default function ProjectDetail() {
 
             </div>
 
-            {/* FULL WIDTH SPANNED SECTIONS BOTTOM */}
             <div className="w-full flex flex-col items-center mt-12 pb-32 gap-32">
 
-                {/* Process Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -498,3 +477,4 @@ export default function ProjectDetail() {
         </div>
     );
 }
+
