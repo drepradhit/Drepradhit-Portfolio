@@ -6,11 +6,11 @@ const WorkExperience = ({ experience }) => {
     <div className="w-full relative flex flex-col items-center z-10 pt-0">
       <div className="relative w-full max-w-2xl mx-auto pb-12 pt-0">
         <motion.div 
-          initial={{ opacity: 0, y: 10, rotate: 1.5 }}
-          whileInView={{ opacity: 1, y: 0, rotate: 1.5 }}
+          initial={{ opacity: 0, y: 10, rotate: 0 }}
+          whileInView={{ opacity: 1, y: 0, rotate: window.innerWidth < 768 ? 0 : 1.5 }}
           whileHover={{ 
             y: -10, 
-            rotate: 3,
+            rotate: window.innerWidth < 768 ? 0 : 3,
             shadow: "0 25px 60px rgba(0,0,0,0.12)" 
           }}
           viewport={{ once: true, amount: 0.05 }}
@@ -35,7 +35,7 @@ const WorkExperience = ({ experience }) => {
               </div>
             </div>
 
-            <div className="px-8 md:px-12 pt-2 pb-12">
+            <div className="px-6 md:px-12 pt-2 pb-12">
               <div className="relative mb-10 w-full flex justify-start z-30">
                 <h2 className="text-3xl md:text-5xl font-bold text-[#1e293b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
                   Experience

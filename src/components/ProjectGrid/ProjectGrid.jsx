@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProjectCard from "../ProjectCard";
 
 const SlideToExploreButton = () => {
@@ -8,8 +8,17 @@ const SlideToExploreButton = () => {
     const [isComplete, setIsComplete] = useState(false);
     const dragX = useMotionValue(0);
     
-    // Physical dimensions for exactly 1:1 sliding physics
-    const buttonWidth = 320;
+    // Physical dimensions for responsive sliding physics
+    const [buttonWidth, setButtonWidth] = useState(window.innerWidth < 400 ? 280 : 320);
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setButtonWidth(window.innerWidth < 400 ? 280 : 320);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const thumbWidth = 72;
     const padding = 4;
     const paddingRight = 12; // Increased padding for more space at the end
@@ -34,7 +43,7 @@ const SlideToExploreButton = () => {
 
     return (
         <div 
-            className="relative flex items-center bg-neutral-900 rounded-full h-[80px] overflow-hidden select-none shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)] border border-white/5" 
+            className="relative flex items-center bg-neutral-900 rounded-full h-[80px] overflow-hidden select-none shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)] border border-white/5 transition-all duration-300" 
             style={{ width: buttonWidth }}
         >
             {/* The sliding confirmed background (White for High Contrast) */}
@@ -48,7 +57,7 @@ const SlideToExploreButton = () => {
 
             {/* Default Text (Cleaned up) */}
             <motion.div 
-                className="absolute w-full text-center pointer-events-none flex justify-center pl-10 text-[15px] font-bold text-neutral-400/90" 
+                className="absolute w-full text-center pointer-events-none flex justify-center pl-10 text-[14px] sm:text-[15px] font-bold text-neutral-400/90 px-4" 
                 style={{ opacity: isComplete ? 0 : textOpacity }}
             >
                 Slide to view more projects
@@ -141,22 +150,18 @@ export default function ProjectGrid({ projects }) {
     return (
         <div className="w-full py-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div 
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.05 }}
+                <div 
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                 >
                     {projects.map((project) => (
-                        <motion.div key={project.id} variants={itemVariants}>
+                        <div key={project.id}>
                             <ProjectCard 
                                 project={project} 
                                 scrollKey="home_scroll"
                             />
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
 
                 <div className="mt-16 flex justify-center">
                     <SlideToExploreButton />

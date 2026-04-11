@@ -42,7 +42,7 @@ const ProfileCard = ({ avatarUrl = "./assets/andre.jpg", className = "" }) => {
 
   return (
     <div 
-      className={`relative w-[300px] sm:w-[350px] aspect-[4/6] flex items-center justify-center ${className}`.trim()}
+      className={`relative w-[280px] sm:w-[350px] aspect-[4/6] flex items-center justify-center ${className}`.trim()}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -57,7 +57,7 @@ const ProfileCard = ({ avatarUrl = "./assets/andre.jpg", className = "" }) => {
           willChange: "transform",
           backfaceVisibility: "hidden"
         }}
-        className="relative w-[260px] sm:w-[300px] aspect-[4/5] cursor-default pointer-events-none"
+        className="relative w-[240px] sm:w-[300px] aspect-[4/5] cursor-default pointer-events-none"
       >
         {/* Layer 1: Bottom Photo (Offset & Rotated) */}
         <motion.div 

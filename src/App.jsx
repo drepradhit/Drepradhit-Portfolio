@@ -113,13 +113,13 @@ function App() {
               className="text-lg text-neutral-600 mb-8 leading-relaxed w-full flex justify-center lg:justify-start"
               variants={itemVariants}
             >
-              <div className="w-full max-w-[340px] lg:max-w-none">
+              <div className="w-full max-w-[340px] sm:max-w-md lg:max-w-none px-2 sm:px-0">
                 <TerminalRoles roles={["UI UX Designer", "Mobile Developer", "Web Developer", "Graphic Designer"]} />
               </div>
             </motion.div>
 
             <motion.div 
-              className="flex flex-row items-center gap-3 justify-center lg:justify-start w-full"
+              className="flex flex-wrap items-center gap-3 justify-center lg:justify-start w-full px-2"
               variants={itemVariants}
             >
               <motion.a
@@ -147,7 +147,7 @@ function App() {
                 </div>
               </motion.a>
 
-              <div className="flex flex-row gap-2.5">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
                 {[
                   { icon: FaLinkedin, url: "https://www.linkedin.com/in/andrepradhit/", label: "LinkedIn", username: "Andre Pradhit" },
                   { icon: FaGithub, url: "https://github.com/drepradhit", label: "GitHub", username: "drepradhit" },
@@ -187,11 +187,11 @@ function App() {
           <div className="flex flex-col w-full min-h-[400px] items-center lg:items-start pt-0">
             <motion.div
               className="relative w-full bg-white/95 backdrop-blur-md overflow-hidden rounded-[32px] border border-neutral-200 cursor-default shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
-              initial={{ opacity: 0, y: 20, rotate: -1.5 }}
-              whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
+              initial={{ opacity: 0, y: 20, rotate: 0 }}
+              whileInView={{ opacity: 1, y: 0, rotate: window.innerWidth < 768 ? 0 : -1.5 }}
               whileHover={{ 
                 y: -10, 
-                rotate: -3,
+                rotate: window.innerWidth < 768 ? 0 : -3,
                 shadow: "0 25px 60px rgba(0,0,0,0.12)" 
               }}
               viewport={{ once: true, amount: 0.1 }}
@@ -204,7 +204,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="px-8 md:px-12 pt-0 pb-10">
+              <div className="px-6 md:px-12 pt-0 pb-10">
                 <div className="flex flex-col gap-0 mb-6 border-b border-neutral-50/50 pb-4 text-center">
                   <span className="text-neutral-400 text-[13px] font-medium">Today, 11:56 PM</span>
                   <h2 className="text-2xl md:text-3xl text-black font-extrabold tracking-tight mt-2">Hi! I'm Andre</h2>

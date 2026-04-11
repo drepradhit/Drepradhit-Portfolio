@@ -126,7 +126,7 @@ const ShowcaseGallery = () => {
                             </p>
                         </div>
 
-                        <div className="bg-neutral-100/50 backdrop-blur-[12px] p-1 rounded-full flex w-full min-w-[320px] max-w-[380px] relative shadow-inner ring-1 ring-neutral-200/60">
+                        <div className="bg-neutral-100/50 backdrop-blur-[12px] p-1 rounded-full flex w-full sm:min-w-[320px] max-w-[380px] relative shadow-inner ring-1 ring-neutral-200/60">
                             {filters.map((f) => (
                                 <button 
                                     key={f}
@@ -166,7 +166,7 @@ const ShowcaseGallery = () => {
                                 style={{ 
                                     backgroundColor: filter === 'web' ? '#fef9c3' : '#dbeafe',
                                     borderRadius: '2px 40px 5px 60px / 5px 5px 40px 5px',
-                                    transform: `rotate(${filter === 'web' ? -2 : 2}deg)`
+                                    transform: `rotate(${window.innerWidth < 768 ? 0 : (filter === 'web' ? -2 : 2)}deg)`
                                 }}
                             >
                                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-8 bg-white/40 backdrop-blur-sm -rotate-2 border border-black/5" />
@@ -212,32 +212,20 @@ const ShowcaseGallery = () => {
 
                 <div className="mt-10 relative">
                     <AnimatePresence mode="popLayout" custom={direction} initial={false}>
-                        <motion.div 
-                            key={filter}
-                            custom={direction}
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
+                        <div 
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                         >
                             {filteredProjects.map((project) => (
-                                <motion.div 
+                                <div 
                                     key={project.id}
-                                    variants={{
-                                        enter: (dir) => ({ y: 20, opacity: 0, scale: 0.9 }),
-                                        center: { y: 0, opacity: 1, scale: 1 },
-                                        exit: (dir) => ({ y: 10, opacity: 0, scale: 0.9 })
-                                    }}
-                                    transition={{ duration: 0.4 }}
                                 >
                                     <ProjectCard 
                                         project={project} 
                                         scrollKey="showcase_scroll"
                                     />
-                                </motion.div>
+                                </div>
                             ))}
-                        </motion.div>
+                        </div>
                     </AnimatePresence>
                 </div>
             </div>
