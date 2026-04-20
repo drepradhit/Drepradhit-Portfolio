@@ -1,10 +1,9 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { FiChevronLeft } from "react-icons/fi";
+import { FiChevronLeft, FiLayers, FiActivity } from "react-icons/fi";
 import { listProyekWeb, listProyekUIUX } from '../../data';
-import ProjectCard from "../../components/ProjectCard";
-import GridBackground from "../../components/GridBackground/GridBackground";
+import BentoProjectCard from "../../components/BentoProjectCard/BentoProjectCard";
 
 const ShowcaseGallery = () => {
     const navigate = useNavigate();
@@ -61,37 +60,36 @@ const ShowcaseGallery = () => {
           filter === 'web' ? listProyekWeb 
         : listProyekUIUX;
 
-    const variants = {
+    const projectVariants = {
         enter: (dir) => ({
-            x: dir > 0 ? 100 : -100,
+            x: dir > 0 ? 200 : -200,
             opacity: 0,
-            scale: 0.95
+            filter: "blur(4px)"
         }),
         center: {
             x: 0,
             opacity: 1,
-            scale: 1,
+            filter: "blur(0px)",
             transition: {
-                x: { type: "spring", stiffness: 400, damping: 30 },
-                opacity: { duration: 0.3 },
-                staggerChildren: 0.08,
-                delayChildren: 0.1
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.4 },
+                filter: { duration: 0.4 }
             }
         },
         exit: (dir) => ({
-            x: dir > 0 ? -100 : 100,
+            x: dir > 0 ? -200 : 200,
             opacity: 0,
-            scale: 0.95,
+            filter: "blur(4px)",
             transition: {
-                x: { type: "spring", stiffness: 400, damping: 30 },
-                opacity: { duration: 0.2 }
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.3 },
+                filter: { duration: 0.3 }
             }
         })
     };
 
     return (
-        <div className="w-full py-10 overflow-hidden">
-            <GridBackground />
+        <div className="w-full py-10 overflow-hidden bg-white min-h-screen">
 
             <motion.div 
                 className="fixed top-6 left-6 z-50"
@@ -109,10 +107,10 @@ const ShowcaseGallery = () => {
             >
                 <button 
                     onClick={() => navigate("/")}
-                    className="w-12 h-12 flex items-center justify-center bg-white/10 [backdrop-filter:blur(16px)_saturate(180%)] rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.12)] border border-white/20 hover:bg-white/20 active:scale-90 transition-all duration-300 group relative"
+                    className="h-11 px-5 flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-full shadow-sm border border-neutral-200 hover:bg-white hover:border-neutral-300 hover:shadow-md active:scale-95 transition-all duration-300 group"
                 >
-                    <div className="absolute inset-[1px] rounded-full border border-white/10 pointer-events-none" />
-                    <FiChevronLeft className="text-2xl text-[#007AFF] transition-transform duration-300 group-hover:-translate-x-0.5" />
+                    <FiChevronLeft className="text-lg text-neutral-500 group-hover:text-black transition-colors duration-300" />
+                    <span className="text-[13px] font-bold text-neutral-700 group-hover:text-black tracking-wide pr-1">Back to Homepage</span>
                 </button>
             </motion.div>
 
@@ -126,12 +124,12 @@ const ShowcaseGallery = () => {
                             </p>
                         </div>
 
-                        <div className="bg-neutral-100/50 backdrop-blur-[12px] p-1 rounded-full flex w-full sm:min-w-[320px] max-w-[380px] relative shadow-inner ring-1 ring-neutral-200/60">
+                        <div className="bg-neutral-100/50 backdrop-blur-[12px] p-1 rounded-xl flex w-full sm:min-w-[320px] max-w-[380px] relative shadow-inner ring-1 ring-neutral-200/60">
                             {filters.map((f) => (
                                 <button 
                                     key={f}
                                     onClick={() => handleFilterChange(f)}
-                                    className={`relative flex-1 py-2.5 text-[14px] font-bold tracking-tight rounded-full transition-all duration-300 z-10 ${
+                                    className={`relative flex-1 py-2.5 text-[14px] font-bold tracking-tight rounded-lg transition-all duration-300 z-10 ${
                                         filter === f ? 'text-black' : 'text-[#86868b] hover:text-neutral-600'
                                     }`}
                                     style={{ WebkitTapHighlightColor: 'transparent' }}
@@ -139,7 +137,7 @@ const ShowcaseGallery = () => {
                                     {filter === f && (
                                         <motion.div
                                             layoutId="active-filter-pill"
-                                            className="absolute inset-0 bg-white rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/5"
+                                            className="absolute inset-0 bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/5"
                                             transition={{ type: "spring", stiffness: 400, damping: 28 }}
                                         />
                                     )}
@@ -155,56 +153,49 @@ const ShowcaseGallery = () => {
                         <motion.div
                             key={filter}
                             custom={direction}
-                            variants={variants}
+                            variants={projectVariants} // Reuse similar logic but with category specific variants if needed, or keep generic
                             initial="enter"
                             animate="center"
                             exit="exit"
                             className="relative w-full md:w-[400px] shrink-0"
                         >
-                            <div 
-                                className="p-6 md:p-8 shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] border-b-4 border-black/10 relative overflow-hidden"
-                                style={{ 
-                                    backgroundColor: filter === 'web' ? '#fef9c3' : '#dbeafe',
-                                    borderRadius: '2px 40px 5px 60px / 5px 5px 40px 5px',
-                                    transform: `rotate(${window.innerWidth < 768 ? 0 : (filter === 'web' ? -2 : 2)}deg)`
-                                }}
-                            >
-                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-8 bg-white/40 backdrop-blur-sm -rotate-2 border border-black/5" />
-
-                                <div className="space-y-4">
-                                    <div>
-                                        <h3 className="text-xs font-black uppercase tracking-[0.2em] text-neutral-500 mb-2 opacity-60">
-                                            {filter === 'web' ? 'Technical Stack' : 'Design Deck'}
-                                        </h3>
-                                        <p className="text-[15px] font-bold text-neutral-800 leading-snug">
-                                            {filter === 'web' ? 'Next.js • React • Tailwind • GSAP • Supabase • PostgreSQL' : 'Figma • Illustrator • Photoshop'}
-                                        </p>
-                                    </div>
-
-                                    <div className="pt-4 border-t border-black/5">
-                                        <h3 className="text-xs font-black uppercase tracking-[0.2em] text-neutral-500 mb-4 opacity-60">
-                                            My Workflow
-                                        </h3>
-                                        <div className="flex flex-wrap items-center gap-y-3">
-                                            {(filter === 'web' 
-                                                ? ["Plan", "Design", "Code", "Deploy", "Test"] 
-                                                : ["User Res", "Define", "Ideate", "Proto", "Test"]
-                                            ).map((step, i, arr) => (
-                                                <React.Fragment key={i}>
-                                                    <span className="text-[13px] font-extrabold text-neutral-700 bg-black/5 px-2 py-1 rounded truncate max-w-fit">
-                                                        {step}
-                                                    </span>
-                                                    {i < arr.length - 1 && (
-                                                        <svg className="w-4 h-4 text-neutral-400 mx-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" />
-                                                        </svg>
-                                                    )}
-                                                </React.Fragment>
-                                            ))}
-                                        </div>
+                            <div className="bg-white rounded-[32px] border border-neutral-200 shadow-sm p-6 md:p-8 w-full flex flex-col gap-6 relative">
+                                <div>
+                                    <h3 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-4">
+                                        <FiLayers size={14} /> {filter === 'web' ? 'Technical Stack' : 'Design Deck'}
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {(filter === 'web' 
+                                            ? ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Supabase', 'PostgreSQL'] 
+                                            : ['Figma', 'Illustrator', 'Photoshop']
+                                        ).map(tech => (
+                                            <span key={tech} className="px-3 py-1.5 bg-neutral-50 border border-neutral-100 text-neutral-600 text-[12px] font-bold rounded-xl shadow-sm">
+                                                {tech}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
-                                <div className="absolute bottom-0 right-0 w-10 h-10 bg-black/5 rounded-tl-full" />
+
+                                <div className="pt-6 border-t border-neutral-100">
+                                    <h3 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-4">
+                                        <FiActivity size={14} /> My Workflow
+                                    </h3>
+                                    <div className="flex flex-wrap items-center gap-y-3">
+                                        {(filter === 'web' 
+                                            ? ["Plan", "Design", "Code", "Deploy", "Test"] 
+                                            : ["User Res", "Define", "Ideate", "Proto.", "Test"]
+                                        ).map((step, i, arr) => (
+                                            <React.Fragment key={i}>
+                                                <div className="flex items-center justify-center h-8 px-3 rounded-xl bg-neutral-900 border border-black text-white text-[11px] font-bold shadow-md">
+                                                    {step}
+                                                </div>
+                                                {i < arr.length - 1 && (
+                                                    <div className="w-3 h-[2px] bg-neutral-200 mx-1 rounded-full" />
+                                                )}
+                                            </React.Fragment>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     </AnimatePresence>
@@ -213,13 +204,13 @@ const ShowcaseGallery = () => {
                 <div className="mt-10 relative">
                     <AnimatePresence mode="popLayout" custom={direction} initial={false}>
                         <div 
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                            className="flex flex-col gap-16 md:gap-20 w-full pb-24"
                         >
                             {filteredProjects.map((project) => (
                                 <div 
                                     key={project.id}
                                 >
-                                    <ProjectCard 
+                                    <BentoProjectCard 
                                         project={project} 
                                         scrollKey="showcase_scroll"
                                     />

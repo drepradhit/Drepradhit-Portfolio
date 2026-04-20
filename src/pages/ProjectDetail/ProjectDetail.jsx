@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { FaArrowLeft, FaExternalLinkAlt } from "react-icons/fa";
 import { FiMessageSquare, FiMapPin, FiMap, FiLayout, FiStar, FiSearch, FiCode, FiDatabase, FiServer, FiCheckCircle, FiGlobe, FiLayers, FiCpu, FiActivity, FiTarget, FiPenTool, FiChevronLeft } from "react-icons/fi";
 import { useEffect, useState } from "react";
-import GridBackground from "../../components/GridBackground/GridBackground";
 
 export default function ProjectDetail() {
     const { slug } = useParams();
@@ -43,8 +42,7 @@ export default function ProjectDetail() {
     };
 
     return (
-        <div className="relative w-full min-h-screen text-neutral-800 selection:bg-blue-100/50 font-inter">
-            <GridBackground />
+        <div className="relative w-full min-h-screen text-neutral-800 selection:bg-blue-100/50 font-inter bg-white">
 
             <style>{`
                 .washi-slate {
@@ -87,10 +85,10 @@ export default function ProjectDetail() {
             >
                 <button 
                     onClick={() => navigate(-1)}
-                    className="w-12 h-12 flex items-center justify-center bg-white/10 [backdrop-filter:blur(16px)_saturate(180%)] rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.12)] border border-white/20 hover:bg-white/20 active:scale-90 transition-all duration-300 group relative"
+                    className="h-11 px-5 flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-full shadow-sm border border-neutral-200 hover:bg-white hover:border-neutral-300 hover:shadow-md active:scale-95 transition-all duration-300 group"
                 >
-                    <div className="absolute inset-[1px] rounded-full border border-white/10 pointer-events-none" />
-                    <FiChevronLeft className="text-2xl text-[#007AFF] transition-transform duration-300 group-hover:-translate-x-0.5" />
+                    <FiChevronLeft className="text-lg text-neutral-500 group-hover:text-black transition-colors duration-300" />
+                    <span className="text-[13px] font-bold text-neutral-700 group-hover:text-black tracking-wide pr-1">Back</span>
                 </button>
             </motion.div>
 
@@ -463,7 +461,7 @@ export default function ProjectDetail() {
                                                     src={img.src} 
                                                     alt={img.title} 
                                                     loading="lazy"
-                                                    className={`w-full h-auto object-contain relative z-20 ${isMobile ? 'shadow-[0_20px_40px_rgba(0,0,0,0.12)] rounded-[1.5rem] md:rounded-[1.8rem] border-[5px] border-[#1a1a1a] bg-white' : 'shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]'}`} 
+                                                    className={`w-full h-auto object-contain relative z-20 ${isMobile ? 'shadow-[0_20px_40px_rgba(0,0,0,0.12)] rounded-[1.5rem] md:rounded-[1.8rem] border-[5px] border-[#1a1a1a] bg-[#0f0f0f]' : 'shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)]'}`} 
                                                 />
                                             </div>
                                         </div>

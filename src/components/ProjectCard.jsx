@@ -1,11 +1,8 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { listTools } from "../data";
+import { FiArrowUpRight } from "react-icons/fi";
 
-/**
- * High-fidelity App Store Portrait Card.
- * Refined absolute sizes for mobile to prevent layout constraints and overlap ("berantakan").
- */
 export default function ProjectCard({ project, storageKey = "home_scroll" }) {
     const navigate = useNavigate();
 
@@ -15,100 +12,99 @@ export default function ProjectCard({ project, storageKey = "home_scroll" }) {
         navigate(`/project/${project.slug}`);
     };
 
+    const mainTechIcon = project.techstack?.[0]
+        ? listTools.find(t => t.nama.toLowerCase() === project.techstack[0].toLowerCase())?.gambar
+        : null;
+
     return (
-        <motion.div 
-            initial={{ opacity: 0, y: 15 }}
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.4 }}
-            className="group relative flex flex-col bg-[#131316] rounded-[24px] md:rounded-[28px] overflow-hidden transition-all duration-500 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] cursor-pointer"
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="group relative flex flex-col md:flex-row bg-white rounded-[24px] overflow-hidden border border-neutral-200/80 hover:border-neutral-300 transition-all duration-500 shadow-[0_2px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] cursor-pointer"
             onClick={handleNavigate}
         >
-            {/* 1. CINEMATIC IMAGE - Adjusted height for grid proportions */}
-            <div className="relative w-full h-[220px] sm:h-[240px] md:h-[260px] lg:h-[280px] overflow-hidden bg-neutral-900">
-                <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover"
+            {/* Image Section */}
+            <div className="relative w-full md:w-[45%] lg:w-[40%] h-[240px] sm:h-[280px] md:h-auto min-h-[300px] overflow-hidden bg-neutral-100 shrink-0">
+                <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-md text-[9px] font-black text-white/90 uppercase tracking-widest">
-                    {project.year}
-                  </span>
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Year Badge */}
+                <div className="absolute top-5 left-5">
+                    <span className="px-3.5 py-2 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-neutral-700 uppercase tracking-widest shadow-sm">
+                        {project.year}
+                    </span>
+                </div>
+
+                {/* Category Badge */}
+                <div className="absolute top-5 right-5 md:bottom-5 md:top-auto md:left-5 md:right-auto">
+                    <span className="px-3.5 py-2 bg-neutral-900/80 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
+                        {project.category}
+                    </span>
                 </div>
             </div>
 
-            {/* 2. DETAIL SECTION - Tightened padding for grid layout */}
-            <div className="p-5 md:p-6 lg:p-7 flex flex-col">
-                
-                {/* Header: Icon | Title Block | GET Button */}
-                <div className="flex items-center gap-3 w-full">
-                    {/* Icon Container - Reduced for Grid */}
-                    <div className="w-[52px] h-[52px] md:w-[56px] md:h-[56px] rounded-[20%] bg-white/5 flex items-center justify-center shrink-0 overflow-hidden relative shadow-[0_2px_8px_rgba(0,0,0,0.2)]">
-                         {project.techstack && project.techstack[0] ? (
-                            <img 
-                                src={listTools.find(t => t.nama.toLowerCase() === project.techstack[0].toLowerCase())?.gambar} 
-                                className="w-[55%] h-[55%] object-contain"
-                                alt="icon"
-                            />
-                        ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600" />
-                        )}
-                    </div>
+            {/* Content Section */}
+            <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center flex-1">
 
-                    {/* Meta Detail column */}
-                    <div className="min-w-0 flex-1 flex flex-col justify-center mt-1.5">
-                        <h3 className="text-[17px] sm:text-[18px] md:text-[20px] font-bold text-white tracking-tight leading-none mb-1 md:mb-1.5 truncate" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                {/* Title Row */}
+                <div className="flex items-start gap-4 mb-4 md:mb-5">
+                    {mainTechIcon && (
+                        <div className="w-[48px] h-[48px] md:w-[56px] md:h-[56px] rounded-[16px] bg-neutral-50 border border-neutral-100 flex items-center justify-center shrink-0">
+                            <img
+                                src={mainTechIcon}
+                                className="w-[55%] h-[55%] object-contain"
+                                alt="tech icon"
+                            />
+                        </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                        <h3
+                            className="text-[20px] md:text-[24px] lg:text-[28px] font-bold text-neutral-900 tracking-tight leading-tight truncate mb-1"
+                            style={{ fontFamily: "'Outfit', sans-serif" }}
+                        >
                             {project.title}
                         </h3>
-                        <p className="text-[10px] md:text-[11px] text-white/40 font-semibold uppercase tracking-widest leading-tight mb-1 md:mb-1.5 truncate">
-                            {project.category}
+                        <p className="text-[13px] md:text-[14px] text-neutral-400 font-medium">
+                            {project.role} · {project.duration}
                         </p>
-                        
-                        {/* Rating Row */}
-                        <div className="flex items-center gap-1.5 opacity-40">
-                            <div className="flex items-center gap-0.5">
-                                {[1,2,3,4,5].map(s => (
-                                    <svg key={s} className="w-[8px] h-[8px] md:w-[9px] md:h-[9px] text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                                ))}
-                                <span className="text-[9px] md:text-[10px] font-bold ml-0.5 text-white">4.9</span>
-                            </div>
-                            <div className="w-0.5 h-0.5 rounded-full bg-white/20" />
-                            <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-tighter text-white/60">FEATURED</span>
-                        </div>
-                    </div>
-
-                    {/* GET Button */}
-                    <div className="shrink-0 flex items-center">
-                        <motion.button 
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleNavigate();
-                            }}
-                            className="bg-white/10 text-[#007aff] hover:bg-[#007aff] hover:text-white px-4 md:px-5 py-1.5 rounded-full text-[12px] md:text-[13px] font-bold tracking-tight transition-all duration-300"
-                            whileTap={{ scale: 0.92 }}
-                        >
-                            GET
-                        </motion.button>
                     </div>
                 </div>
 
-                {/* Subtitle / Descriptive Area */}
-                <div className="mt-4 md:mt-5 pt-4 md:pt-5">
-                    <p className="text-white/50 text-[13px] md:text-[14px] leading-relaxed line-clamp-2 md:line-clamp-3 font-medium">
-                        {project.subtitle || project.description}
-                    </p>
-                </div>
+                {/* Description */}
+                <p className="text-neutral-600 text-[14px] md:text-[15px] leading-[1.7] mb-6 flex-1">
+                    {project.subtitle}
+                </p>
 
-                {/* Dynamic Rounded Pill Tags */}
-                <div className="flex flex-wrap gap-2 mt-4">
+                {/* Tech Stack Tags */}
+                <div className="flex flex-wrap gap-2 mb-8">
                     {project.techstack && project.techstack.slice(0, 4).map((tech, i) => (
-                        <span key={i} className="text-[9px] font-medium text-white/40 px-2.5 py-1 rounded-lg uppercase tracking-widest bg-transparent">
+                        <span
+                            key={i}
+                            className="text-[10px] md:text-[11px] font-bold text-neutral-500 px-3 py-1.5 rounded-full bg-neutral-50 border border-neutral-100 uppercase tracking-widest"
+                        >
                             {tech}
                         </span>
                     ))}
                 </div>
 
+                {/* View Project Button */}
+                <motion.button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleNavigate();
+                    }}
+                    className="w-full md:w-fit px-8 flex items-center justify-center md:justify-start gap-2.5 bg-neutral-900 hover:bg-neutral-800 text-white py-3.5 rounded-[16px] md:rounded-full text-[13px] font-bold tracking-wide transition-all duration-300 group/btn"
+                    whileTap={{ scale: 0.97 }}
+                >
+                    View Project
+                    <FiArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                </motion.button>
             </div>
         </motion.div>
     );

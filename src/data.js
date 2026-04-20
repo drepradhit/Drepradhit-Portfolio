@@ -60,6 +60,10 @@ import DrevelopmentLanding from "/assets/drevelopment/Screenshot 2026-04-02 0509
 
 import CertixWelcome from "/assets/certix/Welcome Scren.png";
 import CertixHome from "/assets/certix/Home.png";
+import CertixDetail from "/assets/certix/Concert Detail.png";
+import CertixTicketing from "/assets/certix/Ticketing.png";
+import CertixCheckout from "/assets/certix/Checkout.png";
+import CertixPayment from "/assets/certix/Payment.png";
 
 import NanceDashboard from "/assets/Nance/Dashboard - Light Mode 1.png";
 import NanceCover from "/assets/Nance/cover.png";
@@ -97,6 +101,9 @@ const listProyekBase = [
     url: "https://whoofmeow.vercel.app/",
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
+    codeSnippet: `const handleMove = (cell) => {\n  if (board[cell] || winner) return;\n  const newBoard = [...board];\n  newBoard[cell] = isXNext ? '🐱' : '🐶';\n  setBoard(newBoard);\n  checkWinner(newBoard);\n};`,
+    githubUrl: "https://github.com/drepradhit/whoof-meow",
+    demoUrl: "https://whoofmeow.vercel.app/",
     themeColor: "#050505",
     dad: "800",
     processSteps: [
@@ -134,6 +141,9 @@ const listProyekBase = [
     url: null,
     year: "2026",
     techstack: ["React JS", "Tailwind", "Javascript", "Figma", "GSAP"],
+    codeSnippet: `gsap.from(".hero-text", {\n  y: 100,\n  opacity: 0,\n  duration: 1.2,\n  ease: "power4.out",\n  stagger: 0.2\n});`,
+    githubUrl: "#",
+    demoUrl: "https://drevelopment.com",
     themeColor: "#2d2f4a",
     dad: "300",
     processSteps: [
@@ -169,6 +179,9 @@ const listProyekBase = [
     url: "UNDER_MAINTENANCE",
     year: "2025",
     techstack: ["Node JS", "React JS", "Tailwind", "PostgreSQL", "Javascript"],
+    codeSnippet: `router.post("/transactions", async (req, res) => {\n  const { amount, type, category_id } = req.body;\n  const result = await pool.query(\n    "INSERT INTO txs (amt, type) VALUES ($1, $2)",\n    [amount, type]\n  );\n  res.json(result.rows[0]);\n});`,
+    githubUrl: "https://github.com/drepradhit/rupiahflow",
+    demoUrl: null,
     themeColor: "#0b0c14",
     dad: "200",
     processSteps: [
@@ -205,6 +218,9 @@ const listProyekBase = [
     url: null,
     year: "2024",
     techstack: ["Figma", "Illustrator"],
+    codeSnippet: `// Persona alignment algorithm\nconst matchCourse = (userProfile) => {\n  return courses.filter(course => \n    course.style === userProfile.learningStyle\n  ).sort((a,b) => b.rating - a.rating);\n};`,
+    githubUrl: null,
+    demoUrl: null,
     themeColor: "#1a1e36",
     dad: "100",
     processSteps: [
@@ -225,7 +241,7 @@ const listProyekBase = [
     id: 5,
     slug: "certix",
     image: CertixImg,
-    images: [CertixImg, Proyek2, Proyek3],
+    images: [CertixImg, CertixWelcome, CertixHome, CertixDetail, CertixTicketing, CertixCheckout, CertixPayment],
     title: "Certix",
     category: "UI/UX",
     subtitle: "A concert discovery and ticketing app for your city.",
@@ -242,6 +258,9 @@ const listProyekBase = [
     url: null,
     year: "2026",
     techstack: ["Figma", "Illustrator"],
+    codeSnippet: `<AnimatePresence mode="wait">\n  <motion.div\n    key={activeEvent.id}\n    initial={{ opacity: 0 }}\n    animate={{ opacity: 1 }}\n  >\n    <Concert event={activeEvent} />\n  </motion.div>\n</AnimatePresence>`,
+    githubUrl: null,
+    demoUrl: null,
     themeColor: "#1e0b3d",
     dad: "600",
     processSteps: [
@@ -253,7 +272,11 @@ const listProyekBase = [
     ],
     pageImages: [
       { src: CertixWelcome, title: "Welcome Screen", desc: "An inviting, energetic splash and onboarding screen that hooks users into the personalized concert discovery experience." },
-      { src: CertixHome, title: "Discovery Homepage", desc: "The main hub where users can seamlessly browse various concert genres, select specific dates, and discover exactly what live events are available." }
+      { src: CertixHome, title: "Discovery Homepage", desc: "The main hub where users can seamlessly browse various concert genres, select specific dates, and discover exactly what live events are available." },
+      { src: CertixDetail, title: "Concert Details", desc: "Comprehensive event information including artist details, venue location, schedule, and seating arrangements." },
+      { src: CertixTicketing, title: "Ticketing & Seating", desc: "An interactive seating chart and ticket selection interface allowing users to choose their preferred sections." },
+      { src: CertixCheckout, title: "Checkout Process", desc: "A streamlined summary and verification step where users confirm their selected tickets before proceeding to payment." },
+      { src: CertixPayment, title: "Secure Payment", desc: "A robust and simplistic payment gateway offering multiple checkout options for a frictionless transaction." }
     ]
   },
   {
@@ -278,6 +301,9 @@ const listProyekBase = [
     url: "UNDER_MAINTENANCE",
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
+    codeSnippet: `const ScrollTrigger = registerPlugin(ScrollTrigger);\ngsap.to(".parallax", {\n  scrollTrigger: {\n    trigger: ".section",\n    scrub: true\n  },\n  y: -200\n});`,
+    githubUrl: "#",
+    demoUrl: "https://damianosprod.id",
     themeColor: "#4f46e5",
     dad: "400",
     processSteps: [
@@ -316,6 +342,9 @@ const listProyekBase = [
     url: null,
     year: "2026",
     techstack: ["Next JS", "Tailwind", "React JS", "GSAP"],
+    codeSnippet: `const calculateWPM = (chars, time) => {\n  const words = chars / 5;\n  const minutes = time / 60;\n  return Math.round(words / minutes);\n};`,
+    githubUrl: "https://github.com/drepradhit/typepaper",
+    demoUrl: null,
     themeColor: "#331804",
     dad: "500",
     processSteps: [
@@ -352,6 +381,9 @@ const listProyekBase = [
     url: null,
     year: "2026",
     techstack: ["Figma", "Illustrator"],
+    codeSnippet: `const transferMoney = async (dest, amt) => {\n  await db.transaction(async (tx) => {\n    await tx.withdraw(user.id, amt);\n    await tx.deposit(dest, amt);\n  });\n};`,
+    githubUrl: null,
+    demoUrl: null,
     themeColor: "#041c17",
     dad: "700",
     pageImages: [

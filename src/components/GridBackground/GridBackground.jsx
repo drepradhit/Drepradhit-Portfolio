@@ -1,73 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const GridBackground = () => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth spring animation for the spotlight
-  const springConfig = { damping: 25, stiffness: 150 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+  const { scrollY } = useScroll();
+  
+  // Parallax layers for different background elements
+  const blob1Y = useTransform(scrollY, [0, 2000], [0, 500]);
+  const blob2Y = useTransform(scrollY, [0, 2000], [0, -300]);
+  const blob3Y = useTransform(scrollY, [0, 2000], [0, 250]);
+  
+  // Grid moves slower than scroll to create depth
+  const gridY = useTransform(scrollY, [0, 2000], [0, -200]);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[-1] bg-[#fdfdfd] overflow-hidden">
       
-      {/* 1. LAYER: MAIN GRID (Large) */}
-      <div 
-        className="absolute inset-0 opacity-[0.06] pattern-grid"
-        style={{
-          backgroundImage: `
-            linear-gradient(#1a1a1a 1px, transparent 1px),
-            linear-gradient(90deg, #1a1a1a 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px'
-        }}
-      />
-
-      {/* 2. LAYER: SUB-GRID (Smaller) */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pattern-grid-sub"
-        style={{
-          backgroundImage: `
-            linear-gradient(#1a1a1a 1px, transparent 1px),
-            linear-gradient(90deg, #1a1a1a 1px, transparent 1px)
-          `,
-          backgroundSize: '15px 15px'
-        }}
-      />
-
-      {/* 3. LAYER: INTERACTIVE SPOTLIGHT */}
+      {/* Moving Color Blobs */}
       <motion.div 
-         className="absolute inset-0 z-[2] opacity-60"
-         style={{
-            background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.05), transparent 85%)`,
-            '--mouse-x': `${smoothX}px`, 
-            '--mouse-y': `${smoothY}px`,
-         }}
+        style={{ y: blob1Y }}
+        className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full bg-blue-100/80 mix-blend-multiply filter blur-[100px] md:blur-[120px] opacity-70"
+      />
+      <motion.div 
+        style={{ y: blob2Y }}
+        className="absolute top-[40%] right-[-10%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full bg-purple-100/70 mix-blend-multiply filter blur-[100px] md:blur-[120px] opacity-60"
+      />
+      <motion.div 
+        style={{ y: blob3Y }}
+        className="absolute -bottom-[20%] left-[20%] w-[70vw] h-[70vw] max-w-[900px] max-h-[900px] rounded-full bg-emerald-50/70 mix-blend-multiply filter blur-[100px] md:blur-[120px] opacity-70"
       />
 
-      {/* 4. LAYER: BASE GRADIENTS for depth */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/20 via-transparent to-purple-50/20" />
+      {/* Parallax Grid */}
+      <motion.div 
+        style={{ y: gridY }}
+        className="absolute -top-[50vh] -left-[10vw] w-[120vw] h-[300vh]"
+      >
+        <div 
+          className="absolute inset-0 opacity-[0.25]"
+          style={{
+            backgroundImage: `linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)`,
+            backgroundSize: '48px 48px'
+          }}
+        />
+        {/* Soft radial mask over the grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#fdfdfd_85%)]" />
+      </motion.div>
       
-      {/* 5. LAYER: VIGNETTE (Focus center) */}
-      <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.02)]" />
-      
-      <style>{`
-        .pattern-grid {
-          mask-image: radial-gradient(circle 800px at center, black, transparent);
-        }
-      `}</style>
     </div>
   );
 };

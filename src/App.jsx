@@ -12,7 +12,6 @@ import GithubDashboard from "./components/GithubContribution/GithubDashboard";
 
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import GridBackground from "./components/GridBackground/GridBackground";
 
 function App() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -46,6 +45,27 @@ function App() {
     }
   }, []);
 
+  const { scrollY } = useScroll();
+  
+  // Hero content parallax logic
+  const heroImageY = useTransform(scrollY, [0, 800], [0, 150]);
+  const heroTextY = useTransform(scrollY, [0, 800], [0, 80]);
+  const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
+
+  const aboutRef = useRef(null);
+  const { scrollYProgress: aboutProgress } = useScroll({
+    target: aboutRef,
+    offset: ["start end", "end start"]
+  });
+  const aboutY = useTransform(aboutProgress, [0, 1], [100, -100]);
+
+  const projectsRef = useRef(null);
+  const { scrollYProgress: projectsProgress } = useScroll({
+    target: projectsRef,
+    offset: ["start end", "end start"]
+  });
+  const projectsY = useTransform(projectsProgress, [0, 1], [80, -80]);
+
   const handleCloseModal = () => {
     setSelectedProject(null);
   };
@@ -74,32 +94,35 @@ function App() {
     <div className="overflow-x-hidden relative w-full min-h-screen">
       <style>{`
         body {
-          background-color: transparent;
+          background-color: #ffffff;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
           overflow-x: hidden;
         }
       `}</style>
-
-      <GridBackground />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 relative z-10 w-full">
         
         <motion.div 
           className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto min-h-[500px]"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          style={{ opacity: heroOpacity }}
         >
           <motion.div
             className="order-1 lg:order-2 w-full flex justify-center px-4 lg:px-0"
             variants={itemVariants}
+            style={{ y: heroImageY }}
           >
             <div className="w-full flex justify-center">
               <ProfileCard avatarUrl="./assets/andre.jpg" />
             </div>
           </motion.div>
 
-          <div className="order-2 lg:order-1 px-4 flex flex-col items-center lg:items-start text-center lg:text-left">
+          <motion.div 
+            className="order-2 lg:order-1 px-4 flex flex-col items-center lg:items-start text-center lg:text-left"
+            style={{ y: heroTextY }}
+          >
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl leading-[1.1] mb-6 font-bold tracking-tight"
               style={{ fontFamily: "'Outfit', sans-serif" }}
@@ -179,10 +202,14 @@ function App() {
                 ))}
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </motion.div>
 
-        <div className="mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" id="about">
+        <motion.div 
+          ref={aboutRef}
+          style={{ y: aboutY }}
+          className="mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" id="about"
+        >
           
           <div className="flex flex-col w-full min-h-[400px] items-center lg:items-start pt-0">
             <motion.div
@@ -273,11 +300,15 @@ function App() {
           >
             <WorkExperience experience={listExperience} />
           </motion.div>
-        </div>
+        </motion.div>
 
-        <div className="proyek mt-20 md:mt-32 w-full" id="projects">
+        <motion.div 
+          ref={projectsRef}
+          style={{ y: projectsY }}
+          className="proyek mt-20 md:mt-32 w-full" id="projects"
+        >
           <FinderWindow />
-        </div>
+        </motion.div>
 
         <div className="mt-20">
           <GithubDashboard />
