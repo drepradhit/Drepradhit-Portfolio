@@ -45,18 +45,23 @@ function App() {
     const savedPos = sessionStorage.getItem("home_scroll_pos");
 
     if (shouldRestore === "true" && savedPos) {
-      // Small timeout to ensure content has rendered at full height
+      // Longer timeout for mobile devices to handle layout calculations
       const timer = setTimeout(() => {
+        const pos = parseInt(savedPos);
         window.scrollTo({
-          top: parseInt(savedPos),
+          top: pos,
           behavior: 'instant'
         });
+        
         sessionStorage.removeItem("should_restore_home_scroll");
-        // Extra check for mobile browsers that might need a second attempt
+
+        // Double-check after another frame for consistency
         requestAnimationFrame(() => {
-          window.scrollTo({ top: parseInt(savedPos), behavior: 'instant' });
+          if (Math.abs(window.scrollY - pos) > 10) {
+            window.scrollTo({ top: pos, behavior: 'instant' });
+          }
         });
-      }, 100);
+      }, 250); // Increased to 250ms for reliability on mobile
       return () => clearTimeout(timer);
     }
   }, []);

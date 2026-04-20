@@ -1,7 +1,6 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { HashRouter, Routes, Route, useLocation, useNavigationType } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import ProjectDetail from './pages/ProjectDetail/ProjectDetail.jsx'
@@ -18,18 +17,21 @@ if ('scrollRestoration' in window.history) {
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+  const navType = useNavigationType();
 
   useEffect(() => {
-    // Check if we should restore home or showcase scroll
     const restoreHome = sessionStorage.getItem("should_restore_home_scroll");
     const restoreShowcase = sessionStorage.getItem("should_restore_showcase_scroll");
 
-    // Only scroll to top if we AREN'T currently trying to restore a position
+    // If it's a BACK/FORWARD navigation (POP), let the browser or our manual restoration handle it
+    if (navType === 'POP') return;
+
+    // Only scroll to top if we AREN'T explicitly trying to restore a position
     if (pathname === '/' && restoreHome === 'true') return;
     if (pathname === '/showcase' && restoreShowcase === 'true') return;
 
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+  }, [pathname, navType]);
 
   return null;
 };
@@ -50,4 +52,3 @@ createRoot(document.getElementById('root')).render(
     </HashRouter>
   </StrictMode>,
 )
-
