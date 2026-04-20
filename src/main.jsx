@@ -21,13 +21,14 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const restoreHome = sessionStorage.getItem("should_restore_home_scroll");
+    const restoreMobileHome = sessionStorage.getItem("should_restore_mobile_home_scroll");
     const restoreShowcase = sessionStorage.getItem("should_restore_showcase_scroll");
 
-    // If it's a BACK/FORWARD navigation (POP), let the browser or our manual restoration handle it
+    // If it's a BACK navigation (POP), let the browser or our manual restoration handle it
     if (navType === 'POP') return;
 
     // Only scroll to top if we AREN'T explicitly trying to restore a position
-    if (pathname === '/' && restoreHome === 'true') return;
+    if (pathname === '/' && (restoreHome === 'true' || restoreMobileHome === 'true')) return;
     if (pathname === '/showcase' && restoreShowcase === 'true') return;
 
     window.scrollTo({ top: 0, behavior: 'instant' });

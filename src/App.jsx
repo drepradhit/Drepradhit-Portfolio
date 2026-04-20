@@ -41,27 +41,30 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const shouldRestore = sessionStorage.getItem("should_restore_home_scroll");
-    const savedPos = sessionStorage.getItem("home_scroll_pos");
+    // Check both standard and mobile scroll restoration keys
+    const restoreHome = sessionStorage.getItem("should_restore_home_scroll");
+    const restoreMobileHome = sessionStorage.getItem("should_restore_mobile_home_scroll");
+    
+    const savedPosHome = sessionStorage.getItem("home_scroll_pos");
+    const savedPosMobile = sessionStorage.getItem("mobile_home_scroll_pos");
 
-    if (shouldRestore === "true" && savedPos) {
-      // Longer timeout for mobile devices to handle layout calculations
+    const savedPos = savedPosHome || savedPosMobile;
+    const shouldRestore = restoreHome === "true" || restoreMobileHome === "true";
+
+    if (shouldRestore && savedPos) {
+      const pos = parseInt(savedPos);
       const timer = setTimeout(() => {
-        const pos = parseInt(savedPos);
-        window.scrollTo({
-          top: pos,
-          behavior: 'instant'
-        });
+        window.scrollTo({ top: pos, behavior: 'instant' });
         
         sessionStorage.removeItem("should_restore_home_scroll");
+        sessionStorage.removeItem("should_restore_mobile_home_scroll");
 
-        // Double-check after another frame for consistency
         requestAnimationFrame(() => {
           if (Math.abs(window.scrollY - pos) > 10) {
             window.scrollTo({ top: pos, behavior: 'instant' });
           }
         });
-      }, 250); // Increased to 250ms for reliability on mobile
+      }, 250);
       return () => clearTimeout(timer);
     }
   }, []);
