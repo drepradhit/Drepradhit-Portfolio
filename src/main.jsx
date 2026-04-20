@@ -20,6 +20,14 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // Check if we should restore home or showcase scroll
+    const restoreHome = sessionStorage.getItem("should_restore_home_scroll");
+    const restoreShowcase = sessionStorage.getItem("should_restore_showcase_scroll");
+
+    // Only scroll to top if we AREN'T currently trying to restore a position
+    if (pathname === '/' && restoreHome === 'true') return;
+    if (pathname === '/showcase' && restoreShowcase === 'true') return;
+
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
 
