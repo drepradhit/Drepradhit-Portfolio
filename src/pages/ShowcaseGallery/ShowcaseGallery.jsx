@@ -9,16 +9,22 @@ const ShowcaseGallery = () => {
     const navigate = useNavigate();
     const [showBack, setShowBack] = useState(true);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const shouldRestore = sessionStorage.getItem("should_restore_showcase_scroll");
         const savedPos = sessionStorage.getItem("showcase_scroll_pos");
 
         if (shouldRestore === "true" && savedPos) {
-            window.scrollTo({
-                top: parseInt(savedPos),
-                behavior: 'instant'
-            });
-            sessionStorage.removeItem("should_restore_showcase_scroll");
+            const timer = setTimeout(() => {
+                window.scrollTo({
+                    top: parseInt(savedPos),
+                    behavior: 'instant'
+                });
+                sessionStorage.removeItem("should_restore_showcase_scroll");
+                requestAnimationFrame(() => {
+                    window.scrollTo({ top: parseInt(savedPos), behavior: 'instant' });
+                });
+            }, 100);
+            return () => clearTimeout(timer);
         } else {
             window.scrollTo(0, 0);
         }

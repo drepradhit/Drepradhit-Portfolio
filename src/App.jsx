@@ -26,22 +26,38 @@ function App() {
     }
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const shouldRestore = sessionStorage.getItem("should_restore_home_scroll");
     const savedPos = sessionStorage.getItem("home_scroll_pos");
 
     if (shouldRestore === "true" && savedPos) {
-      window.scrollTo({
-        top: parseInt(savedPos),
-        behavior: 'instant'
-      });
-      sessionStorage.removeItem("should_restore_home_scroll");
+      // Small timeout to ensure content has rendered at full height
+      const timer = setTimeout(() => {
+        window.scrollTo({
+          top: parseInt(savedPos),
+          behavior: 'instant'
+        });
+        sessionStorage.removeItem("should_restore_home_scroll");
+        // Extra check for mobile browsers that might need a second attempt
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: parseInt(savedPos), behavior: 'instant' });
+        });
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -107,7 +123,7 @@ function App() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          style={{ opacity: heroOpacity }}
+          style={{ opacity: isMobile ? 1 : heroOpacity }}
         >
           <motion.div
             className="order-1 lg:order-2 w-full flex justify-center px-4 lg:px-0"
