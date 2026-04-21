@@ -135,7 +135,7 @@ function App() {
         }
       `}</style>
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 relative z-10 w-full">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-[150px] relative z-10 w-full">
         
         <motion.div 
           className="hero grid lg:grid-cols-2 items-center pt-12 gap-12 lg:gap-20 grid-cols-1 max-w-6xl mx-auto min-h-[500px]"
