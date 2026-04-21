@@ -134,7 +134,7 @@ export default function CustomGithubCalendar({ username = "drepradhit", months =
 
   return (
     <div className="w-full flex flex-col items-center gap-3">
-      <div className="w-full overflow-x-auto overflow-y-hidden">
+      <div className="w-full overflow-x-auto pt-8 -mt-8 pb-4">
         <div className="w-fit mx-auto relative" onMouseLeave={() => setTooltip(null)}>
           <svg width={svgWidth} height={svgHeight} style={{ display: 'block' }}>
             {monthLabels.map((label, i) => (
@@ -202,7 +202,7 @@ export default function CustomGithubCalendar({ username = "drepradhit", months =
                 position: 'absolute',
                 left: tooltip.x,
                 top: tooltip.y - 32,
-                transform: 'translateX(-50%)',
+                transform: `translateX(${tooltip.x > svgWidth - 80 ? '-85%' : tooltip.x < 80 ? '-15%' : '-50%'})`,
                 pointerEvents: 'none',
                 zIndex: 50,
               }}
