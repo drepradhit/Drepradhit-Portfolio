@@ -201,8 +201,8 @@ export default function CustomGithubCalendar({ username = "drepradhit", months =
               style={{
                 position: 'absolute',
                 left: tooltip.x,
-                top: tooltip.y - 8,
-                transform: 'translate(-50%, -100%)',
+                top: tooltip.y - 32,
+                transform: 'translateX(-50%)',
                 pointerEvents: 'none',
                 zIndex: 50,
               }}
