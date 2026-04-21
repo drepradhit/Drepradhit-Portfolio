@@ -116,16 +116,16 @@ const ShowcaseGallery = () => {
                     className="h-11 px-5 flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-full shadow-sm border border-neutral-200 hover:bg-white hover:border-neutral-300 hover:shadow-md active:scale-95 transition-all duration-300 group"
                 >
                     <FiChevronLeft className="text-lg text-neutral-500 group-hover:text-black transition-colors duration-300" />
-                    <span className="text-[13px] font-bold text-neutral-700 group-hover:text-black tracking-wide pr-1">Back to Homepage</span>
+                    <span className="text-[13px] font-bold text-neutral-700 group-hover:text-black tracking-wide pr-1">Back</span>
                 </button>
             </motion.div>
 
             <div className="max-w-7xl mx-auto px-5 pt-20">
-                <div className="mb-12 flex flex-col md:flex-row md:items-start justify-between gap-10">
-                    <div className="flex flex-col items-start gap-6">
+                <div className="mb-12 flex flex-col items-center text-center gap-8">
+                    <div className="flex flex-col items-center gap-6">
                         <div>
                             <h1 className="text-[34px] font-extrabold text-neutral-900 tracking-tight">Project Archive</h1>
-                            <p className="text-neutral-500 text-[17px] font-medium leading-relaxed max-w-md mt-1">
+                            <p className="text-neutral-500 text-[17px] font-medium leading-relaxed max-w-md mt-1 mx-auto">
                                 A curated selection of my recent work, experimental prototypes, and digital case studies.
                             </p>
                         </div>
