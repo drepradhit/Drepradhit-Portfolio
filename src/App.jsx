@@ -10,6 +10,7 @@ import FinderWindow from "./components/FinderWindow/FinderWindow";
 import WorkExperience from "./components/WorkExperience/WorkExperience";
 import GithubDashboard from "./components/GithubContribution/GithubDashboard";
 
+
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
@@ -138,8 +139,12 @@ function App() {
             variants={itemVariants}
             style={{ y: heroImageY }}
           >
-            <div className="w-full flex justify-center">
-              <ProfileCard avatarUrl="./assets/andre.jpg" />
+            <div className="w-full flex justify-center relative">
+              {/* 3D scene behind profile card on desktop */}
+
+              <div className="relative z-10">
+                <ProfileCard avatarUrl="./assets/andre.jpg" />
+              </div>
             </div>
           </motion.div>
 
@@ -333,6 +338,8 @@ function App() {
         >
           <FinderWindow />
         </motion.div>
+
+
 
         <div className="mt-20">
           <GithubDashboard />

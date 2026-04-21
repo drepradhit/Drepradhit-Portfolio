@@ -15,13 +15,10 @@ const FinderWindow = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Base list for home is first 6
-  const homeProjects = listProyek.slice(0, 6);
-  
-  // Specific mobile filtering as requested
+  // Pass all projects — ProjectGrid handles category filtering
   const displayProjects = isMobile 
-    ? homeProjects.filter(p => !["Damianos Production", "Certix", "Drevelopment"].includes(p.title))
-    : homeProjects;
+    ? listProyek.filter(p => !["Damianos Production", "Nance", "Drevelopment"].includes(p.title))
+    : listProyek;
 
   return (
     <div className="w-full font-sans">

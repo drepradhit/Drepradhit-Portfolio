@@ -127,11 +127,7 @@ export default function ProjectDetail() {
                         </div>
 
                         <div className="flex flex-wrap gap-2.5 items-center justify-center">
-                            {project.role && (
-                                <div className="px-4 py-2 bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-[0.15em] rounded-lg shadow-sm">
-                                    {project.role}
-                                </div>
-                            )}
+
                             {project.duration && (
                                 <div className="px-4 py-2 bg-white border border-neutral-200 text-neutral-600 text-[10px] font-bold uppercase tracking-[0.1em] rounded-lg shadow-sm flex items-center gap-1.5">
                                     <FiActivity className="text-[12px] text-blue-500" />

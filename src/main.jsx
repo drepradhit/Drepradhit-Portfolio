@@ -42,11 +42,7 @@ createRoot(document.getElementById('root')).render(
     <HashRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={
-          <div className="container mx-auto px-6">
-            <App />
-          </div>
-        } />
+        <Route path="/" element={<App />} />
         <Route path="/project/:slug" element={<ProjectDetail />} />
         <Route path="/showcase" element={<ShowcaseGallery />} />
       </Routes>

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import BentoProjectCard from "../BentoProjectCard/BentoProjectCard";
 
 const ViewMoreButton = () => {
@@ -27,44 +27,22 @@ const ViewMoreButton = () => {
     );
 };
 
+const categories = [
+    { key: "Website", label: "Web Development" },
+    { key: "UI/UX", label: "UI/UX Design" },
+];
+
 export default function ProjectGrid({ projects }) {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [direction, setDirection] = useState(0);
+    const [activeCategory, setActiveCategory] = useState("Website");
 
-    const handleProjectChange = (idx) => {
-        setDirection(idx > activeIndex ? 1 : -1);
-        setActiveIndex(idx);
+    const filteredProjects = useMemo(() => {
+        return projects.filter(p => p.category === activeCategory);
+    }, [projects, activeCategory]);
+
+    const handleCategoryChange = (cat) => {
+        if (cat === activeCategory) return;
+        setActiveCategory(cat);
     };
-
-    const variants = {
-        enter: (dir) => ({
-            x: dir > 0 ? 200 : -200,
-            opacity: 0,
-            filter: "blur(4px)"
-        }),
-        center: {
-            x: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-            transition: {
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.4 },
-                filter: { duration: 0.4 }
-            }
-        },
-        exit: (dir) => ({
-            x: dir > 0 ? -200 : 200,
-            opacity: 0,
-            filter: "blur(4px)",
-            transition: {
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.3 },
-                filter: { duration: 0.3 }
-            }
-        })
-    };
-
-    const currentProject = projects[activeIndex];
 
     return (
         <div className="w-full py-10">
@@ -72,13 +50,12 @@ export default function ProjectGrid({ projects }) {
 
                 {/* Section Header */}
                 <motion.div
-                    className="mb-12 text-center"
+                    className="mb-10 text-center"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-
                     <h2
                         className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight"
                         style={{ fontFamily: "'Outfit', sans-serif" }}
@@ -90,63 +67,61 @@ export default function ProjectGrid({ projects }) {
                     </p>
                 </motion.div>
 
-                {/* Project Navigation (Box Style - Hidden on Mobile) */}
-                <div className="hidden md:flex mb-12 justify-center w-full">
-                    <div className="bg-neutral-900/90 backdrop-blur-xl p-1.5 rounded-xl flex gap-1 shadow-2xl border border-white/5 overflow-x-auto no-scrollbar max-w-[90vw]">
-                        {projects.map((p, idx) => (
+                {/* Category Tabs */}
+                <div className="flex justify-center mb-10">
+                    <div style={{
+                        display: 'inline-flex', gap: 4, padding: 4, borderRadius: 14,
+                        background: '#f5f5f5', border: '1px solid #eaeaea',
+                    }}>
+                        {categories.map((cat) => (
                             <button
-                                key={p.id}
-                                onClick={() => handleProjectChange(idx)}
-                                className={`px-5 py-2.5 rounded-lg text-[13px] font-bold transition-all duration-300 relative whitespace-nowrap ${
-                                    activeIndex === idx ? 'text-white' : 'text-neutral-500 hover:text-white'
-                                }`}
+                                key={cat.key}
+                                onClick={() => handleCategoryChange(cat.key)}
+                                style={{
+                                    position: 'relative', padding: '10px 24px', borderRadius: 10,
+                                    fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                                    color: activeCategory === cat.key ? '#1a1a1a' : '#999',
+                                    background: 'transparent', border: 'none',
+                                    transition: 'color 0.3s',
+                                    zIndex: 1,
+                                }}
                             >
-                                {activeIndex === idx && (
+                                {activeCategory === cat.key && (
                                     <motion.div
-                                        layoutId="home-project-pill"
-                                        className="absolute inset-0 bg-blue-500 rounded-lg shadow-lg shadow-blue-500/20"
+                                        layoutId="category-pill"
+                                        style={{
+                                            position: 'absolute', inset: 0, borderRadius: 10,
+                                            background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                                            border: '1px solid #e8e8e8',
+                                        }}
                                         transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                     />
                                 )}
-                                <span className="relative z-10">{p.title}</span>
+                                <span style={{ position: 'relative', zIndex: 2 }}>{cat.label}</span>
                             </button>
                         ))}
                     </div>
                 </div>
 
-                {/* Project List (Carousel - Visible on Desktop/Tablet) */}
-                <div className="hidden md:block relative min-h-[600px] w-full">
-                    <AnimatePresence mode="popLayout" custom={direction} initial={false}>
-                        <motion.div
-                            key={activeIndex}
-                            custom={direction}
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            className="w-full"
-                        >
-                            {currentProject && (
-                                <BentoProjectCard 
-                                    project={currentProject} 
-                                    scrollKey="home_scroll"
-                                />
-                            )}
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
-
-                {/* Project List (Vertical - Visible on Mobile Only) */}
-                <div className="block md:hidden flex flex-col gap-10 w-full">
-                    {projects.map((project) => (
-                        <div key={project.id}>
+                {/* Project Cards — All visible, vertical list */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeCategory}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -16 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex flex-col gap-6 md:gap-8 w-full"
+                    >
+                        {filteredProjects.map((project) => (
                             <BentoProjectCard 
+                                key={project.id}
                                 project={project} 
-                                scrollKey="mobile_home_scroll"
+                                scrollKey="home_scroll"
                             />
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
 
                 <div className="mt-16 flex justify-center">
                     <ViewMoreButton />
