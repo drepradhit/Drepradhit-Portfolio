@@ -74,11 +74,11 @@ export default function ProjectGrid({ projects }) {
                 <div className="flex justify-center mb-10 relative z-20">
                     <div style={{
                         display: 'inline-flex', gap: 6, padding: 6, borderRadius: 999,
-                        background: 'rgba(248, 250, 252, 0.6)', 
+                        background: 'rgba(235, 235, 240, 0.6)', 
                         backdropFilter: 'blur(24px) saturate(180%)',
                         WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                        border: '1px solid rgba(255, 255, 255, 0.8)',
-                        boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 2px 4px rgba(255, 255, 255, 0.6)',
+                        border: '1px solid rgba(0, 0, 0, 0.06)',
+                        boxShadow: 'inset 0 2px 5px rgba(0, 0, 0, 0.03)',
                     }}>
                         {categories.map((cat) => (
                             <button
@@ -99,9 +99,9 @@ export default function ProjectGrid({ projects }) {
                                         layoutId="category-pill"
                                         style={{
                                             position: 'absolute', inset: 0, borderRadius: 999,
-                                            background: 'linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(250,250,252,1) 100%)', 
-                                            boxShadow: '0 4px 16px -4px rgba(0,0,0,0.1), inset 0 -2px 6px rgba(0,0,0,0.02), inset 0 2px 4px rgba(255,255,255,1)',
-                                            border: '1px solid rgba(255, 255, 255, 1)',
+                                            background: '#ffffff', 
+                                            boxShadow: '0 4px 12px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)',
+                                            border: '1px solid rgba(0, 0, 0, 0.05)',
                                         }}
                                         transition={{ type: "spring", stiffness: 400, damping: 28 }}
                                     />

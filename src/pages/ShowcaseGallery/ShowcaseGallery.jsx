@@ -130,20 +130,38 @@ const ShowcaseGallery = () => {
                             </p>
                         </div>
 
-                        <div className="bg-neutral-100/50 backdrop-blur-[12px] p-1 rounded-xl flex w-full sm:min-w-[320px] max-w-[380px] relative shadow-inner ring-1 ring-neutral-200/60">
+                        <div style={{
+                            display: 'flex', width: '100%', minWidth: '320px', maxWidth: '380px', gap: 6, padding: 6, borderRadius: 999,
+                            background: 'rgba(235, 235, 240, 0.6)', 
+                            backdropFilter: 'blur(24px) saturate(180%)',
+                            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                            border: '1px solid rgba(0, 0, 0, 0.06)',
+                            boxShadow: 'inset 0 2px 5px rgba(0, 0, 0, 0.03)',
+                        }} className="relative z-20">
                             {filters.map((f) => (
                                 <button 
                                     key={f}
                                     onClick={() => handleFilterChange(f)}
-                                    className={`relative flex-1 py-2.5 text-[14px] font-bold tracking-tight rounded-lg transition-all duration-300 z-10 ${
-                                        filter === f ? 'text-black' : 'text-[#86868b] hover:text-neutral-600'
-                                    }`}
-                                    style={{ WebkitTapHighlightColor: 'transparent' }}
+                                    style={{
+                                        position: 'relative', flex: 1, padding: '12px 0', borderRadius: 999,
+                                        fontSize: 14, fontWeight: 700, cursor: 'pointer',
+                                        color: filter === f ? '#0f172a' : '#64748b',
+                                        background: 'transparent', border: 'none',
+                                        transition: 'color 0.3s ease',
+                                        zIndex: 1,
+                                        letterSpacing: '-0.01em',
+                                        WebkitTapHighlightColor: 'transparent'
+                                    }}
                                 >
                                     {filter === f && (
                                         <motion.div
                                             layoutId="active-filter-pill"
-                                            className="absolute inset-0 bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.06)] ring-1 ring-black/5"
+                                            style={{
+                                                position: 'absolute', inset: 0, borderRadius: 999,
+                                                background: '#ffffff', 
+                                                boxShadow: '0 4px 12px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)',
+                                                border: '1px solid rgba(0, 0, 0, 0.05)',
+                                            }}
                                             transition={{ type: "spring", stiffness: 400, damping: 28 }}
                                         />
                                     )}
@@ -155,56 +173,7 @@ const ShowcaseGallery = () => {
                         </div>
                     </div>
 
-                    <AnimatePresence mode="popLayout" custom={direction}>
-                        <motion.div
-                            key={filter}
-                            custom={direction}
-                            variants={projectVariants} // Reuse similar logic but with category specific variants if needed, or keep generic
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            className="relative w-full md:w-[400px] shrink-0"
-                        >
-                            <div className="bg-white rounded-[32px] border border-neutral-200 shadow-sm p-6 md:p-8 w-full flex flex-col gap-6 relative">
-                                <div>
-                                    <h3 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-4">
-                                        <FiLayers size={14} /> {filter === 'web' ? 'Technical Stack' : 'Design Deck'}
-                                    </h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {(filter === 'web' 
-                                            ? ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Supabase', 'PostgreSQL'] 
-                                            : ['Figma', 'Illustrator', 'Photoshop']
-                                        ).map(tech => (
-                                            <span key={tech} className="px-3 py-1.5 bg-neutral-50 border border-neutral-100 text-neutral-600 text-[12px] font-bold rounded-xl shadow-sm">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
 
-                                <div className="pt-6 border-t border-neutral-100">
-                                    <h3 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-4">
-                                        <FiActivity size={14} /> My Workflow
-                                    </h3>
-                                    <div className="flex flex-wrap items-center gap-y-3">
-                                        {(filter === 'web' 
-                                            ? ["Plan", "Design", "Code", "Deploy", "Test"] 
-                                            : ["User Res", "Define", "Ideate", "Proto.", "Test"]
-                                        ).map((step, i, arr) => (
-                                            <React.Fragment key={i}>
-                                                <div className="flex items-center justify-center h-8 px-3 rounded-xl bg-neutral-900 border border-black text-white text-[11px] font-bold shadow-md">
-                                                    {step}
-                                                </div>
-                                                {i < arr.length - 1 && (
-                                                    <div className="w-3 h-[2px] bg-neutral-200 mx-1 rounded-full" />
-                                                )}
-                                            </React.Fragment>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </AnimatePresence>
                 </div>
 
                 <div className="mt-10 relative">
