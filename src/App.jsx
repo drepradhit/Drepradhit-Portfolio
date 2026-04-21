@@ -55,16 +55,10 @@ function App() {
     if (shouldRestore && savedPos) {
       const pos = parseInt(savedPos);
       const timer = setTimeout(() => {
-        window.scrollTo({ top: pos, behavior: 'instant' });
+        window.scrollTo({ top: pos, behavior: 'smooth' });
         
         sessionStorage.removeItem("should_restore_home_scroll");
         sessionStorage.removeItem("should_restore_mobile_home_scroll");
-
-        requestAnimationFrame(() => {
-          if (Math.abs(window.scrollY - pos) > 10) {
-            window.scrollTo({ top: pos, behavior: 'instant' });
-          }
-        });
       }, 250);
       return () => clearTimeout(timer);
     }
