@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
 
 const THEME = ['#f0f0f0', '#9be9a8', '#40c463', '#30a14e', '#216e39'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -183,11 +184,12 @@ export default function CustomGithubCalendar({ username = "drepradhit", months =
                     ry={3}
                     fill={color}
                     style={{ cursor: 'pointer' }}
-                    onMouseEnter={() => {
+                    onMouseEnter={(e) => {
+                      const rect = e.target.getBoundingClientRect();
                       setTooltip({
                         text: `${day.count} contribution${day.count !== 1 ? 's' : ''} on ${day.date}`,
-                        x: x + blockSize / 2,
-                        y: y,
+                        x: rect.left + rect.width / 2,
+                        y: rect.top,
                       });
                     }}
                   />
@@ -196,20 +198,21 @@ export default function CustomGithubCalendar({ username = "drepradhit", months =
             )}
           </svg>
 
-          {tooltip && (
+          {tooltip && createPortal(
             <div
               style={{
-                position: 'absolute',
+                position: 'fixed',
                 left: tooltip.x,
-                top: tooltip.y - 32,
-                transform: `translateX(${tooltip.x > svgWidth - 80 ? '-85%' : tooltip.x < 80 ? '-15%' : '-50%'})`,
+                top: tooltip.y - 36,
+                transform: 'translateX(-50%)',
                 pointerEvents: 'none',
-                zIndex: 50,
+                zIndex: 9999,
               }}
               className="bg-neutral-800 text-white text-[11px] px-2.5 py-1.5 rounded-md whitespace-nowrap shadow-lg"
             >
               {tooltip.text}
-            </div>
+            </div>,
+            document.body
           )}
         </div>
       </div>

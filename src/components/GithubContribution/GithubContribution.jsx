@@ -274,7 +274,7 @@ export default function GithubContribution() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Contribution Calendar - Takes 3 columns */}
         <motion.div
-          className="lg:col-span-3 relative bg-transparent p-4 md:p-6 flex flex-col items-center overflow-x-hidden"
+          className="lg:col-span-3 relative bg-transparent p-4 md:p-6 flex flex-col items-center"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -282,8 +282,8 @@ export default function GithubContribution() {
         >
 
           
-          <div className="w-full pb-2 flex items-center justify-center flex-1 overflow-hidden">
-            <div className="w-full flex flex-col items-center justify-center overflow-hidden [&_text]:!fill-neutral-500 [&_text]:!opacity-100 text-neutral-900 transition-opacity duration-300">
+          <div className="w-full pb-2 flex items-center justify-center flex-1">
+            <div className="w-full flex flex-col items-center justify-center [&_text]:!fill-neutral-500 [&_text]:!opacity-100 text-neutral-900 transition-opacity duration-300">
               <ResponsiveGitHubCalendar />
             </div>
           </div>
