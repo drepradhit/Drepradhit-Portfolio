@@ -82,12 +82,12 @@ export default function BentoProjectCard({ project, scrollKey = "home_scroll" })
       onClick={handleNavigate}
       style={{
         width: '100%',
-        maxWidth: 1060,
-        margin: '0 auto 40px',
+        maxWidth: 880,
+        margin: '0 auto 32px',
         display: 'flex',
         gap: 0,
         cursor: 'pointer',
-        borderRadius: 24,
+        borderRadius: 20,
         overflow: 'hidden',
         background: '#fff',
         border: '1px solid #eaeaea',
@@ -99,7 +99,7 @@ export default function BentoProjectCard({ project, scrollKey = "home_scroll" })
       {/* ── Image Side ── */}
       <div style={{
         width: '55%', position: 'relative', overflow: 'hidden',
-        background: '#f5f5f5', minHeight: 380,
+        background: '#f5f5f5', minHeight: 320,
       }}>
         <img
           src={project.image}
@@ -117,7 +117,7 @@ export default function BentoProjectCard({ project, scrollKey = "home_scroll" })
 
       {/* ── Info Side ── */}
       <div style={{
-        width: '45%', padding: '36px 36px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+        width: '45%', padding: '28px 32px 24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
       }}>
         {/* Top section */}
         <div>
@@ -143,7 +143,7 @@ export default function BentoProjectCard({ project, scrollKey = "home_scroll" })
           {/* Title */}
           <h3 style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 32, fontWeight: 800, color: '#1a1a1a',
+            fontSize: 26, fontWeight: 800, color: '#1a1a1a',
             margin: 0, lineHeight: 1.15, letterSpacing: '-0.025em',
           }}>{project.title}</h3>
 
@@ -153,7 +153,7 @@ export default function BentoProjectCard({ project, scrollKey = "home_scroll" })
           )}
 
           {/* Divider */}
-          <div style={{ width: 32, height: 2, background: '#eee', margin: '20px 0', borderRadius: 1 }} />
+          <div style={{ width: 32, height: 2, background: '#eee', margin: '16px 0', borderRadius: 1 }} />
 
           {/* Description */}
           <p style={{
