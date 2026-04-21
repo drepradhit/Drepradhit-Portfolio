@@ -162,7 +162,7 @@ function App() {
               variants={itemVariants}
             >
               <span style={{ color: '#1a1a1a' }}>Hi, I'm </span>
-              <span style={{ color: '#1e293b' }}>Andre<br />Pradhit</span>
+              <span style={{ color: '#1a1a1a' }}>Andre<br />Pradhit</span>
             </motion.h1>
 
             <motion.div 

@@ -71,33 +71,39 @@ export default function ProjectGrid({ projects }) {
                 </motion.div>
 
                 {/* Category Tabs */}
-                <div className="flex justify-center mb-10">
+                <div className="flex justify-center mb-10 relative z-20">
                     <div style={{
-                        display: 'inline-flex', gap: 4, padding: 4, borderRadius: 14,
-                        background: '#f5f5f5', border: '1px solid #eaeaea',
+                        display: 'inline-flex', gap: 6, padding: 6, borderRadius: 999,
+                        background: 'rgba(248, 250, 252, 0.6)', 
+                        backdropFilter: 'blur(24px) saturate(180%)',
+                        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                        border: '1px solid rgba(255, 255, 255, 0.8)',
+                        boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 2px 4px rgba(255, 255, 255, 0.6)',
                     }}>
                         {categories.map((cat) => (
                             <button
                                 key={cat.key}
                                 onClick={() => handleCategoryChange(cat.key)}
                                 style={{
-                                    position: 'relative', padding: '10px 24px', borderRadius: 10,
-                                    fontSize: 13, fontWeight: 700, cursor: 'pointer',
-                                    color: activeCategory === cat.key ? '#1a1a1a' : '#999',
+                                    position: 'relative', padding: '12px 28px', borderRadius: 999,
+                                    fontSize: 14, fontWeight: 700, cursor: 'pointer',
+                                    color: activeCategory === cat.key ? '#0f172a' : '#64748b',
                                     background: 'transparent', border: 'none',
-                                    transition: 'color 0.3s',
+                                    transition: 'color 0.3s ease',
                                     zIndex: 1,
+                                    letterSpacing: '-0.01em',
                                 }}
                             >
                                 {activeCategory === cat.key && (
                                     <motion.div
                                         layoutId="category-pill"
                                         style={{
-                                            position: 'absolute', inset: 0, borderRadius: 10,
-                                            background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-                                            border: '1px solid #e8e8e8',
+                                            position: 'absolute', inset: 0, borderRadius: 999,
+                                            background: 'linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(250,250,252,1) 100%)', 
+                                            boxShadow: '0 4px 16px -4px rgba(0,0,0,0.1), inset 0 -2px 6px rgba(0,0,0,0.02), inset 0 2px 4px rgba(255,255,255,1)',
+                                            border: '1px solid rgba(255, 255, 255, 1)',
                                         }}
-                                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 28 }}
                                     />
                                 )}
                                 <span style={{ position: 'relative', zIndex: 2 }}>{cat.label}</span>

@@ -37,7 +37,7 @@ const WorkExperience = ({ experience }) => {
 
             <div className="px-6 md:px-12 pt-2 pb-12">
               <div className="relative mb-10 w-full flex justify-start z-30">
-                <h2 className="text-3xl md:text-5xl font-bold text-[#1e293b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a]" style={{ fontFamily: "'Outfit', sans-serif" }}>
                   Experience
                 </h2>
               </div>
