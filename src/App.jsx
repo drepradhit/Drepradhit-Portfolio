@@ -82,14 +82,24 @@ function App() {
     target: aboutRef,
     offset: ["start end", "end start"]
   });
-  const aboutY = useTransform(aboutProgress, [0, 1], [100, -100]);
+  const aboutY = useTransform(aboutProgress, [0, 1], [0, 150]);
+  const aboutOpacity = useTransform(aboutProgress, [0.85, 0.98], [1, 0]);
 
   const projectsRef = useRef(null);
   const { scrollYProgress: projectsProgress } = useScroll({
     target: projectsRef,
     offset: ["start end", "end start"]
   });
-  const projectsY = useTransform(projectsProgress, [0, 1], [80, -80]);
+  const projectsY = useTransform(projectsProgress, [0, 1], [0, 150]);
+  const projectsOpacity = useTransform(projectsProgress, [0.85, 0.98], [1, 0]);
+
+  const githubRef = useRef(null);
+  const { scrollYProgress: githubProgress } = useScroll({
+    target: githubRef,
+    offset: ["start end", "end start"]
+  });
+  const githubY = useTransform(githubProgress, [0, 1], [0, 150]);
+  const githubOpacity = useTransform(githubProgress, [0.85, 0.98], [1, 0]);
 
   const handleCloseModal = () => {
     setSelectedProject(null);
@@ -236,7 +246,7 @@ function App() {
 
         <motion.div 
           ref={aboutRef}
-          style={{ y: aboutY }}
+          style={{ y: aboutY, opacity: aboutOpacity }}
           className="mt-20 md:mt-32 w-full max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" id="about"
         >
           
@@ -333,7 +343,7 @@ function App() {
 
         <motion.div 
           ref={projectsRef}
-          style={{ y: projectsY }}
+          style={{ y: projectsY, opacity: projectsOpacity }}
           className="proyek mt-20 md:mt-32 w-full" id="projects"
         >
           <FinderWindow />
@@ -341,9 +351,13 @@ function App() {
 
 
 
-        <div className="mt-20">
+        <motion.div 
+          ref={githubRef}
+          style={{ y: githubY, opacity: githubOpacity }}
+          className="mt-20 w-full"
+        >
           <GithubDashboard />
-        </div>
+        </motion.div>
 
       </main>
 
