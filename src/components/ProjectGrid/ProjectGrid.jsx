@@ -33,7 +33,9 @@ const categories = [
 ];
 
 export default function ProjectGrid({ projects }) {
-    const [activeCategory, setActiveCategory] = useState("Website");
+    const [activeCategory, setActiveCategory] = useState(() => {
+        return sessionStorage.getItem("project_grid_category") || "Website";
+    });
 
     const filteredProjects = useMemo(() => {
         return projects.filter(p => p.category === activeCategory);
@@ -42,6 +44,7 @@ export default function ProjectGrid({ projects }) {
     const handleCategoryChange = (cat) => {
         if (cat === activeCategory) return;
         setActiveCategory(cat);
+        sessionStorage.setItem("project_grid_category", cat);
     };
 
     return (
