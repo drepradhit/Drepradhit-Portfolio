@@ -183,12 +183,11 @@ export default function CustomGithubCalendar({ username = "drepradhit", months =
                     ry={3}
                     fill={color}
                     style={{ cursor: 'pointer' }}
-                    onMouseEnter={(e) => {
-                      const rect = e.target.getBoundingClientRect();
+                    onMouseEnter={() => {
                       setTooltip({
                         text: `${day.count} contribution${day.count !== 1 ? 's' : ''} on ${day.date}`,
-                        x: rect.left + rect.width / 2,
-                        y: rect.top,
+                        x: x + blockSize / 2,
+                        y: y,
                       });
                     }}
                   />
@@ -200,10 +199,10 @@ export default function CustomGithubCalendar({ username = "drepradhit", months =
           {tooltip && (
             <div
               style={{
-                position: 'fixed',
+                position: 'absolute',
                 left: tooltip.x,
-                top: tooltip.y - 36,
-                transform: 'translateX(-50%)',
+                top: tooltip.y - 8,
+                transform: 'translate(-50%, -100%)',
                 pointerEvents: 'none',
                 zIndex: 50,
               }}
