@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { listTools } from '../../data';
 import { FiArrowRight, FiExternalLink } from 'react-icons/fi';
 
-export default function BentoProjectCard({ project, scrollKey = "home_scroll" }) {
+export default function BentoProjectCard({ project, scrollKey = "home_scroll", index = 0 }) {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -85,6 +85,7 @@ export default function BentoProjectCard({ project, scrollKey = "home_scroll" })
         maxWidth: 880,
         margin: '0 auto 32px',
         display: 'flex',
+        flexDirection: index % 2 !== 0 ? 'row-reverse' : 'row',
         gap: 0,
         cursor: 'pointer',
         borderRadius: 20,

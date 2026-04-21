@@ -131,20 +131,20 @@ const ShowcaseGallery = () => {
                         </div>
 
                         <div style={{
-                            display: 'flex', width: '100%', minWidth: '320px', maxWidth: '380px', gap: 6, padding: 6, borderRadius: 999,
+                            display: 'flex', width: '100%', minWidth: '280px', maxWidth: '340px', gap: 4, padding: 4, borderRadius: 999,
                             background: 'rgba(235, 235, 240, 0.6)', 
                             backdropFilter: 'blur(24px) saturate(180%)',
                             WebkitBackdropFilter: 'blur(24px) saturate(180%)',
                             border: '1px solid rgba(0, 0, 0, 0.06)',
                             boxShadow: 'inset 0 2px 5px rgba(0, 0, 0, 0.03)',
-                        }} className="relative z-20">
+                        }} className="relative z-20 mx-auto">
                             {filters.map((f) => (
                                 <button 
                                     key={f}
                                     onClick={() => handleFilterChange(f)}
                                     style={{
-                                        position: 'relative', flex: 1, padding: '12px 0', borderRadius: 999,
-                                        fontSize: 14, fontWeight: 700, cursor: 'pointer',
+                                        position: 'relative', flex: 1, padding: '8px 0', borderRadius: 999,
+                                        fontSize: 13, fontWeight: 700, cursor: 'pointer',
                                         color: filter === f ? '#0f172a' : '#64748b',
                                         background: 'transparent', border: 'none',
                                         transition: 'color 0.3s ease',
@@ -181,13 +181,14 @@ const ShowcaseGallery = () => {
                         <div 
                             className="flex flex-col gap-16 md:gap-20 w-full pb-24"
                         >
-                            {filteredProjects.map((project) => (
+                            {filteredProjects.map((project, index) => (
                                 <div 
                                     key={project.id}
                                 >
                                     <BentoProjectCard 
                                         project={project} 
                                         scrollKey="showcase_scroll"
+                                        index={index}
                                     />
                                 </div>
                             ))}

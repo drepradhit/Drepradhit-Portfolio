@@ -65,12 +65,6 @@ import CertixTicketing from "/assets/certix/Ticketing.png";
 import CertixCheckout from "/assets/certix/Checkout.png";
 import CertixPayment from "/assets/certix/Payment.png";
 
-import NanceDashboard from "/assets/Nance/Dashboard - Light Mode 1.png";
-import NanceCover from "/assets/Nance/cover.png";
-import NanceReceipt from "/assets/Nance/Success Receipt - Light Mode 1.png";
-import NanceTransactions from "/assets/Nance/Transactions - Light Mode 1.png";
-import NanceTransfer from "/assets/Nance/Transfer Money - Light Mode 1.png";
-import NanceStats from "/assets/Nance/Updated Statistics - Growth Chart 1.png";
 
 import WhoofMeowCover from "/assets/whoof & Meow/cover.png";
 import WhoofMeowHome from "/assets/whoof & Meow/home.jpeg";
@@ -358,47 +352,6 @@ const listProyekBase = [
       { src: TypePaperStart, title: "Typing Interface", desc: "A clean, distraction-free environment focused entirely on the user's typing process, inspired by minimal design principles." },
       { src: TypePaperResult, title: "Performance Results", desc: "Comprehensive post-test data visualization displaying actual WPM, raw speed, accuracy percentage, and specific error tracking." },
       { src: TypePaperSettings, title: "Test Customization", desc: "Deep customization menu allowing users to personalize their experience by selecting various color themes and keystroke sound effects." }
-    ]
-  },
-  {
-    id: 8,
-    slug: "nance",
-    image: NanceCover,
-    images: [NanceCover, NanceTransfer, NanceStats],
-    title: "Nance",
-    category: "UI/UX",
-    subtitle: "A modern finance application for seamless money transfers and insightful financial analysis.",
-    role: "UI/UX Designer",
-    duration: "2 weeks",
-    features: [
-      "Designed a comprehensive finance application interface focusing on clarity, trust, and ease of use.",
-      "Created intuitive flows for money transfers, guaranteeing smooth and accessible transaction experiences.",
-      "Developed advanced analytics and statistical dashboards that visually present financial growth and transaction history."
-    ],
-    impact: "Empowered users to effortlessly manage their finances, execute rapid secure transfers, and gain comprehensive insights into their monetary habits.",
-    borderColor: "#333",
-    gradient: "transparent",
-    url: null,
-    year: "2026",
-    techstack: ["Figma", "Illustrator"],
-    codeSnippet: `const transferMoney = async (dest, amt) => {\n  await db.transaction(async (tx) => {\n    await tx.withdraw(user.id, amt);\n    await tx.deposit(dest, amt);\n  });\n};`,
-    githubUrl: null,
-    demoUrl: null,
-    themeColor: "#041c17",
-    dad: "700",
-    pageImages: [
-      { src: NanceDashboard, title: "Main Dashboard", desc: "A clean and comprehensive dashboard providing quick access to total balances, recent activity, and core financial tools." },
-      { src: NanceStats, title: "Financial Statistics", desc: "An advanced analytical charting view allowing users to visualize their portfolio growth and financial trends over time." },
-      { src: NanceTransfer, title: "Transfer Money", desc: "A streamlined, secure transaction interface designed to make sending money as quick and error-free as possible." },
-      { src: NanceReceipt, title: "Transaction Receipt", desc: "A clear, professionally formatted success receipt providing immediate proof of a completed transfer." },
-      { src: NanceTransactions, title: "Transaction History", desc: "A detailed and filterable ledger containing all past incoming and outgoing monetary interactions." }
-    ],
-    processSteps: [
-      { title: "Finance Research", icon: "FiSearch", color: "bg-blue-600" },
-      { title: "Transfer Flow UX", icon: "FiActivity", color: "bg-[#0ea5e9]" },
-      { title: "Analytics Charts", icon: "FiStar", color: "bg-[#22c55e]" },
-      { title: "Secure Dashboard", icon: "FiLayout", color: "bg-[#84cc16]" },
-      { title: "Receipt Engine", icon: "FiCheckCircle", color: "bg-[#eab308]" },
     ]
   }
 ];
