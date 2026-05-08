@@ -147,7 +147,7 @@ function App() {
               {/* 3D scene behind profile card on desktop */}
 
               <div className="relative z-10">
-                <ProfileCard avatarUrl="./assets/andre.jpg" />
+                <ProfileCard avatarUrl="./assets/andre.jpeg" />
               </div>
             </div>
           </motion.div>
