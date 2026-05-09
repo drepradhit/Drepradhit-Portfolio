@@ -76,7 +76,7 @@ const ProfileCard = ({ avatarUrl = "./assets/andre.jpg", className = "" }) => {
              backfaceVisibility: "hidden"
            }}
         >
-           <img src={avatarUrl} alt="bg-1" className="w-full h-full object-cover grayscale-[0.5]" />
+           <img src="./assets/andre.jpg" alt="bg-1" className="w-full h-full object-cover grayscale-[0.5]" />
         </motion.div>
 
         {/* Layer 2: Grid/Doc Paper (Offset & Rotated opposite) */}
