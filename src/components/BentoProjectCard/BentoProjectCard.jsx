@@ -1,240 +1,116 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { listTools } from '../../data';
-import { FiArrowRight, FiExternalLink } from 'react-icons/fi';
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { FiArrowRight, FiExternalLink } from "react-icons/fi";
+import { listTools } from "../../data";
+
+const unavailable = new Set(["UNDER_MAINTENANCE", "COMING_SOON"]);
 
 export default function BentoProjectCard({ project, scrollKey = "home_scroll", index = 0 }) {
   const navigate = useNavigate();
-  const [isMobile, setIsMobile] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const tools = (project.techstack || [])
+    .map((name) => listTools.find((tool) => tool.nama.toLowerCase() === name.toLowerCase()))
+    .filter(Boolean)
+    .slice(0, 5);
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const handleNavigate = () => {
-    sessionStorage.setItem(`${scrollKey}_pos`, window.scrollY.toString());
+  const openProject = () => {
+    sessionStorage.setItem(`${scrollKey}_pos`, String(window.scrollY));
     sessionStorage.setItem(`should_restore_${scrollKey}`, "true");
     navigate(`/project/${project.slug}`);
   };
 
-  const projectTools = project.techstack
-    ? project.techstack.map(name => listTools.find(t => t.nama.toLowerCase() === name.toLowerCase())).filter(Boolean)
-    : [];
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProject();
+    }
+  };
 
-  /* ─── Mobile ─── */
-  if (isMobile) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        onClick={handleNavigate}
-        whileTap={{ scale: 0.98 }}
-        style={{ cursor: 'pointer' }}
-      >
-        <div style={{
-          position: 'relative', aspectRatio: '16/10', overflow: 'hidden',
-          borderRadius: '16px 16px 0 0', background: '#f0f0f0',
-        }}>
-          <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%)' }} />
-          <div style={{ position: 'absolute', bottom: 16, left: 16 }}>
-            <span style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-              {project.category} · {project.year}
-            </span>
-            <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 22, fontWeight: 800, color: '#fff', margin: '4px 0 0', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
-              {project.title}
-            </h3>
-          </div>
-        </div>
-        <div style={{
-          padding: '16px 18px', background: '#fff', borderRadius: '0 0 16px 16px',
-          border: '1px solid #eaeaea', borderTop: 'none',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        }}>
-          <div style={{ display: 'flex', gap: 6 }}>
-            {projectTools.slice(0, 4).map((t, i) => (
-              <img key={i} src={t.gambar} alt={t.nama} style={{ width: 22, height: 22, objectFit: 'contain' }} />
-            ))}
-          </div>
-          <span style={{ fontSize: 12, fontWeight: 700, color: '#1a1a1a', display: 'flex', alignItems: 'center', gap: 4 }}>
-            View <FiArrowRight size={13} />
-          </span>
-        </div>
-      </motion.div>
-    );
-  }
+  const liveUrl = project.url && !unavailable.has(project.url) ? project.url : null;
 
-  /* ─── Desktop: Horizontal Case Study Card ─── */
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
+    <motion.article
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={handleNavigate}
-      style={{
-        width: '100%',
-        maxWidth: 880,
-        margin: '0 auto 32px',
-        display: 'flex',
-        flexDirection: index % 2 !== 0 ? 'row-reverse' : 'row',
-        gap: 0,
-        cursor: 'pointer',
-        borderRadius: 20,
-        overflow: 'hidden',
-        background: '#fff',
-        border: '1px solid #eaeaea',
-        transition: 'box-shadow 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1)',
-        boxShadow: isHovered ? '0 20px 60px rgba(0,0,0,0.1)' : '0 2px 12px rgba(0,0,0,0.04)',
-        transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
-      }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -3 }}
+      whileTap={{ scale: 0.99 }}
+      onClick={openProject}
+      onKeyDown={handleKeyDown}
+      role="link"
+      tabIndex={0}
+      aria-label={`View ${project.title} project`}
+      className={`group mx-auto mb-5 grid w-full max-w-[880px] cursor-pointer overflow-hidden rounded-[24px] border border-neutral-200/70 bg-white p-2 shadow-[0_8px_30px_rgba(15,23,42,0.05)] transition-shadow duration-500 hover:shadow-[0_18px_50px_rgba(15,23,42,0.10)] lg:grid-cols-[1.08fr_.92fr] ${
+        index % 2 ? "lg:[&>.project-media]:order-2" : ""
+      }`}
     >
-      {/* ── Image Side ── */}
-      <div style={{
-        width: '55%', position: 'relative', overflow: 'hidden',
-        background: '#f5f5f5', minHeight: 320,
-      }}>
+      <div className="project-media relative min-h-[220px] overflow-hidden rounded-[18px] bg-neutral-100 sm:min-h-[280px] lg:min-h-[330px]">
         <img
           src={project.image}
-          alt={project.title}
-          style={{
-            position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
-          }}
+          alt={`${project.title} project preview`}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
         />
-        {/* Soft vignette */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(135deg, rgba(0,0,0,0.03) 0%, transparent 50%, rgba(0,0,0,0.08) 100%)',
-        }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/5" />
+        <span className="absolute bottom-4 left-4 rounded-full border border-white/45 bg-white/75 px-3 py-1.5 text-[11px] font-semibold text-neutral-800 shadow-sm backdrop-blur-md sm:hidden">
+          {project.category} / {project.year}
+        </span>
       </div>
 
-      {/* ── Info Side ── */}
-      <div style={{
-        width: '45%', padding: '28px 32px 24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-      }}>
-        {/* Top section */}
+      <div className="flex min-h-[290px] flex-col justify-between p-5 sm:p-6 lg:min-h-0 lg:p-7">
         <div>
-          {/* Category + Year */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
-            <span style={{
-              fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-            }}>{project.category}</span>
-            <span style={{ width: 3, height: 3, borderRadius: '50%', background: '#ccc', display: 'inline-block' }} />
-            <span style={{
-              fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-            }}>{project.year}</span>
-            {project.duration && (
-              <>
-                <span style={{ width: 3, height: 3, borderRadius: '50%', background: '#ccc', display: 'inline-block' }} />
-                <span style={{ fontSize: 10, fontWeight: 700, color: '#bbb', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{project.duration}</span>
-              </>
-            )}
-          </div>
+          <p className="hidden text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-400 sm:block">
+            {[project.category, project.year, project.duration].filter(Boolean).join(" / ")}
+          </p>
 
-          {/* Title */}
-          <h3 style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: 26, fontWeight: 800, color: '#1a1a1a',
-            margin: 0, lineHeight: 1.15, letterSpacing: '-0.025em',
-          }}>{project.title}</h3>
+          <h3 className="mt-1 text-[1.8rem] font-extrabold leading-[1.05] tracking-[-0.04em] text-neutral-950 sm:mt-5 sm:text-[2rem]">
+            {project.title}
+          </h3>
 
-          {/* Role */}
           {project.role && (
-            <p style={{ fontSize: 12, fontWeight: 600, color: '#aaa', marginTop: 6, marginBottom: 0 }}>{project.role}</p>
+            <p className="mt-1.5 text-[13px] font-semibold text-neutral-400">{project.role}</p>
           )}
 
-          {/* Divider */}
-          <div style={{ width: 32, height: 2, background: '#eee', margin: '16px 0', borderRadius: 1 }} />
-
-          {/* Description */}
-          <p style={{
-            fontSize: 14, lineHeight: 1.7, color: '#666', margin: 0, fontWeight: 450,
-            display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden',
-          }}>{project.subtitle}</p>
+          <p className="mt-4 line-clamp-3 max-w-[36ch] text-sm leading-6 text-neutral-600">
+            {project.subtitle}
+          </p>
         </div>
 
-        {/* Bottom section */}
-        <div>
-          {/* Tech stack — clean row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24, marginTop: 20 }}>
-            {projectTools.slice(0, 5).map((tool, i) => (
-              <motion.div
-                key={i}
+        <div className="mt-6">
+          <div className="mb-5 flex flex-wrap gap-1.5" aria-label="Technology stack">
+            {tools.map((tool) => (
+              <span
+                key={tool.id}
                 title={tool.nama}
-                whileHover={{ y: -2 }}
-                style={{
-                  width: 32, height: 32, borderRadius: 8,
-                  background: '#f7f7f7', border: '1px solid #eee',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  padding: tool.nama.toLowerCase() === 'gsap' ? 2 : 6,
-                }}
+                className="grid size-8 place-items-center rounded-lg border border-neutral-200 bg-neutral-50 p-1.5 transition-transform duration-200 group-hover:-translate-y-0.5"
               >
-                <img src={tool.gambar} alt={tool.nama} style={{
-                  width: '100%', height: '100%', objectFit: 'contain',
-                  transform: tool.nama.toLowerCase() === 'gsap' ? 'scale(1.4)' : 'none',
-                }} />
-              </motion.div>
+                <img src={tool.gambar} alt={tool.nama} className="h-full w-full object-contain" loading="lazy" />
+              </span>
             ))}
           </div>
 
-          {/* CTAs */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <motion.span
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                fontSize: 14, fontWeight: 700, color: '#1a1a1a',
-                fontFamily: "'Outfit', sans-serif",
-              }}
-              animate={{ x: isHovered ? 4 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              Explore Project
-              <motion.span
-                animate={{ x: isHovered ? 4 : 0 }}
-                transition={{ duration: 0.3, delay: 0.05 }}
-              >
-                <FiArrowRight size={16} strokeWidth={2.5} />
-              </motion.span>
-            </motion.span>
+          <div className="flex flex-wrap items-center gap-4 border-t border-neutral-100 pt-4">
+            <span className="inline-flex items-center gap-2.5 text-[13px] font-bold text-neutral-950">
+              Explore project
+              <span className="grid size-8 place-items-center rounded-full bg-neutral-950 text-white transition-transform duration-300 group-hover:translate-x-1">
+                <FiArrowRight size={14} strokeWidth={2.4} />
+              </span>
+            </span>
 
-            {project.url && project.url !== "UNDER_MAINTENANCE" && project.url !== "COMING_SOON" && (
+            {liveUrl && (
               <a
-                href={project.url}
+                href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 5,
-                  fontSize: 12, fontWeight: 600, color: '#aaa', textDecoration: 'none',
-                  marginLeft: 8,
-                }}
+                onClick={(event) => event.stopPropagation()}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 transition-colors hover:text-neutral-900"
               >
-                Live site <FiExternalLink size={11} />
+                Live site <FiExternalLink size={13} />
               </a>
-            )}
-
-            {(project.url === "UNDER_MAINTENANCE" || project.url === "COMING_SOON") && (
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 5,
-                fontSize: 11, fontWeight: 600, color: '#ccc', marginLeft: 8,
-              }}>
-                <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#f59e0b', display: 'inline-block' }} />
-                Offline
-              </span>
             )}
           </div>
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }

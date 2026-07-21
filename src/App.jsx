@@ -1,32 +1,14 @@
-import { useRef, useState, useEffect, useLayoutEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
-import { listTools, listProyek, listExperience } from "./data";
-
-import ProjectModal from "./components/ProjectModal/ProjectModal";
+import { listTools, listExperience } from "./data";
 import TerminalRoles from "./components/TerminalRoles/TerminalRoles";
-
-import AOS from 'aos';
 import FinderWindow from "./components/FinderWindow/FinderWindow";
 import WorkExperience from "./components/WorkExperience/WorkExperience";
 import GithubDashboard from "./components/GithubContribution/GithubDashboard";
-
-
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 function App() {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isFirstVisit, setIsFirstVisit] = useState(true);
-
-  useEffect(() => {
-    const visited = sessionStorage.getItem("hasVisited");
-    if (visited) {
-      setIsFirstVisit(false);
-    } else {
-      sessionStorage.setItem("hasVisited", "true");
-    }
-  }, []);
-
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -95,10 +77,6 @@ function App() {
   const githubY = useTransform(githubProgress, [0, 1], [0, 150]);
   const githubOpacity = useTransform(githubProgress, [0.85, 0.98], [1, 0]);
 
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -144,8 +122,6 @@ function App() {
             style={{ y: heroImageY }}
           >
             <div className="w-full flex justify-center relative">
-              {/* 3D scene behind profile card on desktop */}
-
               <div className="relative z-10">
                 <ProfileCard avatarUrl="./assets/andre.jpeg" />
               </div>
@@ -246,15 +222,12 @@ function App() {
           
           <div className="flex flex-col w-full min-h-[400px] items-center lg:items-start pt-0">
             <motion.div
-              className="relative w-full bg-white/95 backdrop-blur-md overflow-hidden rounded-[32px] border border-neutral-200 cursor-default shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
-              initial={{ opacity: 0, y: 20, rotate: 0 }}
-              whileInView={{ opacity: 1, y: 0, rotate: window.innerWidth < 768 ? 0 : -1.5 }}
+              className="relative w-full bg-white/95 backdrop-blur-md overflow-hidden rounded-[32px] border border-neutral-200 cursor-default shadow-[0_10px_40px_rgba(0,0,0,0.04)] md:-rotate-[1.5deg]"
               whileHover={{ 
                 y: -10, 
                 rotate: window.innerWidth < 768 ? 0 : -3,
                 shadow: "0 25px 60px rgba(0,0,0,0.12)" 
               }}
-              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-center justify-between px-8 pt-8 pb-6 bg-white/80 backdrop-blur-sm sticky top-0 z-20">
@@ -323,16 +296,12 @@ function App() {
             </motion.div>
           </div>
 
-          <motion.div 
+          <div
             className="w-full min-h-[400px] flex justify-center lg:justify-start pt-0" 
             id="experience"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <WorkExperience experience={listExperience} />
-          </motion.div>
+          </div>
         </motion.div>
 
         <motion.div 
@@ -355,11 +324,6 @@ function App() {
 
       </main>
 
-      <ProjectModal
-        isOpen={!!selectedProject}
-        onClose={handleCloseModal}
-        project={selectedProject}
-      />
     </div>
   );
 }

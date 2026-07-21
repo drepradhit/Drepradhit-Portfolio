@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CustomGithubCalendar from "./CustomGithubCalendar";
 import GithubActivityTimeline from "./GithubActivityTimeline";
 import { motion } from "framer-motion";

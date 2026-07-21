@@ -1,28 +1,31 @@
-# Andre Pradhit - Portfolio
+# Andre Pradhit's Portfolio
 
-Welcome to my personal portfolio showcasing my journey and projects in **UI/UX Design** and **Web Development**.
+This is the source code for my personal portfolio. I use it to keep my selected web development and UI/UX projects in one place, along with a little bit about me and the tools I work with.
 
-## 🚀 Quick Preview
+You can visit the live site at [drepradhit.me](https://www.drepradhit.me/).
 
-[🔗 View Live Portfolio](https://www.drepradhit.me/)
+## Built with
 
-## 🎨 About Me
+- React and Vite
+- Tailwind CSS
+- Framer Motion
+- GitHub API
 
-I'm **Andre Pradhit Rafi Alamsyah**, a Computer Science student at **BINUS University**. I'm passionate about creating meaningful digital experiences through clean UI/UX design and modern web development.
+## Run locally
 
-## 🛠️ Tech Stack
+```bash
+npm install
+npm run dev
+```
 
-- **Design**: Figma, Adobe Illustrator, Photoshop
-- **Frontend**: React JS, Next JS, Tailwind CSS, Framer Motion, GSAP
-- **Backend & Database**: Node JS, PostgreSQL, Firebase
-- **Others**: Git, Three.js
+For a production build:
 
-## 📂 Key Projects
+```bash
+npm run build
+```
 
-- **Whoof & Meow**: Real-time multiplayer Tic Tac Toe game with Neo-Brutalist design.
-- **Rupiah Flow**: Financial management dashboard with detailed reports and visualizations.
-- **ThinkWays**: Adaptive learning platform tailored to individual learning styles.
-- **Damianos Production**: Premium agency portfolio with high-end animations.
+## Projects featured
 
----
-*Feel free to reach out for collaborations or opportunities!*
+Some of the work currently on the site includes Whoof & Meow, Rupiah Flow, ThinkWays, Type Paper, Certix, and Damianos Production. I update the list whenever I have something new worth sharing.
+
+If you want to talk about a project, freelance work, or an internship, you can find my contact links on the site.

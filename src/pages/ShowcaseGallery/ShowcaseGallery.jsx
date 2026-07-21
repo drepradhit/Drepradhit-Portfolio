@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FiChevronLeft, FiLayers, FiActivity } from "react-icons/fi";
 import { listProyekWeb, listProyekUIUX } from '../../data';
@@ -65,34 +65,6 @@ const ShowcaseGallery = () => {
     const filteredProjects = 
           filter === 'web' ? listProyekWeb 
         : listProyekUIUX;
-
-    const projectVariants = {
-        enter: (dir) => ({
-            x: dir > 0 ? 200 : -200,
-            opacity: 0,
-            filter: "blur(4px)"
-        }),
-        center: {
-            x: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-            transition: {
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.4 },
-                filter: { duration: 0.4 }
-            }
-        },
-        exit: (dir) => ({
-            x: dir > 0 ? -200 : 200,
-            opacity: 0,
-            filter: "blur(4px)",
-            transition: {
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.3 },
-                filter: { duration: 0.3 }
-            }
-        })
-    };
 
     return (
         <div className="w-full py-10 overflow-hidden bg-white min-h-screen">

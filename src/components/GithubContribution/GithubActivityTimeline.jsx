@@ -19,7 +19,7 @@ export default function GithubActivityTimeline() {
           
         setRepos(filteredRepos);
         setLoading(false);
-      } catch (error) {
+      } catch {
         setLoading(false);
       }
     };

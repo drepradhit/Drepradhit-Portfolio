@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ProjectGrid from '../ProjectGrid/ProjectGrid';
 import { listProyek } from '../../data';
 

@@ -1,21 +1,17 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 const WorkExperience = ({ experience }) => {
   return (
     <div className="w-full relative flex flex-col items-center z-10 pt-0">
       <div className="relative w-full max-w-2xl mx-auto pb-12 pt-0">
-        <motion.div 
-          initial={{ opacity: 0, y: 10, rotate: 0 }}
-          whileInView={{ opacity: 1, y: 0, rotate: window.innerWidth < 768 ? 0 : 1.5 }}
+        <motion.div
           whileHover={{ 
             y: -10, 
             rotate: window.innerWidth < 768 ? 0 : 3,
             shadow: "0 25px 60px rgba(0,0,0,0.12)" 
           }}
-          viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="relative group pt-0 cursor-default"
+          className="relative group pt-0 cursor-default md:rotate-[1.5deg]"
         >
           <div className="relative bg-white border border-neutral-200 shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 min-h-[400px]"
                style={{ borderRadius: '32px' }}>
@@ -43,7 +39,7 @@ const WorkExperience = ({ experience }) => {
               </div>
 
               <div className="relative z-10 flex flex-col gap-6">
-                {experience.map((item, index) => {
+                {experience.map((item) => {
                   return (
                     <div key={item.id} className="relative border-b border-neutral-100 pb-6 last:border-0 last:pb-0">
                       <div className="flex justify-between items-baseline mb-1">

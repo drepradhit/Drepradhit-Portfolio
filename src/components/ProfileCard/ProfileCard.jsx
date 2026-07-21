@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const ProfileCard = ({ avatarUrl = "./assets/andre.jpg", className = "" }) => {
