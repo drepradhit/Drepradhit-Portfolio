@@ -367,6 +367,14 @@ import LinestagLogo from "/assets/Career/Linestag.webp";
 export const listExperience = [
   {
     id: 1,
+    company: "HQuarters",
+    role: "Web Developer (Freelance)",
+    period: "Oct 2026",
+    logo: null,
+    description: "Maintained web platforms, developed a company profile website with meeting room booking functionality, and managed API integrations, SEO optimization, and copywriting.",
+  },
+  {
+    id: 2,
     company: "Damianos Productions",
     role: "Web Developer",
     period: "Feb 2026 - Present",
@@ -374,7 +382,7 @@ export const listExperience = [
     description: "Developed a high-end company profile website for a creative agency using Next.js and GSAP for fluid, premium transitions.",
   },
   {
-    id: 2,
+    id: 3,
     company: "Dinas Perhubungan",
     role: "Full-stack Developer (Internship)",
     period: "Feb 2026 - Present",
@@ -382,7 +390,7 @@ export const listExperience = [
     description: "Developed and maintained web applications using Next.js, React.js, and modern web technologies.",
   },
   {
-    id: 3,
+    id: 4,
     company: "Dunia Sandang",
     role: "Web Maintenance (Freelance)",
     period: "Oct 2024",
@@ -390,7 +398,7 @@ export const listExperience = [
     description: "Maintained web platforms and implemented continuous updates utilizing WordPress and PHP environments.",
   },
   {
-    id: 4,
+    id: 5,
     company: "Linestag Indonesia",
     role: "Creative Designer & Script Writer",
     period: "Apr 2022 - Sep 2022",
